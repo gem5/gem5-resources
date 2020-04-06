@@ -27,5 +27,8 @@ $(riscv-benchmarks):
 	cd $(riscv-tests-dir) && autoconf && ./configure --prefix=/opt/riscv/target
 	make -C "$(riscv-tests-dir)"
 
+.PHONY: all
+all: riscv-tests
+
 .PHONY: clean
 clean: clean-riscv-tests
