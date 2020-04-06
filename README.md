@@ -43,7 +43,7 @@ cd riscv-gnu-toolchain
 sudo make
 ```
 
-**Ensure `/opt/riscv/bin` is added to PATH**.
+**Ensure `/opt/riscv/bin` is added to the PATH environment variable**.
 
 
 ## Compilation
@@ -71,7 +71,7 @@ cd riscv-gnu-toolchain
 sudo make linux
 ```
 
-**Ensure `/opt/riscv/bin` is appeneded to the PATH environment variable**
+**Ensure `/opt/riscv/bin` is appended to the PATH environment variable**.
 
 ## Compilation
 
@@ -82,7 +82,7 @@ make insttests
 The output of this compilation can be found in
 `dist/current/test-progs/insttest/bin/riscv/linux/`
 
-# Licencing
+# Licensing
 
 Each project under the `src` is under a different license. Before using
 any compiled binary, or modifying any source, please consult the corresponding
