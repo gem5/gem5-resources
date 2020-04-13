@@ -32,9 +32,12 @@ v20.2.0.0, then the latest release of gem5-resources will be v20.2.0.0, with
 the HEAD of its master branch tagged as v20.2.0.0. Previous versions will be
 tagged within the master branch. Past versions gem5-resources can thereby be
 checked out with `git checkout <VERSION>`. A complete list of versions can be
-found with `git tag`. The develop branch constains code under development and
+found with `git tag`. The develop branch contains code under development and
 will be merged into the master branch, then tagged, as part of the next release
-of gem5.
+of gem5. More information on gem5 release procedures can be found [here](
+https://gem5.googlesource.com/public/gem5/+/refs/heads/master/CONTRIBUTING.md#releases).
+Any release procedures related to the gem5 source can be assumed to be
+applicable to gem5-resources.
 
 The compiled resources for gem5 can be found under
 http://dist.gem5.org/dist/{VERSION}. E.g. compiled resources for gem5 v20.2.0.0
@@ -113,7 +116,7 @@ The output of this compilation can be found at
 
 ## Dependencies
 
-The Insttests require the follwing dependencies:
+The Insttests require the following dependencies:
 
 ### RISCV-V GNU Compiler Toolchain (with multilib)
 
