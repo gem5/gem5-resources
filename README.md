@@ -21,20 +21,20 @@ to this repository, and describe each resource and how they may be built.
 
 # Versioning
 
-We ensure that for each version of
-the [gem5 source](https://gem5.googlesource.com/public/gem5/) there is a
-corresponding version of the gem5-resources, with the assumption that version X
-of the gem5 source will be used with version X of the gem5-resources. The
-gem5-resources repository contains two branches, develop and master. The master
-branch's HEAD points towards the latest gem5 resources release, which will be
-the same version id as the that of the latest gem5 source. E.g., if the latest
-release of gem5 is v20.2.0.0, then the latest release of gem5-resources
-will be v20.2.0.0, with the HEAD of its master branch tagged as v20.2.0.0.
-Previous versions will be tagged within the master branch. Past versions
-gem5-resources can thereby be checked out with `git checkout <VERSION>`. A
-complete list of versions can be found with `git tag`. The develop branch
-constains code under development and will be merged into the master branch,
-then tagged, as part of the next release of gem5.
+We ensure that for each version of the [gem5 source](
+https://gem5.googlesource.com/public/gem5/) there is a corresponding version of
+the gem5-resources, with the assumption that version X of the gem5 source will
+be used with version X of the gem5-resources. The gem5-resources repository
+contains two branches, develop and master. The master branch's HEAD points
+towards the latest gem5 resources release, which will be the same version id
+as the that of the latest gem5 source. E.g., if the latest release of gem5 is
+v20.2.0.0, then the latest release of gem5-resources will be v20.2.0.0, with
+the HEAD of its master branch tagged as v20.2.0.0. Previous versions will be
+tagged within the master branch. Past versions gem5-resources can thereby be
+checked out with `git checkout <VERSION>`. A complete list of versions can be
+found with `git tag`. The develop branch constains code under development and
+will be merged into the master branch, then tagged, as part of the next release
+of gem5.
 
 The compiled resources for gem5 can be found under
 http://dist.gem5.org/dist/{VERSION}. E.g. compiled resources for gem5 v20.2.0.0
