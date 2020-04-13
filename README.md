@@ -7,9 +7,9 @@ gem5 resources.
 * **Makefile** : Used to compile the resources. Please consult the sections
 below for dependencies that may be required to compile these resources.
 * **src** : The resource sources.
-* **dist** : Where the resources are stored after running the **Makefile**.
+* **output** : Where the resources are stored after running the **Makefile**.
 The directory structure maps to that under http://dist.gem5.org/dist. E.g.,
-`dist/current/test-progs/riscv-tests/median.riscv` can be found at
+`output/test-progs/riscv-tests/median.riscv` can be found at
 http://dist.gem5.org/dist/current/test-progs/riscv-tests/median.riscv.
 
 # Resource: RISCV Tests

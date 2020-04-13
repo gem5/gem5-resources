@@ -1,4 +1,5 @@
 source-dir          := src
+output-dir          := output
 
 # RISCV-Tests Parameters
 riscv-tests-dir     := $(source-dir)/riscv-tests
@@ -15,7 +16,7 @@ riscv-benchmarks    := $(riscv-benchmark-dir)/dhrystone.riscv \
                        $(riscv-benchmark-dir)/spmv.riscv \
                        $(riscv-benchmark-dir)/towers.riscv \
                        $(riscv-benchmark-dir)/vvadd.riscv
-riscv-dist-dir      := dist/current/test-progs/riscv-tests
+riscv-dist-dir      := $(output)/test-progs/riscv-tests
 
 # Insttest Parameters
 insttest-src        := $(source-dir)/insttest
@@ -26,7 +27,7 @@ insttest-execs      := $(insttest-bin)/insttest-rv64a \
 					   $(insttest-bin)/insttest-rv64f \
 					   $(insttest-bin)/insttest-rv64i \
 					   $(insttest-bin)/insttest-rv64m
-insttest-dist-dir   := dist/current/test-progs/insttest/bin/riscv/linux
+insttest-dist-dir   := $(output)/test-progs/insttest/bin/riscv/linux
 
 # RISCV-Tests
 .PHONY: riscv-tests
