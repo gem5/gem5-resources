@@ -113,7 +113,7 @@ make riscv-tests
 ```
 
 The output of this compilation can be found at
-`dist/current/test-progs/riscv-tests/`
+`output/test-progs/riscv-tests/`
 
 # Resource: Insttests
 
@@ -141,7 +141,7 @@ make insttests
 ```
 
 The output of this compilation can be found in
-`dist/current/test-progs/insttest/bin/riscv/linux/`
+`output/test-progs/insttest/bin/riscv/linux/`
 
 # Licensing
 
