@@ -14,7 +14,7 @@ below for dependencies that may be required to compile these resources.
 * **output** : Where the resources are stored after running the **Makefile**.
 The directory structure maps to that under http://dist.gem5.org/dist. E.g.,
 `output/test-progs/riscv-tests/median.riscv` can be found at
-http://dist.gem5.org/dist/current/test-progs/riscv-tests/median.riscv.
+http://dist.gem5.org/dist/develop/test-progs/riscv-tests/median.riscv.
 
 The following sections outline our versioning policy, how to make changes
 to this repository, and describe each resource and how they may be built.
@@ -42,9 +42,12 @@ applicable to gem5-resources.
 The compiled resources for gem5 can be found under
 http://dist.gem5.org/dist/{VERSION}. E.g. compiled resources for gem5 v20.2.0.0
 are under http://dist.gem5.org/dist/v20-2-0-2 and are compiled from
-gem5-resources v20.2.0.0. http://dist.gem5.org/dist/current is kept in sync
+gem5-resources v20.2.0.0. http://dist.gem5.org/dist/develop is kept in sync
 with the develop branch, and therefore should not be depended upon for stable,
 regular usage.
+
+**Note: Resource files for gem5 v19.0.0.0, our legacy release, can be found
+under http://dist.gem5.org/dist/current**.
 
 # Making Changes
 
