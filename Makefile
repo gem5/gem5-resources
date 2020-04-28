@@ -64,4 +64,4 @@ all: riscv-tests insttests
 
 .PHONY: clean
 clean: clean-riscv-tests clean-insttests
-	-rm -r dist
+	-rm -r $(output)
