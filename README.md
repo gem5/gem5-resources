@@ -72,21 +72,18 @@ the gem5-resources repository, please contact Bobby R. Bruce
 [mailto:bbruce@ucdavis.edu](bbruce@ucdavis.edu) to have the compiled sources
 uploaded to the gem5 resources bucket.
 
-# Resource: RISCV Tests
+# Requirements
 
-Origin: <https://github.com/riscv/riscv-tests.git>
+These requirements, their prerequisites, and installation instructions have
+been written with the assumption that they shall be installed on an x86 Ubuntu
+18.04 system. Installation instructions may differ across other systems.
 
-Revision: 19bfdab48c2a6da4a2c67d5779757da7b073811d
+## RISC-V GNU Compiler Toolchain
 
-Local: `src/riscv-tests`
+The RISC-V GNU Compiler Toolchain is needed to cross-compile to the RISCV-V
+ISA infrastructure.
 
-## Dependencies
-
-The RISCV Tests requires the following dependencies:
-
-### RISC-V GNU Compiler Toolchain
-
-#### Prerequisites
+### Prerequisites
 
 ```
 sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev \
@@ -94,17 +91,50 @@ libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool \
 patchutils bc zlib1g-dev libexpat-dev
 ```
 
-#### Installation
+### Installation
 
 ```
 git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
 cd riscv-gnu-toolchain
-./configure --prefix=/opt/riscv
-sudo make
+./configure --prefix=/opt/riscv --enable-multilib
+sudo make linux
 ```
 
 **Ensure `/opt/riscv/bin` is added to the PATH environment variable**.
 
+## GNU ARM-32 bit Toolchain
+
+The GNU ARM-32 bit toolchain is required to cross compile to the ARM-32 bit
+ISA.
+
+### Installation
+
+The toolchain may be installed via the apt-get package manager:
+
+```
+sudo apt-get install git++-arm-linux-gnueabihf
+```
+
+## GNU ARM-64 bit Toolchain
+
+The GNU ARM-64 bit toolchain is required to cross compile to the ARM-64 bit
+ISA.
+
+### Installation
+
+The toolchain may be installved via the apt-get package manager:
+
+```
+sudo apt-get install g++-aarch64-lunux-gnu
+```
+
+# Resource: RISCV Tests
+
+Origin: <https://github.com/riscv/riscv-tests.git>
+
+Revision: 19bfdab48c2a6da4a2c67d5779757da7b073811d
+
+Local: `src/riscv-tests`
 
 ## Compilation
 
@@ -115,24 +145,8 @@ make riscv-tests
 The output of this compilation can be found at
 `output/test-progs/riscv-tests/`
 
+
 # Resource: Insttests
-
-## Dependencies
-
-The Insttests require the following dependencies:
-
-### RISCV-V GNU Compiler Toolchain (with multilib)
-
-#### Installation
-
-```
-git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
-cd riscv-gnu-toolchain
-./configure --prefix=/opt/riscv --enable-multilib
-sudo make linux
-```
-
-**Ensure `/opt/riscv/bin` is appended to the PATH environment variable**.
 
 ## Compilation
 
@@ -143,6 +157,27 @@ make insttests
 The output of this compilation can be found in
 `output/test-progs/insttest/bin/riscv/linux/`
 
+# Resource: PThreads
+
+## Compilation
+
+```
+make pthreads
+```
+
+This will compile the pthread binaries for the RISCV, ARM-32, ARM-64, and X86
+ISAs. Specific ISA compilations can be obtained via the following commands:
+
+```
+make pthreads-aarch32
+make pthreads-aarch64
+make pthreads-riscv64
+make pthreads-x86
+```
+
+The output of these compilations can be found in
+`output/test-progs/pthreads`
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -152,3 +187,5 @@ project's license.
 * **riscv-tests** : `src/riscv-tests/LICENSE`.
 * **insttests** : Consult individual copyright notices of source files in
 `src/insttests`.
+* **pthreads**: Consult individual copyright notices of source files in
+`src/pthreads`.
