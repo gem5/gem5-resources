@@ -51,6 +51,11 @@ square-bin			:= $(square-dir)/bin
 square-bench		:= $(square-bin)/square.o
 square-out			:= $(output-dir)/test-progs/square
 
+# Asmtest Parameters
+asmtest-src         := $(source-dir)/asmtest
+asmtest-bin         := $(asmtest-src)/bin
+asmtest-dist-dir    := $(output-dir)/test-progs/asmtest/bin
+
 # RISCV-Tests
 .PHONY: riscv-tests
 riscv-tests: $(riscv-benchmarks)
@@ -166,10 +171,27 @@ clean-square:
 	-rm -r $(square-out)
 	-make -C $(square-dir) clean
 
+# Asmtest
+.PHONY: asmtests
+asmtests: $(asmtest-dist-dir)
+
+$(asmtest-dist-dir): $(asmtest-bin)
+	-mkdir -p $(asmtest-dist-dir)
+	cp $(asmtest-bin)/* $(asmtest-dist-dir)/
+
+$(asmtest-bin): $(asmtest-src)/Makefile
+	make -C $(asmtest-src)
+
+.PHONY: clean-asmtests
+clean-asmtests:
+	-make -C $(asmtest-src) clean
+	-rm -rf $(asmtest-dist-dir)
+
 # Global
 .PHONY: all
-all: riscv-tests insttests pthreads square
+all: riscv-tests insttests pthreads square asmtests
 
 .PHONY: clean
-clean: clean-riscv-tests clean-insttests clean-pthreads clean-square
+clean: clean-riscv-tests clean-insttests clean-pthreads clean-square \
+	   clean-asmtests
 	-rm -r $(output-dir)
