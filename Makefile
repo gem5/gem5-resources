@@ -56,6 +56,10 @@ asmtest-src         := $(source-dir)/asmtest
 asmtest-bin         := $(asmtest-src)/bin
 asmtest-dist-dir    := $(output-dir)/test-progs/asmtest/bin
 
+# Default make --- Make all targets
+.PHONY: all
+all: riscv-tests insttests pthreads square asmtests
+
 # RISCV-Tests
 .PHONY: riscv-tests
 riscv-tests: $(riscv-benchmarks)
@@ -187,10 +191,7 @@ clean-asmtests:
 	-make -C $(asmtest-src) clean
 	-rm -rf $(asmtest-dist-dir)
 
-# Global
-.PHONY: all
-all: riscv-tests insttests pthreads square asmtests
-
+# Clean
 .PHONY: clean
 clean: clean-riscv-tests clean-insttests clean-pthreads clean-square \
 	   clean-asmtests
