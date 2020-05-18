@@ -178,6 +178,17 @@ make pthreads-x86
 The output of these compilations can be found in
 `output/test-progs/pthreads`
 
+# Resource: Square
+
+## Compilation
+
+```
+make square
+```
+
+The output of this compilation can be found at
+`output/test-progs/square/`
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -189,3 +200,5 @@ project's license.
 `src/insttests`.
 * **pthreads**: Consult individual copyright notices of source files in
 `src/pthreads`.
+* **square**: Consult individual copyright notices of source files in
+`src/square`.

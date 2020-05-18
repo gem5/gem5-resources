@@ -45,6 +45,12 @@ pthreads-a32-out    := $(pthreads-out)/aarch32
 pthreads-a64-out    := $(pthreads-out)/aarch64
 pthreads-ri5-out    := $(pthreads-out)/riscv64
 
+# Square Parameters
+square-dir			:= $(source-dir)/square
+square-bin			:= $(square-dir)/bin
+square-bench		:= $(square-bin)/square.o
+square-out			:= $(output-dir)/test-progs/square
+
 # RISCV-Tests
 .PHONY: riscv-tests
 riscv-tests: $(riscv-benchmarks)
@@ -144,10 +150,26 @@ clean-pthreads: clean-pthreads-x86 \
 				clean-pthreads-riscv64
 	-rm -rf $(pthreads-out)
 
+# Square
+.PHONY: square
+square: $(square-out)
+	-cp $(square-bench) $(square-out)/
+
+$(square-out): $(square-bin)
+	mkdir -p $(square-out)
+
+$(square-bin):
+	make -C $(square-dir) gfx8-apu
+
+.PHONY: clean-square
+clean-square:
+	-rm -r $(square-out)
+	-make -C $(square-dir) clean
+
 # Global
 .PHONY: all
-all: riscv-tests insttests pthreads
+all: riscv-tests insttests pthreads square
 
 .PHONY: clean
-clean: clean-riscv-tests clean-insttests clean-pthreads
+clean: clean-riscv-tests clean-insttests clean-pthreads clean-square
 	-rm -r $(output-dir)
