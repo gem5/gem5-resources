@@ -232,6 +232,18 @@ The npb resources can be found in `src/npb`. It consists of:
 
 The instructions to build the npb disk image, a Linux kernel binary, and how to use gem5 run scripts to run npb are available in the [README](src/npb-tests/README.md) file.
 
+# Resource: Linux Boot Tests
+
+The Linux boot tests refer to the tests performed with different gem5 configurations to check its ability to boot a Linux kernel.
+More information on Linux boot tests can be found [here](https://www.gem5.org/project/2020/03/09/boot-tests.html).
+
+The boot-tests resources consist of three main components:
+- boot-tests disk image
+- gem5 run scripts to execute boot tests
+- linux kernel configuration files
+
+The instructions to build the boot-tests disk image (`boot-exit`), the Linux binaries, and how to use gem5 run scripts to run boot-tests are available in this [README](src/boot-tests/README.md) file.
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -256,3 +268,5 @@ BSD License (A Princeton University copyright). For the remaining files, please
 consult copyright notices in the source files.
 * **npb-tests**: Consult individual copyright notices of source files in
 `src/npb`. The NAS Parallel Benchmarks utilize a permissive BSD-style license.
+* **boot-tests**: Consult individual copyright notices of source files in
+`src/boot-tests`.
