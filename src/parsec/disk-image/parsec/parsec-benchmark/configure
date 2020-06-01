@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+sudo apt-get install build-essential m4 x11proto-xext-dev libglu1-mesa-dev libxi-dev libxmu-dev libtbb-dev
+./get-inputs

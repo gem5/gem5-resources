@@ -1,0 +1,296 @@
+= PARSEC Benchmark
+:idprefix:
+:idseparator: -
+:sectanchors:
+:sectlinks:
+:sectnumlevels: 6
+:sectnums:
+:toc: macro
+:toclevels: 6
+:toc-title:
+
+PARSEC http://parsec.cs.princeton.edu/ 3.0-beta-20150206 ported to Ubuntu 17.10 and SPLASH2 ported to Buildroot 2017.08 cross compilation (ARM, MIPS, etc.). This repo intends to support all build types and benchmarks, pull requests will be actively tested and merged.
+
+toc::[]
+
+== Getting started Ubuntu 17.10 native host
+
+....
+./configure
+....
+
+Before doing anything else, you must get the `parecmgmt` command with:
+
+....
+. env.sh
+....
+
+Build all:
+
+....
+parsecmgmt -a build -p all
+....
+
+Build all SPLASH2 benchmarks:
+
+....
+parsecmgmt -a build -p splash2x
+....
+
+Build just one SPLASH2 benchmark:
+
+....
+parsecmgmt -a build -p splash2x.barnes
+....
+
+Run one benchmark with one input size, listed in by increasing size:
+
+....
+parsecmgmt -a run -p splash2x.barnes -i test
+parsecmgmt -a run -p splash2x.barnes -i simdev
+parsecmgmt -a run -p splash2x.barnes -i simsmall
+parsecmgmt -a run -p splash2x.barnes -i simmedium
+parsecmgmt -a run -p splash2x.barnes -i simlarge
+parsecmgmt -a run -p splash2x.barnes -i native
+....
+
+For some reason, the `splash2` version (without the X) does not have any test data besides `-i test`, making it basically useless. So just use the X version instead. TODO why? Can we just remove it then? When running `splash2`, it says:
+
+....
+NOTE: SPLASH-2 only supports "test" input sets.
+....
+
+so likely not a bug.
+
+The tests are distributed separately as:
+
+* `test` tests come with the smallest possible distribution `core`, and are tiny sanity checks as the name suggests. We have however removed them from this repo, since they are still blobs, and blobs are evil.
+* `sim*` tests require `parsec-3.0-input-sim.tar.gz` which we install by default
+* `native` requires `parsec-3.0-input-native.tar.gz`, which we don't install by default because it is huge. These huge instances are intended for real silicon.
+
+Run all packages with the default `test` input size:
+
+....
+parsecmgmt -a run -p all
+....
+
+TODO some tests are broken. We will maintain a list.
+
+Not every benchmark has every input size, e.g. `splash2.barnes` only has `test` input inside of `core` and `input-sim`
+
+TODO runs all sizes, or just one default size:
+
+....
+parsecmgmt -a run -p splash2x
+....
+
+TODO how to read run output?
+
+Run logs are stored under:
+
+....
+ls logs/
+....
+
+One of the most valuable things parsec adds is that it instruments the region of interest of all benchmarks with:
+
+....
+__parsec_roi_begin
+....
+
+so you will likely want to override that to some simulator magic instruction. TODO link to the GEM5 one.
+
+=== Host x264
+
+Fails with:
+
+....
+[PARSEC] Running 'time /home/ciro/bak/git/linux-kernel-module-cheat/parsec-benchmark/parsec-benchmark/pkgs/apps/x264/inst/amd64-linux.gcc/bin/x264 --quiet --qp 20 --partitions b8x8,i4x4 --ref 5 --direct auto --b-pyramid --weightb --mixed-refs --no-fast-pskip --me umh --subme 7 --analyse b8x8,i4x4 --threads 1 -o eledream.264 eledream_32x18_1.y4m':                                                                          [PARSEC] [---------- Beginning of output ----------]
+PARSEC Benchmark Suite Version 3.0-beta-20150206
+yuv4mpeg: 32x18@25/1fps, 0:0
+*** Error in `/home/ciro/bak/git/linux-kernel-module-cheat/parsec-benchmark/parsec-benchmark/pkgs/apps/x264/inst/amd64-linux.gcc/bin/x264': double free or corruption (!prev): 0x0000000001a88e50 ***
+/home/ciro/bak/git/linux-kernel-module-cheat/parsec-benchmark/parsec-benchmark/bin/parsecmgmt: line 1222: 20944 Aborted                 (core dumped) /home/ciro/bak/git/linux-kernel-module-cheat/parsec-benchmark/parsec-benchmark/pkgs/apps/x264/inst/amd64-linux.gcc/bin/x264 --quiet --qp 20 --partitions b8x8,i4x4 --ref 5 --direct auto --b-pyramid --weightb --mixed-refs --no-fast-pskip --me umh --subme 7 --analyse b8x8,i4x4 --threads 1 -o eledream.264 eledream_32x18_1.y4m
+....
+
+Mentioned on the following unresolved Parsec threads:
+
+* https://lists.cs.princeton.edu/pipermail/parsec-users/2014-January/001601.html
+* https://lists.cs.princeton.edu/pipermail/parsec-users/2014-April/001611.html
+
+The problem does not happen on Ubuntu 17.10's x264 0.148.2795 after removing `b-pyramid` which is not a valid argument anymore it seems., so the easiest fix for this problem is to just take the latest x264 (as a submodule, please!!) and apply parsec `roi` patches to it (`git grep parsec` under `x264/src`).
+
+=== Host splash2x.fmm
+
+Segfaults.
+
+== Getting started Buildroot cross compilation
+
+See the instructions at: https://github.com/cirosantilli/linux-kernel-module-cheat#parsec-benchmark The Buildroot package is in that repo at: https://github.com/cirosantilli/linux-kernel-module-cheat/tree/2c12b21b304178a81c9912817b782ead0286d282/parsec-benchmark
+
+If you have already built for the host previously, you must first in this repo:
+
+* `git clean -xdf`, otherwise the x86 built files will interfere with buildroot
+* run Buildroot on a new shell. Otherwise `. env.sh` adds the `./bin/` of this repo to your `PATH`, and `parsecmgmt` is used from this source, instead of from the copy that Buildroot made
+
+Only SPLASH2 was ported currently, not the other benchmarks.
+
+PARSEC's build was designed for multiple archs, this can be seen at bin/parsecmgmt, but not for cross compilation. Some of the changes we've had to make:
+
+* use `CC` everywhere instead of hardcoded `gcc`
+* use `HOST_CC` for `.c` utilities used during compilation
+* remove absolute paths, e.g. `-I /usr/include`
+
+The following variables are required for cross compilation, with example values:
+
+....
+export GNU_HOST_NAME='x86_64-pc-linux-gnu'
+export HOSTCC='/home/ciro/bak/git/linux-kernel-module-cheat/buildroot/output.arm~/host/bin/ccache /usr/bin/gcc'
+export M4='/home/ciro/bak/git/linux-kernel-module-cheat/buildroot/output.arm~/host/usr/bin/m4'
+export MAKE='/usr/bin/make -j6'
+export OSTYPE=linux
+export TARGET_CROSS='/home/ciro/bak/git/linux-kernel-module-cheat/buildroot/output.arm~/host/bin/arm-buildroot-linux-uclibcgnueabi-'
+export HOSTTYPE='"arm"'
+....
+
+Then just do a normal build.
+
+=== Non SPLASH
+
+We have made a brief attempt to get the other benchmarks working. We have already adapted and merged parts of the patches `static-patch.diff` and `xcompile-patch.diff` present at: https://github.com/arm-university/arm-gem5-rsk/tree/aa3b51b175a0f3b6e75c9c856092ae0c8f2a7cdc/parsec_patches
+
+But it was not enough for successful integration as documented below.
+
+The main point to note is that the non-SPLASH benchmarks all use Automake.
+
+==== Non SPLASH arm
+
+Some of the benchmarks fail to build with:
+
+....
+atomic/atomic.h:38:4: error: #error Architecture not supported by atomic.h
+....
+
+The ARM gem5 RSK patches do seem to fix that for aarch64, but not for arm, we should port them to arm too.
+
+Some benchmarks don't rely on that however, and they do work, e.g. `bodytrack`.
+
+==== Non SPLASH aarch64
+
+Some builds work, but not all.
+
+`parsec.raytrace` depends on `cmake`, which fails with:
+
+....
+---------------------------------------------
+CMake 2.6-1, Copyright (c) 2007 Kitware, Inc., Insight Consortium
+---------------------------------------------
+Error when bootstrapping CMake:
+Cannot find appropriate C compiler on this system.
+Please specify one using environment variable CC.
+See cmake_bootstrap.log for compilers attempted.
+....
+
+which is weird since I am exporting `CC`.
+
+It is the only package that depends on `cmake` and `mesa` as can be found with:
+
+....
+git grep 'deps.*cmake'
+....
+
+cmake we could use host / Buildroot built one, but Mesa, really? For a CPU benchmark? I'm tempted to just get rid of this benchmark.
+
+Furthermore, http://gem5.org/PARSEC_benchmarks says that raytrace relies on SSE intrinsics, so maybe it is not trivially portable anyways. 
+
+If we disable `raytrace`, `cmake` and `mesa` by editing `config/packages/parsec.raytrace.pkgconf`, `parsec.cmake.pkgconf` and `parsec.mesa.pkgconf` to contain:
+
+....
+pkg_aliases=""
+....
+
+the next failure is `dedup`, which depends on `ssl`, which fails with:
+
+....
+Operating system: x86_64-whatever-linux2
+Configuring for linux-x86_64
+Usage: Configure.pl [no-<cipher> ...] [enable-<cipher> ...] [experimental-<cipher> ...] [-Dxxx] [-lxxx] [-Lxxx] [-fxxx] [-Kxxx] [no-hw-xxx|no-hw] [[no-]threads] [[no-]shared] [[no-]zlib|zlib-dynamic] [enable-mon
+tasm] [no-asm] [no-dso] [no-krb5] [386] [--prefix=DIR] [--openssldir=OPENSSLDIR] [--with-xxx[=vvv]] [--test-sanity] os/compiler[:flags]
+....
+
+`dedup` and `netdedup` are the only packages that use `ssl`. `ssl` is actually OpenSSL, which Buildroot has.
+
+The next failure is `vips` due to `glib`:
+
+....
+checking for growing stack pointer... configure: error: in `/path/to/linux-kernel-module-cheat/out/aarch64/buildroot/build/parsec-benchmark-custom/pkgs/libs/glib/obj/aarch64-linux.gcc':
+configure: error: cannot run test program while cross compiling
+....
+
+which is weird, I thought those Automake problems were avoided by `--build` and `--host`, which we added in a previous patch.
+
+`glib` is and `libxml` are only used by `vips`. Buildroot has only parts of glib it seems, e.g. `glibmm`, but it does have `libxml2`.
+
+The next failure is `uptcpip` on which all netapps depend:
+
+....
+ar rcs libuptcp.a ../freebsd.kern/*.o ../freebsd.netinet/*.o *.o ../host.support/uptcp_statis.o         ../host.support/host_serv.o         ../host.support/if_host.o
+ar: ../host.support/uptcp_statis.o: No such file or directory
+....
+
+I hack in a `pwd` on the configure, and the `CWD` is `pkgs/apps/x264/obj/aarch64-linux.gcc`, so sure, there is no `./config.sub` there...
+
+And the errors are over! :-)
+
+== test.sh unit tests
+
+While it is possible to run all tests on host with `parsecmgmt`, this has the following disadvantages:
+
+* `parsecmgmt` Bash scripts are themselves too slow for gem5
+* `parsecmgmt -a run -p all` does not stop on errors, and it becomes hard to find failures
+
+For those reasons, we have created the link:test.sh[] script, which runs the raw executables directly, and stops on failures.
+
+That script can be run either on host, or on guest, but you must make sure that all `test` inputs have been previously unpacked with:
+
+....
+parsecmgmt -a run -p all
+....
+
+`test` size is required since the input names for some benchmarks are different depending on the test sizes.
+
+== About
+
+This repo was started from version 3.0-beta-20150206:
+
+....
+$ md5sum parsec-3.0.tar.gz
+328a6b83dacd29f61be2f25dc0b5a053  parsec-3.0.tar.gz
+....
+
+We later learnt about `parsec-3.0-core.tar.gz`, which is in theory cleaner than the full tar, but even that still contains some tars, so it won't make much of a difference.
+
+Why this fork: how can a project exist without Git those days? I need a way to track my patches sanely. And the thing didn't build on latest Ubuntu of course :-)
+
+We try to keep this as close to mainline functionality as possible to be able to compare results, except that it should build and run.
+
+We can't track all the huge input blobs on GitHub or it will blow up the 1Gb max size, so let's try to track everything that is not humongous, and then let users download the missing blobs from Princeton directly.
+
+Let's also remove the random output files that the researches forgot inside the messy tarball as we find them.
+
+All that matters is that this should compile fine: runtime will then fail due to missing input data.
+
+I feel like libs contains ancient versions of a bunch of well known third party libraries, so we are just re-porting them to newest Ubuntu, which has already been done upstream... and many of the problems are documentation generation related... at some point I want to just use Debian packages or git submodules or Buildroot packages.
+
+TODO: after build some `./configure` and `config.h.in` files are modified. But removing them makes build fail. E.g.:
+
+* `pkgs/apps/bodytrack/src/config.h.in`
+* `pkgs/apps/bodytrack/src/configure`
+
+== Bibliography
+
+Princeton stopped actively supporting PARSEC directly, they don't usually reply on the link:https://lists.cs.princeton.edu/pipermail/parsec-users/[mailing list]. So a few forks / patches / issue trackers have popped up in addition to ours:
+
+* https://github.com/bamos/parsec-benchmark I would gladly merge with that repo, but last commit is old, and owner does not seem responsive: https://github.com/bamos/parsec-benchmark/issues/3
+* https://github.com/arm-university/arm-gem5-rsk contains patches to QEMU native and cross build PARSEC, and also implements the link:https://github.com/arm-university/arm-gem5-rsk/blob/aa3b51b175a0f3b6e75c9c856092ae0c8f2a7cdc/parsec_patches/qemu-patch.diff#L16[ROI callbacks fore gem5]. But I don't think they have all benchmarks working, although that is not clearly documented: we have noted some failures which are simply not fixed in the patches there. Furthermore, they have issues disabled on that repo, and you would have to patch `.patch` files on your patches, so I does not feel like a very nice place to contribute.
+* https://yulistic.gitlab.io/2016/05/parsec-3.0-installation-issues/ documents some of the issues that needed to be solved, but I had many many more
+* https://github.com/anthonygego/gem5-parsec3 Apparently focuses on image generation via QEMU native compilation.

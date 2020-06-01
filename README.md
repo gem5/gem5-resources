@@ -205,6 +205,18 @@ be used to run the benchmark on gem5 X86 simulations.
 The pre-built GAPBS disk image can be found here:
 <http://dist.gem5.org/images/x86/ubuntu-18-04/gapbs>.
 
+# Resource: PARSEC Benchmark Suite
+
+The [Princeton Application Repository for Shared-Memory Computers (PARSEC)](
+https://parsec.cs.princeton.edu/) is a benchmark suite composed of
+multithreaded programs. In `src/parsec` we provide the source to build a disk
+image which may be used, along side configuration files, to run the PARSEC
+Benchmark Suite on gem5 architectural simulations. Please consult
+`src/parsec/README.md` for build and execution information.
+
+A pre-build parsec benchmark image, for X86, can be found here:
+<http://dist.gem5.org/images/x86/ubuntu-18-04/parsec>.
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -223,3 +235,7 @@ project's license.
 Consult individual copyright notices of source files in `src/spec2006-tests`.
 * **gapbs**: Consult individual copyright notices of source files in
 `src/gapbs`.
+* **parsec**: The PARSEC license can be found at
+`src/parsec/disk-image/parsec/parsec-benchmark/LICENSE`. This is a 3-Clause
+BSD License (A Princeton University copyright). For the remaining files, please
+consult copyright notices in the source files.
