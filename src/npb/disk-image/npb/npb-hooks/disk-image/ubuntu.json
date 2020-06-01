@@ -1,0 +1,87 @@
+{
+    "builders":
+    [
+        {
+            "type": "qemu",
+            "format": "raw",
+            "accelerator": "kvm",
+            "boot_command":
+            [
+                "{{ user `boot_command_prefix` }}",
+                "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
+                "file=/floppy/{{ user `preseed` }} ",
+                "fb=false debconf/frontend=noninteractive ",
+                "hostname={{ user `hostname` }} ",          
+                "/install/vmlinuz noapic ",
+                "initrd=/install/initrd.gz ",  
+                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+                "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+                "passwd/user-fullname={{ user `ssh_fullname` }} ",
+                "passwd/user-password={{ user `ssh_password` }} ",
+                "passwd/user-password-again={{ user `ssh_password` }} ",
+                "passwd/username={{ user `ssh_username` }} ",
+                "-- <enter>"
+            ],
+            "cpus": "{{ user `vm_cpus`}}",
+            "disk_size": "{{ user `image_size` }}",
+            "floppy_files": 
+            [
+                "http/{{ user `preseed` }}"
+            ],
+            "headless": "{{ user `headless` }}",
+            "http_directory": "http",
+            "iso_checksum": "{{ user `iso_checksum` }}",
+            "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+            "iso_urls": [ "{{ user `iso_url` }}" ],
+            "memory": "{{ user `vm_memory`}}",
+            "output_directory": "{{ user `image_name` }}-image",
+            "qemuargs": 
+            [
+                [ "-cpu", "host" ],
+                [ "-display", "none" ]
+            ],
+            "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_wait_timeout": "60m",
+            "vm_name": "{{ user `image_name` }}"
+        }
+    ],
+    "provisioners": 
+    [
+        {
+            "type": "file",
+            "source": "../NPB3.3.1",                                                           
+            "destination": "/home/gem5"
+        },
+        {
+            "type": "shell",
+            "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+            "scripts": 
+            [
+                "scripts/post-installation.sh"
+            ]
+        }
+    ],
+    "variables": 
+    {
+        "boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "desktop": "false",
+        "image_size": "8192",
+        "headless": "true",
+        "iso_checksum": "34416ff83179728d54583bf3f18d42d2",
+        "iso_checksum_type": "md5",
+        "iso_name": "ubuntu-18.04.2-server-amd64.iso",
+        "iso_url": "http://cdimage.ubuntu.com/releases/18.04.2/release/ubuntu-18.04.2-server-amd64.iso",
+        "locale": "en_US",
+        "preseed" : "preseed.cfg",
+        "hostname": "gem5",
+        "ssh_fullname": "gem5",
+        "ssh_password": "12345",
+        "ssh_username": "gem5",
+        "vm_cpus": "16",
+        "vm_memory": "8192",
+        "image_name": "ubuntu-NPB-benchmark"
+  }
+
+}

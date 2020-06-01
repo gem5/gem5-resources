@@ -217,6 +217,21 @@ Benchmark Suite on gem5 architectural simulations. Please consult
 A pre-build parsec benchmark image, for X86, can be found here:
 <http://dist.gem5.org/images/x86/ubuntu-18-04/parsec>.
 
+# Resource: NAS Parallel Benchmarks (NPB) Tests
+
+The [NAS Parallel Benchmarks] (NPB) are a small set of programs designed to
+help evaluate the performance of parallel supercomputers. The set consists of
+five kenels and three pseudo-applications. gem5 resources provides a disk
+image, and scripts allowing for the NPB image to be run within gem5 X86
+simulations. A pre-build npb disk image can be downloaded here:
+<http://dist.gem5.org/images/x86/ubuntu-18-04/npb>.
+
+The npb resources can be found in `src/npb`. It consists of:
+- npb disk image resources
+- gem5 run scripts to execute these tests
+
+The instructions to build the npb disk image, a Linux kernel binary, and how to use gem5 run scripts to run npb are available in the [README](src/npb-tests/README.md) file.
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -239,3 +254,5 @@ Consult individual copyright notices of source files in `src/spec2006-tests`.
 `src/parsec/disk-image/parsec/parsec-benchmark/LICENSE`. This is a 3-Clause
 BSD License (A Princeton University copyright). For the remaining files, please
 consult copyright notices in the source files.
+* **npb-tests**: Consult individual copyright notices of source files in
+`src/npb`. The NAS Parallel Benchmarks utilize a permissive BSD-style license.
