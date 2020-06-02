@@ -189,6 +189,11 @@ make square
 The output of this compilation can be found at
 `output/test-progs/square/`
 
+# Resource: SPEC-2006 tests
+
+Contains scripts to create a disk image and to run SPEC-2006 tests on gem5.
+Instructions on how to use these scripts can be found here `src/spec2006-tests/README.md`.
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -202,3 +207,6 @@ project's license.
 `src/pthreads`.
 * **square**: Consult individual copyright notices of source files in
 `src/square`.
+* **spec2006-tests**: SPEC-2006 requires purchase of benchmark suite from
+[SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
+Consult individual copyright notices of source files in `src/spec2006-tests`.
