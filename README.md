@@ -194,6 +194,17 @@ The output of this compilation can be found at
 Contains scripts to create a disk image and to run SPEC-2006 tests on gem5.
 Instructions on how to use these scripts can be found here `src/spec2006-tests/README.md`.
 
+# Resource: GAP Benchmark Suite (GAPBS) tests
+
+[GAPBS](http://gap.cs.berkeley.edu/benchmark.html) is a graph processing benchmark suite and it contains 6 kernels: Breadth-First Search, PageRank, Connected Components, Betweenness Centrality, Single-Source Shortest Paths, and Triangle Counting.
+
+`src/gapbs` contains resources to build a GAPBS disk image which may
+be used to run the benchmark on gem5 X86 simulations.
+`src/gapbs/README.md` contains build and usage instructions.
+
+The pre-built GAPBS disk image can be found here:
+<http://dist.gem5.org/images/x86/ubuntu-18-04/gapbs>.
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -210,3 +221,5 @@ project's license.
 * **spec2006-tests**: SPEC-2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
 Consult individual copyright notices of source files in `src/spec2006-tests`.
+* **gapbs**: Consult individual copyright notices of source files in
+`src/gapbs`.
