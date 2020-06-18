@@ -112,7 +112,7 @@ ISA.
 The toolchain may be installed via the apt-get package manager:
 
 ```
-sudo apt-get install git++-arm-linux-gnueabihf
+sudo apt-get install g++-arm-linux-gnueabihf
 ```
 
 ## GNU ARM-64 bit Toolchain
@@ -125,7 +125,7 @@ ISA.
 The toolchain may be installved via the apt-get package manager:
 
 ```
-sudo apt-get install g++-aarch64-lunux-gnu
+sudo apt-get install g++-aarch64-linux-gnu
 ```
 
 # Resource: RISCV Tests
