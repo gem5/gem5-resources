@@ -194,6 +194,23 @@ The output of this compilation can be found at
 Contains scripts to create a disk image and to run SPEC-2006 tests on gem5.
 Instructions on how to use these scripts can be found here `src/spec2006-tests/README.md`.
 
+# Resource: SPEC 2017 tests
+
+The [Standard Performance Evaluation Corporation](
+https://www.spec.org/benchmarks.html) (SPEC) CPU 2017 benchmarks are designed
+to provide performance measurements that can be used to compare
+compute-intensive workloads on different computer systems. SPEC CPU 2017
+contains 43 benchmarks organized into four suites: SPECspeed 2017 Integer,
+SPECspeed 2017 Floating Point, SPECrate 2017 Integer, and SPECrate 2017
+Floating Point.
+
+`src/spec-2017` provides resources on creating a SPEC 2017 disk image, and
+necessary scripts to run the SPEC 2017 benchmarks within X86 gem5 simulations.
+Please consult the `src/spec-2017/README.md` for more information.
+
+**Please note, due to licensing issues, the SPEC 2017 iso cannot be provided
+as part of this repository.**
+
 # Resource: GAP Benchmark Suite (GAPBS) tests
 
 [GAPBS](http://gap.cs.berkeley.edu/benchmark.html) is a graph processing benchmark suite and it contains 6 kernels: Breadth-First Search, PageRank, Connected Components, Betweenness Centrality, Single-Source Shortest Paths, and Triangle Counting.
@@ -257,9 +274,12 @@ project's license.
 `src/pthreads`.
 * **square**: Consult individual copyright notices of source files in
 `src/square`.
-* **spec2006-tests**: SPEC-2006 requires purchase of benchmark suite from
+* **spec2006-tests**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
 Consult individual copyright notices of source files in `src/spec2006-tests`.
+* **spec-2017**: SPEC CPU 2017 requires purchase of benchmark suite from
+[SPEC](https://www.spec.org/cpu2017/) thus, it cannot be freely distributed.
+Consult individual copyright notices of source files in `src/spec2017-tests`.
 * **gapbs**: Consult individual copyright notices of source files in
 `src/gapbs`.
 * **parsec**: The PARSEC license can be found at
@@ -270,3 +290,4 @@ consult copyright notices in the source files.
 `src/npb`. The NAS Parallel Benchmarks utilize a permissive BSD-style license.
 * **boot-tests**: Consult individual copyright notices of source files in
 `src/boot-tests`.
+
