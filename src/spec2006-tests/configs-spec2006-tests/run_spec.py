@@ -216,6 +216,13 @@ if __name__ == "__m5_main__":
     no_copy_logs = args.no_copy_logs
     allow_listeners = args.allow_listeners
 
+    if not no_copy_logs and not os.path.isabs(m5.options.outdir):
+        print("Please specify the --outdir (output directory) of gem5"
+              " in the form of an absolute path")
+        print("An example: build/X86/gem5.opt --outdir /home/user/m5out/"
+              " configs-spec-tests/run_spec ...")
+        exit(1)
+
     output_dir = os.path.join(m5.options.outdir, "speclogs")
 
     # Get the DetailedCPU class from its name
