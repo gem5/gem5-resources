@@ -30,8 +30,8 @@
 import m5
 from m5.objects import *
 from m5.util import convert
-from fs_tools import *
-from caches import *
+from .fs_tools import *
+from .caches import *
 
 class MySystem(System):
 
@@ -102,6 +102,10 @@ class MySystem(System):
     def totalInsts(self):
         return sum([cpu.totalInsts() for cpu in self.cpu])
 
+    def createCPUThreads(self, cpu):
+        for c in cpu:
+            c.createThreads()
+
     def createCPU(self, cpu_type, num_cpus):
         self.cpu = [X86KvmCPU(cpu_id = i)
                         for i in range(num_cpus)]
@@ -111,28 +115,29 @@ class MySystem(System):
             self.timingCpu = [AtomicSimpleCPU(cpu_id = i,
                                         switched_out = True)
                               for i in range(num_cpus)]
-            map(lambda c: c.createThreads(), self.timingCpu)
+            self.createCPUThreads(self.timingCpu)
         elif cpu_type == "o3":
             self.timingCpu = [DerivO3CPU(cpu_id = i,
                                         switched_out = True)
                         for i in range(num_cpus)]
-            map(lambda c: c.createThreads(), self.timingCpu)
+            self.createCPUThreads(self.timingCpu)
         elif cpu_type == "simple":
             self.timingCpu = [TimingSimpleCPU(cpu_id = i,
                                         switched_out = True)
                         for i in range(num_cpus)]
-            map(lambda c: c.createThreads(), self.timingCpu)
+            self.createCPUThreads(self.timingCpu)
         elif cpu_type == "kvm":
             pass
         else:
             m5.fatal("No CPU type {}".format(cpu_type))
 
-        map(lambda c: c.createThreads(), self.cpu)
-        map(lambda c: c.createInterruptController(), self.cpu)
+        self.createCPUThreads(self.cpu)
+        for cpu in self.cpu:
+            cpu.createInterruptController()
 
     def switchCpus(self, old, new):
         assert(new[0].switchedOut())
-        m5.switchCpus(self, zip(old, new))
+        m5.switchCpus(self, list(zip(old, new)))
 
     def setDiskImages(self, img_path_1, img_path_2):
         disk0 = CowDisk(img_path_1)
