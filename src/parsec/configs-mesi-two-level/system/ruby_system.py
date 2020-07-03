@@ -95,6 +95,10 @@ class MyRubySystem(System):
     def totalInsts(self):
         return sum([cpu.totalInsts() for cpu in self.cpu])
 
+    def createCPUThreads(self, cpu):
+        for c in cpu:
+            c.createThreads()
+
     def createCPU(self, num_cpus):
 
         # Note KVM needs a VM and atomic_noncaching
@@ -102,24 +106,21 @@ class MyRubySystem(System):
                     for i in range(num_cpus)]
         self.kvm_vm = KvmVM()
         self.mem_mode = 'atomic_noncaching'
-        for cpu in self.cpu:
-            cpu.createThreads()
+        self.createCPUThreads(self.cpu)
 
         self.atomicCpu = [AtomicSimpleCPU(cpu_id = i,
                                             switched_out = True)
                             for i in range(num_cpus)]
-        for cpu in self.atomicCpu:
-            cpu.createThreads()
+        self.createCPUThreads(self.atomicCpu)
 
         self.timingCpu = [TimingSimpleCPU(cpu_id = i,
                                      switched_out = True)
 				   for i in range(num_cpus)]
-        for cpu in self.timingCpu:
-            cpu.createThreads()
+        self.createCPUThreads(self.timingCpu)
 
     def switchCpus(self, old, new):
         assert(new[0].switchedOut())
-        m5.switchCpus(self, zip(old, new))
+        m5.switchCpus(self, list(zip(old, new)))
 
     def setDiskImages(self, img_path_1, img_path_2):
         disk0 = CowDisk(img_path_1)
