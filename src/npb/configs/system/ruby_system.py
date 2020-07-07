@@ -30,7 +30,7 @@
 import m5
 from m5.objects import *
 from m5.util import convert
-from fs_tools import *
+from .fs_tools import *
 
 
 class MyRubySystem(System):
@@ -72,13 +72,13 @@ class MyRubySystem(System):
 
         # Create the cache hierarchy for the system.
         if mem_sys == 'MI_example':
-            from MI_example_caches import MIExampleSystem
+            from .MI_example_caches import MIExampleSystem
             self.caches = MIExampleSystem()
         elif mem_sys == 'MESI_Two_Level':
-            from MESI_Two_Level import MESITwoLevelCache
+            from .MESI_Two_Level import MESITwoLevelCache
             self.caches = MESITwoLevelCache()
         elif mem_sys == 'MOESI_CMP_directory':
-            from MOESI_CMP_directory import MOESICMPDirCache
+            from .MOESI_CMP_directory import MOESICMPDirCache
             self.caches = MOESICMPDirCache()
         self.caches.setup(self, self.cpu, self.mem_cntrls,
                           [self.pc.south_bridge.ide.dma, self.iobus.master],
@@ -102,6 +102,10 @@ class MyRubySystem(System):
     def totalInsts(self):
         return sum([cpu.totalInsts() for cpu in self.cpu])
 
+    def createCPUThreads(self, cpu):
+        for c in cpu:
+            c.createThreads()
+
     def createCPU(self, num_cpus):
 
         # Note KVM needs a VM and atomic_noncaching
@@ -109,21 +113,21 @@ class MyRubySystem(System):
                     for i in range(num_cpus)]
         self.kvm_vm = KvmVM()
         self.mem_mode = 'atomic_noncaching'
-        map(lambda c: c.createThreads(), self.cpu)
+        self.createCPUThreads(self.cpu)
 
         self.atomicCpu = [AtomicSimpleCPU(cpu_id = i,
                                             switched_out = True)
                             for i in range(num_cpus)]
-        map(lambda c: c.createThreads(), self.atomicCpu)
+        self.createCPUThreads(self.atomicCpu)
 
         self.timingCpu = [TimingSimpleCPU(cpu_id = i,
                                      switched_out = True)
 				   for i in range(num_cpus)]
-        map(lambda c: c.createThreads(), self.timingCpu)
+        self.createCPUThreads(self.timingCpu)
 
     def switchCpus(self, old, new):
         assert(new[0].switchedOut())
-        m5.switchCpus(self, zip(old, new))
+        m5.switchCpus(self, list(zip(old, new)))
 
     def setDiskImages(self, img_path_1, img_path_2):
         disk0 = CowDisk(img_path_1)

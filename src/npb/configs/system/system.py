@@ -30,8 +30,8 @@
 import m5
 from m5.objects import *
 from m5.util import convert
-from fs_tools import *
-from caches import *
+from .fs_tools import *
+from .caches import *
 
 
 class MySystem(System):
@@ -79,7 +79,7 @@ class MySystem(System):
 
         self.setDiskImages(disk, disk)
 
-	if opts.second_disk:
+        if opts.second_disk:
             self.setDiskImages(disk, opts.second_disk)
         else:
             self.setDiskImages(disk, disk)
@@ -123,35 +123,39 @@ class MySystem(System):
     def totalInsts(self):
         return sum([cpu.totalInsts() for cpu in self.cpu])
 
+    def createCPUThreads(self, cpu):
+        for c in cpu:
+            c.createThreads()
+
     def createCPU(self, num_cpus):
         if self._no_kvm:
             self.cpu = [AtomicSimpleCPU(cpu_id = i, switched_out = False)
                               for i in range(num_cpus)]
-            map(lambda c: c.createThreads(), self.cpu)
+            self.createCPUThreads(self.cpu)
             self.mem_mode = 'timing'
 
         else:
             # Note KVM needs a VM and atomic_noncaching
             self.cpu = [X86KvmCPU(cpu_id = i)
                         for i in range(num_cpus)]
-            map(lambda c: c.createThreads(), self.cpu)
+            self.createCPUThreads(self.cpu)
             self.kvm_vm = KvmVM()
             self.mem_mode = 'atomic_noncaching'
 
             self.atomicCpu = [AtomicSimpleCPU(cpu_id = i,
                                               switched_out = True)
                               for i in range(num_cpus)]
-            map(lambda c: c.createThreads(), self.atomicCpu)
+            self.createCPUThreads(self.atomicCpu)
 
         self.timingCpu = [TimingSimpleCPU(cpu_id = i,
                                      switched_out = True)
-				   for i in range(num_cpus)]
+                          for i in range(num_cpus)]
 
-        map(lambda c: c.createThreads(), self.timingCpu)
+        self.createCPUThreads(self.timingCpu)
 
     def switchCpus(self, old, new):
         assert(new[0].switchedOut())
-        m5.switchCpus(self, zip(old, new))
+        m5.switchCpus(self, list(zip(old, new)))
 
     def setDiskImages(self, img_path_1, img_path_2):
         disk0 = CowDisk(img_path_1)

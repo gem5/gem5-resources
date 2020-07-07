@@ -34,8 +34,8 @@ This system support the memory size of up to 3GB.
 
 """
 
-from __future__ import print_function
-from __future__ import absolute_import
+
+
 
 import math
 
