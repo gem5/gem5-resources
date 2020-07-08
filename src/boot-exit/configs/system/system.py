@@ -30,8 +30,8 @@
 import m5
 from m5.objects import *
 from m5.util import convert
-from fs_tools import *
-from caches import *
+from .fs_tools import *
+from .caches import *
 
 class MySystem(System):
 
@@ -121,7 +121,8 @@ class MySystem(System):
         else:
             m5.fatal("No CPU type {}".format(cpu_type))
 
-        map(lambda c: c.createThreads(), self.cpu)
+        for cpu in self.cpu:
+            cpu.createThreads()
 
     def setDiskImages(self, img_path_1, img_path_2):
         disk0 = CowDisk(img_path_1)

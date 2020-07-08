@@ -30,7 +30,7 @@
 import m5
 from m5.objects import *
 from m5.util import convert
-from fs_tools import *
+from .fs_tools import *
 
 
 class MyRubySystem(System):
@@ -72,13 +72,13 @@ class MyRubySystem(System):
 
         # Create the cache hierarchy for the system.
         if mem_sys == 'MI_example':
-            from MI_example_caches import MIExampleSystem
+            from .MI_example_caches import MIExampleSystem
             self.caches = MIExampleSystem()
         elif mem_sys == 'MESI_Two_Level':
-            from MESI_Two_Level import MESITwoLevelCache
+            from .MESI_Two_Level import MESITwoLevelCache
             self.caches = MESITwoLevelCache()
         elif mem_sys == 'MOESI_CMP_directory':
-            from MOESI_CMP_directory import MOESICMPDirCache
+            from .MOESI_CMP_directory import MOESICMPDirCache
             self.caches = MOESICMPDirCache()
         self.caches.setup(self, self.cpu, self.mem_cntrls,
                           [self.pc.south_bridge.ide.dma, self.iobus.master],
@@ -120,8 +120,9 @@ class MyRubySystem(System):
         else:
             m5.fatal("No CPU type {}".format(cpu_type))
 
-        map(lambda c: c.createThreads(), self.cpu)
-        map(lambda c: c.createInterruptController(), self.cpu)
+        for cpu in self.cpu:
+            cpu.createThreads()
+            cpu.createInterruptController()
 
     def setDiskImages(self, img_path_1, img_path_2):
         disk0 = CowDisk(img_path_1)
