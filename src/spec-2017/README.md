@@ -23,7 +23,7 @@ spec-2017/
   |      |___ shared/
   |      |___ spec-2017/
   |      |      |___ spec-2017-image/
-  |      |      |      |___ spec2017           # the disk image will be generated here
+  |      |      |      |___ spec-2017          # the disk image will be generated here
   |      |      |___ spec-2017.json            # the Packer script
   |      |___ cpu2017-1.1.0.iso                # SPEC 2017 ISO (add here)
   |
@@ -59,7 +59,7 @@ unzip packer_1.4.3_linux_amd64.zip
 ./packer build spec-2017/spec-2017.json
 ```
 
-The path to the disk image is `spec-2017/spec-2017-image/spec2017`.
+The path to the disk image is `spec-2017/spec-2017-image/spec-2017`.
 Please refer to [this tutorial](https://gem5art.readthedocs.io/en/latest/tutorials/spec2017-tutorial.html#preparing-scripts-to-modify-the-disk-image)
 for more information about the scripts used in this document.
 
@@ -110,7 +110,7 @@ must be one of {test, train, ref}.
 Assume the compiled Linux kernel is available in the assumed root folder, the
 following is an example of running a SPEC 2017 workload in full system mode,
 `
-gem5/build/X86/gem5.opt configs/run_spec.py -z vmlinux-4.19.83 disk-image/spec-2017/spec-2017-image/spec2017 atomic 403.gcc test
+gem5/build/X86/gem5.opt configs/run_spec.py -z vmlinux-4.19.83 disk-image/spec-2017/spec-2017-image/spec-2017 atomic 403.gcc test
 `
 
 ## Working Status
