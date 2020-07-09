@@ -178,6 +178,89 @@ make pthreads-x86
 The output of these compilations can be found in
 `output/test-progs/pthreads`
 
+# Resource: Square
+
+## Compilation
+
+```
+make square
+```
+
+The output of this compilation can be found at
+`output/test-progs/square/`
+
+# Resource: SPEC-2006 tests
+
+Contains scripts to create a disk image and to run SPEC-2006 tests on gem5.
+Instructions on how to use these scripts can be found here `src/spec2006-tests/README.md`.
+
+# Resource: SPEC 2017 tests
+
+The [Standard Performance Evaluation Corporation](
+https://www.spec.org/benchmarks.html) (SPEC) CPU 2017 benchmarks are designed
+to provide performance measurements that can be used to compare
+compute-intensive workloads on different computer systems. SPEC CPU 2017
+contains 43 benchmarks organized into four suites: SPECspeed 2017 Integer,
+SPECspeed 2017 Floating Point, SPECrate 2017 Integer, and SPECrate 2017
+Floating Point.
+
+`src/spec-2017` provides resources on creating a SPEC 2017 disk image, and
+necessary scripts to run the SPEC 2017 benchmarks within X86 gem5 simulations.
+Please consult the `src/spec-2017/README.md` for more information.
+
+**Please note, due to licensing issues, the SPEC 2017 iso cannot be provided
+as part of this repository.**
+
+# Resource: GAP Benchmark Suite (GAPBS) tests
+
+[GAPBS](http://gap.cs.berkeley.edu/benchmark.html) is a graph processing benchmark suite and it contains 6 kernels: Breadth-First Search, PageRank, Connected Components, Betweenness Centrality, Single-Source Shortest Paths, and Triangle Counting.
+
+`src/gapbs` contains resources to build a GAPBS disk image which may
+be used to run the benchmark on gem5 X86 simulations.
+`src/gapbs/README.md` contains build and usage instructions.
+
+The pre-built GAPBS disk image can be found here:
+<http://dist.gem5.org/images/x86/ubuntu-18-04/gapbs>.
+
+# Resource: PARSEC Benchmark Suite
+
+The [Princeton Application Repository for Shared-Memory Computers (PARSEC)](
+https://parsec.cs.princeton.edu/) is a benchmark suite composed of
+multithreaded programs. In `src/parsec` we provide the source to build a disk
+image which may be used, along side configuration files, to run the PARSEC
+Benchmark Suite on gem5 architectural simulations. Please consult
+`src/parsec/README.md` for build and execution information.
+
+A pre-build parsec benchmark image, for X86, can be found here:
+<http://dist.gem5.org/images/x86/ubuntu-18-04/parsec>.
+
+# Resource: NAS Parallel Benchmarks (NPB) Tests
+
+The [NAS Parallel Benchmarks] (NPB) are a small set of programs designed to
+help evaluate the performance of parallel supercomputers. The set consists of
+five kenels and three pseudo-applications. gem5 resources provides a disk
+image, and scripts allowing for the NPB image to be run within gem5 X86
+simulations. A pre-build npb disk image can be downloaded here:
+<http://dist.gem5.org/images/x86/ubuntu-18-04/npb>.
+
+The npb resources can be found in `src/npb`. It consists of:
+- npb disk image resources
+- gem5 run scripts to execute these tests
+
+The instructions to build the npb disk image, a Linux kernel binary, and how to use gem5 run scripts to run npb are available in the [README](src/npb-tests/README.md) file.
+
+# Resource: Linux Boot Tests
+
+The Linux boot tests refer to the tests performed with different gem5 configurations to check its ability to boot a Linux kernel.
+More information on Linux boot tests can be found [here](https://www.gem5.org/project/2020/03/09/boot-tests.html).
+
+The boot-tests resources consist of three main components:
+- boot-tests disk image
+- gem5 run scripts to execute boot tests
+- linux kernel configuration files
+
+The instructions to build the boot-tests disk image (`boot-exit`), the Linux binaries, and how to use gem5 run scripts to run boot-tests are available in this [README](src/boot-tests/README.md) file.
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -189,3 +272,22 @@ project's license.
 `src/insttests`.
 * **pthreads**: Consult individual copyright notices of source files in
 `src/pthreads`.
+* **square**: Consult individual copyright notices of source files in
+`src/square`.
+* **spec2006-tests**: SPEC CPU 2006 requires purchase of benchmark suite from
+[SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
+Consult individual copyright notices of source files in `src/spec2006-tests`.
+* **spec-2017**: SPEC CPU 2017 requires purchase of benchmark suite from
+[SPEC](https://www.spec.org/cpu2017/) thus, it cannot be freely distributed.
+Consult individual copyright notices of source files in `src/spec2017-tests`.
+* **gapbs**: Consult individual copyright notices of source files in
+`src/gapbs`.
+* **parsec**: The PARSEC license can be found at
+`src/parsec/disk-image/parsec/parsec-benchmark/LICENSE`. This is a 3-Clause
+BSD License (A Princeton University copyright). For the remaining files, please
+consult copyright notices in the source files.
+* **npb-tests**: Consult individual copyright notices of source files in
+`src/npb`. The NAS Parallel Benchmarks utilize a permissive BSD-style license.
+* **boot-tests**: Consult individual copyright notices of source files in
+`src/boot-tests`.
+
