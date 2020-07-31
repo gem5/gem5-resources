@@ -31,81 +31,86 @@
   * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
   * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   * POSSIBILITY OF SUCH DAMAGE.
-  *
-  * Author: Moyang Wang
   */
 
 #include <pthread.h>
 
 #include <cstdlib>
 #include <iostream>
-#include <mutex>
-#include <vector>
 
 //------------------------------------------------------------------------
-// Test pthread_cond
+// Create n threads, run them in parallel and wait for them in the master
+// thread.
+// Each child thread writes its thread id to an output array
 //------------------------------------------------------------------------
-// The master thread creates N threads, each of which waits on a
-// condition variable of a signal to start. The master thread then set
-// the signal and notifies all other threads to begin.
 
 #define MAX_N_WORKER_THREADS 10
 
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t  cv = PTHREAD_COND_INITIALIZER;
-
-bool ready = false;
-
-void* print_id( void* arg_vptr )
+typedef struct
 {
-    pthread_mutex_lock( &mutex );
-    long id = (long)arg_vptr;
+    int tid;
+    int* output;
+} ThreadArg;
 
-    while (!ready) {
-        pthread_cond_wait( &cv, &mutex );
-    }
-    // ...
-    std::cout << "thread " << id << '\n';
+void* func( void* args )
+{
+    ThreadArg* my_args = ( ThreadArg* ) args;
 
-    pthread_mutex_unlock( &mutex );
+    // write tid to this thread's output
+    (*my_args->output) = my_args->tid;
 
     return nullptr;
 }
 
-void go()
+int main()
 {
-    pthread_mutex_lock( &mutex );
-    ready = true;
-    pthread_cond_broadcast( &cv );
-    pthread_mutex_unlock( &mutex );
-}
+    int n_worker_threads = 0;
 
-int main( int argc, char* argv[] )
-{
-    size_t n_worker_threads = 0;
+    // allocate all threads
+    pthread_t* threads = new pthread_t[MAX_N_WORKER_THREADS];
+    ThreadArg* t_args = new ThreadArg[MAX_N_WORKER_THREADS];
 
-    std::vector< pthread_t > threads( MAX_N_WORKER_THREADS );
+    // create an output array for all threads
+    int* outputs = new int[MAX_N_WORKER_THREADS];
+    int ret;
 
-    int ret = 0;
-    for ( size_t i = 0; i < MAX_N_WORKER_THREADS; i++ ){
-        ret = pthread_create( &threads[i], nullptr, print_id, (void*)i );
+    // try to spawn as many worker threads as possible
+    for ( int tid = 0; tid < MAX_N_WORKER_THREADS; ++tid ) {
+
+        // set up thread args
+        t_args[tid].tid = tid;
+        t_args[tid].output = outputs + tid;
+
+        // spawn thread
+        ret = pthread_create( threads + tid, nullptr, func, &t_args[tid] );
         if (ret != 0) {
             break;
         }
+
         n_worker_threads++;
     }
 
-    std::cout << n_worker_threads << " threads ready to race...\n";
-
-    go();
-
-    for ( size_t i = 1; i < n_worker_threads; i++ ) {
-        pthread_join( threads[i], nullptr );
+    // sync up all threads
+    for ( int tid = 0; tid < n_worker_threads; ++tid ) {
+        pthread_join( threads[tid], nullptr );
     }
 
-    if (n_worker_threads < 1) {
+    // verify
+    bool passed = true;
+    for ( int i = 0; i < n_worker_threads; ++i ) {
+        if ( outputs[i] != i ) {
+            passed = false;
+        }
+    }
+
+    // clean up
+    delete[] threads;
+    delete[] t_args;
+    delete[] outputs;
+
+    // failed if outputs are not correct or no worker thread was spawned
+    if (!passed || n_worker_threads < 1)
         return EXIT_FAILURE;
-    }
 
     return EXIT_SUCCESS;
 }

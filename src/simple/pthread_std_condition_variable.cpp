@@ -68,7 +68,7 @@ void go()
     cv.notify_all();
 }
 
-int main( int argc, char* argv[] )
+int main()
 {
     size_t n_worker_threads = 0;
 
@@ -86,7 +86,7 @@ int main( int argc, char* argv[] )
     std::cout << n_worker_threads << " threads ready to race...\n";
     go();                       // go!
 
-    for (int i = 0; i < n_worker_threads; ++i) {
+    for (size_t i = 0; i < n_worker_threads; ++i) {
         threads[i].join();
     }
 

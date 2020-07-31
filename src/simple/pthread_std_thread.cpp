@@ -33,83 +33,57 @@
   * POSSIBILITY OF SUCH DAMAGE.
   */
 
-#include <pthread.h>
-
-#include <atomic>
 #include <cstdlib>
 #include <iostream>
+#include <string>
+#include <thread>
+#include <vector>
 
+//------------------------------------------------------------------------
+// Test std::thread
 //------------------------------------------------------------------------
 // Create n threads, run them in parallel and wait for them in the master
 // thread.
-// Each child thread increments a shared variable m times atomically
-//------------------------------------------------------------------------
+// Each child thread writes its thread id to an output array
 
 #define MAX_N_WORKER_THREADS 10
 
-typedef struct
-{
-    int nsteps;
-    std::atomic<int>* shared_var;
-} ThreadArg;
-
-void* func( void* args )
-{
-    ThreadArg* my_args = ( ThreadArg* ) args;
-
-    int nsteps = my_args->nsteps;
-    std::atomic<int>* shared_var = my_args->shared_var;
-
-    for ( int i = 0; i < nsteps; ++i ) {
-        std::atomic_fetch_add(shared_var, 1);
-    }
-
-    return nullptr;
-}
-
-int main( int argc, const char* argv[] )
+int main(void)
 {
     int n_worker_threads = 0;
 
-    // allocate all threads
-    pthread_t* threads = new pthread_t[MAX_N_WORKER_THREADS];
+    std::vector< std::thread > threads;
+    std::vector<int> outputs( MAX_N_WORKER_THREADS, 0 );
 
-    // variable shared among all threads
-    std::atomic<int> shared_var(0);
-
-    // number of steps each thread increments the shared_var
-    int nsteps = 1000;
-
-    // set up threads' arguments
-    ThreadArg* t_args = new ThreadArg[MAX_N_WORKER_THREADS];
-
-    int ret = 0;
-    for ( size_t tid = 0; tid < MAX_N_WORKER_THREADS; tid++ ){
-        t_args[tid].nsteps = nsteps;
-        t_args[tid].shared_var = &shared_var;
-
-        // spawn thread
-        ret = pthread_create( threads + tid, nullptr, func, &t_args[tid] );
-
-        if (ret != 0) {
+    for ( int tid = 0; tid < MAX_N_WORKER_THREADS; ++tid ) {
+        try {
+            threads.push_back( std::thread( [&] (size_t thread_id ) {
+                        std::cout << "Hello from thread " <<  thread_id
+                                  << std::endl;
+                        outputs[thread_id] = thread_id;
+                    }, tid ) );
+        } catch ( const std::system_error& err ) {
             break;
         }
-
         n_worker_threads++;
     }
 
+    std::cout << "Hello from master thread" << std::endl;
+
     // sync up all threads
-    for ( int tid = 0; tid < n_worker_threads; ++tid ) {
-        pthread_join( threads[tid], nullptr );
+    for (int i = 0; i < n_worker_threads; ++i) {
+        threads[i].join();
     }
 
-    // clean up
-    delete[] threads;
-    delete[] t_args;
-
-    // verify
-    if ( shared_var != n_worker_threads * nsteps || n_worker_threads < 1)
+    if (n_worker_threads < 1) {
         return EXIT_FAILURE;
+    }
+
+    for ( int i = 0; i < n_worker_threads; ++i ) {
+        if ( outputs[i] != i ) {
+            return EXIT_FAILURE;
+        }
+    }
 
     return EXIT_SUCCESS;
 }

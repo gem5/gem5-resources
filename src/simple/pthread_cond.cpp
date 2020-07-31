@@ -31,58 +31,80 @@
   * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
   * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   * POSSIBILITY OF SUCH DAMAGE.
+  *
+  * Author: Moyang Wang
   */
+
+#include <pthread.h>
 
 #include <cstdlib>
 #include <iostream>
-#include <string>
-#include <thread>
+#include <mutex>
 #include <vector>
 
 //------------------------------------------------------------------------
-// Test std::thread
+// Test pthread_cond
 //------------------------------------------------------------------------
-// Create n threads, run them in parallel and wait for them in the master
-// thread.
-// Each child thread writes its thread id to an output array
+// The master thread creates N threads, each of which waits on a
+// condition variable of a signal to start. The master thread then set
+// the signal and notifies all other threads to begin.
 
 #define MAX_N_WORKER_THREADS 10
 
-int main( int argc, char* argv[] )
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t  cv = PTHREAD_COND_INITIALIZER;
+
+bool ready = false;
+
+void* print_id( void* arg_vptr )
 {
-    int n_worker_threads = 0;
+    pthread_mutex_lock( &mutex );
+    long id = (long)arg_vptr;
 
-    std::vector< std::thread > threads;
-    std::vector<int> outputs( MAX_N_WORKER_THREADS, 0 );
+    while (!ready) {
+        pthread_cond_wait( &cv, &mutex );
+    }
+    // ...
+    std::cout << "thread " << id << '\n';
 
-    for ( int tid = 0; tid < MAX_N_WORKER_THREADS; ++tid ) {
-        try {
-            threads.push_back( std::thread( [&] (size_t thread_id ) {
-                        std::cout << "Hello from thread " <<  thread_id
-                                  << std::endl;
-                        outputs[thread_id] = thread_id;
-                    }, tid ) );
-        } catch ( const std::system_error& err ) {
+    pthread_mutex_unlock( &mutex );
+
+    return nullptr;
+}
+
+void go()
+{
+    pthread_mutex_lock( &mutex );
+    ready = true;
+    pthread_cond_broadcast( &cv );
+    pthread_mutex_unlock( &mutex );
+}
+
+int main(void)
+{
+    size_t n_worker_threads = 0;
+
+    std::vector< pthread_t > threads( MAX_N_WORKER_THREADS );
+
+    int ret = 0;
+    for ( size_t i = 0; i < MAX_N_WORKER_THREADS; i++ ){
+        ret = pthread_create( &threads[i], nullptr, print_id, (void*)i );
+        if (ret != 0) {
             break;
         }
         n_worker_threads++;
     }
 
-    std::cout << "Hello from master thread" << std::endl;
+    std::cout << n_worker_threads << " threads ready to race...\n";
 
-    // sync up all threads
-    for (int i = 0; i < n_worker_threads; ++i) {
-        threads[i].join();
+    go();
+
+    for ( size_t i = 1; i < n_worker_threads; i++ ) {
+        pthread_join( threads[i], nullptr );
     }
 
     if (n_worker_threads < 1) {
         return EXIT_FAILURE;
-    }
-
-    for ( int i = 0; i < n_worker_threads; ++i ) {
-        if ( outputs[i] != i ) {
-            return EXIT_FAILURE;
-        }
     }
 
     return EXIT_SUCCESS;

@@ -35,54 +35,62 @@
 
 #include <pthread.h>
 
+#include <atomic>
 #include <cstdlib>
 #include <iostream>
 
 //------------------------------------------------------------------------
 // Create n threads, run them in parallel and wait for them in the master
 // thread.
-// Each child thread writes its thread id to an output array
+// Each child thread increments a shared variable m times atomically
 //------------------------------------------------------------------------
 
 #define MAX_N_WORKER_THREADS 10
 
 typedef struct
 {
-    int tid;
-    int* output;
+    int nsteps;
+    std::atomic<int>* shared_var;
 } ThreadArg;
 
 void* func( void* args )
 {
     ThreadArg* my_args = ( ThreadArg* ) args;
 
-    // write tid to this thread's output
-    (*my_args->output) = my_args->tid;
+    int nsteps = my_args->nsteps;
+    std::atomic<int>* shared_var = my_args->shared_var;
+
+    for ( int i = 0; i < nsteps; ++i ) {
+        std::atomic_fetch_add(shared_var, 1);
+    }
 
     return nullptr;
 }
 
-int main( int argc, const char* argv[] )
+int main()
 {
     int n_worker_threads = 0;
 
     // allocate all threads
     pthread_t* threads = new pthread_t[MAX_N_WORKER_THREADS];
+
+    // variable shared among all threads
+    std::atomic<int> shared_var(0);
+
+    // number of steps each thread increments the shared_var
+    int nsteps = 1000;
+
+    // set up threads' arguments
     ThreadArg* t_args = new ThreadArg[MAX_N_WORKER_THREADS];
 
-    // create an output array for all threads
-    int* outputs = new int[MAX_N_WORKER_THREADS];
-    int ret;
-
-    // try to spawn as many worker threads as possible
-    for ( int tid = 0; tid < MAX_N_WORKER_THREADS; ++tid ) {
-
-        // set up thread args
-        t_args[tid].tid = tid;
-        t_args[tid].output = outputs + tid;
+    int ret = 0;
+    for ( size_t tid = 0; tid < MAX_N_WORKER_THREADS; tid++ ){
+        t_args[tid].nsteps = nsteps;
+        t_args[tid].shared_var = &shared_var;
 
         // spawn thread
         ret = pthread_create( threads + tid, nullptr, func, &t_args[tid] );
+
         if (ret != 0) {
             break;
         }
@@ -95,21 +103,12 @@ int main( int argc, const char* argv[] )
         pthread_join( threads[tid], nullptr );
     }
 
-    // verify
-    bool passed = true;
-    for ( int i = 0; i < n_worker_threads; ++i ) {
-        if ( outputs[i] != i ) {
-            passed = false;
-        }
-    }
-
     // clean up
     delete[] threads;
     delete[] t_args;
-    delete[] outputs;
 
-    // failed if outputs are not correct or no worker thread was spawned
-    if (!passed || n_worker_threads < 1)
+    // verify
+    if ( shared_var != n_worker_threads * nsteps || n_worker_threads < 1)
         return EXIT_FAILURE;
 
     return EXIT_SUCCESS;

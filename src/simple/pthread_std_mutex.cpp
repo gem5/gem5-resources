@@ -47,7 +47,7 @@
 
 #define MAX_N_WORKER_THREADS 10
 
-int main( int argc, const char* argv[] )
+int main()
 {
     int n_worker_threads = 0;
 

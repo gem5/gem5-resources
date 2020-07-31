@@ -61,7 +61,7 @@ void* func( void* args )
     return nullptr;
 }
 
-int main( int argc, const char* argv[] )
+int main()
 {
     int n_worker_threads = 0;
 
