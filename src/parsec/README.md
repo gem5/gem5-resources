@@ -1,4 +1,4 @@
-# PARSEC tests
+# PARSEC
 
 This document includes instructions on how to create an Ubuntu 18.04 disk-image with PARSEC benchmark installed. The disk-image will be compatible with the gem5 simulator.
 
@@ -83,9 +83,9 @@ There are two sets of run scripts and system configuration files in the director
 Below are the examples of running an experiment with the two configurations.
 
 ```sh
-gem5/build/gem5.opt configs/run_parsec.py linux-stable/vmlinux.4.19.83 disk-image/parsec/parsec-image/parsec timing bodytrack simsmall 1
+gem5/build/X86/gem5.opt configs/run_parsec.py linux-stable/vmlinux-4.19.83 disk-image/parsec/parsec-image/parsec timing bodytrack simsmall 1
 
-gem5/build/gem5.opt configs-mesi-two-level/run_parsec_mesi_two_level.py linux-stable/vmlinux.4.19.83 disk-image/parsec/parsec-image/parsec timing raytrace simsmall 2
+gem5/build/X86/gem5.opt configs-mesi-two-level/run_parsec_mesi_two_level.py linux-stable/vmlinux-4.19.83 disk-image/parsec/parsec-image/parsec timing raytrace simsmall 2
 ```
 
 ## Working Status
