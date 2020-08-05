@@ -8,13 +8,7 @@ when carrying out specific simulations.
 
 The structure of this repository is as follows:
 
-* **Makefile** : Used to compile the resources. Please consult the sections
-below for dependencies that may be required to compile these resources.
 * **src** : The resource sources.
-* **output** : Where the resources are stored after running the **Makefile**.
-The directory structure maps to that under http://dist.gem5.org/dist. E.g.,
-`output/test-progs/riscv-tests/median.riscv` can be found at
-http://dist.gem5.org/dist/develop/test-progs/riscv-tests/median.riscv.
 
 The following sections outline our versioning policy, how to make changes
 to this repository, and describe each resource and how they may be built.
@@ -138,56 +132,224 @@ Local: `src/riscv-tests`
 
 ## Compilation
 
+To compile the RISCV Tests the [RISCV GNU Compiler](
+#risc_v-gnu-compiler-toolchain) must be installed.
+
+Then, to compile:
+
 ```
-make riscv-tests
+cd src/riscv-tests
+autoconf
+./configure --prefix=/opt/riscv/target
+make -C src/riscv-tests
 ```
 
-The output of this compilation can be found at
-`output/test-progs/riscv-tests/`
+This RISCV binaries can then be found within the `src/riscv-tests/benchmarks`
+directory.
 
+## Pre-built binary
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/dhrystone.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/median.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/mm.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/mt-matmul.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/mt-vvadd.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/multiply.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/pmp.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/qsort.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/rsort.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/spmv.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/towers.riscv>
+
+<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/vvadd.riscv>
 
 # Resource: Insttests
 
+The Insttest sources can be found in the `src/insttest` directory.
+
 ## Compilation
 
+To compile the Insttests, the [RISCV GNU Compiler](
+#risc_v-gnu-compiler-toolchain) must be installed.
+
+To compile:
+
 ```
-make insttests
+make -C src/insttest
 ```
 
-The output of this compilation can be found in
-`output/test-progs/insttest/bin/riscv/linux/`
+The Insttest binaries can then be found within the `src/insttest/bin`
+directory.
+
+## Prebuilt binaries
+
+<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64a>
+
+<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64c>
+
+<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64d>
+
+<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64f>
+
+<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64i>
+
+<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64m>
+
 
 # Resource: PThreads
 
 ## Compilation
 
+The PThreads executables are compiled to aarch32, aarch64, riscv64, and x86.
+
+### aarch32
+
+To compile PThreads to aarch32 the [GNU ARM-32 Toolchain](
+#gnu-arm_32-bit-toolchain) must be installed.
+
+To compile:
+
 ```
-make pthreads
+cd src/pthreads
+make -f Makefile.aarch32
 ```
 
-This will compile the pthread binaries for the RISCV, ARM-32, ARM-64, and X86
-ISAs. Specific ISA compilations can be obtained via the following commands:
+The binaries can be found in the `src/pthreads/bin.aarch32` directory.
+
+### aarch64
+
+To compile PThreads to aarch64 the [GNU ARM-64 Toolchain](
+#gnu-arm_64-bit-toolchain) must be installed.
+
+To compile:
 
 ```
-make pthreads-aarch32
-make pthreads-aarch64
-make pthreads-riscv64
-make pthreads-x86
+cd src/pthreads
+make -f Makefile.aarch64
 ```
 
-The output of these compilations can be found in
-`output/test-progs/pthreads`
+The binaries can be found in the `src/pthreads/bin.aarch64` directory.
+
+### riscv64
+
+To compile PThreads to RISCV64, the [RISCV GNU Compiler](
+#risc_v-gnu-compiler-toolchain) must be install
+
+```
+cd src/pthreads
+make -f Makefile.riscv
+```
+
+The binaries can be found in the `src/pthreads/bin.riscv` directory.
+
+### x86
+
+To compile:
+
+```
+cd src/pthreads
+make -f Makefile.x86
+```
+
+The binaries can be found in the `src/pthreads/bin.x86` directory.
+
+## Pre-build binaries
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_pthread_create_seq>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_pthread_create_para>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_pthread_mutex>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_atomic>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_pthread_cond>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_std_thread>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_std_mutex>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_std_condition_variable>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_pthread_create_seq>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_pthread_create_para>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_pthread_mutex>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_atomic>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_pthread_cond>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_std_thread>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_std_mutex>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_std_condition_variable>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_pthread_create_seq>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_pthread_create_para>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_pthread_mutex>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_atomic>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_pthread_cond>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_std_thread>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_std_mutex>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_std_condition_variable>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_pthread_create_seq>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_pthread_create_para>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_pthread_mutex>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_atomic>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_pthread_cond>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_std_thread>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_std_mutex>
+
+<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_std_condition_variable>
+
 
 # Resource: Square
 
 ## Compilation
 
+To compile Square the [ROCM HIPCC Compiler](
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html)
+must be installed.
+
+To compile:
+
 ```
-make square
+cd src/square
+make gfx8-apu
 ```
 
-The output of this compilation can be found at
-`output/test-progs/square/`
+The compiled binary can be found in `src/square/bin`
+
+## Pre-built binary
+
+<http://dist.gem5.org/dist/v20/test-progs/square/square.o>
 
 # Resource: SPEC-2006 tests
 
