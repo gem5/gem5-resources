@@ -35,9 +35,8 @@ from .caches import *
 
 class MySystem(System):
 
-    def __init__(self, kernel, disk, cpu_type, num_cpus, opts):
+    def __init__(self, kernel, disk, cpu_type, num_cpus):
         super(MySystem, self).__init__()
-        self._opts = opts
 
         self._host_parallel = cpu_type == "kvm"
 
@@ -135,8 +134,8 @@ class MySystem(System):
             cpu.l2bus = L2XBar()
 
             # Create an L1 instruction and data cache
-            cpu.icache = L1ICache(self._opts)
-            cpu.dcache = L1DCache(self._opts)
+            cpu.icache = L1ICache()
+            cpu.dcache = L1DCache()
             cpu.mmucache = MMUCache()
 
             # Connect the instruction and data caches to the CPU
@@ -150,7 +149,7 @@ class MySystem(System):
             cpu.mmucache.connectBus(cpu.l2bus)
 
             # Create an L2 cache and connect it to the l2bus
-            cpu.l2cache = L2Cache(self._opts)
+            cpu.l2cache = L2Cache()
             cpu.l2cache.connectCPUSideBus(cpu.l2bus)
 
             # Connect the L2 cache to the L3 bus

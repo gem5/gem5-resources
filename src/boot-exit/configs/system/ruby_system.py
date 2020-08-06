@@ -35,9 +35,8 @@ from .fs_tools import *
 
 class MyRubySystem(System):
 
-    def __init__(self, kernel, disk, cpu_type, mem_sys, num_cpus, opts):
+    def __init__(self, kernel, disk, cpu_type, mem_sys, num_cpus):
         super(MyRubySystem, self).__init__()
-        self._opts = opts
 
         self._host_parallel = cpu_type == "kvm"
 
