@@ -20,7 +20,7 @@ boot-exit/
   |
   |___ configs
   |      |___ system                           # gem5 system config files
-  |      |___ run_spec.py                      # gem5 run script
+  |      |___ run_exit.py                      # gem5 run script
   |
   |___ linux-configs                           # Folder with Linux kernel configuration files
   |
@@ -52,6 +52,28 @@ unzip packer_1.4.3_linux_amd64.zip
 ./packer validate boot-exit/boot-exit.json
 # build the disk image
 ./packer build boot-exit/boot-exit.json
+```
+
+If you see errors or warnings from `packer validate` you can modify the file `disk-image/boot-exit/boot-exit.json` to update the file.
+Specifically, you may see the following error.
+
+```
+Error: Failed to prepare build: "qemu"
+
+1 error(s) occurred:
+
+* Bad source '../gem5/util/m5/build/x86/out/m5': stat
+../gem5/util/m5/build/x86/out/m5: no such file or directory
+```
+
+In this case, the `gem5` directory is in a different location than when this script was written.
+You can update the following line in the `boot-exit.json` file.
+
+```
+         "destination": "/home/gem5/",
+-        "source": "../gem5/util/m5/build/x86/out/m5",
++        "source": "<your path to gem5>/util/m5/build/x86/out/m5",
+         "type": "file"
 ```
 
 Once this process succeeds, the disk image can be found on `boot-exit/boot-exit-image/boot-exit`.
