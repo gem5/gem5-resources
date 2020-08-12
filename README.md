@@ -63,7 +63,7 @@ git push origin HEAD:refs/for/develop
 The change will then be reviewed via our [Gerrit code review system](
 https://gem5-review.googlesource.com). Once fully accepted and merged into
 the gem5-resources repository, please contact Bobby R. Bruce
-[mailto:bbruce@ucdavis.edu](bbruce@ucdavis.edu) to have the compiled sources
+[bbruce@ucdavis.edu](mailto:bbruce@ucdavis.edu) to have the compiled sources
 uploaded to the gem5 resources bucket.
 
 # Requirements
