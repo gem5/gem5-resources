@@ -385,20 +385,20 @@ The pre-built GAPBS disk image can be found here:
 The [Princeton Application Repository for Shared-Memory Computers (PARSEC)](
 https://parsec.cs.princeton.edu/) is a benchmark suite composed of
 multithreaded programs. In `src/parsec` we provide the source to build a disk
-image which may be used, along side configuration files, to run the PARSEC
+image which may be used, alongside configuration files, to run the PARSEC
 Benchmark Suite on gem5 architectural simulations. Please consult
 `src/parsec/README.md` for build and execution information.
 
-A pre-build parsec benchmark image, for X86, can be found here:
+A pre-built parsec benchmark image, for X86, can be found here:
 <http://dist.gem5.org/images/x86/ubuntu-18-04/parsec>.
 
 # Resource: NAS Parallel Benchmarks (NPB) Tests
 
 The [NAS Parallel Benchmarks] (NPB) are a small set of programs designed to
 help evaluate the performance of parallel supercomputers. The set consists of
-five kenels and three pseudo-applications. gem5 resources provides a disk
-image, and scripts allowing for the NPB image to be run within gem5 X86
-simulations. A pre-build npb disk image can be downloaded here:
+five Lunux Kernels and three pseudo-applications. gem5 resources provides a
+disk image, and scripts allowing for the NPB image to be run within gem5 X86
+simulations. A pre-built npb disk image can be downloaded here:
 <http://dist.gem5.org/images/x86/ubuntu-18-04/npb>.
 
 The npb resources can be found in `src/npb`. It consists of:
