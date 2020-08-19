@@ -340,7 +340,6 @@ int main()
     expect<bool>(true, []{
                 uint64_t time = 0;
                 asm("rdtime %0" : "=r" (time));
-                cout << "Time: " << time << endl;
                 return time > 0;
             }, "rdtime");
     expect<bool>(true, []{
