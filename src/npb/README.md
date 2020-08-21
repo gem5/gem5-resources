@@ -31,7 +31,7 @@ npb/
   |___ disk-image/
   |      |___ shared/                      # Auxiliary files needed for disk creation
   |      |___ npb/
-  |      |     |___ npb-image/             # Will be created once the disk is generated
+  |            |___ npb-image/             # Will be created once the disk is generated
   |            |      |___ npb             # The generated disk image
   |            |___ npb.json               # The Packer script to build the disk image
   |            |___ runscript.sh           # Executes a user provided script in simulated guest
@@ -102,7 +102,7 @@ Replace `A` with any other class in the above listed benchmark names to test wit
 An example of how to use these scripts:
 
 ```sh
-build/X86/gem5.opt configs-npb-tests/run_npb.py [path to the Linux kernel] [path to the npb disk image] kvm classic bt.A.x 4
+build/X86/gem5.opt configs/run_npb.py [path to the Linux kernel] [path to the npb disk image] kvm classic bt.A.x 4
 ```
 
 ## Linux Kernel
@@ -114,7 +114,7 @@ git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
 cd linux
 git checkout v4.19.83
 # copy the Linux kernel configuration file for v4.19.83 from boot-tests/linux-configs/
-cp ../../boot-tests/linux-configs/config.4.19.83 .config
+cp ../../boot-exit/linux-configs/config.4.19.83 .config
 make -j8
 ```
 The compiled Linux binary will be named as `vmlinux`.

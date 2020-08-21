@@ -22,10 +22,10 @@ spec-2017/
   |___ disk-image/
   |      |___ shared/
   |      |___ spec-2017/
-  |      |      |___ spec-2017-image/
-  |      |      |      |___ spec-2017          # the disk image will be generated here
-  |      |      |___ spec-2017.json            # the Packer script
-  |      |___ cpu2017-1.1.0.iso                # SPEC 2017 ISO (add here)
+  |             |___ spec-2017-image/
+  |             |      |___ spec-2017          # the disk image will be generated here
+  |             |___ spec-2017.json            # the Packer script
+  |             |___ cpu2017-1.1.0.iso         # SPEC 2017 ISO (add here)
   |
   |___ configs
   |      |___ system/

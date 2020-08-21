@@ -22,10 +22,10 @@ spec-2006/
   |___ disk-image/
   |      |___ shared/
   |      |___ spec-2006/
-  |      |      |___ spec-2006-image/
-  |      |      |      |___ spec2006           # the disk image will be generated here
-  |      |      |___ spec-2006.json            # the Packer script
-  |      |___ CPU2006v1.0.1.iso                # SPEC 2006 ISO (add here)
+  |             |___ spec-2006-image/
+  |             |      |___ spec2006           # the disk image will be generated here
+  |             |___ spec-2006.json            # the Packer script
+  |             |___ CPU2006v1.0.1.iso         # SPEC 2006 ISO (add here)
   |
   |___ configs
   |      |___ system

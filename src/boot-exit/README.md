@@ -12,7 +12,7 @@ boot-exit/
   |___ disk-image/
   |      |___ shared/                          # Auxiliary files needed for disk creation
   |      |___ boot-exit/
-  |      |     |___ boot-exit-image/           # Will be created once the disk is generated
+  |            |___ boot-exit-image/           # Will be created once the disk is generated
   |            |      |___ boot-exit           # The generated disk image
   |            |___ boot-exit.json             # The Packer script
   |            |___ exit.sh                    # Exits the simulated guest upon booting
@@ -100,7 +100,7 @@ The main script `run_exit.py` expects following arguments:
 An example use of this script is the following:
 
 ```sh
-build/X86/gem5.opt configs-boot-tests/run_exit.py [path to the Linux kernel] [path to the disk image] kvm classic 4 init
+build/X86/gem5.opt configs/run_exit.py [path to the Linux kernel] [path to the disk image] kvm classic 4 init
 ```
 
 ## Linux Kernels
