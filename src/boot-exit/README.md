@@ -100,7 +100,7 @@ The main script `run_exit.py` expects following arguments:
 An example use of this script is the following:
 
 ```sh
-build/X86/gem5.opt configs/run_exit.py [path to the Linux kernel] [path to the disk image] kvm classic 4 init
+gem5/build/X86/gem5.opt configs/run_exit.py [path to the Linux kernel] [path to the disk image] kvm classic 4 init
 ```
 
 ## Linux Kernels

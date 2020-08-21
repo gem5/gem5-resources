@@ -102,7 +102,7 @@ Replace `A` with any other class in the above listed benchmark names to test wit
 An example of how to use these scripts:
 
 ```sh
-build/X86/gem5.opt configs/run_npb.py [path to the Linux kernel] [path to the npb disk image] kvm classic bt.A.x 4
+gem5/build/X86/gem5.opt configs/run_npb.py [path to the Linux kernel] [path to the npb disk image] kvm classic bt.A.x 4
 ```
 
 ## Linux Kernel
