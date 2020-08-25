@@ -455,8 +455,6 @@ any compiled binary, or modifying any source, please consult the corresponding
 project's license.
 
 * **riscv-tests** : `src/riscv-tests/LICENSE`.
-* **insttests** : Consult individual copyright notices of source files in
-`src/insttests`.
 * **pthreads**: Consult individual copyright notices of source files in
 `src/pthreads`.
 * **square**: Consult individual copyright notices of source files in
