@@ -110,7 +110,7 @@ must be one of {test, train, ref}.
 Assume the compiled Linux kernel is available in the assumed root folder, the
 following is an example of running a SPEC 2017 workload in full system mode,
 `
-gem5/build/X86/gem5.opt configs/run_spec.py -z vmlinux-4.19.83 disk-image/spec-2017/spec-2017-image/spec-2017 atomic 403.gcc test
+gem5/build/X86/gem5.opt --outdir [path to the gem5 output directory] configs/run_spec.py -z vmlinux-4.19.83 disk-image/spec-2017/spec-2017-image/spec-2017 atomic 403.gcc test
 `
 
 ## Working Status

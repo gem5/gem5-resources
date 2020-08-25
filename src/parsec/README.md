@@ -85,7 +85,7 @@ Below are the examples of running an experiment with the two configurations.
 ```sh
 gem5/build/X86/gem5.opt configs/run_parsec.py linux-stable/vmlinux-4.19.83 disk-image/parsec/parsec-image/parsec timing bodytrack simsmall 1
 
-gem5/build/X86/gem5.opt configs-mesi-two-level/run_parsec_mesi_two_level.py linux-stable/vmlinux-4.19.83 disk-image/parsec/parsec-image/parsec timing raytrace simsmall 2
+gem5/build/X86_MESI_Two_Level/gem5.opt configs-mesi-two-level/run_parsec_mesi_two_level.py linux-stable/vmlinux-4.19.83 disk-image/parsec/parsec-image/parsec timing raytrace simsmall 2
 ```
 
 ## Working Status

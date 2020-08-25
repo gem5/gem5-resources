@@ -48,5 +48,5 @@ The main script `run_gapbs.py` expects following arguments:
 Example usage:
 
 ```sh
-build/X86/gem5.opt configs/run_gapbs.py --kernel [path to the linux kernel] --disk [path to the disk image] --cpu-type kvm --num_cpus 1 --mem_sys classic --benchmark cc --synthetic 1 --graph 20
+gem5/build/X86/gem5.opt configs/run_gapbs.py [path to the linux kernel] [path to the disk image] kvm 1 classic cc 1 20
 ```
