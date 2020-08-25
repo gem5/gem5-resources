@@ -448,6 +448,36 @@ The boot-tests resources consist of three main components:
 
 The instructions to build the boot-tests disk image (`boot-exit`), the Linux binaries, and how to use gem5 run scripts to run boot-tests are available in this [README](src/boot-tests/README.md) file.
 
+# Resource: Insttest
+
+The Insttests test SPARC instructions.
+
+Creating the SPARC Insttest binary requires a SPARC cross compile. Instructions
+on creating a cross compiler can be found [here](
+https://preshing.com/20141119/how-to-build-a-gcc-cross-compiler).
+
+## Compilation
+
+To compile:
+
+```
+cd src/insttest
+make
+```
+
+We provide a docker image with a pre-loaded SPARC cross compiler. To use:
+
+```
+cd src/insttest
+docker run --volume $(pwd):$(pwd) -w $(pwd) --rm gcr.io/gem5-test/sparc64-gnu-cross:latest make
+```
+
+The compiled binary can be found in `src/insttest/bin`.
+
+## Prebuild Binary
+
+<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/sparc/linux/insttest>
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -475,4 +505,5 @@ consult copyright notices in the source files.
 `src/npb`. The NAS Parallel Benchmarks utilize a permissive BSD-style license.
 * **boot-tests**: Consult individual copyright notices of source files in
 `src/boot-tests`.
-
+* **insttest**: Consult individual copyright notices of source files in
+`src/insttest`.
