@@ -334,15 +334,11 @@ The binaries can be found in the `src/pthreads/bin.x86` directory.
 
 ## Compilation
 
-To compile Square the [ROCM HIPCC Compiler](
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html)
-must be installed.
-
 To compile:
 
 ```
 cd src/square
-make gfx8-apu
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make gfx8-apu
 ```
 
 The compiled binary can be found in `src/square/bin`
