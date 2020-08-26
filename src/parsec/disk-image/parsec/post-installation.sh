@@ -11,4 +11,6 @@ ln -s /sbin/m5 /sbin/gem5
 # copy and run outside (host) script after booting
 cat /home/gem5/runscript.sh >> /root/.bashrc
 
+chmod -R gem5:gem5 /home/gem5/parsec-benchmark/
+
 echo 'Post Installation Done'
