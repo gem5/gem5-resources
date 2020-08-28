@@ -46,8 +46,8 @@ We use packer to create our disk-image. The instructions on how to install packe
 
 ```sh
 cd disk-image
-wget https://releases.hashicorp.com/packer/1.4.3/packer_1.4.3_linux_amd64.zip
-unzip packer_1.4.3_linux_amd64.zip
+wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip
+unzip packer_1.6.0_linux_amd64.zip
 ```
 
 In order to build the disk-image first the script needs to be validated. Run the following command to validate `disk-image/parsec/parsec.json`.

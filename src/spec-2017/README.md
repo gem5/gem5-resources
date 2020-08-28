@@ -53,8 +53,8 @@ In the root folder,
 
 ```sh
 cd disk-image
-wget https://releases.hashicorp.com/packer/1.4.3/packer_1.4.3_linux_amd64.zip # download the packer binary
-unzip packer_1.4.3_linux_amd64.zip
+wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip # download the packer binary
+unzip packer_1.6.0_linux_amd64.zip
 ./packer validate spec-2017/spec-2017.json # validate the Packer script
 ./packer build spec-2017/spec-2017.json
 ```

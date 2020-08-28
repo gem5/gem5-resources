@@ -45,8 +45,8 @@ Next,
 ```sh
 cd disk-image
 # if packer (tool to build the disk) is not already installed
-wget https://releases.hashicorp.com/packer/1.4.3/packer_1.4.3_linux_amd64.zip
-unzip packer_1.4.3_linux_amd64.zip
+wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip
+unzip packer_1.6.0_linux_amd64.zip
 
 # validate the packer script
 ./packer validate boot-exit/boot-exit.json
