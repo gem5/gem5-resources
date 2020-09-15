@@ -81,7 +81,8 @@ class MyRubySystem(System):
             from .MOESI_CMP_directory import MOESICMPDirCache
             self.caches = MOESICMPDirCache()
         self.caches.setup(self, self.cpu, self.mem_cntrls,
-                          [self.pc.south_bridge.ide.dma, self.iobus.master],
+                          [self.pc.south_bridge.ide.dma,
+                          self.iobus.mem_side_ports],
                           self.iobus)
 
         if self._host_parallel:
@@ -139,9 +140,9 @@ class MyRubySystem(System):
 
     def _createMemoryControllers(self, num, cls):
         self.mem_cntrls = [
-            cls(range = self.mem_ranges[0])
+            MemCtrl(dram = cls(range = self.mem_ranges[0]))
             for i in range(num)
-        ]
+            ]
 
     def initFS(self, cpus):
         self.pc = Pc()

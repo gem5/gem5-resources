@@ -38,9 +38,6 @@ IMPORTANT: If you modify this file, it's likely that the Learning gem5 book
 
 """
 
-
-
-
 import math
 
 from m5.defines import buildEnv
@@ -87,9 +84,9 @@ class MIExampleSystem(RubySystem):
                                 icache = self.controllers[i].cacheMemory,
                                 dcache = self.controllers[i].cacheMemory,
                                 clk_domain = self.controllers[i].clk_domain,
-                                pio_master_port = iobus.slave,
-                                mem_master_port = iobus.slave,
-                                pio_slave_port = iobus.master
+                                pio_request_port = iobus.cpu_side_ports,
+                                mem_request_port = iobus.cpu_side_ports,
+                                pio_response_port = iobus.mem_side_ports
                                 ) for i in range(len(cpus))] + \
                           [DMASequencer(version = i,
                                         slave = port)
@@ -113,22 +110,22 @@ class MIExampleSystem(RubySystem):
         # Set up a proxy port for the system_port. Used for load binaries and
         # other functional-only things.
         self.sys_port_proxy = RubyPortProxy()
-        system.system_port = self.sys_port_proxy.slave
-        self.sys_port_proxy.pio_master_port = iobus.slave
+        system.system_port = self.sys_port_proxy.in_ports
+        self.sys_port_proxy.pio_request_port = iobus.cpu_side_ports
 
         # Connect the cpu's cache, interrupt, and TLB ports to Ruby
         for i,cpu in enumerate(cpus):
-            cpu.icache_port = self.sequencers[i].slave
-            cpu.dcache_port = self.sequencers[i].slave
+            cpu.icache_port = self.sequencers[i].in_ports
+            cpu.dcache_port = self.sequencers[i].in_ports
             cpu.createInterruptController()
             isa = buildEnv['TARGET_ISA']
             if isa == 'x86':
-                cpu.interrupts[0].pio = self.sequencers[i].master
-                cpu.interrupts[0].int_master = self.sequencers[i].slave
-                cpu.interrupts[0].int_slave = self.sequencers[i].master
+                cpu.interrupts[0].pio = self.sequencers[i].interrupt_out_port
+                cpu.interrupts[0].int_requestor = self.sequencers[i].in_ports
+                cpu.interrupts[0].int_responder = self.sequencers[i].interrupt_out_port
             if isa == 'x86' or isa == 'arm':
-                cpu.itb.walker.port = self.sequencers[i].slave
-                cpu.dtb.walker.port = self.sequencers[i].slave
+                cpu.itb.walker.port = self.sequencers[i].in_ports
+                cpu.dtb.walker.port = self.sequencers[i].in_ports
 
 
 class L1Cache(L1Cache_Controller):
@@ -178,13 +175,13 @@ class L1Cache(L1Cache_Controller):
         """
         self.mandatoryQueue = MessageBuffer()
         self.requestFromCache = MessageBuffer(ordered = True)
-        self.requestFromCache.master = ruby_system.network.slave
+        self.requestFromCache.out_port = ruby_system.network.in_port
         self.responseFromCache = MessageBuffer(ordered = True)
-        self.responseFromCache.master = ruby_system.network.slave
+        self.responseFromCache.out_port = ruby_system.network.in_port
         self.forwardToCache = MessageBuffer(ordered = True)
-        self.forwardToCache.slave = ruby_system.network.master
+        self.forwardToCache.in_port = ruby_system.network.out_port
         self.responseToCache = MessageBuffer(ordered = True)
-        self.responseToCache.slave = ruby_system.network.master
+        self.responseToCache.in_port = ruby_system.network.out_port
 
 class DirController(Directory_Controller):
 
@@ -205,21 +202,21 @@ class DirController(Directory_Controller):
         self.ruby_system = ruby_system
         self.directory = RubyDirectoryMemory()
         # Connect this directory to the memory side.
-        self.memory = mem_ctrls[0].port
+        self.memory_out_port = mem_ctrls[0].port
         self.connectQueues(ruby_system)
 
     def connectQueues(self, ruby_system):
         self.requestToDir = MessageBuffer(ordered = True)
-        self.requestToDir.slave = ruby_system.network.master
+        self.requestToDir.in_port = ruby_system.network.out_port
         self.dmaRequestToDir = MessageBuffer(ordered = True)
-        self.dmaRequestToDir.slave = ruby_system.network.master
+        self.dmaRequestToDir.in_port = ruby_system.network.out_port
 
         self.responseFromDir = MessageBuffer()
-        self.responseFromDir.master = ruby_system.network.slave
+        self.responseFromDir.out_port = ruby_system.network.in_port
         self.dmaResponseFromDir = MessageBuffer(ordered = True)
-        self.dmaResponseFromDir.master = ruby_system.network.slave
+        self.dmaResponseFromDir.out_port = ruby_system.network.in_port
         self.forwardFromDir = MessageBuffer()
-        self.forwardFromDir.master = ruby_system.network.slave
+        self.forwardFromDir.out_port = ruby_system.network.in_port
         self.requestToMemory = MessageBuffer()
         self.responseFromMemory = MessageBuffer()
 
@@ -240,9 +237,9 @@ class DMAController(DMA_Controller):
     def connectQueues(self, ruby_system):
         self.mandatoryQueue = MessageBuffer()
         self.requestToDir = MessageBuffer()
-        self.requestToDir.master = ruby_system.network.slave
+        self.requestToDir.out_port = ruby_system.network.in_port
         self.responseFromDir = MessageBuffer(ordered = True)
-        self.responseFromDir.slave = ruby_system.network.master
+        self.responseFromDir.in_port = ruby_system.network.out_port
 
 
 class MyNetwork(SimpleNetwork):
