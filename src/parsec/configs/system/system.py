@@ -217,18 +217,24 @@ class MySystem(System):
 
     def _createMemoryControllers(self, num, cls):
         kernel_controller = self._createKernelMemoryController(cls)
-
         ranges = self._getInterleaveRanges(self.mem_ranges[-1], num, 7, 20)
-
-        self.mem_cntrls = [
-            cls(range = ranges[i],
-                port = self.membus.master)
-            for i in range(num)
-        ] + [kernel_controller]
+        mem_ctrls = []
+        for i in range(num):
+          interface = cls()
+          interface.range = ranges[i]
+          ctrl = MemCtrl()
+          ctrl.dram = interface
+          ctrl.port = self.membus.master
+          mem_ctrls.append(ctrl)
+        self.mem_cntrls = mem_ctrls + [kernel_controller]
 
     def _createKernelMemoryController(self, cls):
-        return cls(range = self.mem_ranges[0],
-                   port = self.membus.master)
+        interface = cls()
+        interface.range = self.mem_ranges[0]
+        ctrl = MemCtrl()
+        ctrl.dram = interface
+        ctrl.port = self.membus.master
+        return ctrl
 
     def _getInterleaveRanges(self, rng, num, intlv_low_bit, xor_low_bit):
         from math import log

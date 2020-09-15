@@ -27,6 +27,7 @@
 #
 
 import m5
+import math
 from m5.objects import *
 from m5.util import convert
 from .fs_tools import *
@@ -131,10 +132,20 @@ class MyRubySystem(System):
         self._createMemoryControllers(1, DDR3_1600_8x8)
 
     def _createMemoryControllers(self, num, cls):
-        self.mem_cntrls = [
-            cls(range = self.mem_ranges[0])
-            for i in range(num)
-        ]
+        intlv_bits = int(math.log(num, 2))
+        mem_ctrls = []
+        for i in range(num):
+            interface = cls()
+            interface.range = AddrRange(self.mem_ranges[0].start,
+                            size = self.mem_ranges[0].size(),
+                            intlvHighBit = 7,
+                            xorHighBit = 20,
+                            intlvBits = intlv_bits,
+                            intlvMatch = i)
+            ctrl = MemCtrl()
+            ctrl.dram = interface
+            mem_ctrls.append(ctrl)
+        self.mem_cntrls = mem_ctrls
 
     def initFS(self, cpus):
         self.pc = Pc()
