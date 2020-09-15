@@ -42,7 +42,7 @@
                 [ "-cpu", "host" ],
                 [ "-display", "none" ]
             ],
-            "qemu_binary": "/usr/local/bin/qemu-system-x86_64",
+            "qemu_binary": "/usr/bin/qemu-system-x86_64",
             "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
             "ssh_password": "{{ user `ssh_password` }}",
             "ssh_username": "{{ user `ssh_username` }}",

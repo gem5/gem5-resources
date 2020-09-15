@@ -34,9 +34,9 @@ Any release procedures related to the gem5 source can be assumed to be
 applicable to gem5-resources.
 
 The compiled resources for gem5 can be found under
-http://dist.gem5.org/dist/{VERSION}. E.g. compiled resources for gem5 v20.2.0.0
+http://dist.gem5.org/dist/{VERSION}. E.g. compiled resources for gem5 v20.2.0.2
 are under http://dist.gem5.org/dist/v20-2-0-2 and are compiled from
-gem5-resources v20.2.0.0. http://dist.gem5.org/dist/develop is kept in sync
+gem5-resources v20.2.0.2. http://dist.gem5.org/dist/develop is kept in sync
 with the develop branch, and therefore should not be depended upon for stable,
 regular usage.
 
@@ -63,7 +63,7 @@ git push origin HEAD:refs/for/develop
 The change will then be reviewed via our [Gerrit code review system](
 https://gem5-review.googlesource.com). Once fully accepted and merged into
 the gem5-resources repository, please contact Bobby R. Bruce
-[mailto:bbruce@ucdavis.edu](bbruce@ucdavis.edu) to have the compiled sources
+[bbruce@ucdavis.edu](mailto:bbruce@ucdavis.edu) to have the compiled sources
 uploaded to the gem5 resources bucket.
 
 # Requirements
@@ -359,15 +359,11 @@ available on userland.
 
 ## Compilation
 
-To compile Square the [ROCM HIPCC Compiler](
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html)
-must be installed.
-
 To compile:
 
 ```
 cd src/square
-make gfx8-apu
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make gfx8-apu
 ```
 
 The compiled binary can be found in `src/square/bin`
@@ -376,12 +372,22 @@ The compiled binary can be found in `src/square/bin`
 
 <http://dist.gem5.org/dist/v20/test-progs/square/square.o>
 
-# Resource: SPEC-2006 tests
+# Resource: SPEC 2006
 
-Contains scripts to create a disk image and to run SPEC-2006 tests on gem5.
-Instructions on how to use these scripts can be found here `src/spec2006-tests/README.md`.
+The [Standard Performance Evaluation Corporation](
+https://www.spec.org/benchmarks.html) (SPEC) CPU 2006 benchmarks are designed
+to provide performance measurements that can be used to compare
+compute-intensive workloads on different computer systems. SPEC CPU 2006
+contains 12 different benchmark tests.
 
-# Resource: SPEC 2017 tests
+`src/spec-2006` provides resources on creating a SPEC 2006 disk image, and
+necessary scripts to run the SPEC 2006 benchmarks within X86 gem5 simulations.
+Please consult the `src/spec-2006/README.md` for more information.
+
+**Please note, due to licensing issues, the SPEC 2006 iso cannot be provided
+as part of this repository.**
+
+# Resource: SPEC 2017
 
 The [Standard Performance Evaluation Corporation](
 https://www.spec.org/benchmarks.html) (SPEC) CPU 2017 benchmarks are designed
@@ -414,20 +420,20 @@ The pre-built GAPBS disk image can be found here:
 The [Princeton Application Repository for Shared-Memory Computers (PARSEC)](
 https://parsec.cs.princeton.edu/) is a benchmark suite composed of
 multithreaded programs. In `src/parsec` we provide the source to build a disk
-image which may be used, along side configuration files, to run the PARSEC
+image which may be used, alongside configuration files, to run the PARSEC
 Benchmark Suite on gem5 architectural simulations. Please consult
 `src/parsec/README.md` for build and execution information.
 
-A pre-build parsec benchmark image, for X86, can be found here:
+A pre-built parsec benchmark image, for X86, can be found here:
 <http://dist.gem5.org/images/x86/ubuntu-18-04/parsec>.
 
 # Resource: NAS Parallel Benchmarks (NPB) Tests
 
 The [NAS Parallel Benchmarks] (NPB) are a small set of programs designed to
 help evaluate the performance of parallel supercomputers. The set consists of
-five kenels and three pseudo-applications. gem5 resources provides a disk
-image, and scripts allowing for the NPB image to be run within gem5 X86
-simulations. A pre-build npb disk image can be downloaded here:
+five Lunux Kernels and three pseudo-applications. gem5 resources provides a
+disk image, and scripts allowing for the NPB image to be run within gem5 X86
+simulations. A pre-built npb disk image can be downloaded here:
 <http://dist.gem5.org/images/x86/ubuntu-18-04/npb>.
 
 The npb resources can be found in `src/npb`. It consists of:
@@ -489,12 +495,12 @@ project's license.
 `src/pthreads`.
 * **square**: Consult individual copyright notices of source files in
 `src/square`.
-* **spec2006-tests**: SPEC CPU 2006 requires purchase of benchmark suite from
+* **spec 2006**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
-Consult individual copyright notices of source files in `src/spec2006-tests`.
-* **spec-2017**: SPEC CPU 2017 requires purchase of benchmark suite from
+Consult individual copyright notices of source files in `src/spec-2006`.
+* **spec 2017**: SPEC CPU 2017 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2017/) thus, it cannot be freely distributed.
-Consult individual copyright notices of source files in `src/spec2017-tests`.
+Consult individual copyright notices of source files in `src/spec-2017`.
 * **gapbs**: Consult individual copyright notices of source files in
 `src/gapbs`.
 * **parsec**: The PARSEC license can be found at

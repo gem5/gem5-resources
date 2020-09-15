@@ -16,8 +16,8 @@ To create the disk image you need to add the packer binary in the disk-image dir
 
 ```sh
 cd disk-image/
-wget https://releases.hashicorp.com/packer/1.4.3/packer_1.4.3_linux_amd64.zip   # (if packer is not already installed)
-unzip packer_1.4.3_linux_amd64.zip # (if packer is not already installed)
+wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip   # (if packer is not already installed)
+unzip packer_1.6.0_linux_amd64.zip # (if packer is not already installed)
 ./packer validate gapbs/gapbs.json
 ./packer build gapbs/gapbs.json
 ```
@@ -48,5 +48,5 @@ The main script `run_gapbs.py` expects following arguments:
 Example usage:
 
 ```sh
-build/X86/gem5.opt configs/run_gapbs.py --kernel [path to the linux kernel] --disk [path to the disk image] --cpu-type kvm --num_cpus 1 --mem_sys classic --benchmark cc --synthetic 1 --graph 20
+gem5/build/X86/gem5.opt configs/run_gapbs.py [path to the linux kernel] [path to the disk image] kvm 1 classic cc 1 20
 ```

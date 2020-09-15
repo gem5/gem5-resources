@@ -3,7 +3,9 @@ HIPCC=$(HIP_PATH)/bin/hipcc
 
 BIN_DIR?= ./bin
 
-gfx8-apu: square.cpp $(BIN_DIR)
+gfx8-apu: $(BIN_DIR)/square.o
+
+$(BIN_DIR)/square.o: square.cpp $(BIN_DIR)
 	$(HIPCC) --amdgpu-target=gfx801 $(CXXFLAGS) square.cpp -o $(BIN_DIR)/square.o
 
 $(BIN_DIR):

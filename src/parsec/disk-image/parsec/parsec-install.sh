@@ -16,6 +16,8 @@ sudo rm libs.txt
 
 # Installing packages needed to build PARSEC
 sudo apt install -y build-essential
+sudo apt install -y autotools-dev
+sudo apt install -y automake
 sudo apt install -y m4
 sudo apt install -y git
 sudo apt install -y python
