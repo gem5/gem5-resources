@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2019 The Regents of the University of California.
+# Copyright (c) 2020 The Regents of the University of California.
 # All rights reserved.
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
 # met: redistributions of source code must retain the above copyright
@@ -76,8 +77,7 @@ from m5.objects import *
 
 import argparse
 
-from system import MySystem
-
+from system import *
 
 def writeBenchScript(dir, benchmark_name, size, output_path):
     """
@@ -97,6 +97,7 @@ def parse_arguments():
     parser.add_argument("disk", type = str,
                   help = "Path to the disk image containing SPEC benchmarks")
     parser.add_argument("cpu", type = str, help = "Name of the detailed CPU")
+    parser.add_argument("mem_sys", type = str, help = "Name of the memory system")
     parser.add_argument("benchmark", type = str,
                         help = "Name of the SPEC benchmark")
     parser.add_argument("size", type = str,
@@ -134,13 +135,25 @@ def getBenchmarkName(benchmark_name):
         benchmark_name = benchmark_name[:-6]
     return benchmark_name
 
-def create_system(linux_kernel_path, disk_image_path, detailed_cpu_model):
+def create_system(linux_kernel_path, disk_image_path, detailed_cpu_model, memory_system):
     # create the system we are going to simulate
-    system = MySystem(kernel = linux_kernel_path,
-                      disk = disk_image_path,
-                      num_cpus = 1, # run the benchmark in a single thread
-                      no_kvm = False,
-                      TimingCPUModel = detailed_cpu_model)
+    ruby_protocols = [ "MI_example", "MESI_Two_Level", "MOESI_CMP_directory"]
+    if memory_system == 'classic':
+        system = MySystem(kernel = linux_kernel_path,
+                        disk = disk_image_path,
+                        num_cpus = 1, # run the benchmark in a single thread
+                        no_kvm = False,
+                        TimingCPUModel = detailed_cpu_model)
+    elif memory_system in ruby_protocols:
+        system = MyRubySystem(kernel = linux_kernel_path,
+                        disk = disk_image_path,
+                        num_cpus = 1, # run the benchmark in a single thread
+                        mem_sys = memory_system,
+                        no_kvm = False,
+                        TimingCPUModel = detailed_cpu_model)
+    else:
+        m5.fatal("Bad option for mem_sys, should be "
+        "{}, or 'classic'".format(', '.join(ruby_protocols)))
 
     # For workitems to work correctly
     # This will cause the simulator to exit simulation when the first work
@@ -209,6 +222,7 @@ if __name__ == "__m5_main__":
     args = parse_arguments()
 
     cpu_name = args.cpu
+    mem_sys = args.mem_sys
     benchmark_name = getBenchmarkName(args.benchmark)
     benchmark_size = args.size
     linux_kernel_path = args.kernel
@@ -238,9 +252,9 @@ if __name__ == "__m5_main__":
         exit(1)
 
     root, system = create_system(linux_kernel_path, disk_image_path,
-                                 detailed_cpu)
+                                 detailed_cpu, mem_sys)
 
-    # Create and pass a script to the simulated system to run the reuired
+    # Create and pass a script to the simulated system to run the required
     # benchmark
     system.readfile = writeBenchScript(m5.options.outdir, benchmark_name,
                                        benchmark_size, output_dir)

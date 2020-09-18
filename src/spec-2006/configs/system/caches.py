@@ -30,7 +30,8 @@
 """ Caches with options for a simple gem5 configuration script
 
 This file contains L1 I/D and L2 caches to be used in the simple
-gem5 configuration script.
+gem5 configuration script.  It uses the SimpleOpts wrapper to set up command
+line options from each individual class.
 """
 
 import m5
@@ -43,8 +44,11 @@ from m5.util.convert import toMemorySize
 
 class PrefetchCache(Cache):
 
-    def __init__(self):
+    def __init__(self, options):
         super(PrefetchCache, self).__init__()
+        if not options or options.no_prefetchers:
+            return
+        self.prefetcher = StridePrefetcher()
 
 class L1Cache(PrefetchCache):
     """Simple L1 Cache with default values"""
@@ -59,11 +63,10 @@ class L1Cache(PrefetchCache):
 
     def __init__(self):
         super(L1Cache, self).__init__()
-        pass
 
     def connectBus(self, bus):
         """Connect this cache to a memory-side bus"""
-        self.mem_side = bus.slave
+        self.mem_side = bus.cpu_side_ports
 
     def connectCPU(self, cpu):
         """Connect this cache's port to a CPU-side port
@@ -115,13 +118,13 @@ class MMUCache(Cache):
            Note: This creates a new crossbar
         """
         self.mmubus = L2XBar()
-        self.cpu_side = self.mmubus.master
+        self.cpu_side = self.mmubus.mem_side_ports
         for tlb in [cpu.itb, cpu.dtb]:
-            self.mmubus.slave = tlb.walker.port
+            self.mmubus.cpu_side_ports = tlb.walker.port
 
     def connectBus(self, bus):
         """Connect this cache to a memory-side bus"""
-        self.mem_side = bus.slave
+        self.mem_side = bus.cpu_side_ports
 
 class L2Cache(PrefetchCache):
     """Simple L2 Cache with default values"""
@@ -140,10 +143,10 @@ class L2Cache(PrefetchCache):
         super(L2Cache, self).__init__()
 
     def connectCPUSideBus(self, bus):
-        self.cpu_side = bus.master
+        self.cpu_side = bus.mem_side_ports
 
     def connectMemSideBus(self, bus):
-        self.mem_side = bus.slave
+        self.mem_side = bus.cpu_side_ports
 
 class L3Cache(Cache):
     """Simple L3 Cache bank with default values
@@ -166,8 +169,8 @@ class L3Cache(Cache):
         super(L3Cache, self).__init__()
 
     def connectCPUSideBus(self, bus):
-        self.cpu_side = bus.master
+        self.cpu_side = bus.mem_side_ports
 
     def connectMemSideBus(self, bus):
-        self.mem_side = bus.slave
+        self.mem_side = bus.cpu_side_ports
 
