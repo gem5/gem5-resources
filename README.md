@@ -429,6 +429,12 @@ The boot-tests resources consist of three main components:
 
 The instructions to build the boot-tests disk image (`boot-exit`), the Linux binaries, and how to use gem5 run scripts to run boot-tests are available in this [README](src/boot-tests/README.md) file.
 
+# Resource: Linux Kernel Binary
+
+Contains scripts to create a Linux kernel binary.
+Instructions on how to use the scripts can be found here `src/linux-kernel/README.md`.
+
+
 # Licensing
 
 Each project under the `src` is under a different license. Before using
@@ -458,4 +464,6 @@ consult copyright notices in the source files.
 `src/npb`. The NAS Parallel Benchmarks utilize a permissive BSD-style license.
 * **boot-tests**: Consult individual copyright notices of source files in
 `src/boot-tests`.
+* **linux-kernel**: Consult individual copyright notices of source files in
+`src/linux-kernel`.
 
