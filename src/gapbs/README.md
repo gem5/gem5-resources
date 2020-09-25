@@ -29,7 +29,7 @@ After this process succeeds, the disk image can be found on the `src/gapbs/disk-
 gem5 scripts which configure the system and run the simulation are available in `configs/`.
 The main script `run_gapbs.py` expects following arguments:
 
-**--kernel** : path to the Linux kernel. GAPBS has been tested with [vmlinux-5.2.3](http://dist.gem5.org/kernels/x86/static/vmlinux-5.2.3).
+**--kernel** : path to the Linux kernel. GAPBS has been tested with [vmlinux-5.2.3](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-5.2.3).
 
 **--disk** : Path to the disk image.
 

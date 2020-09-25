@@ -121,7 +121,7 @@ The compiled Linux binary will be named as `vmlinux`.
 
 **Note:** The above instructions are tested with `gcc 7.5.0` and an already compiled Linux binary can be downloaded from the following link:
 
-- [vmlinux-4.19.83](http://dist.gem5.org/kernels/x86/static/vmlinux-4.19.83)
+- [vmlinux-4.19.83](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-4.19.83)
 
 ## Working Status
 
