@@ -1,7 +1,7 @@
 # GAP Benchmark Suite (GAPBS) tests
 This document provides instructions to create a GAP Benchmarks Suite (GAPBS) disk image, which, along with provided configuration scripts, may be used to run GAPBS within gem5 simulations.
 
-A pre-build disk image, for X86, can be found here: <http://dist.gem5.org/images/x86/ubuntu-18-04/gapbs>.
+A pre-build disk image, for X86, can be found here: <http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/gapbs>.
 
 ## Building the Disk Image
 Assuming that you are in the `src/gapbs/` directory, first create `m5` (which is needed to create the disk image):

@@ -73,7 +73,7 @@ unzip packer_1.6.0_linux_amd64.zip
 ```
 
 Once this process succeeds, the created disk image can be found on `npb/npb-image/npb`.
-A disk image already created following the above instructions can be found [here](http://dist.gem5.org/images/x86/ubuntu-18-04/npb) (**warning:** file size is 2.3 GB).
+A disk image already created following the above instructions can be found [here](http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/npb) (**warning:** file size is 2.3 GB).
 
 For more information on the npb disk creation process using packer refer [here](https://gem5art.readthedocs.io/en/latest/main-doc/disks.html#) and [here](https://gem5art.readthedocs.io/en/latest/tutorials/npb-tutorial.html).
 

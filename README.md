@@ -388,7 +388,7 @@ be used to run the benchmark on gem5 X86 simulations.
 `src/gapbs/README.md` contains build and usage instructions.
 
 The pre-built GAPBS disk image can be found here:
-<http://dist.gem5.org/images/x86/ubuntu-18-04/gapbs>.
+<http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/gapbs>.
 
 # Resource: PARSEC Benchmark Suite
 
@@ -400,7 +400,7 @@ Benchmark Suite on gem5 architectural simulations. Please consult
 `src/parsec/README.md` for build and execution information.
 
 A pre-built parsec benchmark image, for X86, can be found here:
-<http://dist.gem5.org/images/x86/ubuntu-18-04/parsec>.
+<http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/parsec>.
 
 # Resource: NAS Parallel Benchmarks (NPB) Tests
 
@@ -409,7 +409,7 @@ help evaluate the performance of parallel supercomputers. The set consists of
 five Lunux Kernels and three pseudo-applications. gem5 resources provides a
 disk image, and scripts allowing for the NPB image to be run within gem5 X86
 simulations. A pre-built npb disk image can be downloaded here:
-<http://dist.gem5.org/images/x86/ubuntu-18-04/npb>.
+<http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/npb>.
 
 The npb resources can be found in `src/npb`. It consists of:
 - npb disk image resources

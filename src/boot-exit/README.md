@@ -77,7 +77,7 @@ You can update the following line in the `boot-exit.json` file.
 ```
 
 Once this process succeeds, the disk image can be found on `boot-exit/boot-exit-image/boot-exit`.
-A disk image already created following the above instructions can be found [here](http://dist.gem5.org/images/x86/ubuntu-18-04/boot-exit) (**warning:** file size is 1.9 GB).
+A disk image already created following the above instructions can be found [here](http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/boot-exit) (**warning:** file size is 1.9 GB).
 
 
 ## gem5 Run Scripts
