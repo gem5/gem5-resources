@@ -73,7 +73,7 @@ unzip packer_1.6.0_linux_amd64.zip
 ```
 
 Once this process succeeds, the created disk image can be found on `npb/npb-image/npb`.
-A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/npb.img.gz).
+A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v20-1/images/x86/ubuntu-18-04/npb.img.gz).
 
 For more information on the npb disk creation process using packer refer [here](https://gem5art.readthedocs.io/en/latest/main-doc/disks.html#) and [here](https://gem5art.readthedocs.io/en/latest/tutorials/npb-tutorial.html).
 
@@ -121,7 +121,7 @@ The compiled Linux binary will be named as `vmlinux`.
 
 **Note:** The above instructions are tested with `gcc 7.5.0` and an already compiled Linux binary can be downloaded from the following link:
 
-- [vmlinux-4.19.83](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-4.19.83)
+- [vmlinux-4.19.83](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.19.83)
 
 ## Working Status
 

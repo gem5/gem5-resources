@@ -68,7 +68,7 @@ You can find the disk-image in `parsec/parsec-image/parsec`.
 
 There are two sets of run scripts and system configuration files in the directory. The scripts found in `configs` use the classic memory system while the scripts in `configs-mesi-two-level` use the ruby memory system with MESI_Two_Level cache coherency protocol. The parameters used in the both sets of experiments are explained below:
 
-* kernel: The path to the linux kernel used to run the experiments with. In these experiments we only used kernel version 4.19.83 (You can download the binary [here](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-4.19.83)).
+* kernel: The path to the linux kernel used to run the experiments with. In these experiments we only used kernel version 4.19.83 (You can download the binary [here](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.19.83)).
 * disk: The path to the PARSEC disk-image (The disk-image created above will work for both set of experiments).
 * cpu: The type of cpu that is used to run the simulation with. There are two possible options: kvm (KvmCPU) and timing (TimingSimpleCPU).
 * benchmark: The workload among 13 workloads of PARSEC. They include `blackscholes`, `bodytrack`, `canneal`, `dedup`, `facesim`, `ferret`, `fluidanimate`, `freqmine`, `raytrace`, `streamcluster`, `swaptions`, `vips`, `x264`. For further information on the workloads read [here](https://parsec.cs.princeton.edu/).

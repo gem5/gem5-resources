@@ -35,7 +35,7 @@ applicable to gem5-resources.
 
 The compiled resources for gem5 can be found under
 http://dist.gem5.org/dist/{VERSION}. E.g. compiled resources for gem5 v20.2.0.2
-are under http://dist.gem5.org/dist/v20-2-0-2 and are compiled from
+are under http://dist.gem5.org/dist/v20-1-2-0-2 and are compiled from
 gem5-resources v20.2.0.2. http://dist.gem5.org/dist/develop is kept in sync
 with the develop branch, and therefore should not be depended upon for stable,
 regular usage.
@@ -149,29 +149,29 @@ directory.
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/dhrystone.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/dhrystone.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/median.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/median.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/mm.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/mm.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/mt-matmul.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/mt-matmul.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/mt-vvadd.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/mt-vvadd.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/multiply.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/multiply.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/pmp.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/pmp.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/qsort.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/qsort.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/rsort.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/rsort.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/spmv.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/spmv.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/towers.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/towers.riscv>
 
-<http://dist.gem5.org/dist/v20/test-progs/riscv-tests/vvadd.riscv>
+<http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/vvadd.riscv>
 
 # Resource: Insttests
 
@@ -193,17 +193,17 @@ directory.
 
 ## Prebuilt binaries
 
-<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64a>
+<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64a>
 
-<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64c>
+<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64c>
 
-<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64d>
+<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64d>
 
-<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64f>
+<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64f>
 
-<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64i>
+<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64i>
 
-<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/riscv/linux/insttest-rv64m>
+<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64m>
 
 
 # Resource: simple
@@ -290,69 +290,69 @@ available on userland.
 
 ## Pre-build binaries
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_pthread_create_seq>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/x86/test_pthread_create_seq>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_pthread_create_para>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/x86/test_pthread_create_para>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_pthread_mutex>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/x86/test_pthread_mutex>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_atomic>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/x86/test_atomic>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_pthread_cond>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/x86/test_pthread_cond>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_std_thread>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/x86/test_std_thread>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_std_mutex>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/x86/test_std_mutex>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/x86/test_std_condition_variable>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/x86/test_std_condition_variable>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_pthread_create_seq>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch32/test_pthread_create_seq>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_pthread_create_para>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch32/test_pthread_create_para>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_pthread_mutex>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch32/test_pthread_mutex>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_atomic>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch32/test_atomic>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_pthread_cond>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch32/test_pthread_cond>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_std_thread>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch32/test_std_thread>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_std_mutex>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch32/test_std_mutex>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch32/test_std_condition_variable>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch32/test_std_condition_variable>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_pthread_create_seq>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch64/test_pthread_create_seq>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_pthread_create_para>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch64/test_pthread_create_para>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_pthread_mutex>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch64/test_pthread_mutex>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_atomic>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch64/test_atomic>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_pthread_cond>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch64/test_pthread_cond>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_std_thread>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch64/test_std_thread>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_std_mutex>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch64/test_std_mutex>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/aarch64/test_std_condition_variable>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/aarch64/test_std_condition_variable>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_pthread_create_seq>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/riscv64/test_pthread_create_seq>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_pthread_create_para>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/riscv64/test_pthread_create_para>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_pthread_mutex>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/riscv64/test_pthread_mutex>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_atomic>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/riscv64/test_atomic>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_pthread_cond>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/riscv64/test_pthread_cond>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_std_thread>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/riscv64/test_std_thread>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_std_mutex>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/riscv64/test_std_mutex>
 
-<http://dist.gem5.org/dist/v20/test-progs/pthreads/riscv64/test_std_condition_variable>
+<http://dist.gem5.org/dist/v20-1/test-progs/pthreads/riscv64/test_std_condition_variable>
 
 
 # Resource: Square
@@ -370,7 +370,7 @@ The compiled binary can be found in `src/square/bin`
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v20/test-progs/square/square.o>
+<http://dist.gem5.org/dist/v20-1/test-progs/square/square.o>
 
 # Resource: SPEC 2006
 
@@ -413,7 +413,7 @@ be used to run the benchmark on gem5 X86 simulations.
 `src/gapbs/README.md` contains build and usage instructions.
 
 The pre-built GAPBS disk image can be found here:
-<http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/gapbs.img.gz>.
+<http://dist.gem5.org/dist/v20-1/images/x86/ubuntu-18-04/gapbs.img.gz>.
 
 # Resource: PARSEC Benchmark Suite
 
@@ -425,7 +425,7 @@ Benchmark Suite on gem5 architectural simulations. Please consult
 `src/parsec/README.md` for build and execution information.
 
 A pre-built parsec benchmark image, for X86, can be found here:
-<http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/parsec.img.gz>.
+<http://dist.gem5.org/dist/v20-1/images/x86/ubuntu-18-04/parsec.img.gz>.
 
 # Resource: NAS Parallel Benchmarks (NPB) Tests
 
@@ -434,7 +434,7 @@ help evaluate the performance of parallel supercomputers. The set consists of
 five Lunux Kernels and three pseudo-applications. gem5 resources provides a
 disk image, and scripts allowing for the NPB image to be run within gem5 X86
 simulations. A pre-built npb disk image can be downloaded here:
-<http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/npb.img.gz>.
+<http://dist.gem5.org/dist/v20-1/images/x86/ubuntu-18-04/npb.img.gz>.
 
 The npb resources can be found in `src/npb`. It consists of:
 - npb disk image resources
@@ -482,7 +482,7 @@ The compiled binary can be found in `src/insttest/bin`.
 
 ## Prebuild Binary
 
-<http://dist.gem5.org/dist/v20/test-progs/insttest/bin/sparc/linux/insttest>
+<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/sparc/linux/insttest>
 
 # Resource: Linux Kernel Binary
 
