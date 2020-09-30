@@ -77,7 +77,7 @@ You can update the following line in the `boot-exit.json` file.
 ```
 
 Once this process succeeds, the disk image can be found on `boot-exit/boot-exit-image/boot-exit`.
-A disk image already created following the above instructions can be found [here](http://dist.gem5.org/images/x86/ubuntu-18-04/boot-exit) (**warning:** file size is 1.9 GB).
+A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v20/images/x86/ubuntu-18-04/boot-exit.img.gz).
 
 
 ## gem5 Run Scripts
@@ -129,11 +129,11 @@ The compiled Linux binary will be named as `vmlinux`.
 
 **Note:** The above instructions are tested with `gcc 7.5.0` and the compiled Linux binaries can be downloaded from the following links:
 
-- [vmlinux-4.4.186](http://dist.gem5.org/kernels/x86/static/vmlinux-4.4.186)
-- [vmlinux-4.9.186](http://dist.gem5.org/kernels/x86/static/vmlinux-4.9.186)
-- [vmlinux-4.14.134](http://dist.gem5.org/kernels/x86/static/vmlinux-4.14.134)
-- [vmlinux-4.19.83](http://dist.gem5.org/kernels/x86/static/vmlinux-4.19.83)
-- [vmlinux-5.4.49](http://dist.gem5.org/kernels/x86/static/vmlinux-5.4.49)
+- [vmlinux-4.4.186](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-4.4.186)
+- [vmlinux-4.9.186](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-4.9.186)
+- [vmlinux-4.14.134](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-4.14.134)
+- [vmlinux-4.19.83](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-4.19.83)
+- [vmlinux-5.4.49](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-5.4.49)
 
 ## Working Status
 

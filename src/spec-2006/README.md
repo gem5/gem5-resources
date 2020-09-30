@@ -65,7 +65,7 @@ for more information about the scripts used in this document.
 ## Linux Kernel
 The following link contains the compiled Linux kernel that was tested by
 running gem5-20 with SPEC 2006,
-- [vmlinux-4.19.83](http://dist.gem5.org/kernels/x86/static/vmlinux-4.19.83)
+- [vmlinux-4.19.83](http://dist.gem5.org/dist/v20/kernels/x86/static/vmlinux-4.19.83)
 
 ## gem5 Configuration Scripts
 gem5 scripts which configure the system and run the simulation are available
