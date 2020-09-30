@@ -29,7 +29,7 @@ checked out with `git checkout <VERSION>`. A complete list of versions can be
 found with `git tag`. The develop branch contains code under development and
 will be merged into the master branch, then tagged, as part of the next release
 of gem5. More information on gem5 release procedures can be found [here](
-https://gem5.googlesource.com/public/gem5/+/refs/heads/master/CONTRIBUTING.md#releases).
+https://gem5.googlesource.com/public/gem5/+/refs/heads/stable/CONTRIBUTING.md#releases).
 Any release procedures related to the gem5 source can be assumed to be
 applicable to gem5-resources.
 
