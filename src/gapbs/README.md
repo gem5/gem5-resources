@@ -50,3 +50,6 @@ Example usage:
 ```sh
 gem5/build/X86/gem5.opt configs/run_gapbs.py [path to the linux kernel] [path to the disk image] kvm 1 classic cc 1 20
 ```
+## Working Status
+
+Working status of these tests for gem5-20 can be found [here](https://www.gem5.org/documentation/benchmark_status/gem5-20#gapbs-tests).
