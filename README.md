@@ -420,6 +420,49 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu
 
 The compiled binary can be found in `src/hsa-agent-pkt/bin`
 
+# Resource: HIP Sample Applications
+
+The [HIP sample apps](
+https://github.com/ROCm-Developer-Tools/HIP/tree/roc-1.6.0/samples) contain
+applications that introduce various GPU programming concepts that are usable
+in HIP.
+
+The samples cover topics such as using and accessing different parts of GPU
+memory, running multiple GPU streams, and optimization techniques for GPU code.
+
+Certain apps aren't included due to complexities with either ROCm or Docker
+(hipEvent, profiler), or due to lack of feature support in gem5 (peer2peer)
+
+## Compilation
+
+```
+cd src/hip-samples
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make
+```
+
+Individual programs can be made by specifying the name of the program
+
+By default, this code builds for gfx801, a GCN3-based APU. This can be
+overridden by specifying `-e HCC_AMDGPU_TARGET=<target>` in the build command.
+
+## Pre-built binary
+
+<http://dist.gem5.org/dist/v20-1/test-progs/hip-samples/2dshfl>
+
+<http://dist.gem5.org/dist/v20-1/test-progs/hip-samples/dynamic_shared>
+
+<http://dist.gem5.org/dist/v20-1/test-progs/hip-samples/inline_asm>
+
+<http://dist.gem5.org/dist/v20-1/test-progs/hip-samples/MatrixTranspose>
+
+<http://dist.gem5.org/dist/v20-1/test-progs/hip-samples/sharedMemory>
+
+<http://dist.gem5.org/dist/v20-1/test-progs/hip-samples/shfl>
+
+<http://dist.gem5.org/dist/v20-1/test-progs/hip-samples/stream>
+
+<http://dist.gem5.org/dist/v20-1/test-progs/hip-samples/unroll>
+
 # Resource: SPEC 2006
 
 The [Standard Performance Evaluation Corporation](
@@ -552,6 +595,8 @@ project's license.
 same licence as 'src/square/square.cpp'.
 `src/hsa-agent-pkt/HSA_Interface.[h|.cpp]` are licensed under a BSD Lisense
 (A University of Maryland copyright).
+* **hip-samples**: Consult individual copyright notices of the source file in
+'src/hip-samples/src'
 * **spec 2006**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
 Consult individual copyright notices of source files in `src/spec-2006`.
