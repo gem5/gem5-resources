@@ -54,6 +54,7 @@ CFLAGS = $(CCFLAGS) -std=c11
 # Common to C and C++.
 CCFLAGS = \
   -I $(GEM5_ROOT)/include/ \
+  -I $(GEM5_ROOT)/util/m5/src/ \
   -O3 \
   -Wall \
   -Werror \
@@ -160,8 +161,11 @@ $(OUT_USER_DIR)/%$(OUT_EXT): %$(IN_EXT_C) $(M5OP_OBJ)
 	$(CC) $(CFLAGS_USER) -o '$@' $^ $(LDFLAGS_USER)
 
 $(OUT_SQUASHFS_DIR)/%$(OUT_SQUASHFS_EXT): $(OUT_USER_DIR)/%$(OUT_EXT)
-	mkdir -p '$(basename $@)/sbin'
+	@# Create dev so that the kernel can automount CONFIG_DEVTMPFS=y.
+	mkdir -p '$(basename $@)/sbin' '$(basename $@)/dev'
 	cp '$<' '$(basename $@)/sbin/init'
+	@# Existing squashfs files don't get updated otherwise.
+	rm -f '$@'
 	mksquashfs '$(basename $@)' '$@'
 
 $(OUT_BARE_DIR)/%$(OUT_EXT): %$(IN_EXT_CXX) $(M5OP_OBJ) $(BOOTLOADER_OBJ)
