@@ -116,5 +116,5 @@ gem5/build/X86/gem5.opt --outdir [path to the gem5 output directory] configs/run
 ## Working Status
 Status of these benchmarks runs with respect to gem5-20, linux kernel version
 4.19.83 and gcc version 7.5.0 can be found
-[here](https://www.gem5.org/documentation/benchmark_status/#spec-2017-tests)
+[here](https://www.gem5.org/documentation/benchmark_status/gem5-20#spec-2017-tests)
 

@@ -90,4 +90,4 @@ gem5/build/X86_MESI_Two_Level/gem5.opt configs-mesi-two-level/run_parsec_mesi_tw
 
 ## Working Status
 
-The working status of PARSEC runs for gem5-20 has been documented [here](https://www.gem5.org/documentation/benchmark_status/#parsec-tests).
+The working status of PARSEC runs for gem5-20 has been documented [here](https://www.gem5.org/documentation/benchmark_status/gem5-20#parsec-tests).
