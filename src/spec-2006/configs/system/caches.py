@@ -44,7 +44,7 @@ from m5.util.convert import toMemorySize
 
 class PrefetchCache(Cache):
 
-    def __init__(self, options):
+    def __init__(self, options = None):
         super(PrefetchCache, self).__init__()
         if not options or options.no_prefetchers:
             return
