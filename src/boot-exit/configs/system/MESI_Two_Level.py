@@ -91,7 +91,7 @@ class MESITwoLevelCache(RubySystem):
                                 pio_response_port = iobus.mem_side_ports
                                 ) for i in range(len(cpus))] + \
                           [DMASequencer(version = i,
-                                        slave = port)
+                                        in_port = port)
                             for i,port in enumerate(dma_ports)
                           ]
 
@@ -124,7 +124,8 @@ class MESITwoLevelCache(RubySystem):
             if isa == 'x86':
                 cpu.interrupts[0].pio = self.sequencers[i].interrupt_out_port
                 cpu.interrupts[0].int_requestor = self.sequencers[i].in_ports
-                cpu.interrupts[0].int_responder = self.sequencers[i].interrupt_out_port
+                cpu.interrupts[0].int_responder = \
+                                        self.sequencers[i].interrupt_out_port
             if isa == 'x86' or isa == 'arm':
                 cpu.itb.walker.port = self.sequencers[i].in_ports
                 cpu.dtb.walker.port = self.sequencers[i].in_ports

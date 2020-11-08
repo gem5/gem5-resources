@@ -72,7 +72,7 @@ class L1Cache(PrefetchCache):
 
     def connectBus(self, bus):
         """Connect this cache to a memory-side bus"""
-        self.mem_side = bus.slave
+        self.mem_side = bus.cpu_side_ports
 
     def connectCPU(self, cpu):
         """Connect this cache's port to a CPU-side port
@@ -136,13 +136,13 @@ class MMUCache(Cache):
            Note: This creates a new crossbar
         """
         self.mmubus = L2XBar()
-        self.cpu_side = self.mmubus.master
-        for tlb in [cpu.itb, cpu.dtb]:
-            self.mmubus.slave = tlb.walker.port
+        self.cpu_side = self.mmubus.mem_side_ports
+        cpu.mmu.connectWalkerPorts(
+            self.mmubus.cpu_side_ports, self.mmubus.cpu_side_ports)
 
     def connectBus(self, bus):
         """Connect this cache to a memory-side bus"""
-        self.mem_side = bus.slave
+        self.mem_side = bus.cpu_side_ports
 
 class L2Cache(PrefetchCache):
     """Simple L2 Cache with default values"""
@@ -167,10 +167,10 @@ class L2Cache(PrefetchCache):
         self.size = opts.l2_size
 
     def connectCPUSideBus(self, bus):
-        self.cpu_side = bus.master
+        self.cpu_side = bus.mem_side_ports
 
     def connectMemSideBus(self, bus):
-        self.mem_side = bus.slave
+        self.mem_side = bus.cpu_side_ports
 
 class L3Cache(Cache):
     """Simple L3 Cache bank with default values
@@ -195,7 +195,7 @@ class L3Cache(Cache):
         self.size = (opts.l3_size)
 
     def connectCPUSideBus(self, bus):
-        self.cpu_side = bus.master
+        self.cpu_side = bus.mem_side_ports
 
     def connectMemSideBus(self, bus):
-        self.mem_side = bus.slave
+        self.mem_side = bus.cpu_side_ports

@@ -59,7 +59,7 @@ class MySystem(System):
         self.membus.default = Self.badaddr_responder.pio
 
         # Set up the system port for functional access from the simulator
-        self.system_port = self.membus.slave
+        self.system_port = self.membus.cpu_side_ports
 
         self.initFS(self.membus,num_cpus)
 
@@ -189,9 +189,9 @@ class MySystem(System):
             # For x86 only, connect interrupts to the memory
             # Note: these are directly connected to the memory bus and
             #       not cached
-            cpu.interrupts[0].pio = self.membus.master
-            cpu.interrupts[0].int_master = self.membus.slave
-            cpu.interrupts[0].int_slave = self.membus.master
+            cpu.interrupts[0].pio = self.membus.mem_side_ports
+            cpu.interrupts[0].int_requestor = self.membus.cpu_side_ports
+            cpu.interrupts[0].int_responder = self.membus.mem_side_ports
 
 
     def createMemoryControllersDDR3(self):
@@ -204,13 +204,13 @@ class MySystem(System):
 
         self.mem_cntrls = [
             cls(range = ranges[i],
-                port = self.membus.master)
+                port = self.membus.mem_side_ports)
             for i in range(num)
         ] + [kernel_controller]
 
     def _createKernelMemoryController(self, cls):
         return cls(range = self.mem_ranges[0],
-                   port = self.membus.master)
+                   port = self.membus.mem_side_ports)
 
     def _getInterleaveRanges(self, rng, num, intlv_low_bit, xor_low_bit):
         from math import log
@@ -240,13 +240,13 @@ class MySystem(System):
         IO_address_space_base = 0x8000000000000000
         pci_config_address_space_base = 0xc000000000000000
         interrupts_address_space_base = 0xa000000000000000
-        APIC_range_size = 1 << 12;
+        APIC_range_size = 1 << 12
 
         # North Bridge
         self.iobus = IOXBar()
         self.bridge = Bridge(delay='50ns')
-        self.bridge.master = self.iobus.slave
-        self.bridge.slave = membus.master
+        self.bridge.mem_side_port = self.iobus.cpu_side_ports
+        self.bridge.cpu_side_port = membus.mem_side_ports
         # Allow the bridge to pass through:
         #  1) kernel configured PCI device memory map address: address range
         #  [0xC0000000, 0xFFFF0000). (The upper 64kB are reserved for m5ops.)
@@ -266,8 +266,8 @@ class MySystem(System):
         # Create a bridge from the IO bus to the memory bus to allow access
         # to the local APIC (two pages)
         self.apicbridge = Bridge(delay='50ns')
-        self.apicbridge.slave = self.iobus.master
-        self.apicbridge.master = membus.slave
+        self.apicbridge.cpu_side_port = self.iobus.mem_side_ports
+        self.apicbridge.mem_side_port = membus.cpu_side_ports
         self.apicbridge.ranges = [AddrRange(interrupts_address_space_base,
                                             interrupts_address_space_base +
                                             cpus * APIC_range_size
@@ -286,8 +286,8 @@ class MySystem(System):
                             size = '1kB',
                             tgts_per_mshr = 12,
                             addr_ranges = self.mem_ranges)
-        self.iocache.cpu_side = self.iobus.master
-        self.iocache.mem_side = self.membus.slave
+        self.iocache.cpu_side = self.iobus.mem_side_ports
+        self.iocache.mem_side = self.membus.cpu_side_ports
 
         self.intrctrl = IntrControl()
 
