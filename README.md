@@ -372,6 +372,31 @@ The compiled binary can be found in `src/square/bin`
 
 <http://dist.gem5.org/dist/v20-1/test-progs/square/square.o>
 
+# Resource: HSA Agent Packet Example
+
+Based off of the Square resource in this repository, this resource serves as
+an example for using an HSA Agent Packet to send commands to the GPU command
+processor included in the GCN_X86 build of gem5.
+
+The example command extracts the kernel's completion signal from the domain
+of the command processor and the GPU's dispatcher. Initially this was a 
+workaround for the hipDeviceSynchronize bug, now fixed. The method of
+waiting on a signal can be applied to other agent packet commands though.
+
+Custom commands can be added to the command processor in gem5 to control
+the GPU in novel ways.
+
+## Compilation
+
+To compile:
+
+```
+cd src/hsa-agent-pkt
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make gfx8-apu
+```
+
+The compiled binary can be found in `src/hsa-agent-pkt/bin`
+
 # Resource: SPEC 2006
 
 The [Standard Performance Evaluation Corporation](
@@ -500,6 +525,10 @@ project's license.
 `src/pthreads`.
 * **square**: Consult individual copyright notices of source files in
 `src/square`.
+* **hsa-agent-pkt**: `src/hsa-agent-pkt/square.cpp` is licensed under the
+same licence as 'src/square/square.cpp'.
+`src/hsa-agent-pkt/HSA_Interface.[h|.cpp]` are licensed under a BSD Lisense
+(A University of Maryland copyright).
 * **spec 2006**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
 Consult individual copyright notices of source files in `src/spec-2006`.
