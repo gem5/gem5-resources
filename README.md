@@ -6,10 +6,6 @@ http://dist.gem5.org/dist. Though these resources are not needed to compile or
 run gem5, they may be required to execute some gem5 tests or may be useful
 when carrying out specific simulations.
 
-The structure of this repository is as follows:
-
-* **src** : The resource sources.
-
 The following sections outline our versioning policy, how to make changes
 to this repository, and describe each resource and how they may be built.
 
