@@ -15,15 +15,15 @@ We ensure that for each version of the [gem5 source](
 https://gem5.googlesource.com/public/gem5/) there is a corresponding version of
 the gem5-resources, with the assumption that version X of the gem5 source will
 be used with version X of the gem5-resources. The gem5-resources repository
-contains two branches, develop and master. The master branch's HEAD points
+contains two branches, develop and stable. The stable branch's HEAD points
 towards the latest gem5 resources release, which will be the same version id
 as the that of the latest gem5 source. E.g., if the latest release of gem5 is
 v20.2.0.0, then the latest release of gem5-resources will be v20.2.0.0, with
-the HEAD of its master branch tagged as v20.2.0.0. Previous versions will be
-tagged within the master branch. Past versions gem5-resources can thereby be
+the HEAD of its stable branch tagged as v20.2.0.0. Previous versions will be
+tagged within the stable branch. Past versions gem5-resources can thereby be
 checked out with `git checkout <VERSION>`. A complete list of versions can be
 found with `git tag`. The develop branch contains code under development and
-will be merged into the master branch, then tagged, as part of the next release
+will be merged into the stable branch, then tagged, as part of the next release
 of gem5. More information on gem5 release procedures can be found [here](
 https://gem5.googlesource.com/public/gem5/+/refs/heads/stable/CONTRIBUTING.md#releases).
 Any release procedures related to the gem5 source can be assumed to be
