@@ -527,32 +527,51 @@ Instructions on how to use the scripts can be found here `src/linux-kernel/READM
 
 # Licensing
 
-Each project under the `src` is under a different license. Before using
-any compiled binary, or modifying any source, please consult the corresponding
-project's license.
+There is no universal license encompassing all this repository's contents.
+The licences covering the individual gem5 resources are therefore highlighted
+below.
 
-* **riscv-tests** : `src/riscv-tests/LICENSE`.
-* **pthreads**: Consult individual copyright notices of source files in
-`src/pthreads`.
+* **asmtest** : [`src/asmtest/LICENSE`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/asmtest/LICENSE).
+* **riscv-tests** : [`src/riscv-tests/LICENSE`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/riscv-tests/LICENSE).
 * **square**: Consult individual copyright notices of source files in
-`src/square`.
+[src/square](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/square).
 * **spec 2006**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
-Consult individual copyright notices of source files in `src/spec-2006`.
+Consult individual copyright notices of source files in [`src/spec-2006`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/spec-2006).
 * **spec 2017**: SPEC CPU 2017 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2017/) thus, it cannot be freely distributed.
-Consult individual copyright notices of source files in `src/spec-2017`.
+Consult individual copyright notices of source files in [`src/spec-2017`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/spec-2017).
 * **gapbs**: Consult individual copyright notices of source files in
-`src/gapbs`.
-* **parsec**: The PARSEC license can be found at
-`src/parsec/disk-image/parsec/parsec-benchmark/LICENSE`. This is a 3-Clause
-BSD License (A Princeton University copyright). For the remaining files, please
-consult copyright notices in the source files.
+[`src/gapbs`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/gapbs).
+* **parsec**: The code of the [PARSEC project](
+https://parsec.cs.princeton.edu/)
+is covered by a 3-Clause BSD License (
+[`src/parsec/disk-image/parsec/parsec-benchmark/LICENSE`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/parsec/disk-image/parsec/parsec-benchmark/LICENSE)).
+For the remaining files, please consult copyright notices in individual source
+files.
 * **npb-tests**: Consult individual copyright notices of source files in
-`src/npb`. The NAS Parallel Benchmarks utilize a permissive BSD-style license.
-* **boot-tests**: Consult individual copyright notices of source files in
-`src/boot-tests`.
+[`src/npb`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/npb).
+The NAS Parallel Benchmarks utilize a permissive BSD-style license.
+* **boot-exit**: Consult individual copyright notices of source files in
+[`src/boot-exit`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/boot-exit).
 * **insttest**: Consult individual copyright notices of source files in
-`src/insttest`.
+[`src/insttest`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/insttest).
 * **linux-kernel**: Consult individual copyright notices of source files in
-`src/linux-kernel`.
+[`src/linux-kernel`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/linux-kernel).
+* **hack-back**: Consult individual copyright notices of source files in
+[`src/hack-back`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/hack-back).
+* **simple**: Consult individual copyright notices of the source files in
+[`src/simple`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/simple).
