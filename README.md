@@ -113,39 +113,6 @@ directory.
 
 <http://dist.gem5.org/dist/v20-1/test-progs/riscv-tests/vvadd.riscv>
 
-# Resource: Insttests
-
-The Insttest sources can be found in the `src/insttest` directory.
-
-## Compilation
-
-To compile the Insttests, the [RISCV GNU Compiler](
-https://github.com/riscv/riscv-gnu-toolchain) must be installed.
-
-To compile:
-
-```
-make -C src/insttest
-```
-
-The Insttest binaries can then be found within the `src/insttest/bin`
-directory.
-
-## Prebuilt binaries
-
-<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64a>
-
-<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64c>
-
-<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64d>
-
-<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64f>
-
-<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64i>
-
-<http://dist.gem5.org/dist/v20-1/test-progs/insttest/bin/riscv/linux/insttest-rv64m>
-
-
 # Resource: simple
 
 Simple single source file per executable userland or baremetal examples.
