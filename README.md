@@ -30,9 +30,9 @@ Any release procedures related to the gem5 source can be assumed to be
 applicable to gem5-resources.
 
 The compiled resources for gem5 can be found under
-http://dist.gem5.org/dist/{VERSION}. E.g. compiled resources for gem5 v20.2.0.2
-are under http://dist.gem5.org/dist/v20-1-2-0-2 and are compiled from
-gem5-resources v20.2.0.2. http://dist.gem5.org/dist/develop is kept in sync
+http://dist.gem5.org/dist/{VERSION}. E.g. compiled resources for gem5 v20.2
+are under http://dist.gem5.org/dist/v20-1 and are compiled from
+gem5-resources v20.2. http://dist.gem5.org/dist/develop is kept in sync
 with the develop branch, and therefore should not be depended upon for stable,
 regular usage.
 
