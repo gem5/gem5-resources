@@ -62,62 +62,6 @@ the gem5-resources repository, please contact Bobby R. Bruce
 [bbruce@ucdavis.edu](mailto:bbruce@ucdavis.edu) to have the compiled sources
 uploaded to the gem5 resources bucket.
 
-# Requirements
-
-These requirements, their prerequisites, and installation instructions have
-been written with the assumption that they shall be installed on an x86 Ubuntu
-18.04 system. Installation instructions may differ across other systems.
-
-## RISC-V GNU Compiler Toolchain
-
-The RISC-V GNU Compiler Toolchain is needed to cross-compile to the RISCV-V
-ISA infrastructure.
-
-### Prerequisites
-
-```
-sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev \
-libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool \
-patchutils bc zlib1g-dev libexpat-dev
-```
-
-### Installation
-
-```
-git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
-cd riscv-gnu-toolchain
-./configure --prefix=/opt/riscv --enable-multilib
-sudo make linux
-```
-
-**Ensure `/opt/riscv/bin` is added to the PATH environment variable**.
-
-## GNU ARM-32 bit Toolchain
-
-The GNU ARM-32 bit toolchain is required to cross compile to the ARM-32 bit
-ISA.
-
-### Installation
-
-The toolchain may be installed via the apt-get package manager:
-
-```
-sudo apt-get install g++-arm-linux-gnueabihf
-```
-
-## GNU ARM-64 bit Toolchain
-
-The GNU ARM-64 bit toolchain is required to cross compile to the ARM-64 bit
-ISA.
-
-### Installation
-
-The toolchain may be installved via the apt-get package manager:
-
-```
-sudo apt-get install g++-aarch64-linux-gnu
-```
-
 # Resource: RISCV Tests
 
 Origin: <https://github.com/riscv/riscv-tests.git>
@@ -129,7 +73,7 @@ Local: `src/riscv-tests`
 ## Compilation
 
 To compile the RISCV Tests the [RISCV GNU Compiler](
-#risc_v-gnu-compiler-toolchain) must be installed.
+https://github.com/riscv/riscv-gnu-toolchain) must be installed.
 
 Then, to compile:
 
@@ -176,7 +120,7 @@ The Insttest sources can be found in the `src/insttest` directory.
 ## Compilation
 
 To compile the Insttests, the [RISCV GNU Compiler](
-#risc_v-gnu-compiler-toolchain) must be installed.
+https://github.com/riscv/riscv-gnu-toolchain) must be installed.
 
 To compile:
 
@@ -207,7 +151,15 @@ directory.
 Simple single source file per executable userland or baremetal examples.
 
 The toplevel executables under `src/simple` can be built for any ISA that we
-have a cross compiler for as mentioned under [Requirements](#requirements).
+have a cross compiler for. The current cross compilers supported are :
+
+- `x86_64` (as installed via APT with `sudo apt install build-essential`)
+- [`aarch64-linux-gnu-gcc/arch64-linux-gnu-g++`](
+https://preshing.com/20141119/how-to-build-a-gcc-cross-compiler/)
+- [`arm-linux-gnueabihf-gcc/arm-linux-gnueabihf-g++`](
+https://preshing.com/20141119/how-to-build-a-gcc-cross-compiler/)
+- [`riscv64-linux-gnu-gcc/riscv64-linux-gnu-g++`](
+https://preshing.com/20141119/how-to-build-a-gcc-cross-compiler/)
 
 Examples that build only for some ISAs specific ones are present under
 `src/simple/<ISA>` subdirs, e.g. `src/simple/aarch64/`,
