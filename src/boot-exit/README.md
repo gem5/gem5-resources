@@ -137,4 +137,4 @@ The compiled Linux binary will be named as `vmlinux`.
 
 ## Working Status
 
-Working status of these tests for gem5-20 can be found [here](https://www.gem5.org/documentation/benchmark_status/).
+Working status of these tests for gem5-20 can be found [here](https://www.gem5.org/documentation/benchmark_status/gem5-20).

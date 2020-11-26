@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2016 Jason Lowe-Power
-# All rights reserved.
+# All Rights Reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -32,16 +32,18 @@ from m5.objects import *
 from m5.util import convert
 from .fs_tools import *
 
+
 class MyRubySystem(System):
 
-    def __init__(self, kernel, disk, cpu_type, mem_sys, num_cpus):
+    def __init__(self, kernel, disk, mem_sys, num_cpus, TimingCPUModel, no_kvm=False):
         super(MyRubySystem, self).__init__()
+        self._no_kvm = no_kvm
 
-        self._host_parallel = cpu_type == "kvm"
+        self._host_parallel = True
 
         # Set up the clock domain and the voltage domain
         self.clk_domain = SrcClockDomain()
-        self.clk_domain.clock = '3GHz'
+        self.clk_domain.clock = '2.3GHz'
         self.clk_domain.voltage_domain = VoltageDomain()
 
         self.mem_ranges = [AddrRange(Addr('3GB')), # All data
@@ -64,22 +66,22 @@ class MyRubySystem(System):
         self.workload.command_line = ' '.join(boot_options)
 
         # Create the CPUs for our system.
-        self.createCPU(cpu_type, num_cpus)
+        self.createCPU(num_cpus,TimingCPUModel)
 
-        self.createMemoryControllersDDR3()
+        self.createMemoryControllersDDR4()
 
         # Create the cache hierarchy for the system.
-
         if mem_sys == 'MI_example':
-            from .MI_example_caches import MIExampleSystem
+            from MI_example_caches import MIExampleSystem
             self.caches = MIExampleSystem()
         elif mem_sys == 'MESI_Two_Level':
-            from .MESI_Two_Level import MESITwoLevelCache
+            from MESI_Two_Level import MESITwoLevelCache
             self.caches = MESITwoLevelCache()
-
+        elif mem_sys == 'MOESI_CMP_directory':
+            from MOESI_CMP_directory import MOESICMPDirCache
+            self.caches = MOESICMPDirCache()
         self.caches.setup(self, self.cpu, self.mem_cntrls,
-                          [self.pc.south_bridge.ide.dma,
-                           self.iobus.mem_side_ports],
+                          [self.pc.south_bridge.ide.dma, self.iobus.mem_side_ports],
                           self.iobus)
 
         if self._host_parallel:
@@ -96,56 +98,53 @@ class MyRubySystem(System):
     def totalInsts(self):
         return sum([cpu.totalInsts() for cpu in self.cpu])
 
-    def createCPUThreads(self, cpu):
-        for c in cpu:
-            c.createThreads()
+    def createCPU(self, num_cpus, TimingCPUModel):
+            if self._no_kvm:
+                self.cpu = [AtomicSimpleCPU(cpu_id = i, switched_out = False)
+                                for i in range(num_cpus)]
+                map(lambda c: c.createThreads(), self.cpu)
+                self.mem_mode = 'timing'
 
-    def createCPU(self, cpu_type, num_cpus):
-        self.cpu = [X86KvmCPU(cpu_id = i)
-                        for i in range(num_cpus)]
-        self.kvm_vm = KvmVM()
-        self.mem_mode = 'atomic_noncaching'
-        if cpu_type == "atomic":
-            self.timingCpu = [AtomicSimpleCPU(cpu_id = i,
-                                        switched_out = True)
-                              for i in range(num_cpus)]
-            self.createCPUThreads(self.timingCpu)
-        elif cpu_type == "o3":
-            self.timingCpu = [DerivO3CPU(cpu_id = i,
-                                        switched_out = True)
-                        for i in range(num_cpus)]
-            self.createCPUThreads(self.timingCpu)
-        elif cpu_type == "simple":
-            self.timingCpu = [TimingSimpleCPU(cpu_id = i,
-                                        switched_out = True)
-                        for i in range(num_cpus)]
-            self.createCPUThreads(self.timingCpu)
-        elif cpu_type == "kvm":
-            pass
-        else:
-            m5.fatal("No CPU type {}".format(cpu_type))
+            else:
+                # Note KVM needs a VM and atomic_noncaching
+                self.cpu = [X86KvmCPU(cpu_id = i)
+                            for i in range(num_cpus)]
+                map(lambda c: c.createThreads(), self.cpu)
+                self.kvm_vm = KvmVM()
+                self.mem_mode = 'atomic_noncaching'
 
-        self.createCPUThreads(self.cpu)
-        for cpu in self.cpu:
-            cpu.createInterruptController()
+                self.atomicCpu = [AtomicSimpleCPU(cpu_id = i,
+                                                switched_out = True)
+                                for i in range(num_cpus)]
+                map(lambda c: c.createThreads(), self.atomicCpu)
+
+            self.detailed_cpu = [TimingCPUModel(cpu_id = i,
+                                        switched_out = True)
+                    for i in range(num_cpus)]
+
+            map(lambda c: c.createThreads(), self.detailed_cpu)
 
     def switchCpus(self, old, new):
         assert(new[0].switchedOut())
-        m5.switchCpus(self, list(zip(old, new)))
+        m5.switchCpus(self, zip(old, new))
 
     def setDiskImages(self, img_path_1, img_path_2):
         disk0 = CowDisk(img_path_1)
         disk2 = CowDisk(img_path_2)
         self.pc.south_bridge.ide.disks = [disk0, disk2]
 
-    def createMemoryControllersDDR3(self):
-        self._createMemoryControllers(1, DDR3_1600_8x8)
+    def createMemoryControllersDDR4(self):
+        self._createMemoryControllers(1, DDR4_2400_16x4)
 
     def _createMemoryControllers(self, num, cls):
-        self.mem_cntrls = [
-            cls(range = self.mem_ranges[0])
-            for i in range(num)
-        ]
+            self.mem_cntrls = [
+                MemCtrl(dram = cls(range = self.mem_ranges[0]))
+                for i in range(num)
+            ]
+
+    def _createKernelMemoryController(self, cls):
+        return cls(range = self.mem_ranges[0],
+                   port = self.membus.mem_side_ports)
 
     def initFS(self, cpus):
         self.pc = Pc()

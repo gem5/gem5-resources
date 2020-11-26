@@ -54,6 +54,7 @@ CFLAGS = $(CCFLAGS) -std=c11
 # Common to C and C++.
 CCFLAGS = \
   -I $(GEM5_ROOT)/include/ \
+  -I $(GEM5_ROOT)/util/m5/src/ \
   -O3 \
   -Wall \
   -Werror \
@@ -89,6 +90,8 @@ IN_EXT_CXX = .cpp
 OUT_DIR_BASE = out
 OUT_DIR = $(OUT_DIR_BASE)/$(ISA)
 OUT_BARE_DIR = $(OUT_DIR)/bare
+OUT_SQUASHFS_DIR = $(OUT_DIR)/squashfs
+OUT_SQUASHFS_EXT = .squashfs
 OUT_USER_DIR = $(OUT_DIR)/user
 OBJ_EXT = .o
 OUT_EXT = .out
@@ -131,6 +134,7 @@ endif
 
 # Calculated values.
 BARE_OUTS = $(addprefix $(OUT_BARE_DIR)/, $(addsuffix $(OUT_EXT), $(BARE_INS) $(addprefix $(ISA)/,$(ISA_BARE_INS))))
+SQUASHFS_OUTS = $(addprefix $(OUT_USER_DIR)/, $(addsuffix $(OUT_EXT), $(USER_INS)))
 USER_OUTS = $(addprefix $(OUT_USER_DIR)/, $(addsuffix $(OUT_EXT), $(USER_INS)))
 
 .PHONY: all bare clean mkdir user
@@ -155,6 +159,14 @@ $(OUT_BARE_DIR)/%$(OUT_EXT): %$(IN_EXT_C) $(M5OP_OBJ) $(BOOTLOADER_OBJ)
 
 $(OUT_USER_DIR)/%$(OUT_EXT): %$(IN_EXT_C) $(M5OP_OBJ)
 	$(CC) $(CFLAGS_USER) -o '$@' $^ $(LDFLAGS_USER)
+
+$(OUT_SQUASHFS_DIR)/%$(OUT_SQUASHFS_EXT): $(OUT_USER_DIR)/%$(OUT_EXT)
+	@# Create dev so that the kernel can automount CONFIG_DEVTMPFS=y.
+	mkdir -p '$(basename $@)/sbin' '$(basename $@)/dev'
+	cp '$<' '$(basename $@)/sbin/init'
+	@# Existing squashfs files don't get updated otherwise.
+	rm -f '$@'
+	mksquashfs '$(basename $@)' '$@'
 
 $(OUT_BARE_DIR)/%$(OUT_EXT): %$(IN_EXT_CXX) $(M5OP_OBJ) $(BOOTLOADER_OBJ)
 	$(CXX) $(CXXFLAGS_BARE) -o '$@' $^

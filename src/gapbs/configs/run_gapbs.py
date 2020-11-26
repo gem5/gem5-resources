@@ -86,20 +86,14 @@ if __name__ == "__m5_main__":
     cpu_type = args.cpu_type
     num_cpus = int(args.num_cpus)
     mem_sys = args.mem_sys
-    benchmark_name =args.benchmark
+    benchmark_name = args.benchmark
     benchmark_size = args.graph
     synthetic = args.synthetic
-
-
 
     if (mem_sys == "classic"):
         system = MySystem(kernel, disk, cpu_type, num_cpus)
     elif (mem_sys == "MI_example" or "MESI_Two_Level"):
         system = MyRubySystem(kernel, disk, cpu_type, mem_sys, num_cpus)
-
-
-
-    output_dir = os.path.join(m5.options.outdir, "speclogs")
 
     # For workitems to work correctly
     # This will cause the simulator to exit simulation when the first work

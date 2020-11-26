@@ -38,8 +38,8 @@ IMPORTANT: If you modify this file, it's likely that the Learning gem5 book
 
 """
 
-
-
+from __future__ import print_function
+from __future__ import absolute_import
 
 import math
 
@@ -113,22 +113,22 @@ class MIExampleSystem(RubySystem):
         # Set up a proxy port for the system_port. Used for load binaries and
         # other functional-only things.
         self.sys_port_proxy = RubyPortProxy()
-        system.system_port = self.sys_port_proxy.in_port
+        system.system_port = self.sys_port_proxy.in_ports
         self.sys_port_proxy.pio_request_port = iobus.cpu_side_ports
 
         # Connect the cpu's cache, interrupt, and TLB ports to Ruby
         for i,cpu in enumerate(cpus):
-            cpu.icache_port = self.sequencers[i].in_port
-            cpu.dcache_port = self.sequencers[i].in_port
+            cpu.icache_port = self.sequencers[i].in_ports
+            cpu.dcache_port = self.sequencers[i].in_ports
+            cpu.createInterruptController()
             isa = buildEnv['TARGET_ISA']
             if isa == 'x86':
                 cpu.interrupts[0].pio = self.sequencers[i].interrupt_out_port
-                cpu.interrupts[0].int_requestor = self.sequencers[i].in_port
-                cpu.interrupts[0].int_responder = \
-                                        self.sequencers[i].interrupt_out_port
+                cpu.interrupts[0].int_requestor = self.sequencers[i].in_ports
+                cpu.interrupts[0].int_responder = self.sequencers[i].interrupt_out_port
             if isa == 'x86' or isa == 'arm':
-                cpu.itb.walker.port = self.sequencers[i].in_port
-                cpu.dtb.walker.port = self.sequencers[i].in_port
+                cpu.itb.walker.port = self.sequencers[i].in_ports
+                cpu.dtb.walker.port = self.sequencers[i].in_ports
 
 
 class L1Cache(L1Cache_Controller):
@@ -205,7 +205,7 @@ class DirController(Directory_Controller):
         self.ruby_system = ruby_system
         self.directory = RubyDirectoryMemory()
         # Connect this directory to the memory side.
-        self.memory = mem_ctrls[0].port
+        self.memory_out_port = mem_ctrls[0].port
         self.connectQueues(ruby_system)
 
     def connectQueues(self, ruby_system):

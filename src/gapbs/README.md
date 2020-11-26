@@ -1,5 +1,5 @@
 # GAP Benchmark Suite (GAPBS) tests
-This document provides instructions to create a GAP Benchmarks Suite (GAPBS) disk image, which, along with provided configuration scripts, may be used to run GAPBS within gem5 simulations.
+This document provides instructions to create a GAP Benchmark Suite (GAPBS) disk image, which, along with provided configuration scripts, may be used to run GAPBS within gem5 simulations.
 
 A pre-build disk image, for X86, can be found, gzipped, here: <http://dist.gem5.org/dist/v20-1/images/x86/ubuntu-18-04/gapbs.img.gz>.
 
@@ -41,9 +41,9 @@ The main script `run_gapbs.py` expects following arguments:
 
 **--benchmark** : The graph workload (`cc`, `bc`, `bfs`, `tc`, `pr`, `sssp`).
 
-**--synthetic** : Type of graph (if synthetic graph 1, if real world graph 0)
+**--synthetic** : Type of graph (if synthetic graph 1, if real world graph 0).
 
-**--graph** : Size of graph (if synthetic then number of nodes, else name of the graph )
+**--graph** : Size of graph (if synthetic then number of nodes, else name of the graph).
 
 Example usage:
 
