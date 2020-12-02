@@ -92,7 +92,7 @@ class MOESICMPDirCache(RubySystem):
                                 pio_response_port = iobus.mem_side_ports
                                 ) for i in range(len(cpus))] + \
                           [DMASequencer(version = i,
-                                        in_port = port)
+                                        in_ports = port)
                             for i,port in enumerate(dma_ports)
                           ]
 
@@ -289,6 +289,7 @@ class DirController(Directory_Controller):
         self.forwardFromDir.out_port = ruby_system.network.in_port
         self.requestToMemory = MessageBuffer()
         self.responseFromMemory = MessageBuffer()
+        self.triggerQueue = MessageBuffer(ordered = True)
 
 class DMAController(DMA_Controller):
 
