@@ -20,6 +20,7 @@ boot-exit/
   |___ gem5/                                   # gem5 source code (to be cloned here)
   |
   |___ disk-image/
+  |      |___ build.sh                         # the script downloading packer binary and building the disk image
   |      |___ shared/                          # Auxiliary files needed for disk creation
   |      |___ boot-exit/
   |            |___ boot-exit-image/           # Will be created once the disk is generated
@@ -52,14 +53,7 @@ Next (within the `src/boot-exit/` directory),
 
 ```sh
 cd disk-image
-# if packer (tool to build the disk) is not already installed
-wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip
-unzip packer_1.6.0_linux_amd64.zip
-
-# validate the packer script
-./packer validate boot-exit/boot-exit.json
-# build the disk image
-./packer build boot-exit/boot-exit.json
+./build.sh          # the script downloading packer binary and building the disk image
 ```
 
 If you see errors or warnings from `packer validate` you can modify the file `disk-image/boot-exit/boot-exit.json` to update the file.

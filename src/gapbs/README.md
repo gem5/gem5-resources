@@ -28,10 +28,7 @@ To create the disk image you need to add the packer binary in the disk-image dir
 
 ```sh
 cd disk-image/
-wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip   # (if packer is not already installed)
-unzip packer_1.6.0_linux_amd64.zip # (if packer is not already installed)
-./packer validate gapbs/gapbs.json
-./packer build gapbs/gapbs.json
+./build.sh          # the script downloading packer binary and building the disk image
 ```
 
 After this process succeeds, the disk image can be found on the `src/gapbs/disk-image/gapbs-image/gapbs`.
