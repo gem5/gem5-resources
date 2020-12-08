@@ -124,8 +124,8 @@ class MESITwoLevelCache(RubySystem):
                 cpu.interrupts[0].int_master = self.sequencers[i].slave
                 cpu.interrupts[0].int_slave = self.sequencers[i].master
             if isa == 'x86' or isa == 'arm':
-                cpu.itb.walker.port = self.sequencers[i].slave
-                cpu.dtb.walker.port = self.sequencers[i].slave
+                cpu.mmu.connectWalkerPorts(
+                    self.sequencers[i].in_ports, self.sequencers[i].in_ports)
 
 
 class L1Cache(L1Cache_Controller):

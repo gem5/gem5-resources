@@ -128,9 +128,8 @@ class MOESICMPDirCache(RubySystem):
                 cpu.interrupts[0].int_requestor = self.sequencers[i].in_ports
                 cpu.interrupts[0].int_responder = self.sequencers[i].interrupt_out_port
             if isa == 'x86' or isa == 'arm':
-                cpu.itb.walker.port = self.sequencers[i].in_ports
-                cpu.dtb.walker.port = self.sequencers[i].in_ports
-
+                cpu.mmu.connectWalkerPorts(
+                    self.sequencers[i].in_ports, self.sequencers[i].in_ports)
 
 class L1Cache(L1Cache_Controller):
 
