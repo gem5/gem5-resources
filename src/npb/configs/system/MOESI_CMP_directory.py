@@ -290,6 +290,7 @@ class DirController(Directory_Controller):
         self.forwardFromDir.out_port = ruby_system.network.in_port
         self.requestToMemory = MessageBuffer()
         self.responseFromMemory = MessageBuffer()
+        self.triggerQueue = MessageBuffer(ordered = True)
 
 class DMAController(DMA_Controller):
 
