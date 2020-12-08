@@ -83,8 +83,7 @@ class MIExampleSystem(RubySystem):
         # complicated since you have to create sequencers for DMA controllers
         # and other controllers, too.
         self.sequencers = [RubySequencer(version = i,
-                                # I/D cache is combined and grab from ctrl
-                                icache = self.controllers[i].cacheMemory,
+                                # Grab dcache from ctrl
                                 dcache = self.controllers[i].cacheMemory,
                                 clk_domain = self.controllers[i].clk_domain,
                                 pio_request_port = iobus.cpu_side_ports,

@@ -79,8 +79,7 @@ class MESITwoLevelCache(RubySystem):
         # Create one sequencer per CPU and dma controller.
         # Sequencers for other controllers can be here here.
         self.sequencers = [RubySequencer(version = i,
-                                # I/D cache is combined and grab from ctrl
-                                icache = self.controllers[i].L1Icache,
+                                # Grab dcache from ctrl
                                 dcache = self.controllers[i].L1Dcache,
                                 clk_domain = self.controllers[i].clk_domain,
                                 pio_request_port = iobus.cpu_side_ports,
