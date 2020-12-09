@@ -22,8 +22,6 @@ boot-exit/
   |      |___ system                           # gem5 system config files
   |      |___ run_exit.py                      # gem5 run script
   |
-  |___ linux-configs                           # Folder with Linux kernel configuration files
-  |
   |___ linux                                   # Linux source will be downloaded in this folder
   |
   |___ README.md                               # This README file
@@ -121,7 +119,7 @@ cd linux
 # replace version with any of the above listed version numbers
 git checkout v[version]
 # copy the appropriate Linux kernel configuration file from linux-configs/
-cp ../linux-configs/config.[version] .config
+cp ../../linux-kernel/linux-configs/config.[version] .config
 make -j8;
 ```
 
