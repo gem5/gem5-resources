@@ -73,10 +73,15 @@ def writeBenchScript(dir, benchmark_name, size, synthetic):
     input_file_name = '{}/run_{}_{}'.format(dir, benchmark_name, size)
     if (synthetic):
         with open(input_file_name,"w") as f:
-           f.write('./{} -g {}\n'.format(benchmark_name, size))
+            f.write('./{} -g {}\n'.format(benchmark_name, size))
     elif(synthetic==0):
         with open(input_file_name,"w") as f:
-           f.write('./{} -sf {}'.format(benchmark_name, size))
+            # The workloads that are copied to the disk image using Packer
+            # should be located in /home/gem5/.
+            # Since the command running the workload will be executed with
+            # pwd = /home/gem5/gapbs, the path to the copied workload is
+            # ../{workload-name}
+            f.write('./{} -sf ../{}'.format(benchmark_name, size))
 
     return input_file_name
 

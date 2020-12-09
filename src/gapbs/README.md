@@ -24,6 +24,10 @@ unzip packer_1.6.0_linux_amd64.zip # (if packer is not already installed)
 
 After this process succeeds, the disk image can be found on the `src/gapbs/disk-image/gapbs-image/gapbs`.
 
+GAPBS disk image can support both real and synthetic graph inputs. The current pre-build disk image contains only one graph input which includes the New York city road map (with 733K nodes) it can be found: <http://users.diag.uniroma1.it/challenge9/download.shtml>.
+
+To use other graphs simply copy the graph in the gapbs/ directory and add them to gapbs/gapbs.json.
+
 ## gem5 Configuration Scripts
 
 gem5 scripts which configure the system and run the simulation are available in `configs/`.
@@ -49,6 +53,10 @@ Example usage:
 
 ```sh
 gem5/build/X86/gem5.opt configs/run_gapbs.py [path to the linux kernel] [path to the disk image] kvm 1 classic cc 1 20
+
+or
+
+gem5/build/X86/gem5.opt configs/run_gapbs.py [path to the linux kernel] [path to the disk image] kvm 1 classic cc 0 USA-road-d.NY.gr
 ```
 ## Working Status
 
