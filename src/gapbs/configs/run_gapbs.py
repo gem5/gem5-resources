@@ -57,7 +57,10 @@ def parse_arguments():
                         help = "1 for synthetic graph, 0 for real graph")
     parser.add_argument("graph", type = str,
                         help = "synthetic=1: integer number. synthetic=0: graph")
-
+    parser.add_argument("-z", "--allow-listeners", default = False,
+                        action = "store_true",
+                        help = "Turn on listeners (e.g. gdb listener port);"
+                               "The listeners are off by default")
     return parser.parse_args()
 
 
@@ -89,6 +92,7 @@ if __name__ == "__m5_main__":
     benchmark_name = args.benchmark
     benchmark_size = args.graph
     synthetic = args.synthetic
+    allow_listeners = args.allow_listeners
 
     if (mem_sys == "classic"):
         system = MySystem(kernel, disk, cpu_type, num_cpus)
@@ -116,6 +120,9 @@ if __name__ == "__m5_main__":
         # Uses gem5's parallel event queue feature
         # Note: The simulator is quite picky about this number!
         root.sim_quantum = int(1e9) # 1 ms
+
+    if not allow_listeners:
+        m5.disableAllListeners()
 
     # instantiate all of the objects we've created above
     m5.instantiate()
