@@ -1,0 +1,5 @@
+m5out
+*.pyc
+*~
+.*.swp
+.*.swo
