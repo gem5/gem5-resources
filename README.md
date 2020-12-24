@@ -463,6 +463,29 @@ overridden by specifying `-e HCC_AMDGPU_TARGET=<target>` in the build command.
 
 <http://dist.gem5.org/dist/v20-1/test-progs/hip-samples/unroll>
 
+# Resource: Heterosync
+
+[Heterosync](https://github.com/mattsinc/heterosync) is a benchmark suite used
+to test the performance of various types of fine-grained synchronization on
+tightly-coupled GPUs. The version in gem5-resources contains only the HIP code.
+
+The README in the heterosync folder details the various synchronization primitives
+and the other command-line arguments for use with heterosync.
+
+## Compilation
+```
+cd src/heterosync
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make release-gfx8-apu
+```
+
+The release-gfx8-apu target builds for gfx801, a GCN3-based APU. There are other
+targets (release-gfx8, release) that build for GPU types that are currently unsupported
+in gem5.
+
+## Pre-built binary
+
+<http://dist.gem5.org/dist/develop/test-progs/heterosync/gcn3/allSyncPrims-1kernel>
+
 # Resource: SPEC 2006
 
 The [Standard Performance Evaluation Corporation](
@@ -597,6 +620,7 @@ same licence as 'src/square/square.cpp'.
 (A University of Maryland copyright).
 * **hip-samples**: Consult individual copyright notices of the source file in
 'src/hip-samples/src'
+* **heterosync**: Consult `src/heterosync/LICENSE.txt`
 * **spec 2006**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
 Consult individual copyright notices of source files in `src/spec-2006`.
