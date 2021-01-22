@@ -137,8 +137,8 @@ class MMUCache(Cache):
         """
         self.mmubus = L2XBar()
         self.cpu_side = self.mmubus.mem_side_ports
-        cpu.mmu.connectWalkerPorts(
-            self.mmubus.cpu_side_ports, self.mmubus.cpu_side_ports)
+        for tlb in [cpu.itb, cpu.dtb]:
+            self.mmubus.cpu_side_ports = tlb.walker.port
 
     def connectBus(self, bus):
         """Connect this cache to a memory-side bus"""
