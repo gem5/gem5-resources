@@ -7,7 +7,7 @@ We assume the following directory structure while following the instructions in 
 
 ```
 boot-exit/
-  |___ gem5/                                   # gem5 source code
+  |___ gem5/                                   # gem5 source code (to be cloned here)
   |
   |___ disk-image/
   |      |___ shared/                          # Auxiliary files needed for disk creation
@@ -38,7 +38,7 @@ cd gem5/util/m5
 scons build/x86/out/m5
 ```
 
-Next,
+Next (within the `src/boot-exit/` directory),
 
 ```sh
 cd disk-image
@@ -83,7 +83,7 @@ A disk image already created following the above instructions can be found, gzip
 gem5 scripts which configure the system and run simulation are available in configs-boot-tests/.
 The main script `run_exit.py` expects following arguments:
 
-**kernel:** path to the Linux kernel.
+**kernel:** path to the Linux kernel (see `src/linux-kernel/` for information on building/obtaining a linux kernel binary).
 
 **disk:** path to the disk image.
 
@@ -98,40 +98,8 @@ The main script `run_exit.py` expects following arguments:
 An example use of this script is the following:
 
 ```sh
-gem5/build/X86/gem5.opt configs/run_exit.py [path to the Linux kernel] [path to the disk image] kvm classic 4 init
+[gem5 binary] configs/run_exit.py [path to the Linux kernel] [path to the disk image] kvm classic 4 init
 ```
-
-## Linux Kernels
-
-Boot tests use following five LTS (long term support) releases of the Linux kernel:
-
-- 4.4.186
-- 4.9.186
-- 4.14.134
-- 4.19.83
-- 5.4.49
-
-To compile the Linux binaries, follow these instructions (assuming that you are in `src/boot-exit/` directory):
-
-```sh
-git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-cd linux
-# replace version with any of the above listed version numbers
-git checkout v[version]
-# copy the appropriate Linux kernel configuration file from linux-configs/
-cp ../../linux-kernel/linux-configs/config.[version] .config
-make -j8;
-```
-
-The compiled Linux binary will be named as `vmlinux`.
-
-**Note:** The above instructions are tested with `gcc 7.5.0` and the compiled Linux binaries can be downloaded from the following links:
-
-- [vmlinux-4.4.186](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.4.186)
-- [vmlinux-4.9.186](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.9.186)
-- [vmlinux-4.14.134](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.14.134)
-- [vmlinux-4.19.83](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.19.83)
-- [vmlinux-5.4.49](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-5.4.49)
 
 ## Working Status
 
