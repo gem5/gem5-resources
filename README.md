@@ -626,6 +626,40 @@ To run one of the benchmarks (fwd softmax) in gem5:
 docker run --rm -u $UID:$GID -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/DNNMark/cachefiles:/.cache/miopen/1.7.0 -w ${PWD} <image_name> gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n2 --benchmark-root=gem5-resources/src/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/DNNMark/mmap.bin"
 ```
 
+
+# Resource: pennant
+
+pennant is an unstructured mesh physics mini-app designed for advanced
+architecture research.  It contains mesh data structures and a few
+physics algorithms adapted from the LANL rad-hydro code FLAG, and gives
+a sample of the typical memory access patterns of FLAG.
+
+## Compiling and Running
+
+```
+cd src/pennant
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make
+```
+
+By default, the binary is built for gfx801 and is placed in `src/pennant/build`
+
+pennant is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
+
+pennant has sample input files located at `src/pennant/test`. The following command shows how to run the sample `noh`
+
+```
+# Assuming gem5 and gem5-resources are in your working directory
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n2 --benchmark-root=gem5-resources/src/pennant/build -cpennant --options="gem5-resources/src/pennant/test/noh/noh.pnt"
+```
+
+The output gets placed in `src/pennant/test/noh/`, and the file `noh.xy`
+against the `noh.xy.std` file. Note: Only some tests have `.xy.std` files to
+compare against, and there may be slight differences due to floating-point rounding
+
+## Pre-built binary
+
+<http://dist.gem5.org/dist/develop/test-progs/pennant/pennant>
+
 # Resource: SPEC 2006
 
 The [Standard Performance Evaluation Corporation](
@@ -765,6 +799,7 @@ same licence as 'src/square/square.cpp'.
 * **halo-finder**: halo-finder is a subcomponent of HACC, which is licensed under
 a BSD license.
 * **DNNMark**: DNNMark is licensed under an MIT license, see `src/DNNMark/LICENSE`
+* **pennant**: pennant is licensed under a BSD license, see `src/pennant/LICENSE`
 * **spec 2006**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
 Consult individual copyright notices of source files in `src/spec-2006`.
