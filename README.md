@@ -569,6 +569,63 @@ docker run --rm -v $PWD:$PWD -w $PWD -u $UID:$GID <image_name> gem5/build/GCN3_X
 
 <http://dist.gem5.org/dist/develop/test-progs/halo-finder/ForceTreeTest>
 
+# Resource: DNNMark
+
+[DNNMark](https://github.com/shidong-ai/DNNMark) is a benchmark framework used
+to characterize the performance of deep neural network (DNN) primitive workloads.
+
+## Compilation and Running
+
+DNNMark requires additional programs that aren't installed in the standard GCN
+docker image. There is a Dockerfile in `src/DNNMark` that installs the additional
+software.
+
+To build DNNMark (Including the new docker image):
+**NOTE**: Due to DNNMark building a library, it's important to mount gem5-resources
+to the same directory within the docker container when building and running, as otherwise the benchmarks
+won't be able to link against the library. The example commands do this by using
+`-v ${PWD}:${PWD}` in the docker run commands
+```
+cd src/DNNMark
+docker build -t <image_name> .
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> ./setup.sh HIP
+docker run --rm -v ${PWD}:${PWD} -w ${PWD}/build -u $UID:$GID <image_name> make
+```
+
+DNNMark uses MIOpen kernels, which are unable to be compiled on-the-fly in gem5.
+We have provided a shell script to generate these kernels for a subset of the
+benchmarks.
+
+To generate the MIOpen kernels:
+```
+cd src/DNNMark
+docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/.cache/miopen/1.7.0 -w ${PWD} <image_name> ./generate_cachefiles.sh
+```
+
+Due to the large amounts of memory that need to be set up for DNNMark, we have
+added in the ability to MMAP a file to reduce setup time, as well as added a
+program that can generate a 2GB file of floats.
+
+To make the MMAP file:
+```
+cd src/DNNMark
+g++ -std=c++0x generate_rand_data.cpp -o generate_rand_data
+./generate_rand_data
+```
+
+DNNMark is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
+To build GCN3_X86:
+```
+# Working directory is your gem5 directory
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+```
+
+To run one of the benchmarks (fwd softmax) in gem5:
+```
+# Assuming gem5 and gem5-resources are sub-directories of the current directory
+docker run --rm -u $UID:$GID -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/DNNMark/cachefiles:/.cache/miopen/1.7.0 -w ${PWD} <image_name> gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n2 --benchmark-root=gem5-resources/src/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/DNNMark/mmap.bin"
+```
+
 # Resource: SPEC 2006
 
 The [Standard Performance Evaluation Corporation](
@@ -707,6 +764,7 @@ same licence as 'src/square/square.cpp'.
 * **lulesh**: Consult the copyright notice in `src/lulesh/src/lulesh.hip.cc`
 * **halo-finder**: halo-finder is a subcomponent of HACC, which is licensed under
 a BSD license.
+* **DNNMark**: DNNMark is licensed under an MIT license, see `src/DNNMark/LICENSE`
 * **spec 2006**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
 Consult individual copyright notices of source files in `src/spec-2006`.

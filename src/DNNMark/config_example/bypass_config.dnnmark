@@ -1,0 +1,9 @@
+[DNNMark]
+run_mode=standalone
+
+[Bypass]
+name=bypass
+n=100
+c=1000
+h=1
+w=1

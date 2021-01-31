@@ -1,0 +1,23 @@
+####################
+# Temp files #
+####################
+*.swp
+.project
+.cproject
+.settings
+.*
+!.gitignore
+*_tmp.*
+*.pyc
+*.nvvp
+####################
+# Unfavorable dir #
+####################
+libs/
+build/
+logs/
+
+# Others
+generate_rand_data
+*.bin
+cachefiles

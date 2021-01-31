@@ -1,0 +1,15 @@
+[DNNMark]
+run_mode=standalone
+
+[Pooling]
+name=pool1
+n=100
+c=3
+h=256
+w=256
+previous_layer=null
+pool_mode=max
+kernel_size=3
+pad=0
+stride=2
+

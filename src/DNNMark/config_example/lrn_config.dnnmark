@@ -1,0 +1,16 @@
+[DNNMark]
+run_mode=standalone
+
+[LRN]
+name=lrn1
+n=100
+c=32
+h=256
+w=256
+previous_layer=null
+lrn_mode=cross_channel_dim1
+local_size=5
+alpha=0.001
+beta=0.75
+k=1.0
+

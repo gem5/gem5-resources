@@ -1,0 +1,33 @@
+    [DNNMark]
+    run_mode=composed
+
+    [Convolution]
+    name=conv1
+    n=$N
+    c=$C
+    h=$H
+    w=$W
+    previous_layer=null
+    conv_mode=convolution
+    num_output=$K
+    kernel_size=$S
+    pad=$P
+    stride=$U
+    conv_fwd_pref=fastest
+    conv_bwd_filter_pref=$conv_bwd_filter_pref
+    conv_bwd_data_pref=fastest
+    $CUDNN_CBFA
+    $CUDNN_CBDA
+
+    [BatchNorm]
+    name=batchnorm1
+    previous_layer=conv1
+    batchnorm_mode=per_activation
+    save_intermediates=true
+    exp_avg_factor=0.5
+    epsilon=1e-5
+
+    [Activation]
+    name=relu1
+    previous_layer=batchnorm1
+    activation_mode=relu

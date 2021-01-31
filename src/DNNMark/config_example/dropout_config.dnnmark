@@ -1,0 +1,11 @@
+[DNNMark]
+run_mode=standalone
+
+[Dropout]
+name=dropout
+n=100
+c=1000
+h=1
+w=1
+dropout_probability=.5
+random_seed=0

@@ -1,0 +1,11 @@
+[DNNMark]
+run_mode=standalone
+
+[Softmax]
+name=softmax
+n=100
+c=1000
+h=1
+w=1
+softmax_algo=accurate
+softmax_mode=channel
