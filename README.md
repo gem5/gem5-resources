@@ -486,6 +486,44 @@ in gem5.
 
 <http://dist.gem5.org/dist/develop/test-progs/heterosync/gcn3/allSyncPrims-1kernel>
 
+# Resource: lulesh
+
+[lulesh](https://computing.llnl.gov/projects/co-design/lulesh) is a DOE proxy
+application that is used as an example of hydrodynamics modeling. The version
+provided is for use with the gpu-compute model of gem5.
+
+## Compilation and Running
+```
+cd src/lulesh
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make
+```
+
+By default, the makefile builds for gfx801, and is placed in the `src/lulesh/bin` folder.
+
+lulesh is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
+To build GCN3_X86:
+
+```
+# Working directory is your gem5 directory
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+```
+
+The following command shows how to run lulesh
+
+Note: lulesh has two optional command-line arguments, to specify the stop time and number
+of iterations. To set the arguments, add `--options="<stop_time> <num_iters>`
+to the run command. The default arguments are equivalent to `--options="1.0e-2 10"`
+
+
+```
+# Assuming gem5 and gem5-resources are in your working directory
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n2 --mem-size=8GB --benchmark-root=gem5-resources/src/lulesh/bin -clulesh
+```
+
+## Pre-built binary
+
+<http://dist.gem5.org/dist/develop/test-progs/lulesh/lulesh>
+
 # Resource: SPEC 2006
 
 The [Standard Performance Evaluation Corporation](
@@ -621,6 +659,7 @@ same licence as 'src/square/square.cpp'.
 * **hip-samples**: Consult individual copyright notices of the source file in
 'src/hip-samples/src'
 * **heterosync**: Consult `src/heterosync/LICENSE.txt`
+* **lulesh**: Consult the copyright notice in `src/lulesh/src/lulesh.hip.cc`
 * **spec 2006**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
 Consult individual copyright notices of source files in `src/spec-2006`.
