@@ -1,9 +1,11 @@
 # GAP Benchmark Suite (GAPBS) tests
+
 This document provides instructions to create a GAP Benchmark Suite (GAPBS) disk image, which, along with provided configuration scripts, may be used to run GAPBS within gem5 simulations.
 
 A pre-build disk image, for X86, can be found, gzipped, here: <http://dist.gem5.org/dist/v20-1/images/x86/ubuntu-18-04/gapbs.img.gz>.
 
 ## Building the Disk Image
+
 Assuming that you are in the `src/gapbs/` directory, first create `m5` (which is needed to create the disk image):
 
 ```sh
@@ -33,30 +35,26 @@ To use other graphs simply copy the graph in the gapbs/ directory and add them t
 gem5 scripts which configure the system and run the simulation are available in `configs/`.
 The main script `run_gapbs.py` expects following arguments:
 
-**--kernel** : path to the Linux kernel. GAPBS has been tested with [vmlinux-5.2.3](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-5.2.3).
+* **kernel** : A manditory positional argument. The path to the Linux kernel. GAPBS has been tested with [vmlinux-5.2.3](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-5.2.3). See `src/linux-kernel` for information on building a linux kernel for gem5.
 
-**--disk** : Path to the disk image.
+* **disk** : A manditory positional argument. The path to the disk image.
 
-**--cpu\_type** : Cpu model (`kvm`, `atomic`, `simple`, `o3`).
+* **cpu\_type** : A manditory positional argument. The cpu model (`kvm`, `atomic`, `simple`, `o3`).
 
-**--num\_cpus** : Number of cpu cores.
+* **num\_cpus** : A manditory positional argument. The number of cpu cores.
 
-**--mem\_sys** : Memory model (`classic`, `MI_example`, `MESI_Two_Level`).
+* **mem\_sys** : A manditory positional argument. The memory model (`classic`, `MI_example`, or `MESI_Two_Level`).
 
-**--benchmark** : The graph workload (`cc`, `bc`, `bfs`, `tc`, `pr`, `sssp`).
+* **benchmark** : A manditory positional argument. The graph workload (`cc`, `bc`, `bfs`, `tc`, `pr`, `sssp`).
 
-**--synthetic** : Type of graph (if synthetic graph 1, if real world graph 0).
+* **synthetic** : A manditory positional argument. The graph type. If synthetic graph then `1`, otherwise `0` for a real world graph.
 
-**--graph** : Size of graph (if synthetic then number of nodes, else name of the graph).
+* **graph** : A manditory positional argument. If synthetic, then the size of the graph. Otherwise the name of graph to execute.
 
 Example usage:
 
 ```sh
-gem5/build/X86/gem5.opt configs/run_gapbs.py [path to the linux kernel] [path to the disk image] kvm 1 classic cc 1 20
-
-or
-
-gem5/build/X86/gem5.opt configs/run_gapbs.py [path to the linux kernel] [path to the disk image] kvm 1 classic cc 0 USA-road-d.NY.gr
+<gem5 X86 binary> configs/run_gapbs.py <kernel> <disk> <cpu_type> <num_cpus> <mem_sys> <benchmark> <synthetic> <graph>
 ```
 ## Working Status
 
