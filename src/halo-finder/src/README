@@ -1,0 +1,229 @@
+
+Parallel Halo Finder Operation
+------------------------------
+
+The test driver for the parallel halo finder is HaloTestP.cxx.  The basic
+operation of the parallel halo finder is to take input data of particle
+location, velocity, mass and tag identifier and distribute the particles on
+processors such that the particles are completely partitioned.  These are
+called the alive particles belonging to a processor.  Each processor will
+share information so that particles which are alive on a neighbor processor
+are added to a processor becoming dead particles there.  By definition the
+belt of dead particles will be all particles which can comprise a halo.
+
+Once each processor has both alive and dead particles, the serial halo finder
+is called and will return all halos found on that processor.  A halo will
+contain only alive particles, in which case it is owned by the processor,
+or only dead particles and it will be discarded because it will belong to 
+one of the neighbor processors.  A halo might contain a combination of 
+alive and dead particles and this mixed halo will be shared by one or 
+more neighbor processors.  
+
+The parallel halo finder must merge these mixed halos before giving the
+results.  When a particle is assigned to a processor it has a status which
+can be ALIVE, or DEAD.  The dead particles are actually given a status of
+0 through 26 to indicate which neighbor processor contains that particle
+as alive.  When the serial halo finder completes and halos are looked at,
+a mixed halo will also know what neighbors share it.  A simple rule using
+the planes of the neighbor allows most mixed halos to be categorized
+immediately.  If the neigbor sharing the halo is in the "upper" planes
+of the physical space (right, top and back planes of x,y,z) then this
+processor will keep the halo as its own.  Conversely if the neighbor sharing
+the halo is in the "lower" planes (left, bottom, front) then it will delete
+that halo, knowing the the neighbor will claim it.  Any other halos which
+cross planes or are contain in more that one other neighbor are gathered
+up and sent to the master processor who arbitrates which processor will
+claim the halo and which will give it up.
+
+
+Input Files
+-----------
+
+The halo finder takes two styles of input.  The first is the .cosmo format
+which is called RECORD format.  Each particle has seven 4 byte floats 
+(x location, x velocity, y location, y velocity, z location, z velocity, 
+mass (which is 1.0)) and one 4 byte integer which is the unique particle 
+identifier which starts with 1.
+
+The second format is the Gadget style which is called BLOCK.  In this file
+there is a header of 256 bytes and which is described in Definition.h.
+It is followed by three blocks of data.  The first has 4 byte floats for
+each particle's x,y,z location.  Note that particle 0 is written but since
+particles start with identifier 1, these first three floats are ignored.
+Next is a block with x,y,z velocity and again the first three floats
+must be ignored.  Finally a block of 4 byte integer tag identifiers with
+the first tag ignored.
+
+
+Methods of Input
+----------------
+
+Data files can either contain only the alive particles for a processor or
+a mixture of particles such that each processor must read each file to
+obtain its alive particles.  In the first case the processor only has
+to read one file, and then can do an exchange of dead particles with 
+immediate neighbor processors which is done in rotation.  All processors
+send right face neighbor particles to the right, and receive from the left,
+and then the reverse is done.  With 26 of these rotations all neighbors will
+get dead particles and every processor has something to do on each step
+of the rotation so that the MPI Send/Receive works.
+
+In the second case since every file has to be read and then MPI messages
+containing the particles are created and passed round robin so that
+every processor has a chance to choose its own alive particles.  After
+this the same particle exchange is done to populate the dead particles.
+
+
+Output Files
+------------
+
+The .cosmo files are written again as output, but with the mass field
+replaced by the mass * the number of particles in the halo.  Only the
+first particle in a halo contains that accumulated mass.  Every other
+particle in the halo reports the tag identifier of that first particle
+so that you can tell what particles make up a halo.  If the mass is -1
+that means the particle is not in any halo.  An additional file per
+processor is written with the identifier and size of every halo on that
+processor and is used by the BinHalos.cxx program to create a histogram.
+
+
+C++ Classes
+-----------
+
+Five classes are available for use.
+
+"Partition" is a static class which does the MPI initialize and finalize and
+which creates the Cartesian topology of the problem and identifies this
+processor within the topology and all of its neighbors in the topology.
+
+"ParticleDistribute" does the reading of files for either ROUND_ROBIN or
+ONE_TO_ONE and in both cases the final result has only alive particles.
+
+The round robin read is complicated because of the MPI message passing.
+Since there can be fewer files than processors, if they can be divided 
+nicely as in 8 files across 32 processors, then four processors read the 
+8 files and distribute in four ROUND_ROBIN loops.  If there are fewer 
+processors than files, then many loops of read will happen although the 
+final loop may have some processors participating in the exchange which 
+did not initially read any data and will just be passing buffers of 0 particles.
+
+The one to one read assumes that files have only alive particles and have
+been laid out in the same topology that MPI Cartesian topology will use.
+This is a preamble to simply passing alive particles in memory.
+
+"ParticleExchange" does the exchange with nearest neighbors using either
+the vectors from ParticleDistribute or from some other initializer which
+contain only alive particles.  When it exits the vectors have both alive
+and dead particles in it.
+
+"CosmoHaloFinderP" takes the information from either ParticleDistribute or
+ParticleExchange, normalizes the locations, and calls the serial
+halo finder.  It collects the results, merges the mixed halos and writes
+halo output.
+
+"CosmoHaloFinder" is the serial halo finder and can operate on its own using
+HaloTest.cxx as a driver.
+
+
+Command Line Arguments
+----------------------
+
+An input file format was devised and is read by the class HaloFinderInput.
+Examples for BLOCK and COSMO formats are in sb256_gadget2.in and
+sb256_cosmo.in.
+
+################################################################################
+# Header version information
+################################################################################
+HALOFINDER_HEADER_VERSION 1.0.0
+
+################################################################################
+# Input base name ending in '.' if followed by processor id
+################################################################################
+INPUT_BASE_NAME /Users/pkf/Cosmo.files/gadget_sb256.cosmo.
+
+################################################################################
+# Input data style (RECORD = .cosmo)  (BLOCK = .gadget2)
+################################################################################
+INPUT_TYPE RECORD
+
+################################################################################
+# Particle distribution style
+#  ROUND_ROBIN indicates particles must be looked at by all processors
+#  ONE_TO_ONE  indicates that particles physically reside on matchin processor
+################################################################################
+DISTRIBUTE_TYPE ROUND_ROBIN
+
+################################################################################
+# Output base name
+################################################################################
+OUTPUT_BASE_NAME sb256_c
+
+################################################################################
+# Box size (rL)
+################################################################################
+BOX_SIZE 64.0
+
+################################################################################
+# Overload zone size (dead zone)
+################################################################################
+OVERLOAD_SIZE 5.0
+
+################################################################################
+# Number of particles in all files (np^3)
+################################################################################
+NUMBER_OF_PARTICLES 256 
+
+################################################################################
+# Minimum distance between particles in a halo (bb)
+################################################################################
+MINIMUM_PARTICLE_DISTANCE 0.20
+
+################################################################################
+# Minimum number of particles in a halo (pmin)
+################################################################################
+MINIMUM_PARTICLES_PER_HALO 10
+
+################################################################################
+# Omega dm
+################################################################################
+OMEGADM 1.0
+
+################################################################################
+# Hubble constant
+################################################################################
+HUBBLE_CONSTANT 0.5
+
+################################################################################
+# Deut
+################################################################################
+DEUT 0.0
+
+################################################################################
+# Output all particle data with mass field replaced by halo tag
+################################################################################
+OUTPUT_PARTICLES 0
+
+################################################################################
+# Output the halo catalog of one entry per halo (.cosmo and ascii format)
+################################################################################
+OUTPUT_HALO_CATALOG 1
+
+################################################################################
+# Output FOF halo properties report (ascii)
+################################################################################
+OUTPUT_FOF_PROPERTIES 1
+
+
+Sample Command Lines
+--------------------
+
+mpirun -np 8 HaloFinder sb256_cosmo.in
+mpirun -np 8 HaloFinder sb256_gadget2.in
+
+
+Compile, Load and Run
+---------------------
+
+Modules to load must include a c++ compile and MPI.
+% make HaloFinder will compile.

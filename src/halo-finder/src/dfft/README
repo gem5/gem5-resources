@@ -1,0 +1,41 @@
+dfft: Distributed FFT
+
+FFTW + 3-D to 1-D Data Redistribution
+
+This directory contains the implementation and tests for the FFTW MPI
+transform, combined with a 1-d <--> 3-d data redistribution so that it
+can be applied directly to problems requiring a 3-d data distribution
+
+Implementation:
+  distribution.c
+  distribution.h
+
+Tools:
+  fp.h
+    Floating point comparison functions.  
+
+  cycle.h
+    The cycle timer from FFTW, useful for comparative benchmarks.
+
+Tests:
+
+  test-distribution
+    This test initializes the field to the value of its global
+    coordinate for thorough checking of the redistribution
+    functions. Checks that the data is correct are performed before
+    and after each data redistribution redistribution
+
+  test-distribution-fft
+    As above but with a forward backward fft.
+
+  test-delta-function
+    This test initializes the field to a delta function centered
+    and performs forward and backward transforms, checking the
+    data is correct before and after each data redistribution
+    or transform.
+
+  test-timing
+    This test times the combined redistribution and transform.
+
+  test-solver
+    A test stand-alone implementation of the Poisson solver.

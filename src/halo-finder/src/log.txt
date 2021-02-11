@@ -1,0 +1,1864 @@
+make: Warning: Archive 'hip/libparticle.a' seems to have been created in deterministic mode. 'hip/ParticleDistribute.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/ParticleDistribute.o ParticleDistribute.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name ParticleDistribute.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/ParticleDistribute.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/ParticleDistribute-c9a3f8.s -x hc-host ParticleDistribute.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/ParticleDistribute-c9a3f8.s hip/ParticleDistribute.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name ParticleDistribute-c9a3f8.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/ParticleDistribute.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/ParticleDistribute.o -x ir /tmp/ParticleDistribute-c9a3f8.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name ParticleDistribute.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/ParticleDistribute.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/ParticleDistribute-4a379d.s -x hc-kernel ParticleDistribute.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/ParticleDistribute-4a379d.s hip/ParticleDistribute.o
+ar rv hip/libparticle.a hip/ParticleDistribute.o
+r - hip/ParticleDistribute.o
+make: Warning: Archive 'hip/libparticle.a' seems to have been created in deterministic mode. 'hip/ParticleDistribute.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libparticle.a' seems to have been created in deterministic mode. 'hip/ParticleExchange.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/ParticleExchange.o ParticleExchange.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name ParticleExchange.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/ParticleExchange.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/ParticleExchange-be7c03.s -x hc-host ParticleExchange.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/ParticleExchange-be7c03.s hip/ParticleExchange.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name ParticleExchange-be7c03.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/ParticleExchange.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/ParticleExchange.o -x ir /tmp/ParticleExchange-be7c03.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name ParticleExchange.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/ParticleExchange.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/ParticleExchange-67ceac.s -x hc-kernel ParticleExchange.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/ParticleExchange-67ceac.s hip/ParticleExchange.o
+ar rv hip/libparticle.a hip/ParticleExchange.o
+r - hip/ParticleExchange.o
+make: Warning: Archive 'hip/libparticle.a' seems to have been created in deterministic mode. 'hip/ParticleExchange.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libparticle.a' seems to have been created in deterministic mode. 'hip/InitialExchange.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/InitialExchange.o InitialExchange.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name InitialExchange.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/InitialExchange.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/InitialExchange-0c446c.s -x hc-host InitialExchange.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/InitialExchange-0c446c.s hip/InitialExchange.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name InitialExchange-0c446c.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/InitialExchange.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/InitialExchange.o -x ir /tmp/InitialExchange-0c446c.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name InitialExchange.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/InitialExchange.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/InitialExchange-5c0a35.s -x hc-kernel InitialExchange.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/InitialExchange-5c0a35.s hip/InitialExchange.o
+ar rv hip/libparticle.a hip/InitialExchange.o
+r - hip/InitialExchange.o
+make: Warning: Archive 'hip/libparticle.a' seems to have been created in deterministic mode. 'hip/InitialExchange.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libparticle.a' seems to have been created in deterministic mode. 'hip/Message.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/Message.o Message.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name Message.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/Message.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/Message-f5e802.s -x hc-host Message.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/Message-f5e802.s hip/Message.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name Message-f5e802.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/Message.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/Message.o -x ir /tmp/Message-f5e802.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name Message.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/Message.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/Message-7a1aa3.s -x hc-kernel Message.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/Message-7a1aa3.s hip/Message.o
+ar rv hip/libparticle.a hip/Message.o
+r - hip/Message.o
+make: Warning: Archive 'hip/libparticle.a' seems to have been created in deterministic mode. 'hip/Message.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/ForceLaw.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+ar rv hip/libBHForceTree.a hip/ForceLaw.o
+r - hip/ForceLaw.o
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/ForceLaw.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/BHForceTree.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/BHForceTree.o BHForceTree.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name BHForceTree.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/BHForceTree.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/BHForceTree-de0bcd.s -x hc-host BHForceTree.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/BHForceTree-de0bcd.s hip/BHForceTree.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name BHForceTree-de0bcd.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/BHForceTree.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/BHForceTree.o -x ir /tmp/BHForceTree-de0bcd.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name BHForceTree.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/BHForceTree.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/BHForceTree-df8a38.s -x hc-kernel BHForceTree.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/BHForceTree-df8a38.s hip/BHForceTree.o
+ar rv hip/libBHForceTree.a hip/BHForceTree.o
+r - hip/BHForceTree.o
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/BHForceTree.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/RCOForceTree.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/RCOForceTree.o RCOForceTree.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name RCOForceTree.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/RCOForceTree.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/RCOForceTree-133c98.s -x hc-host RCOForceTree.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+In file included from RCOForceTree.cxx:73:
+./Timings.h:80:17: warning: using directive refers to implicitly-defined namespace 'std'
+using namespace std;
+                ^
+1 warning generated.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/RCOForceTree-133c98.s hip/RCOForceTree.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name RCOForceTree-133c98.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/RCOForceTree.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/RCOForceTree.o -x ir /tmp/RCOForceTree-133c98.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name RCOForceTree.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/RCOForceTree.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/RCOForceTree-92bb17.s -x hc-kernel RCOForceTree.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+In file included from RCOForceTree.cxx:73:
+./Timings.h:80:17: warning: using directive refers to implicitly-defined namespace 'std'
+using namespace std;
+                ^
+1 warning generated.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/RCOForceTree-92bb17.s hip/RCOForceTree.o
+ar rv hip/libBHForceTree.a hip/RCOForceTree.o
+r - hip/RCOForceTree.o
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/RCOForceTree.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/RCBForceTree.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/RCBForceTree.o RCBForceTree.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name RCBForceTree.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/RCBForceTree.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/RCBForceTree-1b5997.s -x hc-host RCBForceTree.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/RCBForceTree-1b5997.s hip/RCBForceTree.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name RCBForceTree-1b5997.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/RCBForceTree.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/RCBForceTree.o -x ir /tmp/RCBForceTree-1b5997.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name RCBForceTree.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/RCBForceTree.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/RCBForceTree-35501f.s -x hc-kernel RCBForceTree.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/RCBForceTree-35501f.s hip/RCBForceTree.o
+ar rv hip/libBHForceTree.a hip/RCBForceTree.o
+r - hip/RCBForceTree.o
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/RCBForceTree.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/BGQStep16.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hcc -x c -Xclang -std=c99 -Xclang -pthread -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -I../dfft -c -o hip/BGQStep16.o BGQStep16.c
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name BGQStep16.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/BGQStep16.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -std=c99 -pthread -o hip/BGQStep16.o -x c BGQStep16.c
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/openmpi/include
+ /opt/rocm/hip/include
+ /opt/rocm/hcc-1.0/include
+ ../dfft
+ .
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ar rv hip/libBHForceTree.a hip/BGQStep16.o
+r - hip/BGQStep16.o
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/BGQStep16.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/BGQCM.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hcc -x c -Xclang -std=c99 -Xclang -pthread -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -I../dfft -c -o hip/BGQCM.o BGQCM.c
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name BGQCM.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/BGQCM.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -std=c99 -pthread -o hip/BGQCM.o -x c BGQCM.c
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/openmpi/include
+ /opt/rocm/hip/include
+ /opt/rocm/hcc-1.0/include
+ ../dfft
+ .
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ar rv hip/libBHForceTree.a hip/BGQCM.o
+r - hip/BGQCM.o
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'hip/BGQCM.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'BGQStep16.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+cc -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -I../dfft   -c -o BGQStep16.o BGQStep16.c
+Using built-in specs.
+COLLECT_GCC=cc
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+COLLECT_GCC_OPTIONS='-O3' '-g' '-D' 'RCB_UNTHREADED_BUILD' '-D' 'USE_SERIAL_COSMO' '-fopenmp' '-v' '-I' '/usr/lib/openmpi/include' '-I' '/opt/rocm/hip/include' '-I' '/opt/rocm/hcc-1.0/include' '-I' '../dfft' '-c' '-o' 'BGQStep16.o' '-mtune=generic' '-march=x86-64' '-pthread'
+ /usr/lib/gcc/x86_64-linux-gnu/5/cc1 -quiet -v -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -I ../dfft -imultiarch x86_64-linux-gnu -D_REENTRANT -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO BGQStep16.c -quiet -dumpbase BGQStep16.c -mtune=generic -march=x86-64 -auxbase-strip BGQStep16.o -g -O3 -version -fopenmp -fstack-protector-strong -Wformat -Wformat-security -o /tmp/cc31MOZG.s
+GNU C11 (Ubuntu 5.4.0-6ubuntu1~16.04.12) version 5.4.0 20160609 (x86_64-linux-gnu)
+	compiled by GNU C version 5.4.0 20160609, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5/../../../../x86_64-linux-gnu/include"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/openmpi/include
+ /opt/rocm/hip/include
+ /opt/rocm/hcc-1.0/include
+ ../dfft
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+GNU C11 (Ubuntu 5.4.0-6ubuntu1~16.04.12) version 5.4.0 20160609 (x86_64-linux-gnu)
+	compiled by GNU C version 5.4.0 20160609, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 8087146d2ee737d238113fb57fabb1f2
+COLLECT_GCC_OPTIONS='-O3' '-g' '-D' 'RCB_UNTHREADED_BUILD' '-D' 'USE_SERIAL_COSMO' '-fopenmp' '-v' '-I' '/usr/lib/openmpi/include' '-I' '/opt/rocm/hip/include' '-I' '/opt/rocm/hcc-1.0/include' '-I' '../dfft' '-c' '-o' 'BGQStep16.o' '-mtune=generic' '-march=x86-64' '-pthread'
+ as -v -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -I ../dfft --64 -o BGQStep16.o /tmp/cc31MOZG.s
+GNU assembler version 2.26.1 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.26.1
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-O3' '-g' '-D' 'RCB_UNTHREADED_BUILD' '-D' 'USE_SERIAL_COSMO' '-fopenmp' '-v' '-I' '/usr/lib/openmpi/include' '-I' '/opt/rocm/hip/include' '-I' '/opt/rocm/hcc-1.0/include' '-I' '../dfft' '-c' '-o' 'BGQStep16.o' '-mtune=generic' '-march=x86-64' '-pthread'
+ar rv hip/libBHForceTree.a BGQStep16.o
+r - BGQStep16.o
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'BGQStep16.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'BGQCM.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+cc -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -I../dfft   -c -o BGQCM.o BGQCM.c
+Using built-in specs.
+COLLECT_GCC=cc
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 5.4.0-6ubuntu1~16.04.12' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-5 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+COLLECT_GCC_OPTIONS='-O3' '-g' '-D' 'RCB_UNTHREADED_BUILD' '-D' 'USE_SERIAL_COSMO' '-fopenmp' '-v' '-I' '/usr/lib/openmpi/include' '-I' '/opt/rocm/hip/include' '-I' '/opt/rocm/hcc-1.0/include' '-I' '../dfft' '-c' '-o' 'BGQCM.o' '-mtune=generic' '-march=x86-64' '-pthread'
+ /usr/lib/gcc/x86_64-linux-gnu/5/cc1 -quiet -v -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -I ../dfft -imultiarch x86_64-linux-gnu -D_REENTRANT -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO BGQCM.c -quiet -dumpbase BGQCM.c -mtune=generic -march=x86-64 -auxbase-strip BGQCM.o -g -O3 -version -fopenmp -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccHqo2vJ.s
+GNU C11 (Ubuntu 5.4.0-6ubuntu1~16.04.12) version 5.4.0 20160609 (x86_64-linux-gnu)
+	compiled by GNU C version 5.4.0 20160609, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5/../../../../x86_64-linux-gnu/include"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/openmpi/include
+ /opt/rocm/hip/include
+ /opt/rocm/hcc-1.0/include
+ ../dfft
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+GNU C11 (Ubuntu 5.4.0-6ubuntu1~16.04.12) version 5.4.0 20160609 (x86_64-linux-gnu)
+	compiled by GNU C version 5.4.0 20160609, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 8087146d2ee737d238113fb57fabb1f2
+COLLECT_GCC_OPTIONS='-O3' '-g' '-D' 'RCB_UNTHREADED_BUILD' '-D' 'USE_SERIAL_COSMO' '-fopenmp' '-v' '-I' '/usr/lib/openmpi/include' '-I' '/opt/rocm/hip/include' '-I' '/opt/rocm/hcc-1.0/include' '-I' '../dfft' '-c' '-o' 'BGQCM.o' '-mtune=generic' '-march=x86-64' '-pthread'
+ as -v -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -I ../dfft --64 -o BGQCM.o /tmp/ccHqo2vJ.s
+GNU assembler version 2.26.1 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.26.1
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-O3' '-g' '-D' 'RCB_UNTHREADED_BUILD' '-D' 'USE_SERIAL_COSMO' '-fopenmp' '-v' '-I' '/usr/lib/openmpi/include' '-I' '/opt/rocm/hip/include' '-I' '/opt/rocm/hcc-1.0/include' '-I' '../dfft' '-c' '-o' 'BGQCM.o' '-mtune=generic' '-march=x86-64' '-pthread'
+ar rv hip/libBHForceTree.a BGQCM.o
+r - BGQCM.o
+make: Warning: Archive 'hip/libBHForceTree.a' seems to have been created in deterministic mode. 'BGQCM.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libpartition.a' seems to have been created in deterministic mode. 'hip/Partition.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/Partition.o Partition.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name Partition.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/Partition.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/Partition-3e6791.s -x hc-host Partition.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/Partition-3e6791.s hip/Partition.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name Partition-3e6791.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/Partition.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/Partition.o -x ir /tmp/Partition-3e6791.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name Partition.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/Partition.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/Partition-7a6952.s -x hc-kernel Partition.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/Partition-7a6952.s hip/Partition.o
+ar rv hip/libpartition.a hip/Partition.o
+r - hip/Partition.o
+make: Warning: Archive 'hip/libpartition.a' seems to have been created in deterministic mode. 'hip/Partition.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libhalotime.a' seems to have been created in deterministic mode. 'hip/Timings.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/Timings.o Timings.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name Timings.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/Timings.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/Timings-1d08ee.s -x hc-host Timings.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+In file included from Timings.cxx:45:
+./Timings.h:80:17: warning: using directive refers to implicitly-defined namespace 'std'
+using namespace std;
+                ^
+1 warning generated.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/Timings-1d08ee.s hip/Timings.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name Timings-1d08ee.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/Timings.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/Timings.o -x ir /tmp/Timings-1d08ee.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name Timings.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/Timings.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/Timings-6caa88.s -x hc-kernel Timings.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+In file included from Timings.cxx:45:
+./Timings.h:80:17: warning: using directive refers to implicitly-defined namespace 'std'
+using namespace std;
+                ^
+1 warning generated.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/Timings-6caa88.s hip/Timings.o
+ar rv hip/libhalotime.a hip/Timings.o
+r - hip/Timings.o
+make: Warning: Archive 'hip/libhalotime.a' seems to have been created in deterministic mode. 'hip/Timings.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libhalotime.a' seems to have been created in deterministic mode. 'hip/Timer.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -c -o hip/Timer.o Timer.cxx
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name Timer.cxx -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/Timer.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-loops -vectorize-slp -pthread -fhsa-ext -o /tmp/Timer-0b4bd3.s -x hc-host Timer.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-host-assemble" /tmp/Timer-0b4bd3.s hip/Timer.o -D__HIPCC__ -Wno-deprecated-register -DHIP_VERSION_MAJOR=1 -DHIP_VERSION_MINOR=3 -DHIP_VERSION_PATCH=17385 -D__HIP_ARCH_GFX801__=1 -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name Timer-0b4bd3.s.bc -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/Timer.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -O3 -Wno-deprecated-register -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -o hip/Timer.o -x ir /tmp/Timer-0b4bd3.s.bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_HC__=1 -D__HCC_HC__=1 -D__GPU__=1 -D__KALMAR_ACCELERATOR__=1 -D__HCC_ACCELERATOR__=1 -famp-is-device -fno-builtin -fno-common -O2 -triple amdgcn--amdhsa-hcc -aux-triple x86_64-unknown-linux-gnu -S -disable-free -disable-llvm-verifier -main-file-name Timer.cxx -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fmath-errno -no-integrated-as -mconstructor-aliases -v -coverage-notes-file /hacc/src/halo_finder/hip/Timer.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D __HIPCC__ -I /opt/rocm/hcc/include -I /opt/rocm/hip/include/hip/hcc_detail/cuda -I /opt/rocm/hsa/include -I /opt/rocm/profiler/CXLActivityLogger/include -I /opt/rocm/hip/include -D HIP_VERSION_MAJOR=1 -D HIP_VERSION_MINOR=3 -D HIP_VERSION_PATCH=17385 -D __HIP_ARCH_GFX801__=1 -I ../dfft -D PENCIL=1 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -D ID_64 -D POSVEL_32 -D GRID_32 -D LONG_INTEGER -I . -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0 -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -Wno-deprecated-register -std=c++amp -fdeprecated-macro -fno-dwarf-directory-asm -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -vectorize-slp -pthread -fhsa-ext -o /tmp/Timer-04a004.s -x hc-kernel Timer.cxx -emit-llvm-bc
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/amdgcn--amdhsa-hcc/c++/5.4.0"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/opt/rocm/hip/include"
+ignoring duplicate directory "/opt/rocm/hcc/include"
+ignoring duplicate directory "../dfft"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "."
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+ignoring duplicate directory "/usr/local/include"
+ignoring duplicate directory "/opt/rocm/hcc-1.0/lib/clang/6.0.0/include"
+ignoring duplicate directory "/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/rocm/hcc/include
+ /opt/rocm/hip/include/hip/hcc_detail/cuda
+ /opt/rocm/hsa/include
+ /opt/rocm/profiler/CXLActivityLogger/include
+ /opt/rocm/hip/include
+ ../dfft
+ /usr/lib/openmpi/include
+ .
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/x86_64-linux-gnu/c++/5.4.0
+ /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../../include/c++/5.4.0/backward
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include
+End of search list.
+ "/opt/rocm/hcc/bin/hc-kernel-assemble" /tmp/Timer-04a004.s hip/Timer.o
+ar rv hip/libhalotime.a hip/Timer.o
+r - hip/Timer.o
+make: Warning: Archive 'hip/libhalotime.a' seems to have been created in deterministic mode. 'hip/Timer.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+make: Warning: Archive 'hip/libbigchunk.a' seems to have been created in deterministic mode. 'hip/bigchunk.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hcc -x c -Xclang -std=c99 -Xclang -pthread -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -I../dfft -c -o hip/bigchunk.o bigchunk.c
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc-1.0/bin/clang-6.0" -cc1 -D__KALMAR_CPU__=1 -D__HCC_CPU__=1 -triple x86_64-unknown-linux-gnu -emit-obj -disable-free -disable-llvm-verifier -discard-value-names -main-file-name bigchunk.c -mrelocation-model static -mthread-model posix -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -target-cpu x86-64 -dwarf-column-info -debug-info-kind=limited -dwarf-version=4 -debugger-tuning=gdb -momit-leaf-frame-pointer -v -coverage-notes-file /hacc/src/halo_finder/hip/bigchunk.gcno -resource-dir /opt/rocm/hcc-1.0/lib/clang/6.0.0 -D RCB_UNTHREADED_BUILD -D USE_SERIAL_COSMO -I /usr/lib/openmpi/include -I /opt/rocm/hip/include -I /opt/rocm/hcc-1.0/include -I ../dfft -I/usr/include -I/usr/include -I. -internal-isystem /usr/local/include -internal-isystem /opt/rocm/hcc-1.0/lib/clang/6.0.0/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -O3 -fdebug-compilation-dir /hacc/src/halo_finder -ferror-limit 19 -fmessage-length 0 -fopenmp -fobjc-runtime=gcc -fdiagnostics-show-option -vectorize-loops -vectorize-slp -std=c99 -pthread -o hip/bigchunk.o -x c bigchunk.c
+clang -cc1 version 6.0.0 based upon HCC 1.0.17412-f590a25-821e6d8-64e7fc7  default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/usr/include"
+ignoring duplicate directory "/usr/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/openmpi/include
+ /opt/rocm/hip/include
+ /opt/rocm/hcc-1.0/include
+ ../dfft
+ .
+ /usr/local/include
+ /opt/rocm/hcc-1.0/lib/clang/6.0.0/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+bigchunk.c:86:33: warning: comparison of distinct pointer types ('void *' and 'char *') [-Wcompare-distinct-pointer-types]
+        if (ptr < _bigchunk_ptr || ptr >= (char *)_bigchunk_ptr + _bigchunk_sz) {
+                                   ~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+ar rv hip/libbigchunk.a hip/bigchunk.o
+r - hip/bigchunk.o
+make: Warning: Archive 'hip/libbigchunk.a' seems to have been created in deterministic mode. 'hip/bigchunk.o' will always be updated. Please consider passing the U flag to ar to avoid the problem.
+/opt/rocm/bin/hipcc -Xclang -pthread -o hip/ForceTreeTest hip/ForceTreeTest.o hip/libparticle.a hip/libBHForceTree.a hip/libpartition.a hip/libhalotime.a hip/libbigchunk.a hip/dims-local.o -I../dfft -DPENCIL=1 -O3 -g -DRCB_UNTHREADED_BUILD -DUSE_SERIAL_COSMO -fopenmp -v -I/usr/lib/openmpi/include -I/opt/rocm/hip/include -I/opt/rocm/hcc-1.0/include -DID_64 -DPOSVEL_32 -DGRID_32 -DLONG_INTEGER  -I. -I../dfft -lm -lrt -L/usr/lib/openmpi/lib -lmpi -lmpi_cxx  -DUSE_SERIAL_COSMO=1
+HCC clang version 6.0.0  (based on HCC 1.0.17412-f590a25-821e6d8-64e7fc7 )
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm/hcc/bin
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6
+Found candidate GCC installation: /usr/lib/gcc/x86_64-linux-gnu/6.0.0
+Selected GCC installation: /usr/lib/gcc/x86_64-linux-gnu/5.4.0
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Candidate multilib: x32;@mx32
+Selected multilib: .;@m64
+ "/opt/rocm/hcc/bin/clamp-link" --verbose --amdgpu-target=gfx801 -z relro --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o hip/ForceTreeTest /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5.4.0/crtbegin.o -L/opt/rocm/hcc/lib -L/opt/rocm/hsa/lib -L/opt/rocm/lib -L/opt/rocm/profiler/CXLActivityLogger/bin/x86_64 -L/usr/lib/openmpi/lib -L/usr/lib/gcc/x86_64-linux-gnu/5.4.0 -L/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../.. -L/opt/rocm/hcc-1.0/bin/../lib -L/lib -L/usr/lib --rpath=/opt/rocm/hip/lib /opt/rocm/hip/lib/libhip_hcc.so /opt/rocm/hip/lib/libhip_device.a --rpath=/opt/rocm/hcc/lib -ldl -lm -lpthread -lunwind --whole-archive -lmcwamp --no-whole-archive -lsupc++ -lhsa-runtime64 -lhc_am -lhsakmt -lCXLActivityLogger --rpath=/opt/rocm/profiler/CXLActivityLogger/bin/x86_64 -lm hip/ForceTreeTest.o hip/libparticle.a hip/libBHForceTree.a hip/libpartition.a hip/libhalotime.a hip/libbigchunk.a hip/dims-local.o -lm -lrt -lmpi -lmpi_cxx -lstdc++ -lm -lomp -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5.4.0/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crtn.o -lclang_rt.builtins-x86_64
+AMDGPU target array: gfx801
+
+new kernel args: /tmp/tmp.qW4sNUeRZG/device_functions.cpp.kernel.bc /tmp/tmp.qW4sNUeRZG/device_util.cpp.kernel.bc /tmp/tmp.qW4sNUeRZG/hip_fp16.cpp.kernel.bc /tmp/tmp.qW4sNUeRZG/hip_ldg.cpp.kernel.bc /tmp/tmp.qW4sNUeRZG/math_functions.cpp.kernel.bc /tmp/tmp.qW4sNUeRZG/mcwamp.cpp.kernel.bc /tmp/tmp.qW4sNUeRZG/ForceTreeTest.kernel.bc /tmp/tmp.qW4sNUeRZG/InitialExchange.kernel.bc /tmp/tmp.qW4sNUeRZG/Message.kernel.bc /tmp/tmp.qW4sNUeRZG/ParticleDistribute.kernel.bc /tmp/tmp.qW4sNUeRZG/ParticleExchange.kernel.bc /tmp/tmp.qW4sNUeRZG/BHForceTree.kernel.bc /tmp/tmp.qW4sNUeRZG/ForceLaw.kernel.bc /tmp/tmp.qW4sNUeRZG/RCBForceTree.kernel.bc /tmp/tmp.qW4sNUeRZG/RCOForceTree.kernel.bc /tmp/tmp.qW4sNUeRZG/Partition.kernel.bc /tmp/tmp.qW4sNUeRZG/Timer.kernel.bc /tmp/tmp.qW4sNUeRZG/Timings.kernel.bc
+
+new host args: /tmp/tmp.qW4sNUeRZG/device_functions.cpp.host.o /tmp/tmp.qW4sNUeRZG/device_util.cpp.host.o /tmp/tmp.qW4sNUeRZG/hip_fp16.cpp.host.o /tmp/tmp.qW4sNUeRZG/hip_ldg.cpp.host.o /tmp/tmp.qW4sNUeRZG/math_functions.cpp.host.o /tmp/tmp.qW4sNUeRZG/mcwamp.cpp.host.o /tmp/tmp.qW4sNUeRZG/ForceTreeTest.host.o /tmp/tmp.qW4sNUeRZG/InitialExchange.host.o /tmp/tmp.qW4sNUeRZG/Message.host.o /tmp/tmp.qW4sNUeRZG/ParticleDistribute.host.o /tmp/tmp.qW4sNUeRZG/ParticleExchange.host.o /tmp/tmp.qW4sNUeRZG/BHForceTree.host.o /tmp/tmp.qW4sNUeRZG/ForceLaw.host.o /tmp/tmp.qW4sNUeRZG/RCBForceTree.host.o /tmp/tmp.qW4sNUeRZG/RCOForceTree.host.o /tmp/tmp.qW4sNUeRZG/Partition.host.o /tmp/tmp.qW4sNUeRZG/Timer.host.o /tmp/tmp.qW4sNUeRZG/Timings.host.o
+
+new other args: --verbose -z relro --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o hip/ForceTreeTest /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5.4.0/crtbegin.o -L/opt/rocm/hcc/lib -L/opt/rocm/hsa/lib -L/opt/rocm/lib -L/opt/rocm/profiler/CXLActivityLogger/bin/x86_64 -L/usr/lib/openmpi/lib -L/usr/lib/gcc/x86_64-linux-gnu/5.4.0 -L/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../.. -L/opt/rocm/hcc-1.0/bin/../lib -L/lib -L/usr/lib --rpath=/opt/rocm/hip/lib /opt/rocm/hip/lib/libhip_hcc.so --rpath=/opt/rocm/hcc/lib -ldl -lm -lpthread -lunwind --whole-archive --no-whole-archive -lsupc++ -lhsa-runtime64 -lhc_am -lhsakmt -lCXLActivityLogger --rpath=/opt/rocm/profiler/CXLActivityLogger/bin/x86_64 -lm /tmp/tmp.qW4sNUeRZG/libBHForceTree.a/BGQCM.o /tmp/tmp.qW4sNUeRZG/libBHForceTree.a/BGQStep16.o hip/libbigchunk.a hip/dims-local.o -lm -lrt -lmpi -lmpi_cxx -lstdc++ -lm -lomp -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5.4.0/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crtn.o -lclang_rt.builtins-x86_64
+
+Generating AMD GCN kernel
+GNU ld (GNU Binutils for Ubuntu) 2.26.1
+  Supported emulations:
+   elf_x86_64
+   elf32_x86_64
+   elf_i386
+   elf_iamcu
+   i386linux
+   elf_l1om
+   elf_k1om
+   i386pep
+   i386pe
+using internal linker script:
+==================================================
+/* Script for -z combreloc: combine and sort reloc sections */
+/* Copyright (C) 2014-2015 Free Software Foundation, Inc.
+   Copying and distribution of this script, with or without modification,
+   are permitted in any medium without royalty provided the copyright
+   notice and this notice are preserved.  */
+OUTPUT_FORMAT("elf64-x86-64", "elf64-x86-64",
+	      "elf64-x86-64")
+OUTPUT_ARCH(i386:x86-64)
+ENTRY(_start)
+SEARCH_DIR("=/usr/local/lib/x86_64-linux-gnu"); SEARCH_DIR("=/lib/x86_64-linux-gnu"); SEARCH_DIR("=/usr/lib/x86_64-linux-gnu"); SEARCH_DIR("=/usr/local/lib64"); SEARCH_DIR("=/lib64"); SEARCH_DIR("=/usr/lib64"); SEARCH_DIR("=/usr/local/lib"); SEARCH_DIR("=/lib"); SEARCH_DIR("=/usr/lib"); SEARCH_DIR("=/usr/x86_64-linux-gnu/lib64"); SEARCH_DIR("=/usr/x86_64-linux-gnu/lib");
+SECTIONS
+{
+  /* Read-only sections, merged into text segment: */
+  PROVIDE (__executable_start = SEGMENT_START("text-segment", 0x400000)); . = SEGMENT_START("text-segment", 0x400000) + SIZEOF_HEADERS;
+  .interp         : { *(.interp) }
+  .note.gnu.build-id : { *(.note.gnu.build-id) }
+  .hash           : { *(.hash) }
+  .gnu.hash       : { *(.gnu.hash) }
+  .dynsym         : { *(.dynsym) }
+  .dynstr         : { *(.dynstr) }
+  .gnu.version    : { *(.gnu.version) }
+  .gnu.version_d  : { *(.gnu.version_d) }
+  .gnu.version_r  : { *(.gnu.version_r) }
+  .rela.dyn       :
+    {
+      *(.rela.init)
+      *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+      *(.rela.fini)
+      *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+      *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+      *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+      *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+      *(.rela.ctors)
+      *(.rela.dtors)
+      *(.rela.got)
+      *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+      *(.rela.ldata .rela.ldata.* .rela.gnu.linkonce.l.*)
+      *(.rela.lbss .rela.lbss.* .rela.gnu.linkonce.lb.*)
+      *(.rela.lrodata .rela.lrodata.* .rela.gnu.linkonce.lr.*)
+      *(.rela.ifunc)
+    }
+  .rela.plt       :
+    {
+      *(.rela.plt)
+      PROVIDE_HIDDEN (__rela_iplt_start = .);
+      *(.rela.iplt)
+      PROVIDE_HIDDEN (__rela_iplt_end = .);
+    }
+  .init           :
+  {
+    KEEP (*(SORT_NONE(.init)))
+  }
+  .plt            : { *(.plt) *(.iplt) }
+.plt.got        : { *(.plt.got) }
+.plt.bnd        : { *(.plt.bnd) }
+  .text           :
+  {
+    *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+    *(.text.exit .text.exit.*)
+    *(.text.startup .text.startup.*)
+    *(.text.hot .text.hot.*)
+    *(.text .stub .text.* .gnu.linkonce.t.*)
+    /* .gnu.warning sections are handled specially by elf32.em.  */
+    *(.gnu.warning)
+  }
+  .fini           :
+  {
+    KEEP (*(SORT_NONE(.fini)))
+  }
+  PROVIDE (__etext = .);
+  PROVIDE (_etext = .);
+  PROVIDE (etext = .);
+  .rodata         : { *(.rodata .rodata.* .gnu.linkonce.r.*) }
+  .rodata1        : { *(.rodata1) }
+  .eh_frame_hdr : { *(.eh_frame_hdr) *(.eh_frame_entry .eh_frame_entry.*) }
+  .eh_frame       : ONLY_IF_RO { KEEP (*(.eh_frame)) *(.eh_frame.*) }
+  .gcc_except_table   : ONLY_IF_RO { *(.gcc_except_table
+  .gcc_except_table.*) }
+  .gnu_extab   : ONLY_IF_RO { *(.gnu_extab*) }
+  /* These sections are generated by the Sun/Oracle C++ compiler.  */
+  .exception_ranges   : ONLY_IF_RO { *(.exception_ranges
+  .exception_ranges*) }
+  /* Adjust the address for the data segment.  We want to adjust up to
+     the same address within the page on the next page up.  */
+  . = DATA_SEGMENT_ALIGN (CONSTANT (MAXPAGESIZE), CONSTANT (COMMONPAGESIZE));
+  /* Exception handling  */
+  .eh_frame       : ONLY_IF_RW { KEEP (*(.eh_frame)) *(.eh_frame.*) }
+  .gnu_extab      : ONLY_IF_RW { *(.gnu_extab) }
+  .gcc_except_table   : ONLY_IF_RW { *(.gcc_except_table .gcc_except_table.*) }
+  .exception_ranges   : ONLY_IF_RW { *(.exception_ranges .exception_ranges*) }
+  /* Thread Local Storage sections  */
+  .tdata	  : { *(.tdata .tdata.* .gnu.linkonce.td.*) }
+  .tbss		  : { *(.tbss .tbss.* .gnu.linkonce.tb.*) *(.tcommon) }
+  .preinit_array     :
+  {
+    PROVIDE_HIDDEN (__preinit_array_start = .);
+    KEEP (*(.preinit_array))
+    PROVIDE_HIDDEN (__preinit_array_end = .);
+  }
+  .init_array     :
+  {
+    PROVIDE_HIDDEN (__init_array_start = .);
+    KEEP (*(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*)))
+    KEEP (*(.init_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .ctors))
+    PROVIDE_HIDDEN (__init_array_end = .);
+  }
+  .fini_array     :
+  {
+    PROVIDE_HIDDEN (__fini_array_start = .);
+    KEEP (*(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*)))
+    KEEP (*(.fini_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .dtors))
+    PROVIDE_HIDDEN (__fini_array_end = .);
+  }
+  .ctors          :
+  {
+    /* gcc uses crtbegin.o to find the start of
+       the constructors, so we make sure it is
+       first.  Because this is a wildcard, it
+       doesn't matter if the user does not
+       actually link against crtbegin.o; the
+       linker won't look for a file to match a
+       wildcard.  The wildcard also means that it
+       doesn't matter which directory crtbegin.o
+       is in.  */
+    KEEP (*crtbegin.o(.ctors))
+    KEEP (*crtbegin?.o(.ctors))
+    /* We don't want to include the .ctor section from
+       the crtend.o file until after the sorted ctors.
+       The .ctor section from the crtend file contains the
+       end of ctors marker and it must be last */
+    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .ctors))
+    KEEP (*(SORT(.ctors.*)))
+    KEEP (*(.ctors))
+  }
+  .dtors          :
+  {
+    KEEP (*crtbegin.o(.dtors))
+    KEEP (*crtbegin?.o(.dtors))
+    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .dtors))
+    KEEP (*(SORT(.dtors.*)))
+    KEEP (*(.dtors))
+  }
+  .jcr            : { KEEP (*(.jcr)) }
+  .data.rel.ro : { *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*) *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*) }
+  .dynamic        : { *(.dynamic) }
+  .got            : { *(.got) *(.igot) }
+  . = DATA_SEGMENT_RELRO_END (SIZEOF (.got.plt) >= 24 ? 24 : 0, .);
+  .got.plt        : { *(.got.plt)  *(.igot.plt) }
+  .data           :
+  {
+    *(.data .data.* .gnu.linkonce.d.*)
+    SORT(CONSTRUCTORS)
+  }
+  .data1          : { *(.data1) }
+  _edata = .; PROVIDE (edata = .);
+  . = .;
+  __bss_start = .;
+  .bss            :
+  {
+   *(.dynbss)
+   *(.bss .bss.* .gnu.linkonce.b.*)
+   *(COMMON)
+   /* Align here to ensure that the .bss section occupies space up to
+      _end.  Align after .bss to ensure correct alignment even if the
+      .bss section disappears because there are no input sections.
+      FIXME: Why do we need it? When there is no .bss section, we don't
+      pad the .data section.  */
+   . = ALIGN(. != 0 ? 64 / 8 : 1);
+  }
+  .lbss   :
+  {
+    *(.dynlbss)
+    *(.lbss .lbss.* .gnu.linkonce.lb.*)
+    *(LARGE_COMMON)
+  }
+  . = ALIGN(64 / 8);
+  . = SEGMENT_START("ldata-segment", .);
+  .lrodata   ALIGN(CONSTANT (MAXPAGESIZE)) + (. & (CONSTANT (MAXPAGESIZE) - 1)) :
+  {
+    *(.lrodata .lrodata.* .gnu.linkonce.lr.*)
+  }
+  .ldata   ALIGN(CONSTANT (MAXPAGESIZE)) + (. & (CONSTANT (MAXPAGESIZE) - 1)) :
+  {
+    *(.ldata .ldata.* .gnu.linkonce.l.*)
+    . = ALIGN(. != 0 ? 64 / 8 : 1);
+  }
+  . = ALIGN(64 / 8);
+  _end = .; PROVIDE (end = .);
+  . = DATA_SEGMENT_END (.);
+  /* Stabs debugging sections.  */
+  .stab          0 : { *(.stab) }
+  .stabstr       0 : { *(.stabstr) }
+  .stab.excl     0 : { *(.stab.excl) }
+  .stab.exclstr  0 : { *(.stab.exclstr) }
+  .stab.index    0 : { *(.stab.index) }
+  .stab.indexstr 0 : { *(.stab.indexstr) }
+  .comment       0 : { *(.comment) }
+  /* DWARF debug sections.
+     Symbols in the DWARF debugging sections are relative to the beginning
+     of the section so we begin them at 0.  */
+  /* DWARF 1 */
+  .debug          0 : { *(.debug) }
+  .line           0 : { *(.line) }
+  /* GNU DWARF 1 extensions */
+  .debug_srcinfo  0 : { *(.debug_srcinfo) }
+  .debug_sfnames  0 : { *(.debug_sfnames) }
+  /* DWARF 1.1 and DWARF 2 */
+  .debug_aranges  0 : { *(.debug_aranges) }
+  .debug_pubnames 0 : { *(.debug_pubnames) }
+  /* DWARF 2 */
+  .debug_info     0 : { *(.debug_info .gnu.linkonce.wi.*) }
+  .debug_abbrev   0 : { *(.debug_abbrev) }
+  .debug_line     0 : { *(.debug_line .debug_line.* .debug_line_end ) }
+  .debug_frame    0 : { *(.debug_frame) }
+  .debug_str      0 : { *(.debug_str) }
+  .debug_loc      0 : { *(.debug_loc) }
+  .debug_macinfo  0 : { *(.debug_macinfo) }
+  /* SGI/MIPS DWARF 2 extensions */
+  .debug_weaknames 0 : { *(.debug_weaknames) }
+  .debug_funcnames 0 : { *(.debug_funcnames) }
+  .debug_typenames 0 : { *(.debug_typenames) }
+  .debug_varnames  0 : { *(.debug_varnames) }
+  /* DWARF 3 */
+  .debug_pubtypes 0 : { *(.debug_pubtypes) }
+  .debug_ranges   0 : { *(.debug_ranges) }
+  /* DWARF Extension.  */
+  .debug_macro    0 : { *(.debug_macro) }
+  .gnu.attributes 0 : { KEEP (*(.gnu.attributes)) }
+  /DISCARD/ : { *(.note.GNU-stack) *(.gnu_debuglink) *(.gnu.lto_*) }
+}
+
+
+==================================================
+attempt to open /tmp/tmp.qW4sNUeRZG/kernel_hsa.o succeeded
+/tmp/tmp.qW4sNUeRZG/kernel_hsa.o
+attempt to open /tmp/tmp.qW4sNUeRZG/device_functions.cpp.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/device_functions.cpp.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/device_util.cpp.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/device_util.cpp.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/hip_fp16.cpp.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/hip_fp16.cpp.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/hip_ldg.cpp.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/hip_ldg.cpp.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/math_functions.cpp.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/math_functions.cpp.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/mcwamp.cpp.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/mcwamp.cpp.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/ForceTreeTest.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/ForceTreeTest.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/InitialExchange.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/InitialExchange.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/Message.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/Message.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/ParticleDistribute.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/ParticleDistribute.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/ParticleExchange.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/ParticleExchange.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/BHForceTree.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/BHForceTree.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/ForceLaw.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/ForceLaw.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/RCBForceTree.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/RCBForceTree.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/RCOForceTree.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/RCOForceTree.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/Partition.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/Partition.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/Timer.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/Timer.host.o
+attempt to open /tmp/tmp.qW4sNUeRZG/Timings.host.o succeeded
+/tmp/tmp.qW4sNUeRZG/Timings.host.o
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crt1.o succeeded
+/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crt1.o
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crti.o succeeded
+/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crti.o
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/crtbegin.o succeeded
+/usr/lib/gcc/x86_64-linux-gnu/5.4.0/crtbegin.o
+attempt to open /opt/rocm/hip/lib/libhip_hcc.so succeeded
+/opt/rocm/hip/lib/libhip_hcc.so
+attempt to open /opt/rocm/hcc/lib/libdl.so failed
+attempt to open /opt/rocm/hcc/lib/libdl.a failed
+attempt to open /opt/rocm/hsa/lib/libdl.so failed
+attempt to open /opt/rocm/hsa/lib/libdl.a failed
+attempt to open /opt/rocm/lib/libdl.so failed
+attempt to open /opt/rocm/lib/libdl.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libdl.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libdl.a failed
+attempt to open /usr/lib/openmpi/lib/libdl.so failed
+attempt to open /usr/lib/openmpi/lib/libdl.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libdl.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libdl.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libdl.so succeeded
+-ldl (/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libdl.so)
+attempt to open /opt/rocm/hcc/lib/libm.so failed
+attempt to open /opt/rocm/hcc/lib/libm.a failed
+attempt to open /opt/rocm/hsa/lib/libm.so failed
+attempt to open /opt/rocm/hsa/lib/libm.a failed
+attempt to open /opt/rocm/lib/libm.so failed
+attempt to open /opt/rocm/lib/libm.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libm.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libm.a failed
+attempt to open /usr/lib/openmpi/lib/libm.so failed
+attempt to open /usr/lib/openmpi/lib/libm.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libm.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libm.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so succeeded
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so
+attempt to open /lib/x86_64-linux-gnu/libm.so.6 succeeded
+/lib/x86_64-linux-gnu/libm.so.6
+attempt to open /usr/lib/x86_64-linux-gnu/libmvec_nonshared.a succeeded
+attempt to open /lib/x86_64-linux-gnu/libmvec.so.1 succeeded
+/lib/x86_64-linux-gnu/libmvec.so.1
+/lib/x86_64-linux-gnu/libmvec.so.1
+attempt to open /opt/rocm/hcc/lib/libpthread.so failed
+attempt to open /opt/rocm/hcc/lib/libpthread.a failed
+attempt to open /opt/rocm/hsa/lib/libpthread.so failed
+attempt to open /opt/rocm/hsa/lib/libpthread.a failed
+attempt to open /opt/rocm/lib/libpthread.so failed
+attempt to open /opt/rocm/lib/libpthread.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libpthread.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libpthread.a failed
+attempt to open /usr/lib/openmpi/lib/libpthread.so failed
+attempt to open /usr/lib/openmpi/lib/libpthread.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libpthread.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libpthread.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libpthread.so succeeded
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libpthread.so
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libpthread.so
+attempt to open /lib/x86_64-linux-gnu/libpthread.so.0 succeeded
+/lib/x86_64-linux-gnu/libpthread.so.0
+attempt to open /usr/lib/x86_64-linux-gnu/libpthread_nonshared.a succeeded
+attempt to open /opt/rocm/hcc/lib/libunwind.so failed
+attempt to open /opt/rocm/hcc/lib/libunwind.a failed
+attempt to open /opt/rocm/hsa/lib/libunwind.so failed
+attempt to open /opt/rocm/hsa/lib/libunwind.a failed
+attempt to open /opt/rocm/lib/libunwind.so failed
+attempt to open /opt/rocm/lib/libunwind.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libunwind.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libunwind.a failed
+attempt to open /usr/lib/openmpi/lib/libunwind.so failed
+attempt to open /usr/lib/openmpi/lib/libunwind.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libunwind.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libunwind.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libunwind.so succeeded
+-lunwind (/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libunwind.so)
+attempt to open /opt/rocm/hcc/lib/libsupc++.so failed
+attempt to open /opt/rocm/hcc/lib/libsupc++.a failed
+attempt to open /opt/rocm/hsa/lib/libsupc++.so failed
+attempt to open /opt/rocm/hsa/lib/libsupc++.a failed
+attempt to open /opt/rocm/lib/libsupc++.so failed
+attempt to open /opt/rocm/lib/libsupc++.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libsupc++.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libsupc++.a failed
+attempt to open /usr/lib/openmpi/lib/libsupc++.so failed
+attempt to open /usr/lib/openmpi/lib/libsupc++.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a succeeded
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)class_type_info.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)del_op.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)del_opv.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_alloc.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_catch.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_exception.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_globals.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_personality.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_terminate.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_throw.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_unex_handler.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)guard.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)guard_error.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)new_op.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)new_opv.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)pure.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)si_class_type_info.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)tinfo.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)cp-demangle.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)bad_alloc.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_call.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_term_handler.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)new_handler.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)vterminate.o
+(/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libsupc++.a)eh_type.o
+attempt to open /opt/rocm/hcc/lib/libhsa-runtime64.so failed
+attempt to open /opt/rocm/hcc/lib/libhsa-runtime64.a failed
+attempt to open /opt/rocm/hsa/lib/libhsa-runtime64.so failed
+attempt to open /opt/rocm/hsa/lib/libhsa-runtime64.a failed
+attempt to open /opt/rocm/lib/libhsa-runtime64.so succeeded
+-lhsa-runtime64 (/opt/rocm/lib/libhsa-runtime64.so)
+attempt to open /opt/rocm/hcc/lib/libhc_am.so succeeded
+-lhc_am (/opt/rocm/hcc/lib/libhc_am.so)
+attempt to open /opt/rocm/hcc/lib/libhsakmt.so failed
+attempt to open /opt/rocm/hcc/lib/libhsakmt.a failed
+attempt to open /opt/rocm/hsa/lib/libhsakmt.so failed
+attempt to open /opt/rocm/hsa/lib/libhsakmt.a failed
+attempt to open /opt/rocm/lib/libhsakmt.so succeeded
+-lhsakmt (/opt/rocm/lib/libhsakmt.so)
+attempt to open /opt/rocm/hcc/lib/libCXLActivityLogger.so failed
+attempt to open /opt/rocm/hcc/lib/libCXLActivityLogger.a failed
+attempt to open /opt/rocm/hsa/lib/libCXLActivityLogger.so failed
+attempt to open /opt/rocm/hsa/lib/libCXLActivityLogger.a failed
+attempt to open /opt/rocm/lib/libCXLActivityLogger.so succeeded
+-lCXLActivityLogger (/opt/rocm/lib/libCXLActivityLogger.so)
+attempt to open /opt/rocm/hcc/lib/libm.so failed
+attempt to open /opt/rocm/hcc/lib/libm.a failed
+attempt to open /opt/rocm/hsa/lib/libm.so failed
+attempt to open /opt/rocm/hsa/lib/libm.a failed
+attempt to open /opt/rocm/lib/libm.so failed
+attempt to open /opt/rocm/lib/libm.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libm.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libm.a failed
+attempt to open /usr/lib/openmpi/lib/libm.so failed
+attempt to open /usr/lib/openmpi/lib/libm.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libm.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libm.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so succeeded
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so
+attempt to open /lib/x86_64-linux-gnu/libm.so.6 succeeded
+/lib/x86_64-linux-gnu/libm.so.6
+attempt to open /usr/lib/x86_64-linux-gnu/libmvec_nonshared.a succeeded
+attempt to open /lib/x86_64-linux-gnu/libmvec.so.1 succeeded
+/lib/x86_64-linux-gnu/libmvec.so.1
+attempt to open /tmp/tmp.qW4sNUeRZG/libBHForceTree.a/BGQCM.o succeeded
+/tmp/tmp.qW4sNUeRZG/libBHForceTree.a/BGQCM.o
+attempt to open /tmp/tmp.qW4sNUeRZG/libBHForceTree.a/BGQStep16.o succeeded
+/tmp/tmp.qW4sNUeRZG/libBHForceTree.a/BGQStep16.o
+attempt to open hip/libbigchunk.a succeeded
+(hip/libbigchunk.a)bigchunk.o
+attempt to open hip/dims-local.o succeeded
+hip/dims-local.o
+attempt to open /opt/rocm/hcc/lib/libm.so failed
+attempt to open /opt/rocm/hcc/lib/libm.a failed
+attempt to open /opt/rocm/hsa/lib/libm.so failed
+attempt to open /opt/rocm/hsa/lib/libm.a failed
+attempt to open /opt/rocm/lib/libm.so failed
+attempt to open /opt/rocm/lib/libm.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libm.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libm.a failed
+attempt to open /usr/lib/openmpi/lib/libm.so failed
+attempt to open /usr/lib/openmpi/lib/libm.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libm.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libm.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so succeeded
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so
+attempt to open /lib/x86_64-linux-gnu/libm.so.6 succeeded
+/lib/x86_64-linux-gnu/libm.so.6
+attempt to open /usr/lib/x86_64-linux-gnu/libmvec_nonshared.a succeeded
+attempt to open /lib/x86_64-linux-gnu/libmvec.so.1 succeeded
+/lib/x86_64-linux-gnu/libmvec.so.1
+attempt to open /opt/rocm/hcc/lib/librt.so failed
+attempt to open /opt/rocm/hcc/lib/librt.a failed
+attempt to open /opt/rocm/hsa/lib/librt.so failed
+attempt to open /opt/rocm/hsa/lib/librt.a failed
+attempt to open /opt/rocm/lib/librt.so failed
+attempt to open /opt/rocm/lib/librt.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/librt.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/librt.a failed
+attempt to open /usr/lib/openmpi/lib/librt.so failed
+attempt to open /usr/lib/openmpi/lib/librt.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/librt.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/librt.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/librt.so succeeded
+-lrt (/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/librt.so)
+attempt to open /opt/rocm/hcc/lib/libmpi.so failed
+attempt to open /opt/rocm/hcc/lib/libmpi.a failed
+attempt to open /opt/rocm/hsa/lib/libmpi.so failed
+attempt to open /opt/rocm/hsa/lib/libmpi.a failed
+attempt to open /opt/rocm/lib/libmpi.so failed
+attempt to open /opt/rocm/lib/libmpi.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libmpi.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libmpi.a failed
+attempt to open /usr/lib/openmpi/lib/libmpi.so succeeded
+-lmpi (/usr/lib/openmpi/lib/libmpi.so)
+attempt to open /opt/rocm/hcc/lib/libmpi_cxx.so failed
+attempt to open /opt/rocm/hcc/lib/libmpi_cxx.a failed
+attempt to open /opt/rocm/hsa/lib/libmpi_cxx.so failed
+attempt to open /opt/rocm/hsa/lib/libmpi_cxx.a failed
+attempt to open /opt/rocm/lib/libmpi_cxx.so failed
+attempt to open /opt/rocm/lib/libmpi_cxx.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libmpi_cxx.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libmpi_cxx.a failed
+attempt to open /usr/lib/openmpi/lib/libmpi_cxx.so succeeded
+-lmpi_cxx (/usr/lib/openmpi/lib/libmpi_cxx.so)
+attempt to open /opt/rocm/hcc/lib/libstdc++.so failed
+attempt to open /opt/rocm/hcc/lib/libstdc++.a failed
+attempt to open /opt/rocm/hsa/lib/libstdc++.so failed
+attempt to open /opt/rocm/hsa/lib/libstdc++.a failed
+attempt to open /opt/rocm/lib/libstdc++.so failed
+attempt to open /opt/rocm/lib/libstdc++.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libstdc++.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libstdc++.a failed
+attempt to open /usr/lib/openmpi/lib/libstdc++.so failed
+attempt to open /usr/lib/openmpi/lib/libstdc++.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libstdc++.so succeeded
+-lstdc++ (/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libstdc++.so)
+attempt to open /opt/rocm/hcc/lib/libm.so failed
+attempt to open /opt/rocm/hcc/lib/libm.a failed
+attempt to open /opt/rocm/hsa/lib/libm.so failed
+attempt to open /opt/rocm/hsa/lib/libm.a failed
+attempt to open /opt/rocm/lib/libm.so failed
+attempt to open /opt/rocm/lib/libm.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libm.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libm.a failed
+attempt to open /usr/lib/openmpi/lib/libm.so failed
+attempt to open /usr/lib/openmpi/lib/libm.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libm.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libm.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so succeeded
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libm.so
+attempt to open /lib/x86_64-linux-gnu/libm.so.6 succeeded
+/lib/x86_64-linux-gnu/libm.so.6
+attempt to open /usr/lib/x86_64-linux-gnu/libmvec_nonshared.a succeeded
+attempt to open /lib/x86_64-linux-gnu/libmvec.so.1 succeeded
+/lib/x86_64-linux-gnu/libmvec.so.1
+attempt to open /opt/rocm/hcc/lib/libomp.so failed
+attempt to open /opt/rocm/hcc/lib/libomp.a failed
+attempt to open /opt/rocm/hsa/lib/libomp.so failed
+attempt to open /opt/rocm/hsa/lib/libomp.a failed
+attempt to open /opt/rocm/lib/libomp.so failed
+attempt to open /opt/rocm/lib/libomp.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libomp.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libomp.a failed
+attempt to open /usr/lib/openmpi/lib/libomp.so failed
+attempt to open /usr/lib/openmpi/lib/libomp.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libomp.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libomp.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libomp.so succeeded
+-lomp (/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libomp.so)
+attempt to open /opt/rocm/hcc/lib/libgcc_s.so failed
+attempt to open /opt/rocm/hcc/lib/libgcc_s.a failed
+attempt to open /opt/rocm/hsa/lib/libgcc_s.so failed
+attempt to open /opt/rocm/hsa/lib/libgcc_s.a failed
+attempt to open /opt/rocm/lib/libgcc_s.so failed
+attempt to open /opt/rocm/lib/libgcc_s.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libgcc_s.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libgcc_s.a failed
+attempt to open /usr/lib/openmpi/lib/libgcc_s.so failed
+attempt to open /usr/lib/openmpi/lib/libgcc_s.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc_s.so succeeded
+-lgcc_s (/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc_s.so)
+attempt to open /opt/rocm/hcc/lib/libgcc.so failed
+attempt to open /opt/rocm/hcc/lib/libgcc.a failed
+attempt to open /opt/rocm/hsa/lib/libgcc.so failed
+attempt to open /opt/rocm/hsa/lib/libgcc.a failed
+attempt to open /opt/rocm/lib/libgcc.so failed
+attempt to open /opt/rocm/lib/libgcc.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libgcc.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libgcc.a failed
+attempt to open /usr/lib/openmpi/lib/libgcc.so failed
+attempt to open /usr/lib/openmpi/lib/libgcc.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc.a succeeded
+attempt to open /opt/rocm/hcc/lib/libpthread.so failed
+attempt to open /opt/rocm/hcc/lib/libpthread.a failed
+attempt to open /opt/rocm/hsa/lib/libpthread.so failed
+attempt to open /opt/rocm/hsa/lib/libpthread.a failed
+attempt to open /opt/rocm/lib/libpthread.so failed
+attempt to open /opt/rocm/lib/libpthread.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libpthread.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libpthread.a failed
+attempt to open /usr/lib/openmpi/lib/libpthread.so failed
+attempt to open /usr/lib/openmpi/lib/libpthread.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libpthread.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libpthread.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libpthread.so succeeded
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libpthread.so
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libpthread.so
+attempt to open /lib/x86_64-linux-gnu/libpthread.so.0 succeeded
+/lib/x86_64-linux-gnu/libpthread.so.0
+attempt to open /usr/lib/x86_64-linux-gnu/libpthread_nonshared.a succeeded
+attempt to open /opt/rocm/hcc/lib/libc.so failed
+attempt to open /opt/rocm/hcc/lib/libc.a failed
+attempt to open /opt/rocm/hsa/lib/libc.so failed
+attempt to open /opt/rocm/hsa/lib/libc.a failed
+attempt to open /opt/rocm/lib/libc.so failed
+attempt to open /opt/rocm/lib/libc.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libc.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libc.a failed
+attempt to open /usr/lib/openmpi/lib/libc.so failed
+attempt to open /usr/lib/openmpi/lib/libc.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libc.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libc.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libc.so succeeded
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libc.so
+opened script file /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libc.so
+attempt to open /lib/x86_64-linux-gnu/libc.so.6 succeeded
+/lib/x86_64-linux-gnu/libc.so.6
+attempt to open /usr/lib/x86_64-linux-gnu/libc_nonshared.a succeeded
+(/usr/lib/x86_64-linux-gnu/libc_nonshared.a)elf-init.oS
+attempt to open /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 succeeded
+/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+attempt to open /opt/rocm/hcc/lib/libgcc_s.so failed
+attempt to open /opt/rocm/hcc/lib/libgcc_s.a failed
+attempt to open /opt/rocm/hsa/lib/libgcc_s.so failed
+attempt to open /opt/rocm/hsa/lib/libgcc_s.a failed
+attempt to open /opt/rocm/lib/libgcc_s.so failed
+attempt to open /opt/rocm/lib/libgcc_s.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libgcc_s.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libgcc_s.a failed
+attempt to open /usr/lib/openmpi/lib/libgcc_s.so failed
+attempt to open /usr/lib/openmpi/lib/libgcc_s.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc_s.so succeeded
+-lgcc_s (/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc_s.so)
+attempt to open /opt/rocm/hcc/lib/libgcc.so failed
+attempt to open /opt/rocm/hcc/lib/libgcc.a failed
+attempt to open /opt/rocm/hsa/lib/libgcc.so failed
+attempt to open /opt/rocm/hsa/lib/libgcc.a failed
+attempt to open /opt/rocm/lib/libgcc.so failed
+attempt to open /opt/rocm/lib/libgcc.a failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libgcc.so failed
+attempt to open /opt/rocm/profiler/CXLActivityLogger/bin/x86_64/libgcc.a failed
+attempt to open /usr/lib/openmpi/lib/libgcc.so failed
+attempt to open /usr/lib/openmpi/lib/libgcc.a failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc.so failed
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc.a succeeded
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/crtend.o succeeded
+/usr/lib/gcc/x86_64-linux-gnu/5.4.0/crtend.o
+attempt to open /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crtn.o succeeded
+/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crtn.o
+attempt to open /opt/rocm/hcc/lib/libclang_rt.builtins-x86_64.so failed
+attempt to open /opt/rocm/hcc/lib/libclang_rt.builtins-x86_64.a succeeded
+liblzma.so.5 needed by /usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/libunwind.so
+found liblzma.so.5 at //lib/x86_64-linux-gnu/liblzma.so.5
+libelf.so.1 needed by /opt/rocm/lib/libhsa-runtime64.so
+found libelf.so.1 at /usr/lib/x86_64-linux-gnu/libelf.so.1
+libpci.so.3 needed by /opt/rocm/lib/libhsakmt.so
+found libpci.so.3 at //lib/x86_64-linux-gnu/libpci.so.3
+libibverbs.so.1 needed by /usr/lib/openmpi/lib/libmpi.so
+found libibverbs.so.1 at //usr/lib/libibverbs.so.1
+libopen-rte.so.12 needed by /usr/lib/openmpi/lib/libmpi.so
+found libopen-rte.so.12 at //usr/lib/libopen-rte.so.12
+libopen-pal.so.13 needed by /usr/lib/openmpi/lib/libmpi.so
+found libopen-pal.so.13 at //usr/lib/libopen-pal.so.13
+libz.so.1 needed by /usr/lib/x86_64-linux-gnu/libelf.so.1
+found libz.so.1 at //lib/x86_64-linux-gnu/libz.so.1
+libresolv.so.2 needed by //lib/x86_64-linux-gnu/libpci.so.3
+found libresolv.so.2 at //lib/x86_64-linux-gnu/libresolv.so.2
+libudev.so.1 needed by //lib/x86_64-linux-gnu/libpci.so.3
+found libudev.so.1 at //lib/x86_64-linux-gnu/libudev.so.1
+libhwloc.so.5 needed by //usr/lib/libopen-rte.so.12
+found libhwloc.so.5 at /usr/lib/x86_64-linux-gnu/libhwloc.so.5
+libutil.so.1 needed by //usr/lib/libopen-pal.so.13
+found libutil.so.1 at //lib/x86_64-linux-gnu/libutil.so.1
+libnuma.so.1 needed by /usr/lib/x86_64-linux-gnu/libhwloc.so.5
+found libnuma.so.1 at /usr/lib/x86_64-linux-gnu/libnuma.so.1
+libltdl.so.7 needed by /usr/lib/x86_64-linux-gnu/libhwloc.so.5
+found libltdl.so.7 at /usr/lib/x86_64-linux-gnu/libltdl.so.7
+rm hip/Timings.o hip/RCOForceTree.o hip/ParticleExchange.o hip/InitialExchange.o hip/Partition.o hip/bigchunk.o hip/ParticleDistribute.o hip/BGQCM.o BGQStep16.o hip/BHForceTree.o hip/RCBForceTree.o hip/Message.o hip/BGQStep16.o hip/Timer.o BGQCM.o

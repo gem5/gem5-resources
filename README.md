@@ -524,6 +524,51 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu
 
 <http://dist.gem5.org/dist/develop/test-progs/lulesh/lulesh>
 
+# Resource: halo-finder (HACC)
+
+[HACC](https://asc.llnl.gov/coral-2-benchmarks) is a DoE application designed to simulate the
+evolution of the universe by simulating the formation of structure in collisionless fluids
+under the influence of gravity. The halo-finder code can be GPU accelerated by using
+the code in RCBForceTree.cxx
+
+`src/halo-finder/src` contains the code required to build and run ForceTreeTest from `src/halo_finder` in the main HACC codebase.
+`src/halo-finder/src/dfft` contains the dfft code from `src/dfft` in the main HACC codebase.
+
+## Compilation and Running
+
+halo-finder requires that certain libraries that aren't installed by default in the
+GCN3 docker container provided by gem5, and that the environment is configured properly
+in order to build. We provide a Dockerfile that installs those libraries and
+sets the environment.
+
+In order to test the GPU code in halo-finder, we compile and run ForceTreeTest.
+
+To build the Docker image and the benchmark:
+```
+cd src/halo-finder
+docker build -t <image_name> .
+docker run --rm -v ${PWD}:${PWD} -w ${PWD}/src -u $UID:$GID <image_name> make hip/ForceTreeTest
+```
+
+The binary is built for gfx801 by default and is placed at `src/halo-finder/src/hip/ForceTreeTest`
+
+ForceTreeTest is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
+To build GCN3_X86:
+```
+# Working directory is your gem5 directory
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+```
+
+To run ForceTreeTest:
+```
+# Assuming gem5 and gem5-resources are in the working directory
+docker run --rm -v $PWD:$PWD -w $PWD -u $UID:$GID <image_name> gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/halo-finder/src/hip -cForceTreeTest --options="0.5 0.1 64 0.1 1 N 12 rcb"
+```
+
+## Pre-built binary
+
+<http://dist.gem5.org/dist/develop/test-progs/halo-finder/ForceTreeTest>
+
 # Resource: SPEC 2006
 
 The [Standard Performance Evaluation Corporation](
@@ -660,6 +705,8 @@ same licence as 'src/square/square.cpp'.
 'src/hip-samples/src'
 * **heterosync**: Consult `src/heterosync/LICENSE.txt`
 * **lulesh**: Consult the copyright notice in `src/lulesh/src/lulesh.hip.cc`
+* **halo-finder**: halo-finder is a subcomponent of HACC, which is licensed under
+a BSD license.
 * **spec 2006**: SPEC CPU 2006 requires purchase of benchmark suite from
 [SPEC](https://www.spec.org/cpu2006/) thus, it cannot be freely distributed.
 Consult individual copyright notices of source files in `src/spec-2006`.
