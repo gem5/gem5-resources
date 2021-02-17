@@ -62,7 +62,7 @@ gem5 scripts which configure the system and run the simulation are available
 in `configs/`.
 The main script `run_spec.py` expects following arguments:
 
-`usage: run_spec.py [-h] [-l] [-z] kernel disk cpu benchmark size`
+`usage: run_spec.py [-h] [-l] [-z] kernel disk cpu mem_sys benchmark size`
 
 `-h`: show this help message and exit.
 
@@ -85,19 +85,25 @@ detailed CPU model or KVM CPU model.
 
 The available CPU models are,
 
-| cpu    | Corresponding CPU model in gem5 |
-| ------ | ------------------------------- |
-| kvm    |                                 |
-| o3     | DerivO3CPU                      |
-| atomic | AtomicSimpleCPU                 |
-| timing | TimingSimpleCPU                 |
+| cpu      | Corresponding CPU model in gem5 |
+| ---------| ------------------------------- |
+| `kvm`    |                                 |
+| `o3`     | DerivO3CPU                      |
+| `atomic` | AtomicSimpleCPU                 |
+| `timing` | TimingSimpleCPU                 |
 
 `mem_sys`: required, a positional argument specifying the memory system.
-Specify `classic` for classic memory systems. Ruby Memory Systems `MI_example`,
-`MESI_Two_Level`, and `MOESI_CMP_directory` are also supported.
+The available memory systems are,
+
+| mem\_sys              | Notes                  |
+| --------------------- | ---------------------- |
+| `classic`             | classic memory system  |
+| `MI_example`          | Ruby memory system     |
+| `MESI_Two_Level`      | Ruby memory system     |
+| `MOESI_CMP_directory` | Ruby memory system     |
 
 `benchmark`: required, a positional argument specifying the name of the SPEC
-2006 workload to run. The available benchmarks are:
+2006 workload to run. The available benchmarks are,
 
 * 401.bzip2
 * 403.gcc
@@ -137,6 +143,7 @@ As a minimum the following parameters must be specified:
 ```
 
 **Note**: `--outdir` is a required argument when running the gem5 binary with SPEC 2006.
+The path to the output directory must be an absoblute path.
 
 ## Working Status
 Status of these benchmarks runs with respect to gem5-20, linux kernel version
