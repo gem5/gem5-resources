@@ -29,11 +29,13 @@
 """ This file creates a set of Ruby caches for the MESI TWO Level protocol
 This protocol models two level cache hierarchy. The L1 cache is split into
 instruction and data cache.
+
 This system support the memory size of up to 3GB.
+
 """
 
-
-
+from __future__ import print_function
+from __future__ import absolute_import
 
 import math
 
@@ -68,13 +70,14 @@ class MESITwoLevelCache(RubySystem):
         # There is a single global list of all of the controllers to make it
         # easier to connect everything to the global network. This can be
         # customized depending on the topology/network requirements.
-        # L1 caches are private to a core, hence there are one L1 cache per CPU core.
-        # The number of L2 caches are dependent to the architecture.
+        # L1 caches are private to a core, hence there are one L1 cache per CPU
+        # core. The number of L2 caches are dependent to the architecture.
         self.controllers = \
             [L1Cache(system, self, cpu, self._numL2Caches) for cpu in cpus] + \
-            [L2Cache(system, self, self._numL2Caches) for num in range(self._numL2Caches)] + \
-            [DirController(self, system.mem_ranges, mem_ctrls)] + \
-            [DMAController(self) for i in range(len(dma_ports))]
+            [L2Cache(system, self, self._numL2Caches) for num in \
+            range(self._numL2Caches)] + [DirController(self, \
+            system.mem_ranges, mem_ctrls)] + [DMAController(self) for i \
+            in range(len(dma_ports))]
 
         # Create one sequencer per CPU and dma controller.
         # Sequencers for other controllers can be here here.
@@ -220,7 +223,8 @@ class L2Cache(L2Cache_Controller):
         # This is the cache memory object that stores the cache data and tags
         self.L2cache = RubyCache(size = '1 MB',
                                 assoc = 16,
-                                start_index_bit = self.getBlockSizeBits(system, num_l2Caches))
+                                start_index_bit = self.getBlockSizeBits(system,
+                                num_l2Caches))
 
         self.transitions_per_cycle = '4'
         self.ruby_system = ruby_system
@@ -269,7 +273,7 @@ class DirController(Directory_Controller):
         self.ruby_system = ruby_system
         self.directory = RubyDirectoryMemory()
         # Connect this directory to the memory side.
-        self.memory = mem_ctrls[0].port
+        self.memory_out_port = mem_ctrls[0].port
         self.connectQueues(ruby_system)
 
     def connectQueues(self, ruby_system):
