@@ -75,8 +75,8 @@ if __name__ == "__m5_main__":
     if not cpu in ['kvm', 'timing']:
         m5.fatal("cpu not supported")
 
-    # create the system we are going to simulate
-    system = MySystem(kernel, disk, int(num_cpus), opts, no_kvm=False)
+    # create the system
+    system = MySystem(kernel, disk, cpu, int(num_cpus))
 
     # Exit from guest on workbegin/workend
     system.exit_on_work_items = True
@@ -123,7 +123,7 @@ if __name__ == "__m5_main__":
         start_insts = system.totalInsts()
         # switching to timing cpu if argument cpu == timing
         if cpu == 'timing':
-            system.switchCpus(system.cpu, system.timingCpu)
+            system.switchCpus(system.cpu, system.detailedCpu)
     else:
         print("Unexpected termination of simulation!")
         print()

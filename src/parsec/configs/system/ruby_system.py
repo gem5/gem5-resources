@@ -28,14 +28,13 @@ import m5
 from m5.objects import *
 from m5.util import convert
 from .fs_tools import *
-from .caches import *
 
-class MySystem(System):
 
-    def __init__(self, kernel, disk, cpu_type, num_cpus, no_kvm = False):
-        super(MySystem, self).__init__()
+class MyRubySystem(System):
 
-        self._no_kvm = no_kvm
+    def __init__(self, kernel, disk, cpu_type, mem_sys, num_cpus):
+        super(MyRubySystem, self).__init__()
+
         self._host_parallel = cpu_type == "kvm"
 
         # Set up the clock domain and the voltage domain
@@ -47,16 +46,7 @@ class MySystem(System):
                            AddrRange(0xC0000000, size=0x100000), # For I/0
                            ]
 
-        # Create the main memory bus
-        # This connects to main memory
-        self.membus = SystemXBar(width = 64) # 64-byte width
-        self.membus.badaddr_responder = BadAddr()
-        self.membus.default = Self.badaddr_responder.pio
-
-        # Set up the system port for functional access from the simulator
-        self.system_port = self.membus.cpu_side_ports
-
-        self.initFS(self.membus, num_cpus)
+        self.initFS(num_cpus)
 
         # Replace these paths with the path to your disk images.
         # The first disk is the root disk. The second could be used for swap
@@ -74,13 +64,21 @@ class MySystem(System):
         # Create the CPUs for our system.
         self.createCPU(cpu_type, num_cpus)
 
-        # Create the cache heirarchy for the system.
-        self.createCacheHierarchy()
-
-        # Set up the interrupt controllers for the system (x86 specific)
-        self.setupInterrupts()
-
         self.createMemoryControllersDDR3()
+
+        # Create the cache hierarchy for the system.
+        if mem_sys == 'MI_example':
+            from .MI_example_caches import MIExampleSystem
+            self.caches = MIExampleSystem()
+        elif mem_sys == 'MESI_Two_Level':
+            from .MESI_Two_Level import MESITwoLevelCache
+            self.caches = MESITwoLevelCache()
+        elif mem_sys == 'MOESI_CMP_directory':
+            from .MOESI_CMP_directory import MOESICMPDirCache
+            self.caches = MOESICMPDirCache()
+        self.caches.setup(self, self.cpu, self.mem_cntrls,
+                          [self.pc.south_bridge.ide.dma, self.iobus.mem_side_ports],
+                          self.iobus)
 
         if self._host_parallel:
             # To get the KVM CPUs to run on different host CPUs
@@ -97,158 +95,57 @@ class MySystem(System):
         return sum([cpu.totalInsts() for cpu in self.cpu])
 
     def createCPU(self, cpu_type, num_cpus):
-        # set up a kvm core or an atomic core to boot
-        if self._no_kvm:
-            self.cpu = [AtomicSimpleCPU(cpu_id = i, switched_out = False)
+        if cpu_type == "atomic":
+            self.cpu = [AtomicSimpleCPU(cpu_id = i)
                               for i in range(num_cpus)]
             self.mem_mode = 'atomic'
-        else:
+        elif cpu_type == "kvm":
             # Note KVM needs a VM and atomic_noncaching
-            self.cpu = [X86KvmCPU(cpu_id = i, switched_out = False)
+            self.cpu = [X86KvmCPU(cpu_id = i)
                         for i in range(num_cpus)]
             self.kvm_vm = KvmVM()
             self.mem_mode = 'atomic_noncaching'
-
-        for cpu in self.cpu:
-            cpu.createThreads()
-
-        # set up the detailed cpu or a kvm model with more cores
-        if cpu_type == "atomic":
-            self.detailedCpu = [AtomicSimpleCPU(cpu_id = i, switched_out = True)
-                                 for i in range(num_cpus)]
-        elif cpu_type == "kvm":
-            # Note KVM needs a VM and atomic_noncaching
-            self.detailedCpu = [X86KvmCPU(cpu_id = i, switched_out = True)
-                                 for i in range(num_cpus)]
-            self.kvm_vm = KvmVM()
         elif cpu_type == "o3":
-            self.detailedCpu = [DerivO3CPU(cpu_id = i, switched_out = True)
-                                 for i in range(num_cpus)]
-        elif cpu_type == "simple" or cpu_type == "timing":
-            self.detailedCpu = [TimingSimpleCPU(cpu_id = i, switched_out = True)
-                                 for i in range(num_cpus)]
+            self.cpu = [DerivO3CPU(cpu_id = i)
+                        for i in range(num_cpus)]
+            self.mem_mode = 'timing'
+        elif cpu_type == "simple":
+            self.cpu = [TimingSimpleCPU(cpu_id = i)
+                        for i in range(num_cpus)]
+            self.mem_mode = 'timing'
         else:
             m5.fatal("No CPU type {}".format(cpu_type))
 
-        for cpu in self.detailedCpu:
+        for cpu in self.cpu:
             cpu.createThreads()
-
-    def switchCpus(self, old, new):
-        assert(new[0].switchedOut())
-        m5.switchCpus(self, list(zip(old, new)))
+            cpu.createInterruptController()
 
     def setDiskImages(self, img_path_1, img_path_2):
         disk0 = CowDisk(img_path_1)
         disk2 = CowDisk(img_path_2)
         self.pc.south_bridge.ide.disks = [disk0, disk2]
 
-    def createCacheHierarchy(self):
-        for cpu in self.cpu:
-            # Create a memory bus, a coherent crossbar, in this case
-            cpu.l2bus = L2XBar()
-
-            # Create an L1 instruction and data cache
-            cpu.icache = L1ICache()
-            cpu.dcache = L1DCache()
-            cpu.mmucache = MMUCache()
-
-            # Connect the instruction and data caches to the CPU
-            cpu.icache.connectCPU(cpu)
-            cpu.dcache.connectCPU(cpu)
-            cpu.mmucache.connectCPU(cpu)
-
-            # Hook the CPU ports up to the l2bus
-            cpu.icache.connectBus(cpu.l2bus)
-            cpu.dcache.connectBus(cpu.l2bus)
-            cpu.mmucache.connectBus(cpu.l2bus)
-
-            # Create an L2 cache and connect it to the l2bus
-            cpu.l2cache = L2Cache()
-            cpu.l2cache.connectCPUSideBus(cpu.l2bus)
-
-            # Connect the L2 cache to the L3 bus
-            cpu.l2cache.connectMemSideBus(self.membus)
-
-    def setupInterrupts(self):
-        for cpu in self.cpu:
-            # create the interrupt controller CPU and connect to the membus
-            cpu.createInterruptController()
-
-            # For x86 only, connect interrupts to the memory
-            # Note: these are directly connected to the memory bus and
-            #       not cached
-            cpu.interrupts[0].pio = self.membus.mem_side_ports
-            cpu.interrupts[0].int_requestor = self.membus.cpu_side_ports
-            cpu.interrupts[0].int_responder = self.membus.mem_side_ports
-
-
     def createMemoryControllersDDR3(self):
         self._createMemoryControllers(1, DDR3_1600_8x8)
 
     def _createMemoryControllers(self, num, cls):
         self.mem_cntrls = [
-            MemCtrl(dram = cls(range = self.mem_ranges[0]),
-                    port = self.membus.mem_side_ports)
+            MemCtrl(dram = cls(range = self.mem_ranges[0]))
             for i in range(num)
         ]
 
-    def initFS(self, membus, cpus):
+    def initFS(self, cpus):
         self.pc = Pc()
 
         self.workload = X86FsLinux()
 
-        # Constants similar to x86_traits.hh
-        IO_address_space_base = 0x8000000000000000
-        pci_config_address_space_base = 0xc000000000000000
-        interrupts_address_space_base = 0xa000000000000000
-        APIC_range_size = 1 << 12
-
         # North Bridge
         self.iobus = IOXBar()
-        self.bridge = Bridge(delay='50ns')
-        self.bridge.mem_side_port = self.iobus.cpu_side_ports
-        self.bridge.cpu_side_port = membus.mem_side_ports
-        # Allow the bridge to pass through:
-        #  1) kernel configured PCI device memory map address: address range
-        #  [0xC0000000, 0xFFFF0000). (The upper 64kB are reserved for m5ops.)
-        #  2) the bridge to pass through the IO APIC (two pages, already
-        #     contained in 1),
-        #  3) everything in the IO address range up to the local APIC, and
-        #  4) then the entire PCI address space and beyond.
-        self.bridge.ranges = \
-            [
-            AddrRange(0xC0000000, 0xFFFF0000),
-            AddrRange(IO_address_space_base,
-                      interrupts_address_space_base - 1),
-            AddrRange(pci_config_address_space_base,
-                      Addr.max)
-            ]
-
-        # Create a bridge from the IO bus to the memory bus to allow access
-        # to the local APIC (two pages)
-        self.apicbridge = Bridge(delay='50ns')
-        self.apicbridge.cpu_side_port = self.iobus.mem_side_ports
-        self.apicbridge.mem_side_port = membus.cpu_side_ports
-        self.apicbridge.ranges = [AddrRange(interrupts_address_space_base,
-                                            interrupts_address_space_base +
-                                            cpus * APIC_range_size
-                                            - 1)]
 
         # connect the io bus
-        self.pc.attachIO(self.iobus)
-
-        # Add a tiny cache to the IO bus.
-        # This cache is required for the classic memory model for coherence
-        self.iocache = Cache(assoc=8,
-                            tag_latency = 50,
-                            data_latency = 50,
-                            response_latency = 50,
-                            mshrs = 20,
-                            size = '1kB',
-                            tgts_per_mshr = 12,
-                            addr_ranges = self.mem_ranges)
-        self.iocache.cpu_side = self.iobus.mem_side_ports
-        self.iocache.mem_side = self.membus.cpu_side_ports
+        # Note: pass in a reference to where Ruby will connect to in the future
+        # so the port isn't connected twice.
+        self.pc.attachIO(self.iobus, [self.pc.south_bridge.ide.dma])
 
         self.intrctrl = IntrControl()
 
