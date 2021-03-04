@@ -402,7 +402,7 @@ an example for using an HSA Agent Packet to send commands to the GPU command
 processor included in the GCN_X86 build of gem5.
 
 The example command extracts the kernel's completion signal from the domain
-of the command processor and the GPU's dispatcher. Initially this was a 
+of the command processor and the GPU's dispatcher. Initially this was a
 workaround for the hipDeviceSynchronize bug, now fixed. The method of
 waiting on a signal can be applied to other agent packet commands though.
 
@@ -741,6 +741,17 @@ The boot-tests resources consist of three main components:
 - linux kernel configuration files
 
 The instructions to build the boot-tests disk image (`boot-exit`), the Linux binaries, and how to use gem5 run scripts to run boot-tests are available in this [README](src/boot-tests/README.md) file.
+
+# Resource: RISCV Full System Test
+
+This resource refers to a simple setup for a riscv based full system simulation of Linux kernel.
+
+Main components include:
+- a disk image
+- a riscv boot loader with linux kernel as payload and a device tree compiled in
+- gem5 run/config scripts
+
+The instructions to build a riscv disk image, a riscv boot loader (`berkeley bootloader (bbl)`) and how to use gem5 scripts to run riscv Linux full system simulations are available in this [README](src/riscv-fs/README.md) file.
 
 # Resource: Insttest
 
