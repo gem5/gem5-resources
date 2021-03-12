@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright (c) 2016 Jason Lowe-Power
+# Copyright (c) 2021 The Regents of the University of California
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -24,8 +23,6 @@
 # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
-# Authors: Jason Lowe-Power
 
 import m5
 from m5.objects import *
@@ -187,7 +184,7 @@ class MySystem(System):
         IO_address_space_base = 0x8000000000000000
         pci_config_address_space_base = 0xc000000000000000
         interrupts_address_space_base = 0xa000000000000000
-        APIC_range_size = 1 << 12;
+        APIC_range_size = 1 << 12
 
         # North Bridge
         self.iobus = IOXBar()
