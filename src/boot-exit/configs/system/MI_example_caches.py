@@ -91,7 +91,7 @@ class MIExampleSystem(RubySystem):
                                 pio_response_port = iobus.mem_side_ports
                                 ) for i in range(len(cpus))] + \
                           [DMASequencer(version = i,
-                                        in_port = port)
+                                        in_ports = port)
                             for i,port in enumerate(dma_ports)
                           ]
 
