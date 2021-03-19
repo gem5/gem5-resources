@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # gem5 Resources
 
 This repository contains the sources needed to compile the gem5 resources.
