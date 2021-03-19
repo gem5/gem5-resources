@@ -1,4 +1,8 @@
-# Linux boot-exit image
+---
+title: Linux boot-exit image
+layout: default
+permalink: resources/boot-exit
+---
 
 This document provides instructions to create the "boot-exit" image, the Linux kernel binaries, and also points to the gem5 configuration files needed to run the boot.
 The boot-exit disk image is based on Ubuntu 18.04 and has its `.bashrc` file modified in such a way that the guest OS terminates the simulation (using the `m5 exit` instruction) as soon as the system boots.
