@@ -9,6 +9,7 @@ when carrying out specific simulations.
 The structure of this repository is as follows:
 
 * **src** : The resource sources.
+* **docs**: The documentation and website for gem5 resources (resources.gem5.org)
 
 The following sections outline our versioning policy, how to make changes
 to this repository, and describe each resource and how they may be built.

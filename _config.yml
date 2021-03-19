@@ -1,0 +1,20 @@
+url: "https://resources.gem5.org"
+baseurl: ""
+title: "gem5 Resources"
+
+# Defaults from gh-pages (for testing)
+lsi: false
+safe: true
+source: .
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+sass:
+  sass_dir: web/_sass
+
+layouts_dir: web/_layouts
