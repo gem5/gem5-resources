@@ -28,3 +28,4 @@
 # Authors: Jason Lowe-Power
 
 from .system import MySystem
+from .ruby_system import MyRubySystem

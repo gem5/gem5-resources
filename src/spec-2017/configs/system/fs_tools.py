@@ -37,4 +37,3 @@ class CowDisk(IdeDisk):
         self.image = CowDiskImage(child=RawDiskImage(read_only=True),
                                   read_only=False)
         self.image.child.image_file = filename
-
