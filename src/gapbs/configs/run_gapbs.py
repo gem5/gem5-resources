@@ -57,7 +57,10 @@ def parse_arguments():
                         help = "1 for synthetic graph, 0 for real graph")
     parser.add_argument("graph", type = str,
                         help = "synthetic=1: integer number. synthetic=0: graph")
-
+    parser.add_argument("-z", "--allow-listeners", default = False,
+                        action = "store_true",
+                        help = "Turn on listeners (e.g. gdb listener port);"
+                               "The listeners are off by default")
     return parser.parse_args()
 
 
@@ -70,10 +73,15 @@ def writeBenchScript(dir, benchmark_name, size, synthetic):
     input_file_name = '{}/run_{}_{}'.format(dir, benchmark_name, size)
     if (synthetic):
         with open(input_file_name,"w") as f:
-           f.write('./{} -g {}\n'.format(benchmark_name, size))
+            f.write('./{} -g {}\n'.format(benchmark_name, size))
     elif(synthetic==0):
         with open(input_file_name,"w") as f:
-           f.write('./{} -sf {}'.format(benchmark_name, size))
+            # The workloads that are copied to the disk image using Packer
+            # should be located in /home/gem5/.
+            # Since the command running the workload will be executed with
+            # pwd = /home/gem5/gapbs, the path to the copied workload is
+            # ../{workload-name}
+            f.write('./{} -sf ../{}'.format(benchmark_name, size))
 
     return input_file_name
 
@@ -89,6 +97,7 @@ if __name__ == "__m5_main__":
     benchmark_name = args.benchmark
     benchmark_size = args.graph
     synthetic = args.synthetic
+    allow_listeners = args.allow_listeners
 
     if (mem_sys == "classic"):
         system = MySystem(kernel, disk, cpu_type, num_cpus)
@@ -116,6 +125,9 @@ if __name__ == "__m5_main__":
         # Uses gem5's parallel event queue feature
         # Note: The simulator is quite picky about this number!
         root.sim_quantum = int(1e9) # 1 ms
+
+    if not allow_listeners:
+        m5.disableAllListeners()
 
     # instantiate all of the objects we've created above
     m5.instantiate()

@@ -1,40 +1,39 @@
-gem5 Specifc RISC-V tests
-=========================
+asmtest: gem5 Specifc RISC-V tests
+==================================
 
 About
 -----
 
 This work provides assembly testing infrastructure including single-threaded
-and multi-threaded tests for RISC-V ISA in gem5. Each test targets an
-individual RISC-V instruction or a Linux system call. This work targets
-system call emulation (SE) mode in gem5.
+and multi-threaded tests for the RISC-V ISA in gem5. Each test targets an
+individual RISC-V instruction or a Linux system call. It uses system call
+emulation (SE) mode in gem5.
 
-This work is based on the riscv-tests project.
+This work is based on the "riscv-tests" project.
 
 Link to the orignal riscv-tests projects can be found here:
-  https://github.com/riscv/riscv-tests
+  <https://github.com/riscv/riscv-tests>
 
 Link to the original riscv-tests project's LICENSE and README can be found
 here:
-  https://github.com/riscv/riscv-tests/blob/master/LICENSE
-  https://github.com/riscv/riscv-tests/blob/master/README.md
+  <https://github.com/riscv/riscv-tests/blob/master/LICENSE>
 
-Specific commit ID that this work is based off:
-  68cad7baf3ed0a4553fffd14726d24519ee1296a
+  <https://github.com/riscv/riscv-tests/blob/master/README.md>
+
+Specific commit ID that this work is based off: <https://github.com/riscv/riscv-tests/tree/68cad7baf3ed0a4553fffd14726d24519ee1296a>.
 
 Changes from the orignal riscv-tests project
 --------------------------------------------
 
-1. Only rv64 tests are imported into this work
+1. Only rv64 tests are used in this work
 
 The original project offers both rv64 and rv32 tests. Since the current
 implementation of RISC-V in gem5 is focused on its 64-bit version, only
-64-bit tests (rv64) are imported from the original project. Future work
-on 32-bit can easily integrate all 32-bit tests into gem5.
+64-bit tests (rv64) are imported from the original project.
 
 2. New testing environment for gem5
 
-Since the original riscv-tests project is designed for bare-metal system (i.e.,
+Since the original riscv-tests project is designed for bare-metal systems (i.e.,
 without OS support), it offers several environments to control how a test
 interacts with a host machine (to-host communication). However, in gem5 SE
 mode, gem5 emulates an OS, and there is no host machine. Therefore, we
@@ -77,7 +76,7 @@ How to compile this test suite
 ------------------------------
 
 1. Install RISC-V GNU toolchain. Source code and instruction on how to install
-it can be found here: https://github.com/riscv/riscv-gnu-toolchain
+it can be found here: <https://github.com/riscv/riscv-gnu-toolchain>.
 
 2. Run `make`
 

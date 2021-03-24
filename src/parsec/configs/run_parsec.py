@@ -47,7 +47,7 @@ import SimpleOpts
 
 from system import *
 
-def writeBenchScript(dir, bench, size):
+def writeBenchScript(dir, bench, size, num_cpus):
     """
     This method creates a script in dir which will be eventually
     passed to the simulated system (to run a specific benchmark
@@ -58,7 +58,7 @@ def writeBenchScript(dir, bench, size):
     bench_file.write('cd /home/gem5/parsec-benchmark\n')
     bench_file.write('source env.sh\n')
     bench_file.write('parsecmgmt -a run -p \
-            {} -c gcc-hooks -i {}\n'.format(bench, size))
+            {} -c gcc-hooks -i {} -n {}\n'.format(bench, size, num_cpus))
 
     # sleeping for sometime makes sure
     # that the benchmark's output has been
@@ -75,15 +75,16 @@ if __name__ == "__m5_main__":
     if not cpu in ['kvm', 'timing']:
         m5.fatal("cpu not supported")
 
-    # create the system we are going to simulate
-    system = MySystem(kernel, disk, int(num_cpus), opts, no_kvm=False)
+    # create the system
+    system = MySystem(kernel, disk, cpu, int(num_cpus))
 
     # Exit from guest on workbegin/workend
     system.exit_on_work_items = True
 
     # Create and pass a script to the simulated system to run the reuired
     # benchmark
-    system.readfile = writeBenchScript(m5.options.outdir, benchmark, size)
+    system.readfile = writeBenchScript(m5.options.outdir, benchmark, size,
+                                       num_cpus)
 
     # set up the root SimObject and start the simulation
     root = Root(full_system = True, system = system)
@@ -123,7 +124,7 @@ if __name__ == "__m5_main__":
         start_insts = system.totalInsts()
         # switching to timing cpu if argument cpu == timing
         if cpu == 'timing':
-            system.switchCpus(system.cpu, system.timingCpu)
+            system.switchCpus(system.cpu, system.detailedCpu)
     else:
         print("Unexpected termination of simulation!")
         print()
