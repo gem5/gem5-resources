@@ -67,6 +67,11 @@
             "destination": "/home/gem5/"
         },
         {
+            "type": "file",
+            "source": "gapbs/USA-road-d.NY.gr",
+            "destination": "/home/gem5/"
+        },
+        {
             "type": "shell",
             "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
             "scripts":

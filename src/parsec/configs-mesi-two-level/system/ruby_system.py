@@ -75,7 +75,8 @@ class MyRubySystem(System):
         self.caches = MESITwoLevelCache()
 
         self.caches.setup(self, self.cpu, self.mem_cntrls,
-                          [self.pc.south_bridge.ide.dma, self.iobus.master],
+                          [self.pc.south_bridge.ide.dma,
+                           self.iobus.mem_side_ports],
                           self.iobus)
 
         if self._host_parallel:

@@ -15,7 +15,7 @@
 /*
 
     This file is part of VIPS.
-    
+
     VIPS is free software; you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -107,7 +107,7 @@ guess_prefix_vec( im_object *argv )
 }
 
 /* Description of im_guess_prefix.
- */ 
+ */
 static im_function guess_prefix_desc = {
 	"im_guess_prefix", 		/* Name */
 	"guess install area",		/* Description */
@@ -143,7 +143,7 @@ guess_libdir_vec( im_object *argv )
 }
 
 /* Description of im_guess_libdir.
- */ 
+ */
 static im_function guess_libdir_desc = {
 	"im_guess_libdir", 		/* Name */
 	"guess library area",		/* Description */
@@ -166,12 +166,12 @@ static im_arg_desc header_int_args[] = {
 static int
 header_int_vec( im_object *argv )
 {
-	return( im_header_int( (IMAGE *) argv[1], (const char *) argv[0], 
+	return( im_header_int( (IMAGE *) argv[1], (const char *) argv[0],
 		(int *) argv[2] ) );
 }
 
 /* Description of im_header_int().
- */ 
+ */
 static im_function header_int_desc = {
 	"im_header_int", 		/* Name */
 	"extract int fields from header",	/* Description */
@@ -196,14 +196,14 @@ header_get_typeof_vec( im_object *argv )
 {
 	int *out = (int *) argv[2];
 
-	*out = im_header_get_typeof( (IMAGE *) argv[1], 
-		(const char *) argv[0] ); 
+	*out = im_header_get_typeof( (IMAGE *) argv[1],
+		(const char *) argv[0] );
 
 	return( 0 );
 }
 
 /* Description of im_header_get_typeof().
- */ 
+ */
 static im_function header_get_typeof_desc = {
 	"im_header_get_typeof",		/* Name */
 	"return field type",		/* Description */
@@ -226,12 +226,12 @@ static im_arg_desc header_double_args[] = {
 static int
 header_double_vec( im_object *argv )
 {
-	return( im_header_double( (IMAGE *) argv[1], (const char *) argv[0], 
+	return( im_header_double( (IMAGE *) argv[1], (const char *) argv[0],
 		(double *) argv[2] ) );
 }
 
 /* Description of im_header_double().
- */ 
+ */
 static im_function header_double_desc = {
 	"im_header_double", 		/* Name */
 	"extract double fields from header",	/* Description */
@@ -259,7 +259,7 @@ header_string_vec( im_object *argv )
 	/* Actually, we call im_header_as_string(), so we can do any field and
 	 * not just the string-valued ones.
 	 */
-	if( im_header_as_string( (IMAGE *) argv[1], 
+	if( im_header_as_string( (IMAGE *) argv[1],
 		(const char *) argv[0], out ) )
 		return( -1 );
 
@@ -267,7 +267,7 @@ header_string_vec( im_object *argv )
 }
 
 /* Description of im_header_string().
- */ 
+ */
 static im_function header_string_desc = {
 	"im_header_string", 		/* Name */
 	"extract fields from headers as strings",	/* Description */
@@ -300,7 +300,7 @@ history_get_vec( im_object *argv )
 }
 
 /* Description of im_history_get().
- */ 
+ */
 static im_function history_get_desc = {
 	"im_history_get", 		/* Name */
 	"return the image history as a string",	/* Description */
@@ -334,7 +334,7 @@ getext_vec( im_object *argv )
 }
 
 /* Description of im_getext().
- */ 
+ */
 static im_function getext_desc = {
 	"im_getext", 			/* Name */
 	"return the image metadata XML as a string",	/* Description */
@@ -361,7 +361,7 @@ printdesc_vec( im_object *argv )
 }
 
 /* Description of im_printdesc().
- */ 
+ */
 static im_function printdesc_desc = {
 	"im_printdesc", 		/* Name */
 	"print an image header to stdout",	/* Description */
@@ -389,7 +389,7 @@ version_string_vec( im_object *argv )
 }
 
 /* Description of im_version_string.
- */ 
+ */
 static im_function version_string_desc = {
 	"im_version_string", 		/* Name */
 	"VIPS version string",		/* Description */
@@ -425,7 +425,7 @@ version_vec( im_object *argv )
 }
 
 /* Description of im_version.
- */ 
+ */
 static im_function version_desc = {
 	"im_version", 			/* Name */
 	"VIPS version number",		/* Description */
@@ -454,12 +454,12 @@ cache_vec( im_object *argv )
 	int tile_height = *((int *) argv[3]);
 	int max_tiles = *((int *) argv[4]);
 
-	return( im_cache( argv[0], argv[1], 
+	return( im_cache( argv[0], argv[1],
 		tile_width, tile_height, max_tiles ) );
 }
 
 /* Description of im_cache.
- */ 
+ */
 static im_function cache_desc = {
 	"im_cache", 			/* Name */
 	"cache results of an operation",/* Description */
@@ -495,7 +495,7 @@ binfile_vec( im_object *argv )
 		return( -1 );
 
 	if( im_copy( im, argv[1] ) ||
-		im_add_close_callback( argv[1], 
+		im_add_close_callback( argv[1],
 			(im_callback_fn) im_close, im, NULL ) ) {
                 im_close( im );
 		return( -1 );
@@ -505,7 +505,7 @@ binfile_vec( im_object *argv )
 }
 
 /* Description of im_binfile.
- */ 
+ */
 static im_function binfile_desc = {
 	"im_binfile", 			/* Name */
 	"open a headerless binary file",/* Description */
@@ -587,7 +587,7 @@ plugin_free( Plugin *plug )
 
 	if( plug->module ) {
 		if( !g_module_close( plug->module ) ) {
-			im_error( "plugin", 
+			im_error( "plugin",
 				_( "unable to close plugin \"%s\"" ), name );
 			im_error( "plugin", "%s", g_module_error() );
 			return( -1 );
@@ -612,14 +612,14 @@ im_load_plugin( const char *name )
 	Plugin *plug;
 
 	if( !g_module_supported() ) {
-		im_error( "plugin",	
+		im_error( "plugin",
 			"%s", _( "plugins not supported on this platform" ) );
 		return( NULL );
 	}
 
 	/* Build a new plugin.
 	 */
-	if( !(plug = IM_NEW( NULL, Plugin )) ) 
+	if( !(plug = IM_NEW( NULL, Plugin )) )
 		return( NULL );
 	plug->module = NULL;
 	plug->name = NULL;
@@ -647,7 +647,7 @@ im_load_plugin( const char *name )
 	 */
 	/* Bizarre double-cast stops a bogus gcc 4.1 compiler warning.
 	 */
-	if( !g_module_symbol( plug->module, 
+	if( !g_module_symbol( plug->module,
 		"package_table", (gpointer *) ((void *) &plug->pack) ) ) {
 		im_error( "plugin",
 			_( "unable to find symbol \"package_table\" "
@@ -660,7 +660,7 @@ im_load_plugin( const char *name )
 
 	/* Sanity check.
 	 */
-	if( !plug->pack->name || plug->pack->nfuncs < 0 || 
+	if( !plug->pack->name || plug->pack->nfuncs < 0 ||
 		plug->pack->nfuncs > 10000 ) {
 		im_error( "plugin",
 			_( "corrupted package table in plugin \"%s\"" ), name );
@@ -697,17 +697,17 @@ im_load_plugins( const char *fmt, ... )
         (void) im_vsnprintf( dir_name, PATH_MAX - 1, fmt, ap );
         va_end( ap );
 
-        if( !(dir = g_dir_open( dir_name, 0, NULL )) ) 
+        if( !(dir = g_dir_open( dir_name, 0, NULL )) )
 		/* Silent success for dir not there.
 		 */
                 return( 0 );
 
         result = 0;
         while( (name = g_dir_read_name( dir )) )
-                if( im_ispostfix( name, ".plg" ) ) { 
+                if( im_ispostfix( name, ".plg" ) ) {
 			char path[PATH_MAX];
 
-			im_snprintf( path, PATH_MAX - 1, 
+			im_snprintf( path, PATH_MAX - 1,
 				"%s" G_DIR_SEPARATOR_S "%s", dir_name, name );
 			if( !im_load_plugin( path ) )
 				result = -1;
@@ -746,7 +746,7 @@ apply_plugin( Plugin *plug, VSListMap2Fn fn, void *a )
 void *
 im_map_packages( VSListMap2Fn fn, void *a )
 {
-	void *r = im_slist_map2( plugin_list, 
+	void *r = im_slist_map2( plugin_list,
 		(VSListMap2Fn) apply_plugin, (void *) fn, a );
 	int i;
 
@@ -767,7 +767,7 @@ search_package( im_package *pack, const char *name )
 {
 	int i;
 
-	for( i = 0; i < pack->nfuncs; i++ ) 
+	for( i = 0; i < pack->nfuncs; i++ )
 		if( strcmp( pack->table[i]->name, name ) == 0 )
 			return( pack->table[i] );
 
@@ -779,7 +779,7 @@ search_package( im_package *pack, const char *name )
 im_function *
 im_find_function( const char *name )
 {
-	im_function *fn = im_map_packages( 
+	im_function *fn = im_map_packages(
 		(VSListMap2Fn) search_package, (void *) name );
 
 	if( !fn ) {
@@ -806,7 +806,7 @@ package_name( im_package *pack, const char *name )
 im_package *
 im_find_package( const char *name )
 {
-	im_package *pack = im_map_packages( 
+	im_package *pack = im_map_packages(
 		(VSListMap2Fn) package_name, (void *) name );
 
 	if( !pack ) {
@@ -833,7 +833,7 @@ package_function( im_package *pack, const char *name )
 im_package *
 im_package_of_function( const char *name )
 {
-	im_package *pack = im_map_packages( 
+	im_package *pack = im_map_packages(
 		(VSListMap2Fn) package_function, (void *) name );
 
 	if( !pack ) {
@@ -915,7 +915,7 @@ destroy_args( im_function *fn, im_object *vargv )
 	/* Destroy all elements with destroy functions.
 	 */
 	for( i = 0; i < vargc; i++ )
-		if( vargv[i] ) 
+		if( vargv[i] )
 			/* If there's a destroy function for this type,
 			 * trigger it.
 			 */
@@ -995,17 +995,17 @@ region_local_image( IMAGE *main, IMAGE *sub )
 
 	if( !(reg = im_region_create( sub )) )
 		return( -1 );
-        if( im_add_close_callback( main, 
+        if( im_add_close_callback( main,
 		(im_callback_fn) region_free, reg, NULL ) ) {
                 im_region_free( reg );
 
                 return( -1 );
         }
- 
+
         return( 0 );
 }
 
-/* vargv[i] is an output image on a PIO function ... make all input images 
+/* vargv[i] is an output image on a PIO function ... make all input images
  * depend on it.
  */
 static int
@@ -1026,7 +1026,7 @@ note_dependencies( im_function *fn, im_object *vargv, int i )
 				int k;
 
 				for( k = 0; k < iv->n; k++ )
-					if( region_local_image( vargv[i], 
+					if( region_local_image( vargv[i],
 						iv->vec[k] ) )
 						return( -1 );
 			}
@@ -1047,7 +1047,7 @@ print_args( im_function *fn, im_object *vargv )
 	/* Print all elements.
 	 */
 	for( i = 0; i < vargc; i++ )
-		if( fn->argv[i].print && vargv[i] ) 
+		if( fn->argv[i].print && vargv[i] )
 			if( fn->argv[i].print( vargv[i] ) )
 				return( -1 );
 
@@ -1082,7 +1082,7 @@ dispatch_function( im_function *fn, im_object *vargv, int argc, char **argv )
 
 	/* Init memory from command line arguments.
 	 */
-	if( build_args( fn, vargv, argc, argv ) ) 
+	if( build_args( fn, vargv, argc, argv ) )
 		return( -1 );
 
 	/* If this is a PIO function, we need to make sure that we close
@@ -1108,12 +1108,12 @@ dispatch_function( im_function *fn, im_object *vargv, int argc, char **argv )
 
 	/* Call function.
 	 */
-	if( fn->disp( vargv ) ) 
+	if( fn->disp( vargv ) )
 		return( -1 );
 
 	/* Print output.
 	 */
-	if( print_args( fn, vargv ) ) 
+	if( print_args( fn, vargv ) )
 		return( -1 );
 
 	/* Add to history of all output images.
@@ -1134,6 +1134,9 @@ im_run_command( char *name, int argc, char **argv )
 	static im_object object_array[IM_MAX_ARGS];
 	im_object *vargv = object_array;
 	im_function *fn;
+	#ifdef ENABLE_PARSEC_HOOKS
+	__parsec_roi_begin();
+	#endif
 
 	/* Search packages for a matching function.
 	 */
@@ -1142,11 +1145,11 @@ im_run_command( char *name, int argc, char **argv )
 
 	/* Allocate space for arguments.
 	 */
-	if( im_allocate_vargv( fn, vargv ) ) 
+	if( im_allocate_vargv( fn, vargv ) )
 		return( -1 );
 
 	/* Call it.
-	 */ 
+	 */
 	if( dispatch_function( fn, vargv, argc, argv ) ) {
 		destroy_args( fn, vargv );
 		im_free_vargv( fn, vargv );
@@ -1155,10 +1158,13 @@ im_run_command( char *name, int argc, char **argv )
 
 	/* Clean up and exit.
 	 */
-	if( destroy_args( fn, vargv ) ) 
+	if( destroy_args( fn, vargv ) )
 		return( -1 );
 	im_free_vargv( fn, vargv );
 
+	#ifdef ENABLE_PARSEC_HOOKS
+	__parsec_roi_end();
+	#endif
 	return( 0 );
 }
 
@@ -1191,10 +1197,10 @@ im_version( int flag )
 	switch( flag ) {
 	case 0:
 		return( IM_MAJOR_VERSION );
-	
+
 	case 1:
 		return( IM_MINOR_VERSION );
-	
+
 	case 2:
 		return( IM_MICRO_VERSION );
 

@@ -1,7 +1,7 @@
 # NAS Parallel Benchmarks (NPB) Tests
 
-This document provides instructions to create a disk image and a Linux binary to run the NPB tests with gem5 and points to the gem5 configuration files needed to run these tests.
-NAS parallel benchmarks ([NPB](https://www.nas.nasa.gov/)) belongs to the category of high performance computing (HPC) workloads and consists of different kernel and pseudo applications:
+This document provides instructions to create a disk image needed to run the NPB tests with gem5 and points to the gem5 configuration files needed to run these tests.
+The NAS parallel benchmarks ([NPB](https://www.nas.nasa.gov/)) are high performance computing (HPC) workloads consisting of different kernels and pseudo applications:
 
 Kernels:
 - **IS:** Integer Sort, random memory access
@@ -15,12 +15,10 @@ Pseudo Applications:
 - **SP:** Scalar Penta-diagonal solver
 - **LU:** Lower-Upper Gauss-Seidel solver
 
-There are different classes (A,B,C,D,E and F) of the workloads based on the data size that is used with the benchmarks. Detailed discussion of the data sizes is available [here](https://www.nas.nasa.gov/publications/npb_problem_sizes.html).
+There are different classes (A,B,C,D,E and F) of each workload based on the input data size. Detailed discussion of the data sizes is available [here](https://www.nas.nasa.gov/publications/npb_problem_sizes.html).
 
-We make use of a modified source of NPB for these tests, which can be found in `disk-images/npb/npb-hooks`.
-This source of NPB has ROI (region of interest) annotations for each benchmark which will be used by gem5 to separate out simulation statistics of the important parts of a program from the rest of the program. Basically, gem5 magic instructions are used before and after the ROI which exit the guest and transfer control to gem5 run script which can then do things like dumping or resetting stats or switching to cpu of interest.
-
-**Note:** The instructions in this README are based on experiments with gem5-20.
+We make use of a modified source of the NPB suite for these tests, which can be found in `disk-images/npb/npb-hooks`.
+We have added ROI (region of interest) annotations for each benchmark which is used by gem5 to separate simulation statistics between different regions of each benchmark. gem5 magic instructions are used before and after each ROI to exit the guest and transfer control to gem5 the gem5 configuration script. This can then dump and reset stats, or switch to cpus of interest.
 
 We assume the following directory structure while following the instructions in this README file:
 
@@ -75,53 +73,33 @@ unzip packer_1.6.0_linux_amd64.zip
 Once this process succeeds, the created disk image can be found on `npb/npb-image/npb`.
 A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v20-1/images/x86/ubuntu-18-04/npb.img.gz).
 
-For more information on the npb disk creation process using packer refer [here](https://gem5art.readthedocs.io/en/latest/main-doc/disks.html#) and [here](https://gem5art.readthedocs.io/en/latest/tutorials/npb-tutorial.html).
 
 ## gem5 Run Scripts
 
 The gem5 scripts which configure the system and run simulation are available in configs-npb-tests/.
 The main script `run_npb.py` expects following arguments:
 
-**kernel:** path to the Linux kernel.
+**kernel:** path to the Linux kernel. This disk image has been tested with version 4.19.83, available at <http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.19.83>. More info on building Linux Kernels can be found in the `src/linux-kernels` directory.
 
 **disk:** path to the npb disk image.
 
 **cpu:** CPU model (`kvm`, `atomic`, `timing`).
 
-**mem_sys:** memory system (`classic`, `MI_example`, `MESI_Two_Level`, `MOESI_CMP_directory`).
+**mem_sys:** memory system (`classic`, `MI_example`, `MESI_Two_Level`, or `MOESI_CMP_directory`).
 
 **benchmark:** NPB benchmark to execute (`bt.A.x`, `cg.A.x`, `ep.A.x`, `ft.A.x`, `is.A.x`, `lu.A.x`, `mg.A.x`,  `sp.A.x`).
 
 **Note:**
-By default, the previously written instructions to build npb disk image will build class `A`,`B`,`C` and `D` of NPB in the disk image.
-We have only tested class `A` of the NPB.
-Replace `A` with any other class in the above listed benchmark names to test with other classes.
+We have only tested class `A` of the NPB suite, though `A`,`B`,`C` and `D` of NPB are available in the disk image
+For example, for build class `F` of the `bt` benchmark `bt.F.x` can be specified (replacinv `A` with `F` from above).
 
 **num_cpus:** number of CPU cores.
 
 An example of how to use these scripts:
 
 ```sh
-gem5/build/X86/gem5.opt configs/run_npb.py [path to the Linux kernel] [path to the npb disk image] kvm classic bt.A.x 4
+gem5/build/X86/gem5.opt configs/run_npb.py <kernel> <disk> <cpu> <mem_sys> <benchmark> <num_cpus>
 ```
-
-## Linux Kernel
-
-These tests use Linux kernel version 4.19.83, which can be compiled using following instructions (assuming that you are in `src/npb/` directory):
-
-```sh
-git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-cd linux
-git checkout v4.19.83
-# copy the Linux kernel configuration file for v4.19.83 from boot-tests/linux-configs/
-cp ../../boot-exit/linux-configs/config.4.19.83 .config
-make -j8
-```
-The compiled Linux binary will be named as `vmlinux`.
-
-**Note:** The above instructions are tested with `gcc 7.5.0` and an already compiled Linux binary can be downloaded from the following link:
-
-- [vmlinux-4.19.83](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.19.83)
 
 ## Working Status
 

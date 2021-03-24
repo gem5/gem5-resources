@@ -126,7 +126,24 @@ PREFIX = riscv64-linux-gnu-
 M5OP_OBJ =
 USER_INS := $(filter-out ./m5_checkpoint ./m5_exit, $(USER_INS))
 else
+ifeq ($(ISA),sparc64)
+PREFIX = sparc64-linux-
+# sparc64 does not have an util/m5/m5op_
+M5OP_OBJ =
+# At present sparc64 only compiles the pthread binaries. Other binaries have
+# not been tested.
+USER_INS := $(filter-out ./m5_checkpoint \
+                         ./m5_exit \
+                         ./chdir_print \
+                         ./hello \
+                         ./hellp_cpp \
+                         ./m5_exit_addr \
+                         ./page_access_wrap \
+                         ./stack_print \
+                         ./std_thread, $(USER_INS))
+else
 $(error unknown isa $(ISA))
+endif
 endif
 endif
 endif

@@ -45,11 +45,8 @@ from m5.util.convert import toMemorySize
 
 class PrefetchCache(Cache):
 
-
-    def __init__(self, options):
+    def __init__(self):
         super(PrefetchCache, self).__init__()
-        if not options or options.no_prefetchers:
-            return
         self.prefetcher = StridePrefetcher()
 
 class L1Cache(PrefetchCache):
@@ -63,9 +60,8 @@ class L1Cache(PrefetchCache):
     tgts_per_mshr = 20
     writeback_clean = True
 
-    def __init__(self, options=None):
-        super(L1Cache, self).__init__(options)
-        pass
+    def __init__(self):
+        super(L1Cache, self).__init__()
 
     def connectBus(self, bus):
         """Connect this cache to a memory-side bus"""
@@ -82,12 +78,8 @@ class L1ICache(L1Cache):
     # Set the default size
     size = '32kB'
 
-
-    def __init__(self, opts=None):
-        super(L1ICache, self).__init__(opts)
-        if not opts or not opts.l1i_size:
-            return
-        self.size = opts.l1i_size
+    def __init__(self):
+        super(L1ICache, self).__init__()
 
     def connectCPU(self, cpu):
         """Connect this cache's port to a CPU icache port"""
@@ -99,12 +91,8 @@ class L1DCache(L1Cache):
     # Set the default size
     size = '32kB'
 
-
-    def __init__(self, opts=None):
-        super(L1DCache, self).__init__(opts)
-        if not opts or not opts.l1d_size:
-            return
-        self.size = opts.l1d_size
+    def __init__(self):
+        super(L1DCache, self).__init__()
 
     def connectCPU(self, cpu):
         """Connect this cache's port to a CPU dcache port"""
@@ -130,8 +118,8 @@ class MMUCache(Cache):
         """
         self.mmubus = L2XBar()
         self.cpu_side = self.mmubus.mem_side_ports
-        cpu.mmu.connectWalkerPorts(
-            self.mmubus.cpu_side_ports, self.mmubus.cpu_side_ports)
+        for tlb in [cpu.itb, cpu.dtb]:
+            self.mmubus.cpu_side_ports = tlb.walker.port
 
     def connectBus(self, bus):
         """Connect this cache to a memory-side bus"""
@@ -150,39 +138,8 @@ class L2Cache(PrefetchCache):
     tgts_per_mshr = 12
     writeback_clean = True
 
-
-    def __init__(self, opts=None):
-        super(L2Cache, self).__init__(opts)
-        if not opts or not opts.l2_size:
-            return
-        self.size = opts.l2_size
-
-    def connectCPUSideBus(self, bus):
-        self.cpu_side = bus.mem_side_ports
-
-    def connectMemSideBus(self, bus):
-        self.mem_side = bus.cpu_side_ports
-
-class L3Cache(Cache):
-    """Simple L3 Cache bank with default values
-       This assumes that the L3 is made up of multiple banks. This cannot
-       be used as a standalone L3 cache.
-    """
-
-
-    # Default parameters
-    assoc = 32
-    tag_latency = 40
-    data_latency = 40
-    response_latency = 10
-    mshrs = 256
-    tgts_per_mshr = 12
-    clusivity = 'mostly_excl'
-    # size = '4MB'
-
-    def __init__(self, opts=None):
-        super(L3Cache, self).__init__()
-        self.size = ('4MB')
+    def __init__(self):
+        super(L2Cache, self).__init__()
 
     def connectCPUSideBus(self, bus):
         self.cpu_side = bus.mem_side_ports

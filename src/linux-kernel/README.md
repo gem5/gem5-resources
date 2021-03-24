@@ -1,5 +1,6 @@
 # Creating Linux Kernel Binary
-This document provides instructions to create a Linux kernel binary. Such kernel binary can be used during a gem5 Full System simulation.
+
+This document provides instructions to create a Linux kernel binary. The kernel binary can be used during a gem5 Full System simulation.
 We assume the following initial directory structure before following the instructions in this README file:
 
 ```
@@ -11,7 +12,9 @@ Linux-kernel/
 ```
 
 ## Linux Kernels
-We assume the following five LTS (long term support) releases of the Linux kernel:
+
+We have tested this resource compiling the following five LTS (long term support) releases of the Linux kernel:
+
 - 4.4.186
 - 4.9.186
 - 4.14.134
@@ -23,27 +26,35 @@ To compile the Linux binaries, follow these instructions (assuming that you are 
 ```sh
 # will create a `linux` directory and download the initial kernel files into it.
 git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+
 cd linux
 # replace version with any of the above listed version numbers
 git checkout v[version]
+
 # copy the appropriate Linux kernel configuration file from linux-configs/
 cp ../linux-configs/config.[version] .config
-make -j8
+
+make -j`nproc`
 ```
 
-After this process succeeds, the compiled Linux binary, named as `vmlinux`, can be found in the `src/Linux-kernel/linux`. The final structure of the `src/Linux-kernel/` directory will look as following:
+After this process succeeds, the compiled Linux binary, named  `vmlinux`, can be found in the `src/Linux-kernel/linux`.
+The final structure of the `src/Linux-kernel/` directory will look as following:
 
 ```
 Linux-kernel/
   |
   |___ linux-configs                           # Folder with Linux kernel configuration files
   |
-  |___ linux                                   # Linux source and the kernel binary are placed in this folder
+  |___ linux                                   # Linux source
+  |       |
+  |       |___ vmlinux                         # The compiled Linux kernel binary
   |
   |___ README.md                               # This README file
 ```
 
-**Note:** The above instructions are tested with `gcc 7.5.0` and the compiled Linux binaries can be downloaded from the following links:
+**Note:** The above instructions have been tested using the `gcc 7.5.0` compile
+
+The pre-build compiled Linux binaries can be downloaded from the following links:
 
 - [vmlinux-4.4.186](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.4.186)
 - [vmlinux-4.9.186](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.9.186)

@@ -8,3 +8,9 @@ _site
 .jekyll-cache
 Gemfile.lock
 .sass-cache
+
+m5out
+*.pyc
+*~
+.*.swp
+.*.swo

@@ -5,7 +5,7 @@ configuration files.
 
 ## Building the Disk Image
 Creating a disk-image for SPEC 2017 requires the benchmark suite ISO file.
-More info about SPEC 2017 can be found [here](https://www.spec.org/cpu2017/).
+More info about SPEC 2017 can be found at <https://www.spec.org/cpu2017/>.
 
 In this tutorial, we assume that the file `cpu2017-1.1.0.iso` contains the SPEC
 benchmark suite, and we provide the scripts that are made specifically for
@@ -37,12 +37,11 @@ spec-2017/
 
 ```
 
-First, to build `m5` (required for interactions between gem5 and the guest):
+First, to build `m5` (required for interactions between gem5 and the system under simuations):
 
 ```sh
 git clone https://gem5.googlesource.com/public/gem5
 cd gem5
-git checkout origin/develop
 cd util/m5
 scons build/x86/out/m5
 ```
@@ -58,15 +57,6 @@ unzip packer_1.6.0_linux_amd64.zip
 ./packer validate spec-2017/spec-2017.json # validate the Packer script
 ./packer build spec-2017/spec-2017.json
 ```
-
-The path to the disk image is `spec-2017/spec-2017-image/spec-2017`.
-Please refer to [this tutorial](https://gem5art.readthedocs.io/en/latest/tutorials/spec2017-tutorial.html#preparing-scripts-to-modify-the-disk-image)
-for more information about the scripts used in this document.
-
-## Linux Kernel
-The following link contains the compiled Linux kernel that was tested by
-running gem5-20 with SPEC 2017,
-- [vmlinux-4.19.83](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.19.83)
 
 ## gem5 Configuration Scripts
 gem5 scripts which configure the system and run the simulation are available
@@ -84,7 +74,9 @@ logs are copied by default, and are available in the result folder.
 are off by default.
 
 `kernel`: required, a positional argument specifying the path to the Linux
-kernel.
+kernel. This has been tested with version 4.19.83, available at
+<http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.19.83>. Info on
+building Linux kernels can be found in `src/linux-kernels`.
 
 `disk`: required, a positional argument specifying the path to the disk image
 containing SPEC 2017 benchmark suite.
@@ -101,17 +93,68 @@ The available CPU models are,
 | atomic | AtomicSimpleCPU                 |
 | timing | TimingSimpleCPU                 |
 
-`benchmark`: required, a positional argument specifying the name of the
-[SPEC 2017 workload](https://gem5art.readthedocs.io/en/latest/tutorials/spec2017-tutorial.html#appendix-i-working-spec-2017-benchmarks-x-cpu-model-table) to run.
+`benchmark`: required, a positional argument specifying the name of the SPEC
+2017 to run. Listed below are valid options:
 
-`size`: required, a positional argument specifying the input data size,
-must be one of {test, train, ref}.
+* 500.perlbench_r
+* 502.gcc_r
+* 503.bwaves_r
+* 505.mcf_r
+* 507.cactuBSSN_r
+* 508.namd_r
+* 510.parest_r
+* 511.povray_r
+* 519.lbm_r
+* 520.omnetpp_r
+* 521.wrf_r
+* 523.xalancbmk_r
+* 525.x264_r
+* 526.blender_r
+* 527.cam4_r
+* 531.deepsjeng_r
+* 538.imagick_r
+* 541.leela_r
+* 544.nab_r
+* 548.exchange2_r
+* 549.fotonik3d_r
+* 554.roms_r
+* 557.xz_r
+* 600.perlbench_s
+* 602.gcc_s
+* 603.bwaves_s
+* 605.mcf_s
+* 607.cactuBSSN_s
+* 619.lbm_s
+* 620.omnetpp_s
+* 621.wrf_s
+* 623.xalancbmk_s
+* 625.x264_s
+* 627.cam4_s
+* 628.pop2_s
+* 631.deepsjeng_s
+* 638.imagick_s
+* 641.leela_s
+* 644.nab_s
+* 648.exchange2_s
+* 649.fotonik3d_s
+* 654.roms_s
+* 657.xz_s
+* 996.specrand_fs
+* 997.specrand_fr
+* 998.specrand_is
+* 999.specrand_ir
 
-Assume the compiled Linux kernel is available in the assumed root folder, the
-following is an example of running a SPEC 2017 workload in full system mode,
-`
-gem5/build/X86/gem5.opt --outdir [path to the gem5 output directory] configs/run_spec.py -z vmlinux-4.19.83 disk-image/spec-2017/spec-2017-image/spec-2017 atomic 403.gcc test
-`
+`size`: required, a positional argument specifying the input data size. Valid
+values are `test`, `train`, and `ref`.
+
+As a minimum the following parameters must be specified:
+
+```
+<gem5 X86 binary> --outdir <output directory> configs/run_spec.py <kernel> <disk> <cpu> <mem_sys> <benchmark> <size>
+```
+
+**Note**: `--outdir` is a required argument when running the gem5 binary with SPEC 2006.
+
 
 ## Working Status
 Status of these benchmarks runs with respect to gem5-20, linux kernel version

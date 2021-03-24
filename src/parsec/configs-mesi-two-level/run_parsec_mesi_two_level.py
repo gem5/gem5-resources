@@ -50,7 +50,7 @@ import SimpleOpts
 
 from system import *
 
-def writeBenchScript(dir, bench, size):
+def writeBenchScript(dir, bench, size, num_cpus):
     """
     This method creates a script in dir which will be eventually
     passed to the simulated system (to run a specific benchmark
@@ -61,7 +61,7 @@ def writeBenchScript(dir, bench, size):
     bench_file.write('cd /home/gem5/parsec-benchmark\n')
     bench_file.write('source env.sh\n')
     bench_file.write('parsecmgmt -a run -p \
-            {} -c gcc-hooks -i {}\n'.format(bench, size))
+            {} -c gcc-hooks -i {} -n {}\n'.format(bench, size, num_cpus))
 
     # sleeping for sometime makes sure
     # that the benchmark's output has been
@@ -86,7 +86,7 @@ if __name__ == "__m5_main__":
 
     # Create and pass a script to the simulated system to run the reuired
     # benchmark
-    system.readfile = writeBenchScript(m5.options.outdir, benchmark, size)
+    system.readfile = writeBenchScript(m5.options.outdir, benchmark, size, num_cpus)
 
     # set up the root SimObject and start the simulation
     root = Root(full_system = True, system = system)
