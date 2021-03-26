@@ -13,7 +13,7 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu
 
 The compiled binary can be found in the `bin` directory.
 
-A pre-built binary can be found at <http://dist.gem5.org/dist/v20-1/test-progs/square/square.o>.
+A pre-built binary can be found at <http://dist.gem5.org/dist/v21-0/test-progs/square/square.o>.
 
 
 ## Compiling GN3_X86/gem5.opt

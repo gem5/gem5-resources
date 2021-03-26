@@ -75,7 +75,7 @@ are off by default.
 
 `kernel`: required, a positional argument specifying the path to the Linux
 kernel. This has been tested with version 4.19.83, available at
-<http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.19.83>. Info on
+<http://dist.gem5.org/dist/v21-0/kernels/x86/static/vmlinux-4.19.83>. Info on
 building Linux kernels can be found in `src/linux-kernels`.
 
 `disk`: required, a positional argument specifying the path to the disk image
