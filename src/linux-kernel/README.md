@@ -56,11 +56,11 @@ Linux-kernel/
 
 The pre-build compiled Linux binaries can be downloaded from the following links:
 
-- [vmlinux-4.4.186](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.4.186)
-- [vmlinux-4.9.186](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.9.186)
-- [vmlinux-4.14.134](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.14.134)
-- [vmlinux-4.19.83](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-4.19.83)
-- [vmlinux-5.4.49](http://dist.gem5.org/dist/v20-1/kernels/x86/static/vmlinux-5.4.49)
+- [vmlinux-4.4.186](http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-4.4.186)
+- [vmlinux-4.9.186](http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-4.9.186)
+- [vmlinux-4.14.134](http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-4.14.134)
+- [vmlinux-4.19.83](http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-4.19.83)
+- [vmlinux-5.4.49](http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-5.4.49)
 
 
 **Licensing:**
