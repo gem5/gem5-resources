@@ -259,8 +259,6 @@ class MySystem(System):
         self.iocache.cpu_side = self.iobus.mem_side_ports
         self.iocache.mem_side = self.membus.cpu_side_ports
 
-        self.intrctrl = IntrControl()
-
         ###############################################
 
         # Add in a Bios information structure.

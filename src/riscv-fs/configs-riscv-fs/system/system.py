@@ -184,8 +184,6 @@ class RiscvSystem(System):
         self.platform.attachOffChipIO(self.iobus)
 
     def setupIntrCtrl(self):
-        self.intrctrl = IntrControl()
-
         # Set the frequency of RTC (real time clock) used by
         # CLINT (core level interrupt controller).
         # This frequency is 1MHz in SiFive's U54MC.

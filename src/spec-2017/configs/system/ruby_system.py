@@ -163,8 +163,6 @@ class MyRubySystem(System):
         # so the port isn't connected twice.
         self.pc.attachIO(self.iobus, [self.pc.south_bridge.ide.dma])
 
-        self.intrctrl = IntrControl()
-
         ###############################################
 
         # Add in a Bios information structure.
