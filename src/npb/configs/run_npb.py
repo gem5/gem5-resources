@@ -115,6 +115,7 @@ if __name__ == "__m5_main__":
     exit_event = m5.simulate()
 
     if exit_event.getCause() == "workbegin":
+        print("Done booting Linux")
         # Reached the start of ROI
         # start of ROI is marked by an
         # m5_work_begin() call

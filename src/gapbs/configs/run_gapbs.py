@@ -134,7 +134,9 @@ if __name__ == "__m5_main__":
 
     print("Running the simulation")
     exit_event = m5.simulate()
+
     if exit_event.getCause() == "work started count reach":
+        print("Done booting Linux")
         m5.stats.reset()
         start_tick = m5.curTick()
         start_insts = system.totalInsts()
