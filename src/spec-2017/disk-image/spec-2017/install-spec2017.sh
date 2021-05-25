@@ -17,9 +17,6 @@ rm -f /home/gem5/cpu2017-1.1.0.iso
 # use the example config as the template
 cp /home/gem5/spec2017/config/Example-gcc-linux-x86.cfg /home/gem5/spec2017/config/myconfig.x86.cfg
 
-# use sed command to replace the default gcc_dir
-sed -i "s/\/opt\/rh\/devtoolset-7\/root\/usr/\/usr/g" /home/gem5/spec2017/config/myconfig.x86.cfg
-
 # use sed command to remove the march=native flag when compiling
 # this is necessary as the packer script runs in kvm mode, so the details of the CPU will be that of the host CPU
 # the -march=native flag is removed to avoid compiling instructions that gem5 does not support
@@ -33,7 +30,9 @@ sed -i "s/-march=native//g" /home/gem5/spec2017/config/myconfig.x86.cfg
 sed -i "s/command_add_redirect = 1/sysinfo_program =\ncommand_add_redirect = 1/g" /home/gem5/spec2017/config/myconfig.x86.cfg
 
 # build all SPEC workloads
-runcpu --config=myconfig.x86.cfg --define build_ncpus=$(nproc) --action=build all
+# build_ncpus: number of cpus to build the workloads
+# gcc_dir: where to find the compilers (gcc, g++, gfortran)
+runcpu --config=myconfig.x86.cfg --define build_ncpus=$(nproc) --define gcc_dir="/usr" --action=build all
 
 # the above building process will produce a large log file
 # this command removes the log files to avoid copying out large files unnecessarily
