@@ -17,7 +17,7 @@ The boot loader `bbl` is compiled with a Linux kernel and a device tree as well.
 
 The used disk image is based on [busybox](https://busybox.net/) and [UCanLinux](https://github.com/UCanLinux/). It is built using the instructions, mostly from [here](https://github.com/UCanLinux/riscv64-sample).
 
-All components are cross compiled on an x86 host using a riscv tool chain.
+**Note:** All components are cross compiled on an x86 host using a riscv tool chain. We used `88b004d4c2a7d4e4f08b17ee32d2` commit of the riscv tool chain source while building the source (riscv gcc version 10.2.0).
 
 We assume the following directory structure while following the instructions in this README file:
 
@@ -26,8 +26,6 @@ riscv-fs/
   |___ gem5/                                   # gem5 source code (to be cloned here)
   |
   |___ riscv-disk                              # built disk image will go here
-  |
-  |___ device.dts                              # device tree file to use with bbl
   |
   |___ riscv-gnu-toolchain                     # riscv tool chain for cross compilation
   |
@@ -57,6 +55,7 @@ sudo apt-get install -y autoconf automake autotools-dev curl python3 libmpc-dev 
 # clone riscv gnu toolchain source
 git clone https://github.com/riscv/riscv-gnu-toolchain
 cd riscv-gnu-toolchain
+git checkout 88b004d4c2a7d4e4f08b17ee32d2
 
 # change the prefix to your directory
 # of choice for installation of the
@@ -86,7 +85,7 @@ cd ../
 git clone https://github.com/UCanLinux/riscv64-sample
 ```
 
-This source contains already built bootloader and disk images as well. Though the given disk image might be usable with gem5, the `bbl` (bootloader image) will not work with gem5 and we need to compile `bbl` with an input device tree (`.dts`) file separately. The following sections provide instructions to build both `bbl` and disk images.
+The following sections provide instructions to build both `bbl` and disk images.
 
 ## Linux Kernel
 
@@ -130,10 +129,9 @@ cd build
 
 apt-get install device-tree-compiler
 
-# copy the device tree file from riscv-fs
-cp ../../../device.dts .
+# configure bbl build
+../configure --host=riscv64-unknown-linux-gnu --with-payload=../../linux/vmlinux --prefix=/opt/riscv/
 
-../configure --host=riscv64-unknown-linux-gnu --with-payload=../../linux/vmlinux --prefix=/opt/riscv/ --with-dts=device.dts
 make -j$(nproc)
 
 chmod 755 bbl
@@ -155,7 +153,7 @@ git clone git://busybox.net/busybox.git
 cd busybox
 git checkout 1_30_stable  # checkout the latest stable branch
 make menuconfig
-cp ../sample/busybox.config .config  # optional
+cp ../busybox.config .config  # optional
 make menuconfig
 make CROSS_COMPILE=riscv64-unknown-linux-gnu- all -j$(nproc)
 make CROSS_COMPILE=riscv64-unknown-linux-gnu- install
@@ -167,7 +165,7 @@ Next, we will be setting up a root file system:
 
 ```sh
 # going back to riscv64-sample directory
-cd ../..
+cd ../
 
 mkdir RootFS
 cd RootFS
@@ -191,10 +189,10 @@ mkdir if-down.d  if-post-down.d  if-pre-up.d  if-up.d
 
 # build m5 util for riscv and move
 # it to the root file system as well
-cd ../../../
+cd ../../../../
 cd gem5/util/m5
-scons -C util/m5 build/riscv/out/m5
-cp build/riscv/out/m5 ../../../RootFS/sbin/
+scons build/riscv/out/m5
+cp build/riscv/out/m5 ../../../riscv64-sample/RootFS/sbin/
 ```
 
 ## Disk Image
@@ -214,12 +212,10 @@ mkfs.ext2 -L riscv-rootfs riscv_disk
 sudo mkdir /mnt/rootfs
 sudo mount riscv_disk /mnt/rootfs
 
-sudo cp -a RootFS/* /mnt/rootfs
+sudo cp -a riscv64-sample/RootFS/* /mnt/rootfs
 
 sudo chown -R -h root:root /mnt/rootfs/
 df /mnt/rootfs
-# make sure you are in riscv64-sample dir
-cd ../riscv64-sample
 sudo umount /mnt/rootfs
 ```
 
@@ -254,7 +250,7 @@ The main script `run_riscv.py` expects following arguments:
 An example use of this script is the following:
 
 ```sh
-[gem5 binary] -re configs/run_exit.py [path to bbl] [path to the disk image] atomic 4
+[gem5 binary] -re configs/run_riscv.py [path to bbl] [path to the disk image] atomic 1
 ```
 
 To interact with the simulated system's console:
