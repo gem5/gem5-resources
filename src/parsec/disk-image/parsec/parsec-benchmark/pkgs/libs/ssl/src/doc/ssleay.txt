@@ -1210,7 +1210,7 @@ BIO_ctrl operations.
 The following is the list of standard commands passed as the 
 second parameter to BIO_ctrl() and should be supported by 
 all BIO as best as possible.  Some are optional, some are 
-manditory, in any case, where is makes sense, a filter BIO 
+mandatory, in any case, where is makes sense, a filter BIO 
 should pass such requests to underlying BIO's.
 -	BIO_CTRL_RESET	- Reset the BIO back to an initial state.
 -	BIO_CTRL_EOF	- return 0 if we are not at the end of input, 

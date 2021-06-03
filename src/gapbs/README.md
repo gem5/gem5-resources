@@ -45,21 +45,21 @@ To use other graphs simply copy the graph in the gapbs/ directory and add them t
 gem5 scripts which configure the system and run the simulation are available in `configs/`.
 The main script `run_gapbs.py` expects following arguments:
 
-* **kernel** : A manditory positional argument. The path to the Linux kernel. GAPBS has been tested with [vmlinux-5.2.3](http://dist.gem5.org/dist/v21-0/kernels/x86/static/vmlinux-5.2.3). See `src/linux-kernel` for information on building a linux kernel for gem5.
+* **kernel** : A mandatory positional argument. The path to the Linux kernel. GAPBS has been tested with [vmlinux-5.2.3](http://dist.gem5.org/dist/v21-0/kernels/x86/static/vmlinux-5.2.3). See `src/linux-kernel` for information on building a linux kernel for gem5.
 
-* **disk** : A manditory positional argument. The path to the disk image.
+* **disk** : A mandatory positional argument. The path to the disk image.
 
-* **cpu\_type** : A manditory positional argument. The cpu model (`kvm`, `atomic`, `simple`, `o3`).
+* **cpu\_type** : A mandatory positional argument. The cpu model (`kvm`, `atomic`, `simple`, `o3`).
 
-* **num\_cpus** : A manditory positional argument. The number of cpu cores.
+* **num\_cpus** : A mandatory positional argument. The number of cpu cores.
 
-* **mem\_sys** : A manditory positional argument. The memory model (`classic`, `MI_example`, or `MESI_Two_Level`).
+* **mem\_sys** : A mandatory positional argument. The memory model (`classic`, `MI_example`, or `MESI_Two_Level`).
 
-* **benchmark** : A manditory positional argument. The graph workload (`cc`, `bc`, `bfs`, `tc`, `pr`, `sssp`).
+* **benchmark** : A mandatory positional argument. The graph workload (`cc`, `bc`, `bfs`, `tc`, `pr`, `sssp`).
 
-* **synthetic** : A manditory positional argument. The graph type. If synthetic graph then `1`, otherwise `0` for a real world graph.
+* **synthetic** : A mandatory positional argument. The graph type. If synthetic graph then `1`, otherwise `0` for a real world graph.
 
-* **graph** : A manditory positional argument. If synthetic, then the size of the graph. Otherwise the name of graph to execute.
+* **graph** : A mandatory positional argument. If synthetic, then the size of the graph. Otherwise the name of graph to execute.
 
 Example usage:
 
