@@ -1,5 +1,12 @@
-asmtest: gem5 Specifc RISC-V tests
-==================================
+---
+title: gem5 Specifc RISC-V tests
+tags:
+    - testing
+    - riscv
+layout: default
+permalink: resources/asmtests
+license: BSD-3-Clause
+---
 
 About
 -----

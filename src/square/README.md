@@ -1,4 +1,13 @@
-# GCN3 Square Test
+---
+title: GCN3 Square Test
+tags:
+    - x86
+    - amdgpu
+layout: default
+permalink: resources/square
+shortdoc: >
+    Resources to build a disk image with the GCN3 Square workload.
+---
 
 The square test is used to test the GCN3-GPU model.
 

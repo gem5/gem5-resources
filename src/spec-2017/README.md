@@ -1,4 +1,15 @@
-# SPEC 2017
+---
+title: SPEC 2017
+tags:
+    - x86
+    - fullsystem
+layout: default
+permalink: resources/spec-2017
+shortdoc: >
+    Resources to build a disk image with the [SPEC 2017 workloads](https://www.spec.org/cpu2017/).
+license: Proprietary SPEC License
+---
+
 This document aims to provide instructions to create a gem5-compatible disk
 image containing the SPEC 2017 benchmark suite and also to provide necessary
 configuration files.

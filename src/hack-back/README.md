@@ -1,4 +1,14 @@
-# Hack Back Checkpointing Disk Image
+---
+title: Hack Back Checkpointing Disk Image
+tags:
+    - x86
+    - fullsystem
+permalink: resources/hack-back
+shortdoc: >
+  This resource creates a disk image for which you can create a checkpoint after linux boot
+  and then restore using a different scriptfile.
+author: ["Ayaz Akram"]
+---
 
 This document provides instructions to create a disk image with `hack_back_ckpt.rcS` script (located in `gem5/configs/boot/`) installed.
 This script creates a checkpoint once the Linux system boots up.

@@ -1,4 +1,15 @@
-# PARSEC
+---
+title: PARSEC
+tags:
+    - x86
+    - fullsystem
+layout: default
+permalink: resources/parsec
+shortdoc: >
+    Resources to build a disk image with the [parsec workloads](https://parsec.cs.princeton.edu/).
+author: ["Mahyar Samani"]
+license: BSD-3-Clause
+---
 
 This document includes instructions on how to create an Ubuntu 18.04 disk-image with PARSEC benchmark installed. The disk-image will be compatible with the gem5 simulator.
 

@@ -1,3 +1,15 @@
+---
+title: RISC-V full system
+tags:
+    - fullsystem
+    - riscv
+layout: default
+permalink: resources/riscv-fs
+shortdoc: >
+    Resources to build a riscv disk image, a riscv boot loader and points to the gem5 scripts to run riscv Linux FS simulations.
+author: ["Ayaz Akram"]
+---
+
 # RISCV Full System
 
 This document provides instructions to create a riscv disk image, a riscv boot loader (`berkeley bootloader (bbl)`) and also points to the associated gem5 scripts to run riscv Linux full system simulations.

@@ -1,4 +1,14 @@
-# GAP Benchmark Suite (GAPBS) tests
+---
+title: GAP Benchmark Suite (GAPBS) tests
+tags:
+    - x86
+    - fullsystem
+permalink: resources/gapbs
+shortdoc: >
+    This resource implementes the [GAP benchmark suite](http://gap.cs.berkeley.edu/benchmark.html).
+author: ["Marjan Fariborz"]
+license: BSD-3-Clause
+---
 
 This document provides instructions to create a GAP Benchmark Suite (GAPBS) disk image, which, along with provided configuration scripts, may be used to run GAPBS within gem5 simulations.
 

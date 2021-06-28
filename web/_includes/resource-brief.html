@@ -1,0 +1,21 @@
+
+<li>
+    <a href="{{page.url | relative_url}}">{{page.title}}</a> 
+
+    {% for tag in page.tags %}
+    {{tag}}
+    {% endfor %}
+
+    {% if page.license %}
+    (License {{page.license}})
+    {% else %}
+    (License unknown. See <a href="{{page.url | relative_url}}">README</a> or <a href="https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/{{page.path}}">source</a>)
+    {% endif %}
+
+    <p>
+    {{page.shortdoc | markdownify}}
+    </p>
+    <p>
+    <a href="https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/{{page.path}}">Source for resource</a>
+    </p>
+</li>
