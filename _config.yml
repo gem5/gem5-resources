@@ -18,3 +18,4 @@ sass:
   sass_dir: web/_sass
 
 layouts_dir: web/_layouts
+includes_dir: web/_includes

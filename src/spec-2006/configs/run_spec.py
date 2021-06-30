@@ -185,7 +185,7 @@ def boot_linux():
     if not success:
         print("Error while booting linux: {}".format(exit_cause))
         exit(1)
-    print("Booting done")
+    print("Done booting Linux")
     return success, exit_cause
 
 def run_spec_benchmark():

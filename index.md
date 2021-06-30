@@ -32,6 +32,16 @@ If you find one of the gem5-resources useful be sure to cite both the resources 
 
 ```
 
+## List of current resources
+
+<ul>
+{% for page in site.pages %}
+{% if page.path contains 'src' %}
+{% include resource-brief.html page=page %}
+{% endif %}
+{% endfor %}
+</ul>
+
 ## UNDER CONSTRUCTION
 
 This website is under construction.

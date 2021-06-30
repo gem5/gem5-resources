@@ -1,3 +1,13 @@
+---
+title: Linux kernel configs for x86
+tags:
+    - x86
+    - fullsystem
+permalink: resources/linux-kernel
+shortdoc: >
+    Linux kernel config files that have been tested with gem5.
+---
+
 # Creating Linux Kernel Binary
 
 This document provides instructions to create a Linux kernel binary. The kernel binary can be used during a gem5 Full System simulation.

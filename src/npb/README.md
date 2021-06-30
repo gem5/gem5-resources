@@ -1,4 +1,14 @@
-# NAS Parallel Benchmarks (NPB) Tests
+---
+title: NAS Parallel Benchmarks (NPB) Tests
+tags:
+    - x86
+    - fullsystem
+permalink: resources/npb
+shortdoc: >
+    Disk images and gem5 configurations to run the [NAS parallel benchmarks](https://www.nas.nasa.gov/).
+author: ["Ayaz Akram"]
+license: BSD-3-Clause
+---
 
 This document provides instructions to create a disk image needed to run the NPB tests with gem5 and points to the gem5 configuration files needed to run these tests.
 The NAS parallel benchmarks ([NPB](https://www.nas.nasa.gov/)) are high performance computing (HPC) workloads consisting of different kernels and pseudo applications:
@@ -72,7 +82,6 @@ unzip packer_1.6.0_linux_amd64.zip
 
 Once this process succeeds, the created disk image can be found on `npb/npb-image/npb`.
 A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/develop/images/x86/ubuntu-18-04/npb.img.gz).
-
 
 ## gem5 Run Scripts
 

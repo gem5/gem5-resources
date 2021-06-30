@@ -1,8 +1,11 @@
-riscv-tests
-================
-
-About
------------
+---
+title: RISC-V Tests
+tags:
+    - riscv
+layout: default
+permalink: resources/riscv-tests
+license: BSD-3-Clause
+---
 
 This repository hosts unit tests for RISC-V processors.
 

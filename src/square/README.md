@@ -1,4 +1,13 @@
-# GCN3 Square Test
+---
+title: GCN3 Square Test
+tags:
+    - x86
+    - amdgpu
+layout: default
+permalink: resources/square
+shortdoc: >
+    Resources to build a disk image with the GCN3 Square workload.
+---
 
 The square test is used to test the GCN3-GPU model.
 
@@ -14,7 +23,6 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu
 The compiled binary can be found in the `bin` directory.
 
 A pre-built binary can be found at <http://dist.gem5.org/dist/develop/test-progs/square/square.o>.
-
 
 ## Compiling GN3_X86/gem5.opt
 

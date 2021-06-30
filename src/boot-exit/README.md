@@ -1,7 +1,13 @@
 ---
 title: Linux boot-exit image
+tags:
+    - x86
+    - fullsystem
 layout: default
 permalink: resources/boot-exit
+shortdoc: >
+    Resources to build a disk image and run "boot-exit" test.
+author: ["Ayaz Akram"]
 ---
 
 This document provides instructions to create the "boot-exit" image, the Linux kernel binaries, and also points to the gem5 configuration files needed to run the boot.
