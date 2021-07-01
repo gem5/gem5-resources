@@ -11,6 +11,67 @@ shortdoc: >
     Resources to build a disk image with the GCN3 DNNMark workloads.
 ---
 
+[DNNMark](https://github.com/shidong-ai/DNNMark) is a benchmark framework used
+to characterize the performance of deep neural network (DNN) primitive workloads.
+
+The gem5 DNNMark tests can be used to test the GCN3-GPU model.
+
+Compiling DNNMark, compiling the GCN3_X86 gem5, and running DNNMark on gem5 is dependent on the gcn-gpu docker image, built from the `util/dockerfiles/gcn-gpu/Dockerfile` on the [gem5 stable branch](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable).
+
+## Compilation and Running
+
+DNNMark requires additional programs that aren't installed in the standard GCN
+docker image. There is a Dockerfile in `src/gpu/DNNMark` that installs the additional
+software.
+
+To build DNNMark (Including the new docker image):
+**NOTE**: Due to DNNMark building a library, it's important to mount gem5-resources
+to the same directory within the docker container when building and running, as otherwise the benchmarks
+won't be able to link against the library. The example commands do this by using
+`-v ${PWD}:${PWD}` in the docker run commands
+```
+cd src/gpu/DNNMark
+docker build -t <image_name> .
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> ./setup.sh HIP
+docker run --rm -v ${PWD}:${PWD} -w ${PWD}/build -u $UID:$GID <image_name> make
+```
+
+DNNMark uses MIOpen kernels, which are unable to be compiled on-the-fly in gem5.
+We have provided a shell script to generate these kernels for a subset of the
+benchmarks.
+
+To generate the MIOpen kernels:
+```
+cd src/gpu/DNNMark
+docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/.cache/miopen/1.7.0 -w ${PWD} <image_name> ./generate_cachefiles.sh
+```
+
+Due to the large amounts of memory that need to be set up for DNNMark, we have
+added in the ability to MMAP a file to reduce setup time, as well as added a
+program that can generate a 2GB file of floats.
+
+To make the MMAP file:
+```
+cd src/gpu/DNNMark
+g++ -std=c++0x generate_rand_data.cpp -o generate_rand_data
+./generate_rand_data
+```
+
+DNNMark is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
+To build GCN3_X86:
+```
+# Working directory is your gem5 directory
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+```
+
+To run one of the benchmarks (fwd softmax) in gem5:
+```
+# Assuming gem5 and gem5-resources are sub-directories of the current directory
+docker run --rm -u $UID:$GID -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/.cache/miopen/1.7.0 -w ${PWD} <image_name> gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
+```
+
+Information from the original DNNMark README included below.
+
 # Announcement
 DNNMark is now supporting MIOpen. Right now DNNMark can run on both AMD and Nvidia platform.
 HCC, HIP, MIOpen and miopengemm are required in order to build MIOpen version of DNNMark.
