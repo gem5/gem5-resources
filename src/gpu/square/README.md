@@ -16,7 +16,7 @@ Compiling square, compiling the GCN3_X86 gem5, and runing square on gem5is depen
 ## Compiling Square
 
 ```
-cd src/square
+cd src/gpu/square
 docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make gfx8-apu
 ```
 
