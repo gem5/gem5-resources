@@ -11,7 +11,7 @@ shortdoc: >
 
 The square test is used to test the GCN3-GPU model.
 
-Compiling square, compiling the GCN3_X86 gem5, and runing square on gem5is dependent on the gcn-gpu docker image, built from the `util/dockerfiles/gcn-gpu/Dockerfile` on the [gem5 stable branch](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable).
+Compiling square, compiling the GCN3_X86 gem5, and running square on gem5 is dependent on the gcn-gpu docker image, built from the `util/dockerfiles/gcn-gpu/Dockerfile` on the [gem5 stable branch](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable).
 
 ## Compiling Square
 
