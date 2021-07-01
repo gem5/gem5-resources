@@ -1,12 +1,14 @@
 ---
-title: DNN Mark
+title: GCN3 DNNMark Tests
 tags:
-    - gpu
     - x86
+    - amdgpu
 layout: default
 permalink: resources/dnn-mark
 author: ["Kyle Roarty"]
 license: MIT License
+shortdoc: >
+    Resources to build a disk image with the GCN3 DNNMark workloads.
 ---
 
 # Announcement
