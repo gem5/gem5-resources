@@ -460,7 +460,7 @@ to the run command. The default arguments are equivalent to `--options="1.0e-2 1
 
 ```
 # Assuming gem5 and gem5-resources are in your working directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n2 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/lulesh/bin -clulesh
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/lulesh/bin -clulesh
 ```
 
 ## Pre-built binary
@@ -566,7 +566,7 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> scons -sQ -
 To run one of the benchmarks (fwd softmax) in gem5:
 ```
 # Assuming gem5 and gem5-resources are sub-directories of the current directory
-docker run --rm -u $UID:$GID -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/.cache/miopen/1.7.0 -w ${PWD} <image_name> gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n2 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
+docker run --rm -u $UID:$GID -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/.cache/miopen/1.7.0 -w ${PWD} <image_name> gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
 ```
 
 
@@ -592,7 +592,7 @@ pennant has sample input files located at `src/gpu/pennant/test`. The following 
 
 ```
 # Assuming gem5 and gem5-resources are in your working directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n2 --benchmark-root=gem5-resources/src/gpu/pennant/build -cpennant --options="gem5-resources/src/gpu/pennant/test/noh/noh.pnt"
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/pennant/build -cpennant --options="gem5-resources/src/gpu/pennant/test/noh/noh.pnt"
 ```
 
 The output gets placed in `src/gpu/pennant/test/noh/`, and the file `noh.xy`
