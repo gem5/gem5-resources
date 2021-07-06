@@ -1,0 +1,53 @@
+
+{
+    "version" : "[DEVELOP FOR v21.2]",
+    "previous-versions" : {},
+    "resources": [
+        {
+            "type" : "artifact",
+            "name" : "x86-parsec",
+            "documentation" : "The PARSEC benchmark suite disk image (X86).",
+            "architecture" : "X86",
+            "is_zipped" : "True",
+            "md5sum" : "19131e62c5b10f137948ec5975391477",
+            "url" : "http://dist.gem5.org/dist/develop/images/x86/ubuntu-18-04/parsec.img.gz",
+            "source" : "src/parsec"
+        },
+        {
+            "type" : "artifact",
+            "name" : "x86-boot-exit",
+            "documentation" : "The boot-exit disk image (X86).",
+            "architecture" : "X86",
+            "is_zipped" : "True",
+            "md5sum" : "008a4bf505a04efed0758b49183e01f7",
+            "url" : "http://dist.gem5.org/dist/v21-0/images/x86/ubuntu-18-04/boot-exit.img.gz",
+            "source" : "src/boot-exit"
+        },
+        {
+            "type" : "group",
+            "name" : "linux-kernel",
+            "contents" : [
+                {
+                    "type" : "artifact",
+                    "name" : "x86-linux-kernel-4.19.83",
+                    "documentation" : "The linux kernel (v4.19.83)",
+                    "architecture" : "X86",
+                    "is_zipped" : "False",
+                    "md5sum" : "28228eac2eea81ee3ce36305b7641c18",
+                    "url" : "http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-4.19.83",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "x86-linux-kernel-5.4.49",
+                    "documentation" : "The linux kernel (v5.4.49)",
+                    "architecture" : "X86",
+                    "is_zipped" : "False",
+                    "md5sum" : "60a53c7d47d7057436bf4b9df707a841",
+                    "url" : "http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-5.4.49",
+                    "source" : "src/linux-kernel"
+                }
+            ]
+        }
+    ]
+}
