@@ -33,8 +33,8 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu
 
 Individual programs can be made by specifying the name of the program
 
-By default, this code builds for gfx801, a GCN3-based APU. This can be
-overridden by specifying `-e HCC_AMDGPU_TARGET=<target>` in the build command.
+By default, the apps are built for all supported GPU types (gfx801, gfx803).
+This can be changed by editing the --amdgpu-target argument in the Makefile.
 
 ## Pre-built binary
 

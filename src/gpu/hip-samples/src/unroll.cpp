@@ -36,8 +36,7 @@ THE SOFTWARE.
 
 // Device (Kernel) function, it must be void
 // hipLaunchParm provides the execution configuration
-__global__ void matrixTranspose(hipLaunchParm lp,
-                                float *out,
+__global__ void matrixTranspose(float *out,
                                 float *in,
                                 const int width)
 {
@@ -70,10 +69,8 @@ void matrixTransposeCPUReference(
 int main() {
 
   float* Matrix;
-  float* TransposeMatrix;
   float* cpuTransposeMatrix;
 
-  float* gpuMatrix;
   float* gpuTransposeMatrix;
 
   hipDeviceProp_t devProp;
@@ -84,8 +81,7 @@ int main() {
   int i;
   int errors;
 
-  Matrix = (float*)malloc(NUM * sizeof(float));
-  TransposeMatrix = (float*)malloc(NUM * sizeof(float));
+  hipHostMalloc(&Matrix, NUM * sizeof(float));
   cpuTransposeMatrix = (float*)malloc(NUM * sizeof(float));
 
   // initialize the input data
@@ -94,21 +90,15 @@ int main() {
   }
 
   // allocate the memory on the device side
-  hipMalloc((void**)&gpuMatrix, NUM * sizeof(float));
-  hipMalloc((void**)&gpuTransposeMatrix, NUM * sizeof(float));
-
-  // Memory transfer from host to device
-  hipMemcpy(gpuMatrix, Matrix, NUM*sizeof(float), hipMemcpyHostToDevice);
+  hipHostMalloc(&gpuTransposeMatrix, NUM * sizeof(float));
 
   // Lauching kernel from host
-  hipLaunchKernel(matrixTranspose,
-                  dim3(1),
-                  dim3(THREADS_PER_BLOCK_X * THREADS_PER_BLOCK_Y),
-                  0, 0,
-                  gpuTransposeMatrix , gpuMatrix, WIDTH);
-
-  // Memory transfer from device to host
-  hipMemcpy(TransposeMatrix, gpuTransposeMatrix, NUM*sizeof(float), hipMemcpyDeviceToHost);
+  hipLaunchKernelGGL(matrixTranspose,
+                     dim3(1),
+                     dim3(THREADS_PER_BLOCK_X * THREADS_PER_BLOCK_Y),
+                     0, 0,
+                     gpuTransposeMatrix , Matrix, WIDTH);
+  hipDeviceSynchronize();
 
   // CPU MatrixTranspose computation
   matrixTransposeCPUReference(cpuTransposeMatrix, Matrix, WIDTH);
@@ -117,8 +107,8 @@ int main() {
   errors = 0;
   double eps = 1.0E-6;
   for (i = 0; i < NUM; i++) {
-    if (std::abs(TransposeMatrix[i] - cpuTransposeMatrix[i]) > eps ) {
-    printf("%d cpu: %f gpu  %f\n",i,cpuTransposeMatrix[i],TransposeMatrix[i]);
+    if (std::abs(gpuTransposeMatrix[i] - cpuTransposeMatrix[i]) > eps ) {
+    printf("%d cpu: %f gpu  %f\n",i,cpuTransposeMatrix[i],gpuTransposeMatrix[i]);
       errors++;
     }
   }
@@ -129,12 +119,10 @@ int main() {
   }
 
   //free the resources on device side
-  hipFree(gpuMatrix);
   hipFree(gpuTransposeMatrix);
 
   //free the resources on host side
-  free(Matrix);
-  free(TransposeMatrix);
+  hipFree(Matrix);
   free(cpuTransposeMatrix);
 
   return errors;
