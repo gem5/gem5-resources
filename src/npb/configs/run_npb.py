@@ -36,9 +36,6 @@
     wallclock and simulated time.
 """
 import argparse
-import errno
-import os
-import sys
 import time
 import m5
 import m5.ticks

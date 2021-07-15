@@ -29,7 +29,6 @@
 import m5
 import math
 from m5.objects import *
-from m5.util import convert
 from .fs_tools import *
 
 class MyRubySystem(System):

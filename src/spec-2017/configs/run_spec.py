@@ -68,7 +68,6 @@
                   By default, the ports are off.
 """
 import os
-import sys
 
 import m5
 import m5.ticks

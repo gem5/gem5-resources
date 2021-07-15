@@ -26,7 +26,6 @@
 
 import m5
 from m5.objects import *
-from m5.util import convert
 from .fs_tools import *
 from .caches import *
 
