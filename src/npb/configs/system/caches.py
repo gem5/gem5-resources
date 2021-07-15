@@ -39,16 +39,11 @@ from m5.objects import Cache, L2XBar, StridePrefetcher, SubSystem
 from m5.params import AddrRange, AllMemory, MemorySize
 from m5.util.convert import toMemorySize
 
-import SimpleOpts
 
 # Some specific options for caches
 # For all options see src/mem/cache/BaseCache.py
 
 class PrefetchCache(Cache):
-
-    SimpleOpts.add_option("--no_prefetchers", default=False,
-                          action="store_true",
-                          help="Enable prefectchers on the caches")
 
     def __init__(self, options):
         super(PrefetchCache, self).__init__()
@@ -83,12 +78,6 @@ class L1Cache(PrefetchCache):
 class L1ICache(L1Cache):
     """Simple L1 instruction cache with default values"""
 
-    # Set the default size
-    size = '32kB'
-
-    SimpleOpts.add_option('--l1i_size',
-                        help="L1 instruction cache size. Default: %s" % size)
-
     def __init__(self, opts=None):
         super(L1ICache, self).__init__(opts)
         if not opts or not opts.l1i_size:
@@ -101,12 +90,6 @@ class L1ICache(L1Cache):
 
 class L1DCache(L1Cache):
     """Simple L1 data cache with default values"""
-
-    # Set the default size
-    size = '32kB'
-
-    SimpleOpts.add_option('--l1d_size',
-                          help="L1 data cache size. Default: %s" % size)
 
     def __init__(self, opts=None):
         super(L1DCache, self).__init__(opts)
@@ -149,7 +132,6 @@ class L2Cache(PrefetchCache):
     """Simple L2 Cache with default values"""
 
     # Default parameters
-    size = '256kB'
     assoc = 16
     tag_latency = 10
     data_latency = 10
@@ -157,9 +139,6 @@ class L2Cache(PrefetchCache):
     mshrs = 20
     tgts_per_mshr = 12
     writeback_clean = True
-
-    SimpleOpts.add_option('--l2_size',
-                          help="L2 cache size. Default: %s" % size)
 
     def __init__(self, opts=None):
         super(L2Cache, self).__init__(opts)
@@ -178,9 +157,6 @@ class L3Cache(Cache):
        This assumes that the L3 is made up of multiple banks. This cannot
        be used as a standalone L3 cache.
     """
-
-    SimpleOpts.add_option('--l3_size', default = '4MB',
-                          help="L3 cache size. Default: 4MB")
 
     # Default parameters
     assoc = 32

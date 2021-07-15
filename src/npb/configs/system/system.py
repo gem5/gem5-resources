@@ -36,13 +36,6 @@ from .caches import *
 
 class MySystem(System):
 
-    SimpleOpts.add_option("--no_host_parallel", default=False,
-                action="store_true",
-                help="Do NOT run gem5 on multiple host threads (kvm only)")
-
-    SimpleOpts.add_option("--second_disk", default='',
-                          help="The second disk image to mount (/dev/hdb)")
-
     def __init__(self, kernel, disk, num_cpus, opts, no_kvm=False):
         super(MySystem, self).__init__()
         self._opts = opts
