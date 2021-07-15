@@ -27,8 +27,7 @@
 """ Caches with options for a simple gem5 configuration script
 
 This file contains L1 I/D and L2 caches to be used in the simple
-gem5 configuration script. It uses the SimpleOpts wrapper to set up command
-line options from each individual class.
+gem5 configuration script.
 """
 
 import m5
