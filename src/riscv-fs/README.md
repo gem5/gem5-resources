@@ -195,6 +195,10 @@ scons build/riscv/out/m5
 cp build/riscv/out/m5 ../../../riscv64-sample/RootFS/sbin/
 ```
 
+**Note**: the default cross-compiler is `riscv64-unknown-linux-gnu-`. To change the cross-compiler, you can set the cross-compiler using the scons sticky variable `riscv.CROSS_COMPILE`. For example,
+```sh
+scons riscv.CROSS_COMPILE=riscv64-linux-gnu- build/riscv/out/m5
+```
 ## Disk Image
 
 Create a disk of 512MB size.
