@@ -221,7 +221,6 @@ class RiscvSystem(System):
     def initDevices(self, membus, disk):
 
         self.iobus = IOXBar()
-        self.intrctrl = IntrControl()
 
         # Set the frequency of RTC (real time clock) used by
         # CLINT (core level interrupt controller).
