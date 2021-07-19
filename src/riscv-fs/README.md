@@ -72,7 +72,7 @@ Update the `PATH` environment variable so that the following instructions can fi
 export PATH=$PATH:/opt/riscv/bin/
 ```
 
-***Note:** The above step is necessary and might cause errors while cross compiling different components for riscv if other methods are used to point to the toolchain.
+**Note:** The above step is necessary and might cause errors while cross compiling different components for riscv if other methods are used to point to the toolchain.
 
 ## UCanLinux Source
 
@@ -243,24 +243,31 @@ mount -o loop riscv_disk [some mount directory]
 gem5 scripts which can configure a riscv full system and run simulation are available in configs/.
 The main script `run_riscv.py` expects following arguments:
 
-**bbl:** path to the bbl (berkeley bootloader) binary with kernel payload.
+**bbl:** path to the bbl (berkeley bootloader) binary with kernel payload (located at `riscv64-sample/riscv-pk/build/bbl`).
 
-**disk:** path to the disk image to use.
+**disk:** path to the disk image to use (located at `riscv64-sample/riscv_disk`).
 
-**cpu_type:** cpu model (`atomic`, `simple`).
+**cpu_type:** cpu model (`atomic` for AtomicSimpleCPU, `simple` for TimingSimpleCPU).
 
 **num_cpus:** number of cpu cores.
 
 An example use of this script is the following:
 
 ```sh
-[gem5 binary] -re configs/run_riscv.py [path to bbl] [path to the disk image] atomic 1
+[gem5 binary] configs/run_riscv.py [path to bbl] [path to the disk image] atomic 1
 ```
 
-To interact with the simulated system's console:
+To interact with the simulated system's console, you can use `telnet`,
 
 ```sh
-telnet localhost 3457 (this port number comes from `simerr` file)
+telnet localhost <port>
+```
+
+Another option is to use `m5term` provided by gem5. To compile and launch `m5term`,
+```sh
+cd gem5/util/term
+make                         # compiling
+./m5term localhost <port>    # launching the terminal
 ```
 
 The default linux system based on this README, has both `login` and `password` set as `root`.
