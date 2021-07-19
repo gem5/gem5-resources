@@ -36,7 +36,7 @@ riscv-fs/
   |       |__RootFS                            # root file system for disk image
   |
   |
-  |___ configs-riscv-fs
+  |___ configs
   |      |___ system                           # gem5 system config files
   |      |___ run_riscv.py                     # gem5 run script
   |
@@ -240,7 +240,7 @@ mount -o loop riscv_disk [some mount directory]
 
 ## gem5 Run Scripts
 
-gem5 scripts which can configure a riscv full system and run simulation are available in configs-riscv-fs/.
+gem5 scripts which can configure a riscv full system and run simulation are available in configs/.
 The main script `run_riscv.py` expects following arguments:
 
 **bbl:** path to the bbl (berkeley bootloader) binary with kernel payload.
