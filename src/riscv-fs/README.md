@@ -112,7 +112,7 @@ make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu-  all -j$(nproc)
 ```
 
 This should generate a `vmlinux` image in the `linux` directory.
-A pre-built RISC-V 5.10 linux kernel can be downloaded [here](http://dist.gem5.org/dist/develop/kernels/riscv/static/vmlinux-5.10).
+A pre-built RISC-V 5.10 linux kernel can be downloaded [here](http://dist.gem5.org/dist/v21-1/kernels/riscv/static/vmlinux-5.10).
 
 ## Bootloader (bbl)
 

@@ -38,18 +38,18 @@ This can be changed by editing the --amdgpu-target argument in the Makefile.
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/2dshfl>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/2dshfl>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/dynamic_shared>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/dynamic_shared>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/inline_asm>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/inline_asm>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/MatrixTranspose>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/MatrixTranspose>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/sharedMemory>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/sharedMemory>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/shfl>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/shfl>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/stream>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/stream>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/unroll>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/unroll>

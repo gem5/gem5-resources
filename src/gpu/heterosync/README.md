@@ -30,7 +30,7 @@ that are currently unsupported in gem5.
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v21-0/test-progs/heterosync/gcn3/allSyncPrims-1kernel>
+<http://dist.gem5.org/dist/v21-1/test-progs/heterosync/gcn3/allSyncPrims-1kernel>
 
 Information from original HeteroSync README included below:
 
