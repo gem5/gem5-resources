@@ -714,16 +714,20 @@ The boot-tests resources consist of three main components:
 
 The instructions to build the boot-tests disk image (`boot-exit`), the Linux binaries, and how to use gem5 run scripts to run boot-tests are available in this [README](src/boot-tests/README.md) file.
 
-# Resource: RISCV Full System Test
+## Resource: RISCV Full System
 
-This resource refers to a simple setup for a riscv based full system simulation of Linux kernel.
+The RISCV Full System resource includes a RISCV boot loader (`berkeley bootloader (bbl)`) to boot the Linux 5.10 kernel on a RISCV system, and an image which includes the BusyBox software suite.
+The resource also contains simple gem5 run/config scripts to run Linux full system simulations in which a user may telnet into.
 
-Main components include:
-- a disk image
-- a riscv boot loader with linux kernel as payload and a device tree compiled in
-- gem5 run/config scripts
+Further information on building a riscv disk image, a riscv boot loader, and how to use gem5 scripts to run riscv Linux full system simulations, is available in the [README](src/riscv-fs/README.md) file.
 
-The instructions to build a riscv disk image, a riscv boot loader (`berkeley bootloader (bbl)`) and how to use gem5 scripts to run riscv Linux full system simulations are available in this [README](src/riscv-fs/README.md) file.
+### RISCV Full System pre-built disk image
+
+<http://dist.gem5.org/dist/develop/images/riscv/busybox/riscv-disk.img.gz>
+
+### RISCV Full System pre-built Linux bootloader
+
+<http://dist.gem5.org/dist/develop/kernels/riscv/static/bootloader-vmlinux-5.10>
 
 ## Resource: Insttest
 
