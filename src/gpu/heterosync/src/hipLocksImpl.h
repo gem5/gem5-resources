@@ -28,13 +28,13 @@ hipError_t hipLocksInit(const int maxWGsPerKernel, const int numMutexes,
   cpuLockData->mutexCount             = numMutexes;
   cpuLockData->semaphoreCount         = numSemaphores;
 
-  hipMalloc(&cpuLockData->barrierBuffers,   sizeof(unsigned int) * cpuLockData->arrayStride * 2);
+  hipHostMalloc(&cpuLockData->barrierBuffers,   sizeof(unsigned int) * cpuLockData->arrayStride * 2);
 
-  hipMalloc(&cpuLockData->mutexBuffers,     sizeof(int) * cpuLockData->arrayStride * cpuLockData->mutexCount);
-  hipMalloc(&cpuLockData->mutexBufferHeads, sizeof(unsigned int) * cpuLockData->mutexCount);
-  hipMalloc(&cpuLockData->mutexBufferTails, sizeof(unsigned int) * cpuLockData->mutexCount);
+  hipHostMalloc(&cpuLockData->mutexBuffers,     sizeof(int) * cpuLockData->arrayStride * cpuLockData->mutexCount);
+  hipHostMalloc(&cpuLockData->mutexBufferHeads, sizeof(unsigned int) * cpuLockData->mutexCount);
+  hipHostMalloc(&cpuLockData->mutexBufferTails, sizeof(unsigned int) * cpuLockData->mutexCount);
 
-  hipMalloc(&cpuLockData->semaphoreBuffers, sizeof(unsigned int) * 4 * cpuLockData->semaphoreCount);
+  hipHostMalloc(&cpuLockData->semaphoreBuffers, sizeof(unsigned int) * 4 * cpuLockData->semaphoreCount);
 
   hipErr = hipGetLastError();
   checkError(hipErr, "Before memsets");
@@ -81,11 +81,11 @@ hipError_t hipLocksInit(const int maxWGsPerKernel, const int numMutexes,
 hipError_t hipLocksDestroy()
 {
   if (cpuLockData == NULL) { return hipErrorInitializationError; }
-  hipFree(cpuLockData->mutexBuffers);
-  hipFree(cpuLockData->mutexBufferHeads);
-  hipFree(cpuLockData->mutexBufferTails);
+  hipHostFree(cpuLockData->mutexBuffers);
+  hipHostFree(cpuLockData->mutexBufferHeads);
+  hipHostFree(cpuLockData->mutexBufferTails);
 
-  hipFree(cpuLockData->semaphoreBuffers);
+  hipHostFree(cpuLockData->semaphoreBuffers);
 
   hipHostFree(cpuLockData);
 
