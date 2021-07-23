@@ -43,8 +43,7 @@ inline __device__ void hipMutexEBOLock(const hipMutex_t mutex,
       {
         // if we failed in acquiring the lock, wait for a little while before
         // trying again
-        //sleepFunc(backoff);
-        for (int j = 0; j < backoff; ++j) { ; }
+        sleepFunc(backoff);
         // (capped) exponential backoff
         backoff = (((backoff << 1) + 1) & (MAX_BACKOFF-1));
       }
@@ -100,8 +99,7 @@ inline __device__ void hipMutexEBOLockLocal(const hipMutex_t mutex,
       {
         // if we failed in acquiring the lock, wait for a little while before
         // trying again
-        //sleepFunc(backoff);
-        for (int j = 0; j < backoff; ++j) { ; }
+        sleepFunc(backoff);
         // (capped) exponential backoff
         backoff = (((backoff << 1) + 1) & (MAX_BACKOFF-1));
       }

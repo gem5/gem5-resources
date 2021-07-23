@@ -7,9 +7,6 @@ extern "C" void __builtin_amdgcn_s_sleep(int);
 /*
   Shared sleep function.  Since s_sleep only takes in consstants (between 1 and 128),
   need code to handle long tail.
-
-  Currently s_sleep is unsupported in gem5, so sleepFunc is commented out and
-  replaced with a spin in the lock implementations
  */
 inline __device__ void sleepFunc(int backoff) {
   int backoffCopy = backoff;
