@@ -519,30 +519,25 @@ to characterize the performance of deep neural network (DNN) primitive workloads
 
 ## Compilation and Running
 
-DNNMark requires additional programs that aren't installed in the standard GCN
-docker image. There is a Dockerfile in `src/gpu/DNNMark` that installs the additional
-software.
-
-To build DNNMark (Including the new docker image):
+To build DNNMark:
 **NOTE**: Due to DNNMark building a library, it's important to mount gem5-resources
 to the same directory within the docker container when building and running, as otherwise the benchmarks
 won't be able to link against the library. The example commands do this by using
 `-v ${PWD}:${PWD}` in the docker run commands
 ```
 cd src/gpu/DNNMark
-docker build -t <image_name> .
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> ./setup.sh HIP
-docker run --rm -v ${PWD}:${PWD} -w ${PWD}/build -u $UID:$GID <image_name> make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu ./setup.sh HIP
+docker run --rm -v ${PWD}:${PWD} -w ${PWD}/build -u $UID:$GID gcr.io/gem5-test/gcn-gpu make
 ```
 
 DNNMark uses MIOpen kernels, which are unable to be compiled on-the-fly in gem5.
-We have provided a shell script to generate these kernels for a subset of the
-benchmarks.
+We have provided a python script to generate these kernels for a subset of the
+benchmarks for a gfx801 GPU with 4 CUs by default
 
 To generate the MIOpen kernels:
 ```
 cd src/gpu/DNNMark
-docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/.cache/miopen/1.7.0 -w ${PWD} <image_name> ./generate_cachefiles.sh
+docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} gcr.io/gem5-test/gcn-gpu python3 generate_cachefiles.py cachefiles.csv [--gfx-version={gfx801,gfx803}] [--num-cus=N]
 ```
 
 Due to the large amounts of memory that need to be set up for DNNMark, we have
@@ -560,13 +555,13 @@ DNNMark is a GPU application, which requires that gem5 is built with the GCN3_X8
 To build GCN3_X86:
 ```
 # Working directory is your gem5 directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
 ```
 
 To run one of the benchmarks (fwd softmax) in gem5:
 ```
 # Assuming gem5 and gem5-resources are sub-directories of the current directory
-docker run --rm -u $UID:$GID -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/.cache/miopen/1.7.0 -w ${PWD} <image_name> gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
+docker run --rm -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
 ```
 
 

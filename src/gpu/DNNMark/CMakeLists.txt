@@ -40,8 +40,8 @@ if(CUDA_FOUND AND ${CUDA_ENABLE})
   endif()
 endif()
 
-# Detect HCC
-find_program(HCC_FOUND hcc)
+# Detect HIPCC
+find_program(HIPCC_FOUND hipcc)
 
 option (double-test "Make data type double" OFF)
 option (enable-cudnnv6 "Enable cuDNN version 6" OFF)
@@ -124,7 +124,7 @@ if (CUDA_FOUND AND ${CUDA_ENABLE})
                         ${GLOG_LIBRARY}
                         m)
 
-elseif(HCC_FOUND AND ${HCC_ENABLE})
+elseif(HIPCC_FOUND AND ${HCC_ENABLE})
 
   # Cover the include and linkage requirement here
   execute_process(COMMAND hcc-config  --cxxflags
@@ -188,9 +188,6 @@ elseif(HCC_FOUND AND ${HCC_ENABLE})
 
   message(${ROCBLAS_LIBRARY} ${MIOPEN_LIBRARY})
 
-  # Find other libraries
-  find_library(HIP_HCC hip_hcc /opt/rocm/hip/lib)
-
   # Find glog libraries
   find_library(GLOG_LIBRARY glog)
 
@@ -200,7 +197,6 @@ elseif(HCC_FOUND AND ${HCC_ENABLE})
   target_link_libraries(${PROJECT_NAME}
                         ${ROCBLAS_LIBRARY}
                         ${MIOPEN_LIBRARY}
-                        ${HIP_HCC}
                         ${GLOG_LIBRARY}
                         m)
   set_target_properties(${PROJECT_NAME} PROPERTIES

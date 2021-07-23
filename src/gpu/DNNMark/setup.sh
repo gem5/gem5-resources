@@ -23,9 +23,10 @@ elif [ ${OPTION} = "HIP" ]
 then
   MIOPEN_PATH=/opt/rocm/miopen
   ROCBLAS_PATH=/opt/rocm/rocblas
-  CXX=/opt/rocm/hcc/bin/hcc cmake \
+  CXX=/opt/rocm/bin/hipcc cmake \
     -DHCC_ENABLE=ON \
     -DMIOPEN_ROOT=${MIOPEN_PATH} \
     -DROCBLAS_ROOT=${ROCBLAS_PATH} \
+    -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/lib/cmake/AMDDeviceLibs/;/opt/rocm/lib/cmake/amd_comgr/" \
     ..
 fi
