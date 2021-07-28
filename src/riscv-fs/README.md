@@ -17,7 +17,7 @@ The boot loader `bbl` is compiled with a Linux kernel and a device tree as well.
 
 The used disk image is based on [busybox](https://busybox.net/) and [UCanLinux](https://github.com/UCanLinux/). It is built using the instructions, mostly from [here](https://github.com/UCanLinux/riscv64-sample).
 
-All components are cross compiled on an x86 host using a riscv tool chain.
+**Note:** All components are cross compiled on an x86 host using a riscv tool chain. We used `88b004d4c2a7d4e4f08b17ee32d2` commit of the riscv tool chain source while building the source (riscv gcc version 10.2.0).
 
 We assume the following directory structure while following the instructions in this README file:
 
@@ -26,8 +26,6 @@ riscv-fs/
   |___ gem5/                                   # gem5 source code (to be cloned here)
   |
   |___ riscv-disk                              # built disk image will go here
-  |
-  |___ device.dts                              # device tree file to use with bbl
   |
   |___ riscv-gnu-toolchain                     # riscv tool chain for cross compilation
   |
@@ -38,7 +36,7 @@ riscv-fs/
   |       |__RootFS                            # root file system for disk image
   |
   |
-  |___ configs-riscv-fs
+  |___ configs
   |      |___ system                           # gem5 system config files
   |      |___ run_riscv.py                     # gem5 run script
   |
@@ -57,6 +55,7 @@ sudo apt-get install -y autoconf automake autotools-dev curl python3 libmpc-dev 
 # clone riscv gnu toolchain source
 git clone https://github.com/riscv/riscv-gnu-toolchain
 cd riscv-gnu-toolchain
+git checkout 88b004d4c2a7d4e4f08b17ee32d2
 
 # change the prefix to your directory
 # of choice for installation of the
@@ -73,7 +72,7 @@ Update the `PATH` environment variable so that the following instructions can fi
 export PATH=$PATH:/opt/riscv/bin/
 ```
 
-***Note:** The above step is necessary and might cause errors while cross compiling different components for riscv if other methods are used to point to the toolchain.
+**Note:** The above step is necessary and might cause errors while cross compiling different components for riscv if other methods are used to point to the toolchain.
 
 ## UCanLinux Source
 
@@ -86,7 +85,7 @@ cd ../
 git clone https://github.com/UCanLinux/riscv64-sample
 ```
 
-This source contains already built bootloader and disk images as well. Though the given disk image might be usable with gem5, the `bbl` (bootloader image) will not work with gem5 and we need to compile `bbl` with an input device tree (`.dts`) file separately. The following sections provide instructions to build both `bbl` and disk images.
+The following sections provide instructions to build both `bbl` and disk images.
 
 ## Linux Kernel
 
@@ -113,6 +112,7 @@ make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu-  all -j$(nproc)
 ```
 
 This should generate a `vmlinux` image in the `linux` directory.
+A pre-built RISC-V 5.10 linux kernel can be downloaded [here](http://dist.gem5.org/dist/v21-1/kernels/riscv/static/vmlinux-5.10).
 
 ## Bootloader (bbl)
 
@@ -130,10 +130,9 @@ cd build
 
 apt-get install device-tree-compiler
 
-# copy the device tree file from riscv-fs
-cp ../../../device.dts .
+# configure bbl build
+../configure --host=riscv64-unknown-linux-gnu --with-payload=../../linux/vmlinux --prefix=/opt/riscv/
 
-../configure --host=riscv64-unknown-linux-gnu --with-payload=../../linux/vmlinux --prefix=/opt/riscv/ --with-dts=device.dts
 make -j$(nproc)
 
 chmod 755 bbl
@@ -143,6 +142,7 @@ riscv64-unknown-linux-gnu-strip bbl
 ```
 
 This will produce a `bbl` bootloader binary with linux kernel in `riscv-pk/build` directory.
+A pre-built copy of this bootloard binary, with the linux kernel can be downloaded [here](http://dist.gem5.org/dist/develop/kernels/riscv/static/bootloader-vmlinux-5.10).
 
 ## Busy Box
 
@@ -155,7 +155,7 @@ git clone git://busybox.net/busybox.git
 cd busybox
 git checkout 1_30_stable  # checkout the latest stable branch
 make menuconfig
-cp ../sample/busybox.config .config  # optional
+cp ../busybox.config .config  # optional
 make menuconfig
 make CROSS_COMPILE=riscv64-unknown-linux-gnu- all -j$(nproc)
 make CROSS_COMPILE=riscv64-unknown-linux-gnu- install
@@ -167,7 +167,7 @@ Next, we will be setting up a root file system:
 
 ```sh
 # going back to riscv64-sample directory
-cd ../..
+cd ../
 
 mkdir RootFS
 cd RootFS
@@ -191,12 +191,16 @@ mkdir if-down.d  if-post-down.d  if-pre-up.d  if-up.d
 
 # build m5 util for riscv and move
 # it to the root file system as well
-cd ../../../
+cd ../../../../
 cd gem5/util/m5
-scons -C util/m5 build/riscv/out/m5
-cp build/riscv/out/m5 ../../../RootFS/sbin/
+scons build/riscv/out/m5
+cp build/riscv/out/m5 ../../../riscv64-sample/RootFS/sbin/
 ```
 
+**Note**: the default cross-compiler is `riscv64-unknown-linux-gnu-`. To change the cross-compiler, you can set the cross-compiler using the scons sticky variable `riscv.CROSS_COMPILE`. For example,
+```sh
+scons riscv.CROSS_COMPILE=riscv64-linux-gnu- build/riscv/out/m5
+```
 ## Disk Image
 
 Create a disk of 512MB size.
@@ -214,16 +218,15 @@ mkfs.ext2 -L riscv-rootfs riscv_disk
 sudo mkdir /mnt/rootfs
 sudo mount riscv_disk /mnt/rootfs
 
-sudo cp -a RootFS/* /mnt/rootfs
+sudo cp -a riscv64-sample/RootFS/* /mnt/rootfs
 
 sudo chown -R -h root:root /mnt/rootfs/
 df /mnt/rootfs
-# make sure you are in riscv64-sample dir
-cd ../riscv64-sample
 sudo umount /mnt/rootfs
 ```
 
 The disk image `riscv_disk` is ready to use.
+A pre-built, gzipped, disk image can be downloaded [here](http://dist.gem5.org/dist/develop/images/riscv/busybox/riscv-disk.img.gz).
 
 **Note:** If you need to resize the disk image once it is created, you can do the following:
 
@@ -240,27 +243,34 @@ mount -o loop riscv_disk [some mount directory]
 
 ## gem5 Run Scripts
 
-gem5 scripts which can configure a riscv full system and run simulation are available in configs-riscv-fs/.
+gem5 scripts which can configure a riscv full system and run simulation are available in configs/.
 The main script `run_riscv.py` expects following arguments:
 
-**bbl:** path to the bbl (berkeley bootloader) binary with kernel payload.
+**bbl:** path to the bbl (berkeley bootloader) binary with kernel payload (located at `riscv64-sample/riscv-pk/build/bbl`).
 
-**disk:** path to the disk image to use.
+**disk:** path to the disk image to use (located at `riscv64-sample/riscv_disk`).
 
-**cpu_type:** cpu model (`atomic`, `simple`).
+**cpu_type:** cpu model (`atomic` for AtomicSimpleCPU, `simple` for TimingSimpleCPU).
 
 **num_cpus:** number of cpu cores.
 
 An example use of this script is the following:
 
 ```sh
-[gem5 binary] -re configs/run_exit.py [path to bbl] [path to the disk image] atomic 4
+[gem5 binary] configs/run_riscv.py [path to bbl] [path to the disk image] atomic 1
 ```
 
-To interact with the simulated system's console:
+To interact with the simulated system's console, you can use `telnet`,
 
 ```sh
-telnet localhost 3457 (this port number comes from `simerr` file)
+telnet localhost <port>
+```
+
+Another option is to use `m5term` provided by gem5. To compile and launch `m5term`,
+```sh
+cd gem5/util/term
+make                         # compiling
+./m5term localhost <port>    # launching the terminal
 ```
 
 The default linux system based on this README, has both `login` and `password` set as `root`.

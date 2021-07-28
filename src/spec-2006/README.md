@@ -85,7 +85,7 @@ are off by default.
 
 `kernel`: required, a positional argument specifying the path to the Linux
 kernel. We have tested using version 4.19.83, which can be downloaded from
-<http://dist.gem5.org/dist/v21-0/kernels/x86/static/vmlinux-4.19.83>. Info on
+<http://dist.gem5.org/dist/v21-1/kernels/x86/static/vmlinux-4.19.83>. Info on
 building Linux kernels for gem5 can be found in `src/linux-kernel`
 
 `disk`: required, a positional argument specifying the path to the disk image

@@ -29,7 +29,6 @@
 
 import m5
 from m5.objects import *
-from m5.util import convert
 from .fs_tools import *
 
 
@@ -162,8 +161,6 @@ class MyRubySystem(System):
         # Note: pass in a reference to where Ruby will connect to in the future
         # so the port isn't connected twice.
         self.pc.attachIO(self.iobus, [self.pc.south_bridge.ide.dma])
-
-        self.intrctrl = IntrControl()
 
         ###############################################
 

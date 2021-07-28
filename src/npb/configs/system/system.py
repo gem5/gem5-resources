@@ -29,19 +29,11 @@
 
 import m5
 from m5.objects import *
-from m5.util import convert
 from .fs_tools import *
 from .caches import *
 
 
 class MySystem(System):
-
-    SimpleOpts.add_option("--no_host_parallel", default=False,
-                action="store_true",
-                help="Do NOT run gem5 on multiple host threads (kvm only)")
-
-    SimpleOpts.add_option("--second_disk", default='',
-                          help="The second disk image to mount (/dev/hdb)")
 
     def __init__(self, kernel, disk, num_cpus, opts, no_kvm=False):
         super(MySystem, self).__init__()
@@ -305,8 +297,6 @@ class MySystem(System):
                             addr_ranges = self.mem_ranges)
         self.iocache.cpu_side = self.iobus.mem_side_ports
         self.iocache.mem_side = self.membus.cpu_side_ports
-
-        self.intrctrl = IntrControl()
 
         ###############################################
 

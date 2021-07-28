@@ -85,7 +85,7 @@ You can update the following line in the `boot-exit.json` file.
 ```
 
 Once this process succeeds, the disk image can be found on `boot-exit/boot-exit-image/boot-exit`.
-A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v21-0/images/x86/ubuntu-18-04/boot-exit.img.gz).
+A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v21-1/images/x86/ubuntu-18-04/boot-exit.img.gz).
 
 
 ## gem5 Run Scripts

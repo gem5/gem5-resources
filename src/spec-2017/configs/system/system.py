@@ -29,7 +29,6 @@
 
 import m5
 from m5.objects import *
-from m5.util import convert
 from .fs_tools import *
 from .caches import *
 
@@ -282,8 +281,6 @@ class MySystem(System):
                             addr_ranges = self.mem_ranges)
         self.iocache.cpu_side = self.iobus.mem_side_ports
         self.iocache.mem_side = self.membus.cpu_side_ports
-
-        self.intrctrl = IntrControl()
 
         ###############################################
 

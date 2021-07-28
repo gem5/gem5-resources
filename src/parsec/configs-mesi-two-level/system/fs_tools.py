@@ -27,7 +27,9 @@
 #
 
 from m5.objects import IdeDisk, CowDiskImage, RawDiskImage
-
+import errno
+import os
+import sys
 class CowDisk(IdeDisk):
 
     def __init__(self, filename):
