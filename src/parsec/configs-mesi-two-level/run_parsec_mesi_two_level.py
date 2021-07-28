@@ -37,18 +37,41 @@
     disk-image for this script.
 
 """
-import errno
-import os
-import sys
+import argparse
 import time
 import m5
 import m5.ticks
 from m5.objects import *
 
-sys.path.append('gem5/configs/common/') # For the next line...
-import SimpleOpts
-
 from system import *
+
+supported_cpu_types = ["kvm", "timing"]
+benchmark_choices = ["blackscholes", "bodytrack", "canneal", "dedup",
+                     "facesim", "ferret", "fluidanimate", "freqmine",
+                     "raytrace", "streamcluster", "swaptions", "vips", "x264"]
+size_choices=["simsmall", "simmedium", "simlarge"]
+
+
+def parse_options():
+
+    parser = argparse.ArgumentParser(description='For use with gem5. This '
+                'runs a NAS Parallel Benchmark application. This only works '
+                'with x86 ISA.')
+
+    parser.add_argument("kernel", type=str,
+                        help="Path to the kernel binary to boot")
+    parser.add_argument("disk", type=str, help="Path to the PARSEC disk image")
+    parser.add_argument("cpu", type=str, choices=supported_cpu_types,
+                        help="The type of CPU to use in the system")
+    parser.add_argument("benchmark", type=str, choices=benchmark_choices,
+                        help="The PARSEC benchmark application to run")
+    parser.add_argument("size", type=str, choices=size_choices,
+                        help="The input size to the PARSEC benchmark "
+                             "application")
+    parser.add_argument("num_cpus", type=int, choices=[1,2,8],
+                        help="The number of CPU cores")
+
+    return parser.parse_args()
 
 def writeBenchScript(dir, bench, size, num_cpus):
     """
@@ -72,21 +95,19 @@ def writeBenchScript(dir, bench, size, num_cpus):
     return file_name
 
 if __name__ == "__m5_main__":
-    (opts, args) = SimpleOpts.parse_args()
-    kernel, disk, cpu, benchmark, size, num_cpus = args
 
-    if not cpu in ['kvm', 'timing']:
-        m5.fatal("cpu not supported")
+    args = parse_options()
 
     # create the system we are going to simulate
-    system = MyRubySystem(kernel, disk, int(num_cpus), opts)
+    system = MyRubySystem(args.kernel, args.disk, args.num_cpus, args)
 
     # Exit from guest on workbegin/workend
     system.exit_on_work_items = True
 
     # Create and pass a script to the simulated system to run the reuired
     # benchmark
-    system.readfile = writeBenchScript(m5.options.outdir, benchmark, size, num_cpus)
+    system.readfile = writeBenchScript(m5.options.outdir, args.benchmark,
+                                      args.size, args.num_cpus)
 
     # set up the root SimObject and start the simulation
     root = Root(full_system = True, system = system)
@@ -106,7 +127,7 @@ if __name__ == "__m5_main__":
     globalStart = time.time()
 
     print("Running the simulation")
-    print("Using cpu: {}".format(cpu))
+    print("Using cpu: {}".format(args.cpu))
 
     start_tick = m5.curTick()
     end_tick = m5.curTick()
@@ -126,7 +147,7 @@ if __name__ == "__m5_main__":
         start_tick = m5.curTick()
         start_insts = system.totalInsts()
         # switching to timing cpu if argument cpu == timing
-        if cpu == 'timing':
+        if args.cpu == 'timing':
             system.switchCpus(system.cpu, system.timingCpu)
     else:
         print("Unexpected termination of simulation!")
@@ -159,7 +180,7 @@ if __name__ == "__m5_main__":
         end_insts = system.totalInsts()
         m5.stats.reset()
         # switching to timing cpu if argument cpu == timing
-        if cpu == 'timing':
+        if args.cpu == 'timing':
             # This line is commented due to an unimplemented
             # flush request in MESI_Two_Level that results in
             # the crashing of simulation. There will be a patch

@@ -56,8 +56,7 @@ inline __device__ void hipBarrierAtomicSub(unsigned int * globalBarr,
     // do exponential backoff to reduce the number of times we pound the global
     // barrier
     if (!*done) {
-      //sleepFunc(backoff);
-      for (int j = 0; j < backoff; ++j) { ; }
+      sleepFunc(backoff);
       __syncthreads();
     }
   }

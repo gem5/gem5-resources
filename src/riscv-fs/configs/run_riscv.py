@@ -26,8 +26,8 @@
 
 """
 This script is supposed to run full system simulation for RISCV targets.
-It has been tested with classic memory system and Atomic
-and TimingSimpleCPU so far.
+It has been tested with classic memory system and Atomic,
+TimingSimpleCPU, and MinorCPU so far.
 """
 
 import time

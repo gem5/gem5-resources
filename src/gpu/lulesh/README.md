@@ -47,4 +47,4 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v21-0/test-progs/lulesh/lulesh>
+<http://dist.gem5.org/dist/v21-1/test-progs/lulesh/lulesh>

@@ -30,9 +30,6 @@
     The workloads have two modes: synthetic and real graphs.
 """
 
-import sys
-import time
-
 import m5
 import m5.ticks
 from m5.objects import *

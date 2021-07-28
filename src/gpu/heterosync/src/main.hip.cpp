@@ -1269,7 +1269,8 @@ int main(int argc, char ** argv)
     The atomic barrier per-CU synchronization fits inside the lock-free size
     requirements so we can reuse the same locations.
   */
-  unsigned int * perCUBarriers = (unsigned int *)malloc(sizeof(unsigned int) * (NUM_CU * MAX_WGS * 2));
+  unsigned int * perCUBarriers;
+  hipHostMalloc(&perCUBarriers, sizeof(unsigned int) * (NUM_CU * MAX_WGS * 2));
 
   int numLocsMult = 0;
   // barriers and unique semaphores have numWGs WGs accessing unique locations
@@ -1298,7 +1299,8 @@ int main(int argc, char ** argv)
   assert(numUniqLocsAccPerWG > 0);
   int numStorageLocs = (numLocsMult * numUniqLocsAccPerWG);
   assert(numStorageLocs > 0);
-  float * storage = (float *)malloc(sizeof(float) * numStorageLocs);
+  float * storage;
+  hipHostMalloc(&storage, sizeof(float) * numStorageLocs);
 
   fprintf(stdout, "# WGs: %d, # Ld/St: %d, # Locs Mult: %d, # Uniq Locs/WG: %d, # Storage Locs: %d\n", numWGs, NUM_LDST, numLocsMult, numUniqLocsAccPerWG, numStorageLocs);
 
@@ -1306,17 +1308,6 @@ int main(int argc, char ** argv)
   for (int i = 0; i < numStorageLocs; ++i) { storage[i] = i; }
   // initialize per-CU barriers to 0's
   for (int i = 0; i < (NUM_CU * MAX_WGS * 2); ++i) { perCUBarriers[i] = 0; }
-
-  // gpu copies of storage and perCUBarriers
-  //float elapsedTime = 0.0f;
-  unsigned int * perCUBarriers_d = NULL;
-  float * storage_d = NULL;
-
-  hipMalloc(&perCUBarriers_d, sizeof(unsigned int) * (NUM_CU * MAX_WGS * 2));
-  hipMalloc(&storage_d, sizeof(float) * numStorageLocs);
-
-  hipMemcpy(perCUBarriers_d, perCUBarriers, sizeof(unsigned int) * (NUM_CU * MAX_WGS * 2), hipMemcpyHostToDevice);
-  hipMemcpy(storage_d, storage, sizeof(float) * numStorageLocs, hipMemcpyHostToDevice);
 
   // lock variables
   hipMutex_t spinMutex, faMutex, sleepMutex, eboMutex;
@@ -1479,52 +1470,52 @@ int main(int argc, char ** argv)
 
   switch (syncPrim) {
     case 0: // atomic tree barrier
-      invokeAtomicTreeBarrier(storage_d, perCUBarriers_d, NUM_ITERS);
+      invokeAtomicTreeBarrier(storage, perCUBarriers, NUM_ITERS);
       break;
     case 1: // atomic tree barrier with local exchange
-      invokeAtomicTreeBarrierLocalExch(storage_d, perCUBarriers_d, NUM_ITERS);
+      invokeAtomicTreeBarrierLocalExch(storage, perCUBarriers, NUM_ITERS);
       break;
     case 2: // lock-free barrier
-      invokeFBSTreeBarrier(storage_d, perCUBarriers_d, NUM_ITERS);
+      invokeFBSTreeBarrier(storage, perCUBarriers, NUM_ITERS);
       break;
     case 3: // lock-free barrier with local exchange
-      invokeFBSTreeBarrierLocalExch(storage_d, perCUBarriers_d, NUM_ITERS);
+      invokeFBSTreeBarrierLocalExch(storage, perCUBarriers, NUM_ITERS);
       break;
     case 4: // Spin Lock Mutex
-      invokeSpinLockMutex   (spinMutex,  storage_d, NUM_ITERS);
+      invokeSpinLockMutex   (spinMutex,  storage, NUM_ITERS);
       break;
     case 5: // Spin Lock Mutex with backoff
-      invokeEBOMutex        (eboMutex,   storage_d, NUM_ITERS);
+      invokeEBOMutex        (eboMutex,   storage, NUM_ITERS);
       break;
     case 6: // Sleeping Mutex
-      invokeSleepingMutex   (sleepMutex, storage_d, NUM_ITERS);
+      invokeSleepingMutex   (sleepMutex, storage, NUM_ITERS);
       break;
     case 7: // fetch-and-add mutex
-      invokeFetchAndAddMutex(faMutex,    storage_d, NUM_ITERS);
+      invokeFetchAndAddMutex(faMutex,    storage, NUM_ITERS);
       break;
     case 8: // spin semaphore (1)
-      invokeSpinLockSemaphore(spinSem1,   storage_d,   1, NUM_ITERS, numStorageLocs);
+      invokeSpinLockSemaphore(spinSem1,   storage,   1, NUM_ITERS, numStorageLocs);
       break;
     case 9: // spin semaphore (2)
-      invokeSpinLockSemaphore(spinSem2,   storage_d,   2, NUM_ITERS, numStorageLocs);
+      invokeSpinLockSemaphore(spinSem2,   storage,   2, NUM_ITERS, numStorageLocs);
       break;
     case 10: // spin semaphore (10)
-      invokeSpinLockSemaphore(spinSem10,   storage_d,   10, NUM_ITERS, numStorageLocs);
+      invokeSpinLockSemaphore(spinSem10,   storage,   10, NUM_ITERS, numStorageLocs);
       break;
     case 11: // spin semaphore (120)
-      invokeSpinLockSemaphore(spinSem120,   storage_d,   120, NUM_ITERS, numStorageLocs);
+      invokeSpinLockSemaphore(spinSem120,   storage,   120, NUM_ITERS, numStorageLocs);
       break;
     case 12: // spin semaphore with backoff (1)
-      invokeEBOSemaphore(eboSem1,   storage_d,     1, NUM_ITERS, numStorageLocs);
+      invokeEBOSemaphore(eboSem1,   storage,     1, NUM_ITERS, numStorageLocs);
       break;
     case 13: // spin semaphore with backoff (2)
-      invokeEBOSemaphore(eboSem2,   storage_d,     2, NUM_ITERS, numStorageLocs);
+      invokeEBOSemaphore(eboSem2,   storage,     2, NUM_ITERS, numStorageLocs);
       break;
     case 14: // spin semaphore with backoff (10)
-      invokeEBOSemaphore(eboSem10,   storage_d,   10, NUM_ITERS, numStorageLocs);
+      invokeEBOSemaphore(eboSem10,   storage,   10, NUM_ITERS, numStorageLocs);
       break;
     case 15: // spin semaphore with backoff (120)
-      invokeEBOSemaphore(eboSem120,   storage_d, 120, NUM_ITERS, numStorageLocs);
+      invokeEBOSemaphore(eboSem120,   storage, 120, NUM_ITERS, numStorageLocs);
       break;
     // cases 16-19 reserved
     case 16:
@@ -1536,40 +1527,40 @@ int main(int argc, char ** argv)
     case 19:
       break;
     case 20: // Spin Lock Mutex (uniq)
-      invokeSpinLockMutex_uniq   (spinMutex_uniq,  storage_d, NUM_ITERS);
+      invokeSpinLockMutex_uniq   (spinMutex_uniq,  storage, NUM_ITERS);
       break;
     case 21: // Spin Lock Mutex with backoff (uniq)
-      invokeEBOMutex_uniq        (eboMutex_uniq,   storage_d, NUM_ITERS);
+      invokeEBOMutex_uniq        (eboMutex_uniq,   storage, NUM_ITERS);
       break;
     case 22: // Sleeping Mutex (uniq)
-      invokeSleepingMutex_uniq   (sleepMutex_uniq, storage_d, NUM_ITERS);
+      invokeSleepingMutex_uniq   (sleepMutex_uniq, storage, NUM_ITERS);
       break;
     case 23: // fetch-and-add mutex (uniq)
-      invokeFetchAndAddMutex_uniq(faMutex_uniq,    storage_d, NUM_ITERS);
+      invokeFetchAndAddMutex_uniq(faMutex_uniq,    storage, NUM_ITERS);
       break;
     case 24: // spin semaphore (1) (uniq)
-      invokeSpinLockSemaphore_uniq(spinSem1_uniq,   storage_d,   1, NUM_ITERS);
+      invokeSpinLockSemaphore_uniq(spinSem1_uniq,   storage,   1, NUM_ITERS);
       break;
     case 25: // spin semaphore (2) (uniq)
-      invokeSpinLockSemaphore_uniq(spinSem2_uniq,   storage_d,   2, NUM_ITERS);
+      invokeSpinLockSemaphore_uniq(spinSem2_uniq,   storage,   2, NUM_ITERS);
       break;
     case 26: // spin semaphore (10) (uniq)
-      invokeSpinLockSemaphore_uniq(spinSem10_uniq,   storage_d,   10, NUM_ITERS);
+      invokeSpinLockSemaphore_uniq(spinSem10_uniq,   storage,   10, NUM_ITERS);
       break;
     case 27: // spin semaphore (120) (uniq)
-      invokeSpinLockSemaphore_uniq(spinSem120_uniq,   storage_d,   120, NUM_ITERS);
+      invokeSpinLockSemaphore_uniq(spinSem120_uniq,   storage,   120, NUM_ITERS);
       break;
     case 28: // spin semaphore with backoff (1) (uniq)
-      invokeEBOSemaphore_uniq(eboSem1_uniq,   storage_d,     1, NUM_ITERS);
+      invokeEBOSemaphore_uniq(eboSem1_uniq,   storage,     1, NUM_ITERS);
       break;
     case 29: // spin semaphore with backoff (2) (uniq)
-      invokeEBOSemaphore_uniq(eboSem2_uniq,   storage_d,     2, NUM_ITERS);
+      invokeEBOSemaphore_uniq(eboSem2_uniq,   storage,     2, NUM_ITERS);
       break;
     case 30: // spin semaphore with backoff (10) (uniq)
-      invokeEBOSemaphore_uniq(eboSem10_uniq,   storage_d,   10, NUM_ITERS);
+      invokeEBOSemaphore_uniq(eboSem10_uniq,   storage,   10, NUM_ITERS);
       break;
     case 31: // spin semaphore with backoff (120) (uniq)
-      invokeEBOSemaphore_uniq(eboSem120_uniq,   storage_d, 120, NUM_ITERS);
+      invokeEBOSemaphore_uniq(eboSem120_uniq,   storage, 120, NUM_ITERS);
       break;
     // cases 32-36 reserved
     case 32:
@@ -1593,9 +1584,6 @@ int main(int argc, char ** argv)
 
   // NOTE: Can end simulation here if don't care about output checking
   hipDeviceSynchronize();
-
-  // copy results back to compare to golden
-  hipMemcpy(storage, storage_d, sizeof(float) * numStorageLocs, hipMemcpyDeviceToHost);
 
   // get golden results
   float storageGolden[numStorageLocs];
@@ -1777,10 +1765,8 @@ int main(int argc, char ** argv)
 
   // free arrays
   hipLocksDestroy();
-  hipFree(storage_d);
-  hipFree(perCUBarriers_d);
-  free(storage);
-  free(perCUBarriers);
+  hipHostFree(storage);
+  hipHostFree(perCUBarriers);
 
   return 0;
 }

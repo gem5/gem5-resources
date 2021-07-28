@@ -81,14 +81,14 @@ unzip packer_1.6.0_linux_amd64.zip
 ```
 
 Once this process succeeds, the created disk image can be found on `npb/npb-image/npb`.
-A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/develop/images/x86/ubuntu-18-04/npb.img.gz).
+A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v21-1/images/x86/ubuntu-18-04/npb.img.gz).
 
 ## gem5 Run Scripts
 
 The gem5 scripts which configure the system and run simulation are available in configs-npb-tests/.
 The main script `run_npb.py` expects following arguments:
 
-**kernel:** path to the Linux kernel. This disk image has been tested with version 4.19.83, available at <http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-4.19.83>. More info on building Linux Kernels can be found in the `src/linux-kernels` directory.
+**kernel:** path to the Linux kernel. This disk image has been tested with version 4.19.83, available at <http://dist.gem5.org/dist/v21-1/kernels/x86/static/vmlinux-4.19.83>. More info on building Linux Kernels can be found in the `src/linux-kernels` directory.
 
 **disk:** path to the npb disk image.
 

@@ -79,8 +79,8 @@ You can find the disk-image in `parsec/parsec-image/parsec`.
 
 There are two sets of run scripts and system configuration files in the directory. The scripts found in `configs` use the classic memory system while the scripts in `configs-mesi-two-level` use the ruby memory system with MESI_Two_Level cache coherency protocol. The parameters used in the both sets of experiments are explained below:
 
-* **kernel**: The path to the linux kernel. We have verified capatibility with kernel version 4.19.83 which you can download at <http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-4.19.83>. More information on building kernels for gem5 can be around in `src/linux-kernel`.
-* **disk**: The path to the PARSEC disk-image.
+* **kernel**: The path to the linux kernel. We have verified capatibility with kernel version 4.19.83 which you can download at <http://dist.gem5.org/dist/v21-1/kernels/x86/static/vmlinux-4.19.83>. More information on building kernels for gem5 can be around in `src/linux-kernel`.
+* **disk**: The path to the PARSEC disk-image. This can be downloaded, gzipped, from <http://dist.gem5.org/dist/v21-1/images/x86/ubuntu-18-04/parsec.img.gz>.
 * **cpu**: The type of cpu to use. There are two supported options: `kvm` (KvmCPU) and `timing` (TimingSimpleCPU).
 * **benchmark**: The PARSEC workload to run. They include `blackscholes`, `bodytrack`, `canneal`, `dedup`, `facesim`, `ferret`, `fluidanimate`, `freqmine`, `raytrace`, `streamcluster`, `swaptions`, `vips`, `x264`. For more information on the workloads can be found at <https://parsec.cs.princeton.edu/>.
 * **size**: The size of the chosen workload. Valid sizes are `simsmall`, `simmedium`, and `simlarge`.

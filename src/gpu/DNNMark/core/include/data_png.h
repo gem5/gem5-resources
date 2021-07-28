@@ -109,8 +109,7 @@ class PseudoNumGenerator {
                         (static_cast <float> (RAND_MAX/seed));
     }
 
-    HIP_CALL(hipMemcpy(dev_ptr, host_ptr, size * sizeof(float),
-                       hipMemcpyHostToDevice));
+    memcpy(dev_ptr, host_ptr, size * sizeof(float));
     if (use_mmap) {
         munmap(host_ptr, size*sizeof(float));
     } else {
@@ -146,8 +145,7 @@ class PseudoNumGenerator {
                         (static_cast <double> (RAND_MAX/seed));
     }
 
-    HIP_CALL(hipMemcpy(dev_ptr, host_ptr, size * sizeof(double),
-                       hipMemcpyHostToDevice));
+    memcpy(dev_ptr, host_ptr, size * sizeof(double));
 
     if (use_mmap) {
         munmap(host_ptr, size*sizeof(double));

@@ -46,7 +46,7 @@ class Data {
     CUDA_CALL(cudaMalloc(&gpu_ptr_, size * sizeof(T)));
 #endif
 #ifdef AMD_MIOPEN
-    HIP_CALL(hipMalloc(&gpu_ptr_, size * sizeof(T)));
+    HIP_CALL(hipHostMalloc(&gpu_ptr_, size * sizeof(T)));
 #endif
   }
   ~Data() {
@@ -56,7 +56,7 @@ class Data {
       CUDA_CALL(cudaFree(gpu_ptr_));
 #endif
 #ifdef AMD_MIOPEN
-      HIP_CALL(hipFree(gpu_ptr_));
+      HIP_CALL(hipHostFree(gpu_ptr_));
 #endif
     }
   }

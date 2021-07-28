@@ -23,10 +23,12 @@
 # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
 
 import m5
 from m5.objects import *
 from m5.util import convert
+from os import path
 
 '''
 This class creates a bare bones RISCV full system.
@@ -36,6 +38,43 @@ Reference:
 [1] https://sifive.cdn.prismic.io/sifive/b5e7a29c-
 d3c2-44ea-85fb-acc1df282e21_FU540-C000-v1p3.pdf
 '''
+
+# Dtb generation code from configs/example/riscv/fs_linux.py
+def generateMemNode(state, mem_range):
+    node = FdtNode("memory@%x" % int(mem_range.start))
+    node.append(FdtPropertyStrings("device_type", ["memory"]))
+    node.append(FdtPropertyWords("reg",
+        state.addrCells(mem_range.start) +
+        state.sizeCells(mem_range.size()) ))
+    return node
+
+def generateDtb(system):
+    """
+    Autogenerate DTB. Arguments are the folder where the DTB
+    will be stored, and the name of the DTB file.
+    """
+    state = FdtState(addr_cells=2, size_cells=2, cpu_cells=1)
+    root = FdtNode('/')
+    root.append(state.addrCellsProperty())
+    root.append(state.sizeCellsProperty())
+    root.appendCompatible(["riscv-virtio"])
+
+    for mem_range in system.mem_ranges:
+        root.append(generateMemNode(state, mem_range))
+
+    sections = [*system.cpu, system.platform]
+
+    for section in sections:
+        for node in section.generateDeviceTree(state):
+            if node.get_name() == root.get_name():
+                root.merge(node)
+            else:
+                root.append(node)
+
+    fdt = Fdt()
+    fdt.add_rootnode(root)
+    fdt.writeDtsFile(path.join(m5.options.outdir, 'device.dts'))
+    fdt.writeDtbFile(path.join(m5.options.outdir, 'device.dtb'))
 
 class RiscvSystem(System):
 
@@ -55,19 +94,15 @@ class RiscvSystem(System):
         # This connects to main memory
         self.membus = SystemXBar(width = 64) # 64-byte width
 
+        # Add a bad addr responder
+        self.membus.badaddr_responder = BadAddr()
+        self.membus.default = self.membus.badaddr_responder.pio
+
         # Set up the system port for functional access from the simulator
         self.system_port = self.membus.cpu_side_ports
 
         # Create the CPUs for our system.
         self.createCPU(cpu_type, num_cpus)
-
-        # using RISCV bare metal as the base full system workload
-        self.workload = RiscvBareMetal()
-
-        # this is user passed berkeley boot loader binary
-        # currently the Linux kernel payload is compiled into this
-        # as well
-        self.workload.bootloader = bbl
 
         # HiFive platform
         # This is based on a HiFive RISCV board and has
@@ -75,21 +110,8 @@ class RiscvSystem(System):
         # PLIC, CLINT, UART, VirtIOMMIO
         self.platform = HiFive()
 
-        # Next, create and intialize devices
-        # currently supported for RISCV
-
-        # add a disk image
-        self.attachDisk(disk)
-
-        # set up core and platform
-        # level interrupt controllers
-        self.setupIntrCtrl()
-
-        # set up PMA checker
-        self.pmaChecker()
-
-        # attach off and on chip IO
-        self.attachIO(self.membus)
+        # create and intialize devices currently supported for RISCV
+        self.initDevices(self.membus, disk)
 
         # Create the cache heirarchy for the system.
         self.createCacheHierarchy()
@@ -99,6 +121,28 @@ class RiscvSystem(System):
 
         self.setupInterrupts()
 
+        # using RiscvLinux as the base full system workload
+        self.workload = RiscvLinux()
+
+        # this is user passed berkeley boot loader binary
+        # currently the Linux kernel payload is compiled into this
+        # as well
+        self.workload.object_file = bbl
+
+        # Generate DTB (from configs/example/riscv/fs_linux.py)
+        generateDtb(self)
+        self.workload.dtb_filename = path.join(m5.options.outdir, 'device.dtb')
+        # Default DTB address if bbl is bulit with --with-dts option
+        self.workload.dtb_addr = 0x87e00000
+
+        # Linux boot command flags
+        kernel_cmd = [
+            "console=ttyS0",
+            "root=/dev/vda",
+            "ro"
+        ]
+        self.workload.command_line = " ".join(kernel_cmd)
+
     def createCPU(self, cpu_type, num_cpus):
         if cpu_type == "atomic":
             self.cpu = [AtomicSimpleCPU(cpu_id = i)
@@ -106,6 +150,10 @@ class RiscvSystem(System):
             self.mem_mode = 'atomic'
         elif cpu_type == "simple":
             self.cpu = [TimingSimpleCPU(cpu_id = i)
+                        for i in range(num_cpus)]
+            self.mem_mode = 'timing'
+        elif cpu_type == "minor":
+            self.cpu = [MinorCPU(cpu_id = i)
                         for i in range(num_cpus)]
             self.mem_mode = 'timing'
         else:
@@ -170,20 +218,10 @@ class RiscvSystem(System):
                     port = self.membus.mem_side_ports)
         ]
 
-    def attachIO(self, membus):
+    def initDevices(self, membus, disk):
+
         self.iobus = IOXBar()
 
-        self.bridge = Bridge(delay='50ns')
-        self.bridge.master = self.iobus.slave
-        self.bridge.slave = self.membus.master
-        self.bridge.ranges = self.platform._off_chip_ranges()
-
-        # Connecting on chip and off chip IO to the mem
-        # and IO bus
-        self.platform.attachOnChipIO(self.membus)
-        self.platform.attachOffChipIO(self.iobus)
-
-    def setupIntrCtrl(self):
         # Set the frequency of RTC (real time clock) used by
         # CLINT (core level interrupt controller).
         # This frequency is 1MHz in SiFive's U54MC.
@@ -193,12 +231,17 @@ class RiscvSystem(System):
         # RTC sends the clock signal to CLINT via an interrupt pin.
         self.platform.clint.int_pin = self.platform.rtc.int_pin
 
-        # Attach the PLIC (platform level interrupt controller)
-        # to the platform. This initializes the PLIC with
-        # interrupt sources coming from off chip devices
-        self.platform.attachPlic()
+        # VirtIOMMIO
+        image = CowDiskImage(child=RawDiskImage(read_only=True), read_only=False)
+        image.child.image_file = disk
+        # using reserved memory space
+        self.platform.disk = MmioVirtIO(
+            vio=VirtIOBlock(image=image),
+            interrupt_id=0x8,
+            pio_size = 4096,
+            pio_addr=0x10008000
+        )
 
-    def pmaChecker(self):
         # From riscv/fs_linux.py
         uncacheable_range = [
             *self.platform._on_chip_ranges(),
@@ -211,16 +254,20 @@ class RiscvSystem(System):
         # or MMU-level (system.cpu[0].mmu.pma_checker). It will be resolved
         # by RiscvTLB's Parent.any proxy
 
-        self.pma_checker =  PMAChecker(uncacheable=uncacheable_range)
+        for cpu in self.cpu:
+            cpu.mmu.pma_checker =  PMAChecker(uncacheable=uncacheable_range)
 
-    def attachDisk(self, disk):
-        # VirtIOMMIO
-        image = CowDiskImage(child=RawDiskImage(read_only=True), read_only=False)
-        image.child.image_file = disk
-        # using reserved memory space
-        self.platform.disk = MmioVirtIO(
-            vio=VirtIOBlock(image=image),
-            interrupt_id=0x8,
-            pio_size = 4096,
-            pio_addr=0x10008000
-        )
+        self.bridge = Bridge(delay='50ns')
+        self.bridge.mem_side_port = self.iobus.cpu_side_ports
+        self.bridge.cpu_side_port = self.membus.mem_side_ports
+        self.bridge.ranges = self.platform._off_chip_ranges()
+
+        # Connecting on chip and off chip IO to the mem
+        # and IO bus
+        self.platform.attachOnChipIO(self.membus)
+        self.platform.attachOffChipIO(self.iobus)
+
+        # Attach the PLIC (platform level interrupt controller)
+        # to the platform. This initializes the PLIC with
+        # interrupt sources coming from off chip devices
+        self.platform.attachPlic()

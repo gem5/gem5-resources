@@ -21,16 +21,16 @@ command-line arguments for use with heterosync.
 ## Compilation
 ```
 cd src/gpu/heterosync
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make release-gfx8-apu
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make release-gfx8
 ```
 
-The release-gfx8-apu target builds for gfx801, a GCN3-based APU. There are other
-targets (release-gfx8, release) that build for GPU types that are currently unsupported
-in gem5.
+The release-gfx8 target builds for gfx801, a GCN3-based APU, and gfx803, a
+GCN3-based dGPU. There are other targets (release) that build for GPU types
+that are currently unsupported in gem5.
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v21-0/test-progs/heterosync/gcn3/allSyncPrims-1kernel>
+<http://dist.gem5.org/dist/v21-1/test-progs/heterosync/gcn3/allSyncPrims-1kernel>
 
 Information from original HeteroSync README included below:
 

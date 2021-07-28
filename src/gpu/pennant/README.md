@@ -40,7 +40,7 @@ compare against, and there may be slight differences due to floating-point round
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v21-0/test-progs/pennant/pennant>
+<http://dist.gem5.org/dist/v21-1/test-progs/pennant/pennant>
 
 The information from the original PENNANT README is included below.
 

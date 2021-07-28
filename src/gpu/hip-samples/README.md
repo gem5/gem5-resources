@@ -33,23 +33,23 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu
 
 Individual programs can be made by specifying the name of the program
 
-By default, this code builds for gfx801, a GCN3-based APU. This can be
-overridden by specifying `-e HCC_AMDGPU_TARGET=<target>` in the build command.
+By default, the apps are built for all supported GPU types (gfx801, gfx803).
+This can be changed by editing the --amdgpu-target argument in the Makefile.
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/2dshfl>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/2dshfl>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/dynamic_shared>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/dynamic_shared>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/inline_asm>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/inline_asm>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/MatrixTranspose>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/MatrixTranspose>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/sharedMemory>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/sharedMemory>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/shfl>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/shfl>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/stream>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/stream>
 
-<http://dist.gem5.org/dist/v21-0/test-progs/hip-samples/unroll>
+<http://dist.gem5.org/dist/v21-1/test-progs/hip-samples/unroll>
