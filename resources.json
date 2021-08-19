@@ -48,6 +48,3523 @@
                     "source" : "src/linux-kernel"
                 }
             ]
-        }
-    ]
+        },
+        {
+            "type" : "group",
+            "name" : "asmtest",
+            "contents" : [
+                {
+                    "type" : "artifact",
+                    "name" : "rv64mi-p-access",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f79864adb24b4d9d58973fe296555dc3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64mi-p-access",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64mi-p-breakpoint",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cf9c2c258bc4ee79f6ab725dcd93c8a3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64mi-p-breakpoint",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64mi-p-csr",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d184e318ca5583c7459d210af833f67d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64mi-p-csr",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64mi-p-illegal",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "7f5bb9a8dc5b3556c63f24966edf6ad2",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64mi-p-illegal",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64mi-p-ma_addr",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "01720cfc720c49af44593fb66e63e06e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64mi-p-ma_addr",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64mi-p-ma_fetch",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6a8ee354739700aa4da0cf256ae3b623",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64mi-p-ma_fetch",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64mi-p-mcsr",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1894b9678b44a1317bf0fda2bc767443",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64mi-p-mcsr",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64mi-p-sbreak",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "50e24f358eeceb443c18fe4e566957b2",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64mi-p-sbreak",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64mi-p-scall",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b95617ad90fd92f3f518c626bc1c81fc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64mi-p-scall",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64samt-ps-sysclone_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "84dc170bb877dc516f6127371f813087",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64samt-ps-sysclone_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64samt-ps-sysfutex1_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "fe859cc6a504d62bc3abbb751b55e416",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64samt-ps-sysfutex1_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64samt-ps-sysfutex2_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4a8d53dd89756e6c74ed0925fab72fc4",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64samt-ps-sysfutex2_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64samt-ps-sysfutex3_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ec61b4108d4c6bb904600a588bb367d3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64samt-ps-sysfutex3_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64samt-ps-sysfutex_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3b805a4400927b59e97a2f678a622f7b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64samt-ps-sysfutex_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64si-p-csr",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "fb9db247f8acd3fa330e383942b7170c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64si-p-csr",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64si-p-dirty",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "916747b2226aab4ae7ca05b7eaebc189",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64si-p-dirty",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64si-p-icache-alias",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "bf1d206a09b1b5506533db47d195e354",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64si-p-icache-alias",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64si-p-ma_fetch",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "a3451c72e5bc0fecdf34cf8c59ace267",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64si-p-ma_fetch",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64si-p-sbreak",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "08afcd6a559f0625ff2ad490573da7c2",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64si-p-sbreak",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64si-p-scall",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "08544fc1982fb4223b9516908d73c66e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64si-p-scall",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64si-p-wfi",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "22442bfd1982596f4b7d2ce34256a2d6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64si-p-wfi",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoadd_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4ae52283ec5265491a331b040faf543c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoadd_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoadd_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "5317855fb37fdb1eadb141bc5de52c43",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoadd_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoand_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e7621c3e127790675216e6fafb236ec0",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoand_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoand_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "2f017ecde182922b1039158a9f1252ef",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoand_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amomax_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0a172c82597d9614b93f074d7f4442d4",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amomax_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amomax_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "089bf05a30b30d1d25f8858d9823087b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amomax_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amomaxu_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "82f82aedec0b48994f648082a8a06801",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amomaxu_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amomaxu_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c3bfd1da662a92b8685839e85585b342",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amomaxu_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amomin_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cb43912d40d8b0eea1ac9fe45557a32c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amomin_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amomin_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cb2488c129deaf82b1945d7617d45b94",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amomin_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amominu_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "a2cc432c9f969a871b851d6ed7906e25",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amominu_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amominu_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "796023fb8918ca75353d7850daf14a93",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amominu_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoor_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "dc0dc9108bb9bdba7d75ecca8313216c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoor_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoor_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4fda30de396c92eaaf16b69c728a3a7d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoor_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoswap_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "83659ebf6fbd6a57648f1ba8c507aa4b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoswap_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoswap_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9d06c8c3ceb069ef86ff2de4815282cd",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoswap_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoxor_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1af9fab80459fde57f4bf4e9c01d9093",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoxor_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-amoxor_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "dda14b981718906fc234b8227904c7c6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-amoxor_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-p-lrsc",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8b6ad66b8bbb4df80d1516f6817b7660",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-p-lrsc",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoadd_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1f03b3b804be0a2132057003b58f8a2b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoadd_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoadd_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "955744c2e0dbba10ca01e690c0958364",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoadd_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoand_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cc3f74959c923b05340aa24cfc63a801",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoand_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoand_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "2c5ad7e346cc4e0e52dfc76789efe397",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoand_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amomax_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "2123dce5d094f2fc3bc5fb2943562be1",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amomax_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amomax_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9270905c5113a039b637022170e1fc74",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amomax_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amomaxu_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "808fd2cccbd11f6434b5dcb6c5d3c5bf",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amomaxu_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amomaxu_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "26da4254d99e55fe009c7cc34ac1a987",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amomaxu_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amomin_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "71b99433af69e09f63e0f22d5a02cc49",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amomin_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amomin_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4f2f90ba9a75b85f9207850e27bb6d00",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amomin_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amominu_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "636269f97f41643f004c259ec446649c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amominu_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amominu_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "584c473e61733eb5cf58911b3136647a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amominu_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoor_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4729ad637554898b6f26458a104f6b1c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoor_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoor_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c671e3b095455b8401298009104e92ba",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoor_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoswap_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d4df6b07df820da6eb9eecd8a9029ff7",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoswap_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoswap_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "2d9d9d3d6b02cfd4e3506b6b8b4557e7",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoswap_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoxor_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0426ab864eae292dab59998e21b78e49",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoxor_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-amoxor_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f5c17e8c932aeb0e9dc3ad2a4e0ba168",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-amoxor_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-ps-lrsc",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "21090834e56595bfdb9c2fbb89114cb5",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-ps-lrsc",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoadd_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "af091994135470f609cab40bbcea1a63",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoadd_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoadd_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d78c80bdab8a1fc073fa1f186cec8830",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoadd_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoand_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1094cdd438411b12f827bf1dcdace80e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoand_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoand_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ef5e91a05a48bb7d703841ce8ece84a6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoand_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amomax_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "7ae80f64520e3c110b8bbec945094a53",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amomax_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amomax_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "701a326352d18dbaffe806c109ad692a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amomax_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amomaxu_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "5ef8cc47ea14171f396ddbba188e3983",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amomaxu_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amomaxu_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d999a055462eb4179be196d1125d876c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amomaxu_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amomin_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "09e4e4d639834b295a665051bf3ce1ef",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amomin_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amomin_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "179c2591ce919a2488f1e22a0f5d283a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amomin_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amominu_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "910ad4686c643213a7829b586002637b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amominu_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amominu_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d808d5cd0398c9ecd5773e50e22abf2e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amominu_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoor_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "de1dcb7d714c669be86c86bd25a85651",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoor_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoor_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9780206d1b9518b10c8d9e72cf0239eb",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoor_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoswap_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8cc9a4f1d0b4489d0a0bd70186beaac2",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoswap_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoswap_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "eca745d0dbe4ae57fe6b110317834875",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoswap_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoxor_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3bbee5900b7d9e540ce212f4dd423c7d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoxor_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-amoxor_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8fb3a2fb5d50813d077d80210d010828",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-amoxor_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ua-v-lrsc",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "932d6654d7a960b455dff6f09d5f69ea",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ua-v-lrsc",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-amoadd_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "87b684a2f6bb281d7ad4b7b042b73854",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-amoadd_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-amoand_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "24ccac26314dc1f05928f8244cb0cbe7",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-amoand_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-amomax_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e713e0e561b53e56f9339f67b663ca9c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-amomax_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-amomaxu_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "da2bf05a420e75221056003767c878a8",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-amomaxu_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-amomin_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "97e120b06112fa2def234de4fede74ab",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-amomin_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-amominu_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8ea0a86db7b7e02ae78d4f07374ab52f",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-amominu_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-amoor_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b5f540731786f31803c3c60237623fe6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-amoor_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-amoswap_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3775368c4726324b66150ea3f9d2a260",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-amoswap_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-amoxor_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "57e926bd3326d5559e592c27c32e53fb",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-amoxor_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uamt-ps-lrsc_d",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "70ff384c8ef9b66e564a273e9e6d2648",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uamt-ps-lrsc_d",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uc-p-rvc",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6a75f689b2bd4582a43bdbbb31bb382c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uc-p-rvc",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uc-v-rvc",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "5fe84fedbeb130f5817c0fe0a5584b3e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uc-v-rvc",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-fadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "df0e68e382a89931501e2cc46314ff3b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-fadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-fclass",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9ba1f2aab1822501ce977b7a2c7c4a6b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-fclass",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-fcmp",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "46e7f1ce5cd54bf2d3419d84c0153f24",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-fcmp",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-fcvt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "581531f02f3c135ed2c4ad6bd4ab6ee4",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-fcvt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-fcvt_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "7a937a695c44129aa6d182d435a421fc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-fcvt_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-fdiv",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ec2ce086d1bbe1b29622f70c7901abd8",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-fdiv",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-fmadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e7163e05deadb1bfc22b81ba448a860f",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-fmadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-fmin",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e2b6014cf013c294ad91558fe2f0ed21",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-fmin",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-ldst",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d9ba4fff56f725ea79d0e70862247c44",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-ldst",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-move",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ba51a7c9ac36c0f2258863e6c8a7bd0a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-move",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-recoding",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "fc2e947926e128c983a957783f32daae",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-recoding",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-p-structural",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "a3a59386a27eea3f80f5461216c3344d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-p-structural",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-fadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "fc8de228dd951868fb274786b6ff9ff9",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-fadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-fclass",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "da76a1a5ed8c450e5fa76a4c27079bb6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-fclass",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-fcmp",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "aa42a6da32ee329295640ebba07de718",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-fcmp",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-fcvt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "87e11c0fa32e8ff3fd9a9f1781a91bb7",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-fcvt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-fcvt_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e2bb2d9995a606521e443713a99ac569",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-fcvt_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-fdiv",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1aa837b6dccf2e11aceebed8d3a6a991",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-fdiv",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-fmadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3125478135067cf9b44dfae5c4b6df31",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-fmadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-fmin",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3cee89db4e4881f0f0f903114bf00fe0",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-fmin",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-ldst",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "254df67bb1e4ae17c381a6aa028ab217",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-ldst",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-move",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4bbd2e8d8929c0b5aa3984d4f07c9b7d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-move",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-recoding",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "110a26cf26a24a787759dfd95ca6b57e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-recoding",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-ps-structural",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "bfbd32687ce03667277b1aab264eaf0a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-ps-structural",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-fadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b9163081289a8c6c54b9c01f94f11d03",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-fadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-fclass",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "dce53c303671f09b5c01216cfe14a641",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-fclass",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-fcmp",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3826335b0512b741305661eb57e86628",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-fcmp",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-fcvt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "a6c4492502f5bb0f983d152b7b6c535d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-fcvt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-fcvt_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f2261cec4e1bf4d253ab18d27f32f119",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-fcvt_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-fdiv",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0bf318396f5fc0bebf810eca1f959a20",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-fdiv",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-fmadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e628460d478c3db8080e7faaa0fc5b22",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-fmadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-fmin",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9a738938d06df5ac12889e01c911f78d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-fmin",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-ldst",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "97b2d693e4a9f6ed21137f4c7d541685",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-ldst",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-move",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4b758433d00da42338ddeaecc3e71e13",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-move",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-recoding",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "90dbc06d2f035deb55c9f03385d89908",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-recoding",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ud-v-structural",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e79911f5564596d0e6fcf74126f82928",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ud-v-structural",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-fadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b72484f7b3acf248a0bb3b95dd2952e5",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-fadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-fclass",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "abc897ae9c8008ec62b4d487dc949bcd",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-fclass",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-fcmp",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d9d51339aaa8901bff0514d7b2d926b5",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-fcmp",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-fcvt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "55461ce28b5f6d92dc6883e989493705",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-fcvt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-fcvt_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "54cf9f4b8b899881ddc9b07f8b980866",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-fcvt_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-fdiv",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ecaabb4034c268fd73995f25570c7e8b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-fdiv",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-fmadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "89aaaa9e8ab9d822f384c3f3543d304d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-fmadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-fmin",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "abd4b19567c4c3aa3cd312180251b914",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-fmin",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-ldst",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "51590ab6fcb6975ddfca44a953d25ecb",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-ldst",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-move",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ff9b084b3f1e88ac8825a1726f1ac353",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-move",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-p-recoding",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d9df1aecd763a903e93f09ebcb6ac516",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-p-recoding",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-fadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4fc255350e09958b7d1dac5c15d6a458",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-fadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-fclass",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c779cb1efab84f59776d8c49f11b891d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-fclass",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-fcmp",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d1b1e98a9cc071d68c037f21b1a6b515",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-fcmp",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-fcvt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0c8d0365a7364f90fde48da56f8d17a0",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-fcvt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-fcvt_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9500c44421227806e1167c5ff63fc25e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-fcvt_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-fdiv",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3feb667478a073a4383987161ed1b3f5",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-fdiv",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-fmadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b6684ec8e959dc350941d99188a4576f",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-fmadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-fmin",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d7f7ca68f9b842c4df23170fcec42c8c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-fmin",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-ldst",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "610fd5f2585be41fe2c6c7f14ef6874c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-ldst",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-move",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "49c3b074e112f3736ed2dd9aa60ead5d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-move",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-ps-recoding",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c3eb1450641d33083592fccb458f7054",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-ps-recoding",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-fadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "5960892db8d92369fee8906f811c2b7e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-fadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-fclass",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1e481a47ee5dde3cafafd811f26de687",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-fclass",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-fcmp",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0c1c49e5fa9d3c4710eb1aa8799ebe7d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-fcmp",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-fcvt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e355d5f88669f1eab54fdbb7a66cfbc1",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-fcvt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-fcvt_w",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "52e6bcfcd0fc671126f4f93277fdb33b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-fcvt_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-fdiv",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "585f6f7ff1426432841566996c8b1e86",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-fdiv",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-fmadd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "a771e99476fe60661f70d2c38d482b59",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-fmadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-fmin",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4277c4a3a15154418440f8b667fb5897",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-fmin",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-ldst",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "93ecdee8e10bad66a9dc87b4f0bd6abf",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-ldst",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-move",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "fab0d3008a72e65a8cda7b53bb2b4ef3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-move",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64uf-v-recoding",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "93010be0f7532720e52b5c42e66cec4c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64uf-v-recoding",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-add",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "5ae1f4792f8ac4a4fd81f86244852429",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-add",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-addi",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f8ddfbd3eaf80ffe9f3ef962ce2fa3dc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-addi",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-addiw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "811df894399a88791205bed13af760df",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-addiw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-addw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "5859a793f0c9ceea435d775acf9a809d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-addw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-and",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "12c4f4a5d89fc1f8559176f58bba7fbc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-and",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-andi",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d77d7713c2db6a4b4cde3f5635c0656a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-andi",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-auipc",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "08aefe8b537ba936dd9b6e1847efdda5",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-auipc",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-beq",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "34e3d014b15327200ae358288311449f",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-beq",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-bge",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e3bde7e1a401b690f4aac83e27faf06d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-bge",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-bgeu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ce6e5c09f53074fb47ec9e138c839856",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-bgeu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-blt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "a40194025841ef4a97d75788f27e8901",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-blt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-bltu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9770c269235de402e047c2d77f317a00",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-bltu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-bne",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8ecaadbc6f50336d3001993f6076da6d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-bne",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-fence_i",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6c68ee9ca88db3491d9964fb8fbb292e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-fence_i",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-jal",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d0c4593786e20835f21854187aab5336",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-jal",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-jalr",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8f7b5ae0fb06339646d442faeb3d2112",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-jalr",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-lb",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "410b4b665b2700bfc7de8ca2bee13eba",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-lb",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-lbu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b2a8b33f9ef795c61b20ad609e8d4f68",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-lbu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-ld",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cfbbf197c28734913b82af86acb8c6b6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-ld",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-lh",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b27b4d2c93df265c40dd775db91a51d4",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-lh",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-lhu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0191f964bb5943bc5190d053889bfe58",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-lhu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-lui",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8710ceb57d6270e93036c17078d98d7c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-lui",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-lw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "dfcbdaea89a69181574935fa06480d19",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-lw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-lwu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d69dc6ea165ec6c9214b712e15a1d8ab",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-lwu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-or",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "45482709f8564d4ba4b9906233b9bb7b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-or",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-ori",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3c041292f2c31baa227c2e54975220fe",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-ori",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sb",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1cd1d04fca58d003ce28b65d92aa8889",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sb",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c13a92bdf9d9faf4d991cbd4082b9166",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sh",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6741dde915fdb1fd7f8bb4ac7852158d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sh",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-simple",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c036528d8a1f12baf7b546c9c43eac67",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-simple",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sll",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "afaf75edf394431f0541421fdedef154",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sll",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-slli",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d9b824f13fe53593069279b587f0fd21",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-slli",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-slliw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0483c28d9120c85221da62919075fe8e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-slliw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sllw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0d3f4747b0046b58b2ba155d20405fae",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sllw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-slt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b14b9dec4e19c6548d8e73a81c82fef3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-slt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-slti",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9d161594c5ae5b1636d2ebc981d2a45e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-slti",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sltiu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6a8625e73078e75b778213565c7631dc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sltiu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sltu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "31ec3d8b7d4765ef07deb50d79d38ed0",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sltu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sra",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "7d956b7c764493886357194f5dbc476e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sra",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-srai",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cd631b57809962e3237726aa159673c8",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-srai",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sraiw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b61112cc7c6d550393660b872fb3f064",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sraiw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sraw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d3c5aaa6c67ee3e423548f78c1e114ea",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sraw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-srl",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ed342633350a369977683b069bee7d3a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-srl",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-srli",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "da4399a1da3b5caf218ed4950e96762b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-srli",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-srliw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "85d33d6b905527fd99afc52979eb1612",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-srliw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-srlw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3977283582e73e51cd67f828b2ee2315",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-srlw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sub",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "592f8add96467450a7de320221d86d76",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sub",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-subw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8994d07e1f5b91610d95049cdf8287a9",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-subw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-sw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f61fa9d97a70fafcc77eeac8dae36484",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-sw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-xor",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "594712c1b8c74b5b087bac30246e9364",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-xor",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-p-xori",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "19cc10117d97e3fbb41e2d2786f79198",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-p-xori",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-add",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "13b6948da6a2357bcdcd829b56e84bd1",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-add",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-addi",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6dfbf697061615476057e460c9f62b3d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-addi",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-addiw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "015db9a17305885bd5907ab9d3fa91dc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-addiw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-addw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "a77aadcebc1f3d5cf4526dee37c90510",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-addw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-and",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "088d34a01ff842d44b5a4db607e549c4",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-and",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-andi",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ddde8986ae4e4fd87c4bf4b16b2544aa",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-andi",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-auipc",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1a4847e8ec5d826eea60f709d95dac97",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-auipc",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-beq",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0434433ea79b6cc44c001a161babbd67",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-beq",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-bge",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "fa822964f28d847ff7b1d69a1ee6aa7c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-bge",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-bgeu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c9680e0e6081fc0d6f0369c563165228",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-bgeu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-blt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f224e7e7ff0e6975d9ced89f4b78a62a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-blt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-bltu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "842078af75769453b2df67c5c28babb3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-bltu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-bne",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6cf9760f0307b15b2ddcb317017e8087",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-bne",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-fence_i",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "78d9408139d005819a58802aa6a20e7e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-fence_i",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-jal",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "30f8d2b4a754b1c0db615aa53f4204aa",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-jal",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-jalr",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "656ba873c7261240d0bcc393a99644fa",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-jalr",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-lb",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "af983b6499aa6b1aa8f48625b28122fa",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-lb",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-lbu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b862e0d36be2780fc2208853419208fa",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-lbu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-ld",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "27cfd2226a88a83ec00a5f28e71f2591",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-ld",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-lh",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e5de1e7f4798765fc25c5279fac8d1c4",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-lh",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-lhu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4afe6afdc5320dd45e7080396f7378c4",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-lhu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-lui",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0fb63e51ca357783e8134e55d0d6fd95",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-lui",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-lw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "52ff2024de2a0f9c6c422bb6e5f1d2a3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-lw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-lwu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ff71b5ac6e75680a90f825ba0cc78285",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-lwu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-or",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "878d822e9a8825327f060200403d19d9",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-or",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-ori",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "69e92a5bfaff07667d904a5d4f26f47d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-ori",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sb",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "48de8bb47f1d4f4c2b8d67ccac452c3d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sb",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cb1bb63deaa9da41714d9991553c2ef0",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sh",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c912983af1c58176fb7d567be732c87d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sh",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-simple",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "62b01468e7c4d324c0acc7536b0b7e0a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-simple",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sll",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "283d19bdb002c986366ff270839cf15e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sll",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-slli",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "50845da8fd5f57789c55e2b025f0e90f",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-slli",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-slliw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "006859a1917f83aa5a7f1eb2ba61421a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-slliw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sllw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "fa74956bc42617642cf56b17ce7b7b82",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sllw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-slt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "669aa8ae65e5614752b5994eb81f7de1",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-slt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-slti",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "44d2269759e1b5fb2ab2d764060292fc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-slti",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sltiu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3415858543b5742bc5184e0b3c993300",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sltiu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sltu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "28cb31170ad9d6c504c29d8c29edd24f",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sltu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sra",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f109c193247e2fb8434ce4c332f0cb41",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sra",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-srai",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "36d6c4883d27d7f6e96fd67cbeecca45",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-srai",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sraiw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d8d62c3727e5176ede4ba3839dfcc9cb",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sraiw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sraw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cb56211febe89c3b634c9b1de5d5f3e6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sraw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-srl",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "981b412a0c1114c34dfdb66b8068af71",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-srl",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-srli",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4c64e4c765ba8d1cbe12541473fd1f70",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-srli",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-srliw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ed8bed99a31ef1434f8cc0eae36fb651",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-srliw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-srlw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9ea198e8b3841fa717046342083b3db1",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-srlw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sub",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d264dce065710136c1a8d351400f80df",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sub",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-subw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9ed1d807c716c7802ee8151d03daf9db",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-subw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-sw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f1e06d50f81552c17df23cd4ee17825e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-sw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-xor",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "82b4ec464f6970b1aeea47aac09355ee",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-xor",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-ps-xori",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "06c59f7a2962d7b43fffbb4c9a74f34e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-ps-xori",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-add",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4ac53c865c9f93b7669e82ad445ad1c8",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-add",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-addi",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "a77b433e265327ae78581f03e4a0b2bc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-addi",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-addiw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3d289fb592df639eaffd4dc92516e3ce",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-addiw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-addw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1f9b805b62b7a261aff16d682c0f9dab",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-addw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-and",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c536e569ec53a006b0f68954b2ac19a5",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-and",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-andi",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4851b63d6bf0a09235351eba6c4d3c21",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-andi",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-auipc",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "314b3d6e861457ff8292b6591ffd4f51",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-auipc",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-beq",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6f9d00065f40ef22577d16c3a5b288f8",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-beq",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-bge",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "feb48724a40b2a434331fc4562094b80",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-bge",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-bgeu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9a5c00386faf006204bdaaf5e04e5a2d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-bgeu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-blt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9346cee2df12e391250dba9f8407e668",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-blt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-bltu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "5ea5c0cd054c998a4779b4f96550fbfd",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-bltu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-bne",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "4affbfe59c08c3c5df5e7c1aa2a575d3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-bne",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-fence_i",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8ca111c5153f595cdff1d0cbfb46d8d0",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-fence_i",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-jal",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e53a4a6a608c32c3fc40220feffe74c4",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-jal",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-jalr",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "a8883869a4cca9a62993eab586bf9983",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-jalr",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-lb",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b5ba6b4fe284446443e14a469a4201e9",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-lb",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-lbu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d58a68b36b10f4b360e3b49890d8f747",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-lbu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-ld",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "5106dc8f1c6fca7f05a592462ec26025",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-ld",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-lh",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c745aebb75f4789ad7a944b326cc98bc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-lh",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-lhu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "95ca302d8064d31d5e7f675ede76e5d2",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-lhu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-lui",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "d91f414651ab5d6820f327c6a0283f3e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-lui",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-lw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "75218650a406049dd98d8b563e75dd29",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-lw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-lwu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "65825081f96f22844a326a6d6790b755",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-lwu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-or",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "bcf7ec774ba67868de996c94ffb28a8e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-or",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-ori",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "9ab3eea49545d31068a6f52a3893a4d6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-ori",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sb",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6ee42880b6c060d2f7bcc217564f6450",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sb",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sd",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "676720cb24ac2adaee6ed0ec7ea27ccf",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sh",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "82aca94c8969bd2f8ea7ca9be7fbc8f2",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sh",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-simple",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b26c36216ac9b248a4434950d2c61a8e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-simple",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sll",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c328191502ac82baa27d920991349234",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sll",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-slli",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "258c49788d40ce7ff5fc7459ed0d8c76",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-slli",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-slliw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "da8198692b96d46cfd2316590aa700de",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-slliw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sllw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e8546fe87f70356c61be6c570e38b994",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sllw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-slt",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "5d4cd4d048577413992ad2f00204bc50",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-slt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-slti",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3ec767139c3603c9a610f29f1890e7a6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-slti",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sltiu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "17a4044b1ee6dd205a5e38752c4ce319",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sltiu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sltu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0995455fe6716d8b64c3273661702164",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sltu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sra",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c6f8bf8fe35d6e972ef5010894462893",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sra",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-srai",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f4cf327543b4a02ff3d2fc9164dc8c3f",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-srai",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sraiw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3115a0db99d8ca24af002f0375fa3336",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sraiw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sraw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8cff4bf8c7c2d834f5a4b10e2f7571f3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sraw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-srl",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f0a51bfd1ba6510f331d7c677af7ae74",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-srl",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-srli",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "956f9fe8fdf55dfde2387334d3c57ce0",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-srli",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-srliw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b0c31b43c2ce91b3c296122785f0c1fc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-srliw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-srlw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cac0b3d218e978e90d981259098152ed",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-srlw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sub",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "12998e74b2b9f66ac1889de77158f553",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sub",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-subw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c14f2da36dd956c663e8b8d504ef87d3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-subw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-sw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b65d836977544168934a5aa80e72a7b2",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-sw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-xor",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3fc976679b7404343f553cca9d837ccb",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-xor",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64ui-v-xori",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "54e3e45b8715933284af73de1dea33f0",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64ui-v-xori",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-div",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "820dd93e9bd32aa0c6078e82b3a1d56e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-div",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-divu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "2423002bc3997c1bb49db95ef5c2aae8",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-divu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-divuw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "87992ad64dd865331a4bcbf3fa14c014",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-divuw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-divw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "94cdea0f7388a1c756017ad892842066",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-divw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-mul",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "56a0b94c8b01189a4ee89fa963fa8728",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-mul",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-mulh",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "96b114196281da84401ea85fbe7374cd",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-mulh",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-mulhsu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c4e736755d41b88d38609d1e93c478b6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-mulhsu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-mulhu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "69eb85950fc484e5d342de6b3e5bff1d",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-mulhu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-mulw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "1e6b85556decd6f1fcce889f8d2013d3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-mulw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-rem",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8c8ddfce7ca7feb2c454b882cdb7633a",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-rem",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-remu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "b8b793b7b178d986e36ff93e2b1e0f9c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-remu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-remuw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "258ed5fc8d7cd8002fa3ec7288e63aaa",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-remuw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-p-remw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "926257e6eccf64456086994635101f0c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-p-remw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-div",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "602ae8b873ba3e39b4b62300b66f59a2",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-div",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-divu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8809b137e030244ca0f9ffc0d1989504",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-divu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-divuw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c294f1703a609b2ab91ef6b31e9fa1d8",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-divuw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-divw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8c59d76fd7786c2b0bbd9f3c54794774",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-divw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-mul",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f9d4ede3f8427efdd0c79c2c17938f3b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-mul",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-mulh",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "34514d7c23c1ad2ce38746b79d398a24",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-mulh",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-mulhsu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "e7ff21e8c1ea8876d517145c25ab13d5",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-mulhsu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-mulhu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "dc55005966c9c28062e8a79f83b65f96",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-mulhu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-mulw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ae60abbf79902a2027a9e4338e74cc6b",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-mulw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-rem",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c1736d9576801eb4bec8fa1685b44691",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-rem",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-remu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "42d352b6738309f9068dd241f074370f",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-remu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-remuw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f314392cb6caea00338bb19ca720be12",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-remuw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-ps-remw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "951f8ff2e317fd8789cf84b8a23150a2",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-ps-remw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-div",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "3b5f9fed1d39c75ea32408e19bc4a0df",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-div",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-divu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "bd0825b6474751887b99d7a05df31fa8",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-divu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-divuw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "c8855c9a292eb86dee8e11ddcc88b843",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-divuw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-divw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "6e33cb55a71ba378c739fb63cecf85a1",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-divw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-mul",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "cbf41e207dfb09c352582d97f1cf5ddf",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-mul",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-mulh",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "387c221747ca8160b6f461060ea44640",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-mulh",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-mulhsu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "09d283d8a482edee0bbaa04abaffe587",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-mulhsu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-mulhu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "f21396ba8d1feba4225413fcdd93e859",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-mulhu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-mulw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8b7409faa548e836aa8391544659b237",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-mulw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-rem",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "0375cd5552dbfdfafe6272f34a4312bc",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-rem",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-remu",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "8d2301cca38b588f03206b9dd4d0e082",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-remu",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-remuw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "241e4de12fd79207aac6f321773b041c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-remuw",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "rv64um-v-remw",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "aff1c28cdb84b9509547935c62aec435",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/asmtest/bin/rv64um-v-remw",
+                    "source" : "src/asmtest"
+                }
+			]
+		}
+	]
 }
+
