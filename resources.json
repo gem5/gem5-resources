@@ -51,6 +51,102 @@
         },
         {
             "type" : "group",
+            "name" : "hello",
+            "contents" : [
+                {
+                    "type" : "artifact",
+                    "name" : "riscv-hello",
+                    "documentation" : "",
+                    "architecture" : "RISCV",
+                    "is_zipped" :  "False",
+                    "md5sum" : "6d9494d22b90d817e826b0d762fda973",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/hello/bin/riscv/linux/hello",
+                    "source" : "src/simple"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "arm-hello64-static",
+                    "documentation" : "",
+                    "architecture" : "ARM",
+                    "is_zipped" :  "False",
+                    "md5sum" : "71b2cb004fe2cda4556f0b1a38638af6",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/hello/bin/arm/linux/hello64-static",
+                    "source" : "src/simple"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "arm-hello32-static",
+                    "documentation" : "",
+                    "architecture" : "ARM",
+                    "is_zipped" :  "False",
+                    "md5sum" : "15defa57a6c0035590992f8d715e9318",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/hello/bin/arm/linux/hello32-static",
+                    "source" : "src/simple"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "mips-hello",
+                    "documentation" : "",
+                    "architecture" : "MIPS",
+                    "is_zipped" :  "False",
+                    "md5sum" : "c98040d3802b49c37b8d88811cd896d5",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/hello/bin/mips/linux/hello",
+                    "source" : "src/simple"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "sparc-hello",
+                    "documentation" : "",
+                    "architecture" : "SPARC",
+                    "is_zipped" :  "False",
+                    "md5sum" : "b242b62c32dd0e0eb7b79141d2be7707",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/hello/bin/sparc/linux/hello",
+                    "source" : "src/simple"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "power-hello",
+                    "documentation" : "",
+                    "architecture" : "POWER",
+                    "is_zipped" :  "False",
+                    "md5sum" : "3402ef20eb11e0a8580b0fde0a692bc3",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/hello/bin/power/linux/hello",
+                    "source" : "src/simple"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "x86-hello64-static",
+                    "documentation" : "",
+                    "architecture" : "X86",
+                    "is_zipped" :  "False",
+                    "md5sum" : "dbf120338b37153e3334603970cebd8c",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/hello/bin/x86/linux/hello64-static",
+                    "source" : "src/simple"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "x86-hello32-static",
+                    "documentation" : "",
+                    "architecture" : "X86",
+                    "is_zipped" :  "False",
+                    "md5sum" : "d46e559a4272e75a0086b382560d296e",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/hello/bin/x86/linux/hello32-static",
+                    "source" : "src/simple"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "x86-hello64-dynamic",
+                    "documentation" : "",
+                    "architecture" : "X86",
+                    "is_zipped" :  "False",
+                    "md5sum" : "e9b31ab86ce0f95e290ce7661cf7cf88",
+                    "url" : "http://dist.gem5.org/dist/develop/test-progs/hello/bin/x86/linux/hello64-dynamic",
+                    "source" : "src/simple"
+                }
+            ]
+        },
+        {
+            "type" : "group",
             "name" : "asmtest",
             "contents" : [
                 {
