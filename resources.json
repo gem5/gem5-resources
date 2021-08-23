@@ -5,6 +5,16 @@
     "resources": [
         {
             "type" : "artifact",
+            "name" : "x86-m5-exit",
+            "documentation" : "",
+            "architecture" : "X86",
+            "is_zipped" : "False",
+            "md5sum" : "19e178622935fdcee1aff0dd7d6d0ebc",
+            "url" : "http://dist.gem5.org/dist/develop/test-progs/m5-exit/bin/x86/linux/m5_exit",
+            "source" : "src/simple"
+        },
+        {
+            "type" : "artifact",
             "name" : "x86-parsec",
             "documentation" : "The PARSEC benchmark suite disk image (X86).",
             "architecture" : "X86",
