@@ -146,6 +146,16 @@
             ]
         },
         {
+            "type" : "artifact",
+            "name" : "sparc-insttest",
+            "documentation" : "",
+            "architecture" : "SPARC",
+            "is_zipped" : "False",
+            "md5sum" : "621434719e68377443ea0f2e3a50e4cb",
+            "url" : "http://dist.gem5.org/dist/develop/test-progs/insttest/bin/sparc/linux/insttest",
+            "source" : "src/insttest"
+        },
+        {
             "type" : "group",
             "name" : "asmtest",
             "contents" : [
