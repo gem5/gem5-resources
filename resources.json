@@ -4,6 +4,16 @@
     "previous-versions" : {},
     "resources": [
         {
+            "type": "artifact",
+            "name" : "riscv-disk-img",
+            "documentation" : "A simple RISCV disk image based on busybox.",
+            "architecture": "RISCV",
+            "is_zipped" : "True",
+            "md5sum" : "d6126db9f6bed7774518ae25aa35f153",
+            "url": "http://dist.gem5.org/dist/develop/images/riscv/busybox/riscv-disk.img.gz",
+            "source" : "src/riscv-fs"
+        },
+        {
             "type" : "artifact",
             "name" : "x86-m5-exit",
             "documentation" : "",
