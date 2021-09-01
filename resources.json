@@ -66,6 +66,16 @@
                     "md5sum" : "60a53c7d47d7057436bf4b9df707a841",
                     "url" : "http://dist.gem5.org/dist/develop/kernels/x86/static/vmlinux-5.4.49",
                     "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "artifact",
+                    "name" : "riscv-bootloader-vmlinux-5.10",
+                    "documentation" : "A RISCV bootloader binary with linnux 5.10",
+                    "architecture" : "RISCV",
+                    "is_zipped" : "False",
+                    "md5sum" : "ac29fe5f71c096e6b2044b4e4d623edc",
+                    "url" : "http://dist.gem5.org/dist/develop/kernels/riscv/static/bootloader-vmlinux-5.10",
+                    "source" : "src/riscv-fs"
                 }
             ]
         },
