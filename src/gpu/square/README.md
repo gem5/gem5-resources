@@ -25,7 +25,7 @@ The compiled binary can be found in the `bin` directory.
 
 A pre-built binary can be found at <http://dist.gem5.org/dist/v21-1/test-progs/square/square>.
 
-## Compiling GN3_X86/gem5.opt
+## Compiling GCN3_X86/gem5.opt
 
 The test is run with the GCN3_X86 gem5 variant, compiled using the gcn-gpu docker image:
 
