@@ -11,8 +11,9 @@ mv /home/gem5/m5 /sbin
 ln -s /sbin/m5 /sbin/gem5
 
 mv /home/gem5/exit.sh /root/
+mv /home/gem5/gem5_init.sh /root/
 
-# Add exit script to bashrc
-echo "/root/exit.sh" >> /root/.bashrc
+# Add init script to bashrc
+echo "/root/gem5_init.sh" >> /root/.bashrc
 
 echo 'Post Installation Done'

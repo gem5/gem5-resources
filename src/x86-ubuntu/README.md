@@ -1,30 +1,31 @@
 ---
-title: Linux boot-exit image
+title: Linux x86-ubuntu image
 tags:
     - x86
     - fullsystem
 layout: default
-permalink: resources/boot-exit
+permalink: resources/x86-ubuntu
 shortdoc: >
-    Resources to build a disk image and run "boot-exit" test.
+    Resources to build a generic x86-ubuntu disk image and run a "boot-exit" test.
 author: ["Ayaz Akram"]
 ---
 
-This document provides instructions to create the "boot-exit" image, the Linux kernel binaries, and also points to the gem5 configuration files needed to run the boot.
-The boot-exit disk image is based on Ubuntu 18.04 and has its `.bashrc` file modified in such a way that the guest OS terminates the simulation (using the `m5 exit` instruction) as soon as the system boots.
+This document provides instructions to create the "x86-ubuntu" image, the Linux kernel binaries, and also points to the gem5 configuration files needed to run the boot.
+The x86-ubuntu disk image is based on Ubuntu 18.04 and has its `.bashrc` file modified in such a way that it executes a script passed from the gem5 configuration files (using the `m5 readfile` instruction).
+The boot-exit test passes a script that causes the guest OS to terminate the simulation (using the `m5 exit` instruction) as soon as the system boots.
 
 We assume the following directory structure while following the instructions in this README file:
 
 ```
-boot-exit/
+x86-ubuntu/
   |___ gem5/                                   # gem5 source code (to be cloned here)
   |
   |___ disk-image/
   |      |___ shared/                          # Auxiliary files needed for disk creation
-  |      |___ boot-exit/
-  |            |___ boot-exit-image/           # Will be created once the disk is generated
-  |            |      |___ boot-exit           # The generated disk image
-  |            |___ boot-exit.json             # The Packer script
+  |      |___ x86-ubuntu/
+  |            |___ x86-ubuntu-image/           # Will be created once the disk is generated
+  |            |      |___ x86-ubuntu           # The generated disk image
+  |            |___ x86-ubuntu.json             # The Packer script
   |            |___ exit.sh                    # Exits the simulated guest upon booting
   |            |___ post-installation.sh       # Moves exit.sh to guest's .bashrc
   |
@@ -40,7 +41,7 @@ boot-exit/
 
 ## Disk Image
 
-Assuming that you are in the `src/boot-exit/` directory (the directory containing this README), first build `m5` (which is needed to create the disk image):
+Assuming that you are in the `src/x86-ubuntu/` directory (the directory containing this README), first build `m5` (which is needed to create the disk image):
 
 ```sh
 git clone https://gem5.googlesource.com/public/gem5
@@ -48,7 +49,7 @@ cd gem5/util/m5
 scons build/x86/out/m5
 ```
 
-Next (within the `src/boot-exit/` directory),
+Next (within the `src/x86-ubuntu/` directory),
 
 ```sh
 cd disk-image
@@ -57,12 +58,12 @@ wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip
 unzip packer_1.6.0_linux_amd64.zip
 
 # validate the packer script
-./packer validate boot-exit/boot-exit.json
+./packer validate x86-ubuntu/x86-ubuntu.json
 # build the disk image
-./packer build boot-exit/boot-exit.json
+./packer build x86-ubuntu/x86-ubuntu.json
 ```
 
-If you see errors or warnings from `packer validate` you can modify the file `disk-image/boot-exit/boot-exit.json` to update the file.
+If you see errors or warnings from `packer validate` you can modify the file `disk-image/x86-ubuntu/x86-ubuntu.json` to update the file.
 Specifically, you may see the following error.
 
 ```
@@ -75,7 +76,7 @@ Error: Failed to prepare build: "qemu"
 ```
 
 In this case, the `gem5` directory is in a different location than when this script was written.
-You can update the following line in the `boot-exit.json` file.
+You can update the following line in the `x86-ubuntu.json` file.
 
 ```
          "destination": "/home/gem5/",
@@ -84,8 +85,8 @@ You can update the following line in the `boot-exit.json` file.
          "type": "file"
 ```
 
-Once this process succeeds, the disk image can be found on `boot-exit/boot-exit-image/boot-exit`.
-A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v21-1/images/x86/ubuntu-18-04/boot-exit.img.gz).
+Once this process succeeds, the disk image can be found on `x86-ubuntu/x86-ubuntu-image/x86-ubuntu`.
+A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v21-1/images/x86/ubuntu-18-04/x86-ubuntu.img.gz).
 
 
 ## gem5 Run Scripts

@@ -703,11 +703,11 @@ The Linux boot tests refer to the tests performed with different gem5 configurat
 More information on Linux boot tests can be found [here](https://www.gem5.org/project/2020/03/09/boot-tests.html).
 
 The boot-tests resources consist of three main components:
-- boot-tests disk image
+- x86-ubuntu disk image
 - gem5 run scripts to execute boot tests
 - linux kernel configuration files
 
-The instructions to build the boot-tests disk image (`boot-exit`), the Linux binaries, and how to use gem5 run scripts to run boot-tests are available in this [README](src/boot-tests/README.md) file.
+The instructions to build the x86-ubuntu disk image, the Linux binaries, and how to use gem5 run scripts to run boot-tests are available in this [README](src/x86-ubuntu/README.md) file.
 
 ## Resource: RISCV Full System
 
@@ -819,9 +819,9 @@ files.
 [`src/npb`](
 https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/npb).
 The NAS Parallel Benchmarks utilize a permissive BSD-style license.
-* **boot-exit**: Consult individual copyright notices of source files in
-[`src/boot-exit`](
-https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/boot-exit).
+* **x86-ubuntu**: Consult individual copyright notices of source files in
+[`src/x86-ubuntu`](
+https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/x86-ubuntu).
 * **insttest**: Consult individual copyright notices of source files in
 [`src/insttest`](
 https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/stable/src/insttest).

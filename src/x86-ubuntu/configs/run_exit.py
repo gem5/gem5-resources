@@ -27,8 +27,9 @@
 """
 """
 
-import time
 import argparse
+import os
+import time
 
 import m5
 import m5.ticks

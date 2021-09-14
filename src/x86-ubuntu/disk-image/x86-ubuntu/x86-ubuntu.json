@@ -35,7 +35,7 @@
             "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum` }}",
             "iso_urls": [ "{{ user `iso_url` }}" ],
             "memory": "{{ user `vm_memory`}}",
-            "output_directory": "boot-exit/{{ user `image_name` }}-image",
+            "output_directory": "x86-ubuntu/{{ user `image_name` }}-image",
             "qemuargs":
             [
                 [ "-cpu", "host" ],
@@ -53,7 +53,12 @@
     [
         {
             "type": "file",
-            "source": "boot-exit/exit.sh",
+            "source": "x86-ubuntu/exit.sh",
+            "destination": "/home/gem5/"
+        },
+        {
+            "type": "file",
+            "source": "x86-ubuntu/gem5_init.sh",
             "destination": "/home/gem5/"
         },
         {
@@ -71,7 +76,7 @@
             "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
             "scripts":
             [
-                "boot-exit/post-installation.sh"
+                "x86-ubuntu/post-installation.sh"
             ]
         }
     ],
@@ -93,7 +98,7 @@
         "ssh_username": "gem5",
         "vm_cpus": "16",
         "vm_memory": "8192",
-        "image_name": "boot-exit"
+        "image_name": "x86-ubuntu"
   }
 
 }
