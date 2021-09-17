@@ -54,6 +54,16 @@
             "source" : "src/x86-ubuntu"
         },
         {
+            "type": "artifact",
+            "name" : "riscv-boot-exit-nodisk",
+            "documentation" : "A simple bootloader with Linux kernel 5.10. Early userspace includes busybox and m5 binary.",
+            "architecture": "RISCV",
+            "is_zipped" : "False",
+            "md5sum" : "8ec185abc97e42b4ab1f0a30fc720e09",
+            "url": "http://dist.gem5.org/dist/develop/misc/riscv/bbl-busybox-boot-exit",
+            "source" : "src/riscv-boot-exit-nodisk"
+        },
+        {
             "type" : "group",
             "name" : "linux-kernel",
             "contents" : [

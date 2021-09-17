@@ -724,6 +724,20 @@ Further information on building a riscv disk image, a riscv boot loader, and how
 
 <http://dist.gem5.org/dist/develop/kernels/riscv/static/bootloader-vmlinux-5.10>
 
+
+## Resource: RISCV Full System with Disk Image
+
+The RISCV Full System resource includes a RISCV bootloader (`berkeley bootloader (bbl)`) to boot the Linux 5.10 kernel on a RISCV system.
+The workload and the Linux utils (provided by BusyBox) are also included in the bootloader.
+The resource also contains simple gem5 run/config scripts to run Linux full system simulations in which a user may telnet into.
+
+More details on building such a RISCV bootloader and hwo does it work are available in the [README.md](src/riscv-boot-exit-nodisk/README.md) file.
+
+### RISCV Full System pre-built Linux bootloader with embedded workload
+
+<http://dist.gem5.org/dist/develop/misc/riscv/bbl-busybox-boot-exit>
+
+
 ## Resource: Insttest
 
 
