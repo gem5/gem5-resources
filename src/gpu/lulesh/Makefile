@@ -1,7 +1,8 @@
-BIN_DIR?= ./bin
+BIN_DIR ?= ./bin
+HIP_PATH ?= /opt/rocm/hip
 
 all: $(BIN_DIR)
-	hipcc src/lulesh.hip.cc -o $(BIN_DIR)/lulesh --amdgpu-target=gfx801
+	$(HIP_PATH)/bin/hipcc src/lulesh.hip.cc -o $(BIN_DIR)/lulesh --amdgpu-target=gfx801
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
