@@ -34,7 +34,7 @@ In order to test the GPU code in halo-finder, we compile and run ForceTreeTest.
 
 To build the Docker image and the benchmark:
 
-Note: HACC requires a number of environment variables to be set to compile and run correctly.  Our Dockerfile sets these flags appropriately for you.  This Dockerfile automatically runs when a new docker image is created, which is why our instructions below recommend doing this.  If you would prefer not doing this, then you will need to pass in these environment variables using -e.
+Note: HACC requires a number of environment variables to be set to compile and run correctly.  Our Dockerfile sets these flags appropriately for you.  This Dockerfile automatically runs when a new docker image is created, including building for both gfx801 and gfx803, which is why our instructions below recommend doing this.  If you would prefer not doing this, then you will need to pass in these environment variables using -e.
 
 ```
 cd src/gpu/halo-finder
