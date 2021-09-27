@@ -405,37 +405,47 @@ RCBForceTree<TDPTS>::RCBForceTree(
 
   // static size for the interaction list
   #define VMAX ALIGNY(16384)
-  nx_v=(POSVEL_T*)malloc(VMAX*sizeof(POSVEL_T)*numThreads);
-  ny_v=(POSVEL_T*)malloc(VMAX*sizeof(POSVEL_T)*numThreads);
-  nz_v=(POSVEL_T*)malloc(VMAX*sizeof(POSVEL_T)*numThreads);
-  nm_v=(POSVEL_T*)malloc(VMAX*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&nx_v, VMAX*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&ny_v, VMAX*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&nz_v, VMAX*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&nm_v, VMAX*sizeof(POSVEL_T)*numThreads);
+  for(int i = 0; i < VMAX*numThreads; i++) {
+    nx_v[i] = 0;
+    ny_v[i] = 0;
+    nz_v[i] = 0;
+    nm_v[i] = 0;
+  }
+
 
 #ifdef __HIPCC__
-  hipHostRegister(nx_v,VMAX*sizeof(POSVEL_T)*numThreads,0);
-  hipHostRegister(ny_v,VMAX*sizeof(POSVEL_T)*numThreads,0);
-  hipHostRegister(nz_v,VMAX*sizeof(POSVEL_T)*numThreads,0);
-  hipHostRegister(nm_v,VMAX*sizeof(POSVEL_T)*numThreads,0);
-  hipHostRegister(xx,count*sizeof(POSVEL_T),0);
-  hipHostRegister(yy,count*sizeof(POSVEL_T),0);
-  hipHostRegister(zz,count*sizeof(POSVEL_T),0);
-  hipHostRegister(mass,count*sizeof(POSVEL_T),0);
-  hipHostRegister(vx,count*sizeof(POSVEL_T),0);
-  hipHostRegister(vy,count*sizeof(POSVEL_T),0);
-  hipHostRegister(vz,count*sizeof(POSVEL_T),0);
-
   int size=ALIGNY(nd);
-  hipMalloc(&d_xx,size*sizeof(POSVEL_T)*numThreads);
-  hipMalloc(&d_yy,size*sizeof(POSVEL_T)*numThreads);
-  hipMalloc(&d_zz,size*sizeof(POSVEL_T)*numThreads);
-  hipMalloc(&d_vx,size*sizeof(POSVEL_T)*numThreads);
-  hipMalloc(&d_vy,size*sizeof(POSVEL_T)*numThreads);
-  hipMalloc(&d_vz,size*sizeof(POSVEL_T)*numThreads);
-  hipMalloc(&d_mass,size*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_xx,size*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_yy,size*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_zz,size*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_vx,size*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_vy,size*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_vz,size*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_mass,size*sizeof(POSVEL_T)*numThreads);
+  for(int i = 0; i < size*numThreads; i++) {
+    d_xx[i] = 0;
+    d_yy[i] = 0;
+    d_zz[i] = 0;
+    d_vx[i] = 0;
+    d_vy[i] = 0;
+    d_vz[i] = 0;
+    d_mass[i] = 0;
+  }
 
-  hipMalloc(&d_nx_v,VMAX*sizeof(POSVEL_T)*numThreads);
-  hipMalloc(&d_ny_v,VMAX*sizeof(POSVEL_T)*numThreads);
-  hipMalloc(&d_nz_v,VMAX*sizeof(POSVEL_T)*numThreads);
-  hipMalloc(&d_nm_v,VMAX*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_nx_v,VMAX*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_ny_v,VMAX*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_nz_v,VMAX*sizeof(POSVEL_T)*numThreads);
+  hipHostMalloc(&d_nm_v,VMAX*sizeof(POSVEL_T)*numThreads);
+  for(int i = 0; i < VMAX*numThreads; i++) {
+    d_nx_v[i] = 0;
+    d_ny_v[i] = 0;
+    d_nz_v[i] = 0;
+    d_nm_v[i] = 0;
+  }
   cudaCheckError();
 
 
@@ -545,29 +555,17 @@ RCBForceTree<TDPTS>::~RCBForceTree()
     delete m_fl;
   }
 #ifdef __HIPCC__
-  hipHostUnregister(xx);
-  hipHostUnregister(yy);
-  hipHostUnregister(zz);
-  hipHostUnregister(mass);
-  hipHostUnregister(vx);
-  hipHostUnregister(vy);
-  hipHostUnregister(vz);
-  hipHostUnregister(nx_v);
-  hipHostUnregister(ny_v);
-  hipHostUnregister(nz_v);
-  hipHostUnregister(nm_v);
-
-  hipFree(d_xx);
-  hipFree(d_yy);
-  hipFree(d_zz);
-  hipFree(d_vx);
-  hipFree(d_vy);
-  hipFree(d_vz);
-  hipFree(d_mass);
-  hipFree(d_nx_v);
-  hipFree(d_ny_v);
-  hipFree(d_nz_v);
-  hipFree(d_nm_v);
+  hipHostFree(d_xx);
+  hipHostFree(d_yy);
+  hipHostFree(d_zz);
+  hipHostFree(d_vx);
+  hipHostFree(d_vy);
+  hipHostFree(d_vz);
+  hipHostFree(d_mass);
+  hipHostFree(d_nx_v);
+  hipHostFree(d_ny_v);
+  hipHostFree(d_nz_v);
+  hipHostFree(d_nm_v);
   cudaCheckError();
 
   for(int i=0;i<numThreads;i++) {
@@ -580,10 +578,10 @@ RCBForceTree<TDPTS>::~RCBForceTree()
   free(stream_v);
 
 #endif
-  free(nx_v);
-  free(ny_v);
-  free(nz_v);
-  free(nm_v);
+  hipHostFree(nx_v);
+  hipHostFree(ny_v);
+  hipHostFree(nz_v);
+  hipHostFree(nm_v);
 #ifdef __HIPCC__
   //nvtxRangeEnd(r0);
 #endif
@@ -859,9 +857,13 @@ void Step10_cuda_kernel(int count, int count1,
   POSVEL_T zzj[TILEX];
   POSVEL_T massj[TILEX];
 
+  // Consolidate variables to help fit within the register limit
+  int x_idx = hipBlockIdx_x*hipBlockDim_x+hipThreadIdx_x;
+  int y_idx = hipBlockIdx_y*hipBlockDim_y+hipThreadIdx_y;
+
   //loop over interior region and calculate forces.
   //for each tile i
- for(int i=hipBlockIdx_y*hipBlockDim_y+hipThreadIdx_y;i<count/TILEY;i+=hipBlockDim_y*hipGridDim_y)                                //1 ISETP
+ for(int i=y_idx;i<count/TILEY;i+=hipBlockDim_y*hipGridDim_y)                                //1 ISETP
   {
     POSVEL_T xi[TILEY]={0};                                                                                //TILEY MOV
     POSVEL_T yi[TILEY]={0};                                                                                //TILEY MOV
@@ -871,7 +873,7 @@ void Step10_cuda_kernel(int count, int count1,
     loadTile<false,false,TILEY>(i,count,xx,yy,zz,NULL,xxi,yyi,zzi,NULL);
 
     //for each tile j
-    for (int j=hipBlockIdx_x*hipBlockDim_x+hipThreadIdx_x;j<count1/TILEX;j+=hipBlockDim_x*hipGridDim_x)                                  //1 ISETP
+    for (int j=x_idx;j<count1/TILEX;j+=hipBlockDim_x*hipGridDim_x)                                  //1 ISETP
     {
       //load tile j, bounds check is not needed
       loadTile<false,true,TILEX>(j,count1,xx1,yy1,zz1,mass1,xxj,yyj,zzj,massj);
@@ -881,7 +883,7 @@ void Step10_cuda_kernel(int count, int count1,
     }
 
     //process remaining elements at the end, use TILEX=1
-    for (int j=count1/TILEX*TILEX+hipBlockIdx_x*hipBlockDim_x+hipThreadIdx_x;j<count1;j+=hipBlockDim_x*hipGridDim_x)                                  //1 ISETP
+    for (int j=count1/TILEX*TILEX+x_idx;j<count1;j+=hipBlockDim_x*hipGridDim_x)                                  //1 ISETP
     {
       //load tile j, bounds check is needed, mass is needed
       loadTile<true,true,1>(j,count1,xx1,yy1,zz1,mass1,xxj,yyj,zzj,massj);
@@ -900,17 +902,19 @@ void Step10_cuda_kernel(int count, int count1,
 #if 1
   //process ramining elements in set TILEY=1
   //for each tile i
-  for(int i=count/TILEY*TILEY+hipBlockIdx_y*hipBlockDim_y+hipThreadIdx_y;i<count;i+=hipBlockDim_y*hipGridDim_y)                             //1 ISETP
+  for(int i=y_idx;i<count - count/TILEY*TILEY;i+=hipBlockDim_y*hipGridDim_y)                             //1 ISETP
   {
+    // Taken out of the loop condition to help fit within the register limit
+    int k = i + count/TILEY*TILEY;
     POSVEL_T xi[1]={0};                                                                                //1 MOV
     POSVEL_T yi[1]={0};                                                                                //1 MOV
     POSVEL_T zi[1]={0};                                                                                //1 MOV
 
     //load xxi, yyi, zzi tiles, mass is not needed, bounds check is needed
-    loadTile<true,false,1>(i,count,xx,yy,zz,NULL,xxi,yyi,zzi,NULL);
+    loadTile<true,false,1>(k,count,xx,yy,zz,NULL,xxi,yyi,zzi,NULL);
 
     //for each tile j
-    for (int j=hipBlockIdx_x*hipBlockDim_x+hipThreadIdx_x;j<count1/TILEX;j+=hipBlockDim_x*hipGridDim_x)                                  //1 ISETP
+    for (int j=x_idx;j<count1/TILEX;j+=hipBlockDim_x*hipGridDim_x)                                  //1 ISETP
     {
       //load tile j, bounds check is not needed
       loadTile<false,true,TILEX>(j,count1,xx1,yy1,zz1,mass1,xxj,yyj,zzj,massj);
@@ -920,7 +924,7 @@ void Step10_cuda_kernel(int count, int count1,
     }
 
     //process remaining elements at the end, use TILEX=1
-    for (int j=count1/TILEX*TILEX+hipBlockIdx_x*hipBlockDim_x+hipThreadIdx_x;j<count1;j+=hipBlockDim_x*hipGridDim_x)                                  //1 ISETP
+    for (int j=count1/TILEX*TILEX+x_idx;j<count1;j+=hipBlockDim_x*hipGridDim_x)                                  //1 ISETP
     {
       //load tile j, bounds check is needed, mass is needed
       loadTile<true,true,1>(j,count1,xx1,yy1,zz1,mass1,xxj,yyj,zzj,massj);
@@ -929,7 +933,7 @@ void Step10_cuda_kernel(int count, int count1,
       computeForces<1,1>(xxi,yyi,zzi,xxj,yyj,zzj,massj,xi,yi,zi,ma0,ma1,ma2,ma3,ma4,ma5,mp_rsm2,fsrrmax2);
     }
 
-    applyForce<true,1>(i,count,fcoeff,xi,yi,zi,vx,vy,vz);
+    applyForce<true,1>(k,count,fcoeff,xi,yi,zi,vx,vy,vz);
   }
 #endif
 
@@ -998,10 +1002,11 @@ static inline void nbody1(ID_T count, ID_T count1, const POSVEL_T*  xx, const PO
   checkCudaPtr(vy,"vy");
   checkCudaPtr(vz,"vz");
 #endif
+
   hipLaunchKernelGGL(Step10_cuda_kernel, dim3(blocks), dim3(threads), 0, stream, count,count1,xx,yy,zz,mass,xx1,yy1,zz1,mass1, vx, vy, vz, fsrrmax2, rsm2, fcoeff);
   cudaCheckError();
 
-  //hipDeviceSynchronize();
+  hipStreamSynchronize(stream);
   //exit(0);
 #else
 
@@ -1051,7 +1056,7 @@ static inline ID_T partition(ID_T n,
     }
   }
 
-#pragma unroll (4)
+#pragma unroll 4
   for ( j = 0; j < is; j++ )
   {
       i = idx[j];
@@ -1062,7 +1067,7 @@ static inline ID_T partition(ID_T n,
       i0 = id  [i]; id  [i] = id  [j]; id  [j] = i0;
   }
 
-#pragma unroll (4)
+#pragma unroll 4
   for ( j = 0; j < is; j++ )
   {
       i = idx[j];
@@ -1500,7 +1505,7 @@ void RCBForceTree<TDPTS>::calcInternodeForce(ID_T tl,
   hipMemcpyAsync(d_nm,nm,sizeof(POSVEL_T)*SIZE,hipMemcpyHostToDevice,stream);
   hipEventRecord(event,stream);  //mark when transfers have finished
   cudaCheckError();
-  hipDeviceSynchronize();
+  hipStreamSynchronize(stream);
 
 
   hipMemcpyAsync(d_xxl,xx+off,sizeof(POSVEL_T)*cnt,hipMemcpyHostToDevice,stream);
@@ -1511,13 +1516,13 @@ void RCBForceTree<TDPTS>::calcInternodeForce(ID_T tl,
   hipMemcpyAsync(d_vyl,vy+off,sizeof(POSVEL_T)*cnt,hipMemcpyHostToDevice,stream);
   hipMemcpyAsync(d_vzl,vz+off,sizeof(POSVEL_T)*cnt,hipMemcpyHostToDevice,stream);
   cudaCheckError();
-  hipDeviceSynchronize();
+  hipStreamSynchronize(stream);
 #endif
 
   // Process the interaction list...
 #ifdef __HIPCC__
   ::nbody1(cnt, SIZE, d_xxl, d_yyl, d_zzl, d_massl, d_nx, d_ny, d_nz, d_nm, d_vxl, d_vyl, d_vzl, m_fl, m_fcoeff, fsrrmax, rsm, stream);
-  hipDeviceSynchronize();
+  hipStreamSynchronize(stream);
 #else
   ::nbody1(cnt, SIZE, xx + off, yy + off, zz + off, mass + off, nx, ny, nz, nm, vx + off, vy + off, vz + off, m_fl, m_fcoeff, fsrrmax, rsm);
 #endif
@@ -1528,7 +1533,7 @@ void RCBForceTree<TDPTS>::calcInternodeForce(ID_T tl,
   hipMemcpyAsync(vy+off,d_vyl,sizeof(POSVEL_T)*cnt,hipMemcpyDeviceToHost,stream);
   hipMemcpyAsync(vz+off,d_vzl,sizeof(POSVEL_T)*cnt,hipMemcpyDeviceToHost,stream);
   cudaCheckError();
-  hipDeviceSynchronize();
+  hipStreamSynchronize(stream);
 #endif
 
 }
