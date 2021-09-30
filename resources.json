@@ -5,7 +5,7 @@
     "previous-versions" : {},
     "resources": [
         {
-            "type": "artifact",
+            "type": "resource",
             "name" : "riscv-disk-img",
             "documentation" : "A simple RISCV disk image based on busybox.",
             "architecture": "RISCV",
@@ -15,7 +15,7 @@
             "source" : "src/riscv-fs"
         },
         {
-            "type" : "artifact",
+            "type" : "resource",
             "name" : "x86-m5-exit",
             "documentation" : "",
             "architecture" : "X86",
@@ -25,7 +25,7 @@
             "source" : "src/simple"
         },
         {
-            "type" : "artifact",
+            "type" : "resource",
             "name" : "x86-parsec",
             "documentation" : "The PARSEC benchmark suite disk image (X86).",
             "architecture" : "X86",
@@ -35,7 +35,7 @@
             "source" : "src/parsec"
         },
         {
-            "type" : "artifact",
+            "type" : "resource",
             "name" : "x86-boot-exit",
             "documentation" : "The boot-exit disk image (X86).",
             "architecture" : "X86",
@@ -45,7 +45,7 @@
             "source" : "src/boot-exit"
         },
         {
-            "type" : "artifact",
+            "type" : "resource",
             "name" : "x86-ubuntu-img",
             "documentation" : "An x86 disk image with Ubuntu 18.04.",
             "architecture" : "X86",
@@ -55,17 +55,17 @@
             "source" : "src/x86-ubuntu"
         },
         {
-            "type": "artifact",
+            "type": "resource",
             "name" : "riscv-ubuntu-20.04-img",
             "documentation" : "A disk image containing Ubuntu 20.04 for RISCV which will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be exected",
             "architecture" : "RISCV",
-            "is_zipped" : "True",
+            "is_zipped" : true,
             "md5sum" : "b017372639ba13ad9ee9d9283647fa20",
-            "url" : "http://dist.gem5.org/dist/develop/images/riscv/ubuntu-20-04/riscv-ubuntu.img.gz",
+            "url" : "{url_base}/images/riscv/ubuntu-20-04/riscv-ubuntu.img.gz",
             "source" : "src/riscv-ubuntu"
         },
         {
-            "type": "artifact",
+            "type": "resource",
             "name" : "riscv-boot-exit-nodisk",
             "documentation" : "A simple bootloader with Linux kernel 5.10. Early userspace includes busybox and m5 binary.",
             "architecture": "RISCV",
@@ -79,7 +79,7 @@
             "name" : "linux-kernel",
             "contents" : [
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "x86-linux-kernel-4.19.83",
                     "documentation" : "The linux kernel (v4.19.83)",
                     "architecture" : "X86",
@@ -89,7 +89,7 @@
                     "source" : "src/linux-kernel"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "x86-linux-kernel-5.4.49",
                     "documentation" : "The linux kernel (v5.4.49)",
                     "architecture" : "X86",
@@ -99,7 +99,7 @@
                     "source" : "src/linux-kernel"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "riscv-bootloader-vmlinux-5.10",
                     "documentation" : "A RISCV bootloader binary with linnux 5.10",
                     "architecture" : "RISCV",
@@ -115,7 +115,7 @@
             "name" : "hello",
             "contents" : [
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "riscv-hello",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -125,7 +125,7 @@
                     "source" : "src/simple"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "arm-hello64-static",
                     "documentation" : "",
                     "architecture" : "ARM",
@@ -135,7 +135,7 @@
                     "source" : "src/simple"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "arm-hello32-static",
                     "documentation" : "",
                     "architecture" : "ARM",
@@ -145,7 +145,7 @@
                     "source" : "src/simple"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "mips-hello",
                     "documentation" : "",
                     "architecture" : "MIPS",
@@ -155,7 +155,7 @@
                     "source" : "src/simple"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "sparc-hello",
                     "documentation" : "",
                     "architecture" : "SPARC",
@@ -165,7 +165,7 @@
                     "source" : "src/simple"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "power-hello",
                     "documentation" : "",
                     "architecture" : "POWER",
@@ -175,7 +175,7 @@
                     "source" : "src/simple"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "x86-hello64-static",
                     "documentation" : "",
                     "architecture" : "X86",
@@ -185,7 +185,7 @@
                     "source" : "src/simple"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "x86-hello32-static",
                     "documentation" : "",
                     "architecture" : "X86",
@@ -195,7 +195,7 @@
                     "source" : "src/simple"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "x86-hello64-dynamic",
                     "documentation" : "",
                     "architecture" : "X86",
@@ -207,7 +207,7 @@
             ]
         },
         {
-            "type" : "artifact",
+            "type" : "resource",
             "name" : "sparc-insttest",
             "documentation" : "",
             "architecture" : "SPARC",
@@ -221,7 +221,7 @@
             "name" : "asmtest",
             "contents" : [
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64mi-p-access",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -231,7 +231,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64mi-p-breakpoint",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -241,7 +241,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64mi-p-csr",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -251,7 +251,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64mi-p-illegal",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -261,7 +261,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64mi-p-ma_addr",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -271,7 +271,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64mi-p-ma_fetch",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -281,7 +281,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64mi-p-mcsr",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -291,7 +291,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64mi-p-sbreak",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -301,7 +301,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64mi-p-scall",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -311,7 +311,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64samt-ps-sysclone_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -321,7 +321,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64samt-ps-sysfutex1_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -331,7 +331,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64samt-ps-sysfutex2_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -341,7 +341,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64samt-ps-sysfutex3_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -351,7 +351,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64samt-ps-sysfutex_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -361,7 +361,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64si-p-csr",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -371,7 +371,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64si-p-dirty",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -381,7 +381,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64si-p-icache-alias",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -391,7 +391,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64si-p-ma_fetch",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -401,7 +401,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64si-p-sbreak",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -411,7 +411,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64si-p-scall",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -421,7 +421,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64si-p-wfi",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -431,7 +431,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoadd_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -441,7 +441,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoadd_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -451,7 +451,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoand_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -461,7 +461,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoand_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -471,7 +471,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amomax_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -481,7 +481,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amomax_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -491,7 +491,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amomaxu_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -501,7 +501,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amomaxu_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -511,7 +511,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amomin_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -521,7 +521,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amomin_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -531,7 +531,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amominu_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -541,7 +541,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amominu_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -551,7 +551,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoor_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -561,7 +561,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoor_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -571,7 +571,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoswap_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -581,7 +581,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoswap_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -591,7 +591,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoxor_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -601,7 +601,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-amoxor_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -611,7 +611,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-p-lrsc",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -621,7 +621,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoadd_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -631,7 +631,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoadd_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -641,7 +641,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoand_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -651,7 +651,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoand_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -661,7 +661,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amomax_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -671,7 +671,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amomax_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -681,7 +681,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amomaxu_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -691,7 +691,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amomaxu_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -701,7 +701,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amomin_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -711,7 +711,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amomin_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -721,7 +721,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amominu_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -731,7 +731,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amominu_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -741,7 +741,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoor_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -751,7 +751,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoor_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -761,7 +761,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoswap_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -771,7 +771,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoswap_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -781,7 +781,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoxor_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -791,7 +791,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-amoxor_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -801,7 +801,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-ps-lrsc",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -811,7 +811,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoadd_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -821,7 +821,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoadd_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -831,7 +831,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoand_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -841,7 +841,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoand_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -851,7 +851,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amomax_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -861,7 +861,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amomax_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -871,7 +871,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amomaxu_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -881,7 +881,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amomaxu_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -891,7 +891,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amomin_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -901,7 +901,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amomin_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -911,7 +911,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amominu_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -921,7 +921,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amominu_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -931,7 +931,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoor_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -941,7 +941,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoor_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -951,7 +951,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoswap_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -961,7 +961,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoswap_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -971,7 +971,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoxor_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -981,7 +981,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-amoxor_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -991,7 +991,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ua-v-lrsc",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1001,7 +1001,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-amoadd_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1011,7 +1011,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-amoand_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1021,7 +1021,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-amomax_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1031,7 +1031,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-amomaxu_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1041,7 +1041,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-amomin_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1051,7 +1051,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-amominu_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1061,7 +1061,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-amoor_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1071,7 +1071,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-amoswap_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1081,7 +1081,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-amoxor_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1091,7 +1091,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uamt-ps-lrsc_d",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1101,7 +1101,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uc-p-rvc",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1111,7 +1111,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uc-v-rvc",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1121,7 +1121,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-fadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1131,7 +1131,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-fclass",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1141,7 +1141,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-fcmp",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1151,7 +1151,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-fcvt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1161,7 +1161,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-fcvt_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1171,7 +1171,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-fdiv",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1181,7 +1181,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-fmadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1191,7 +1191,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-fmin",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1201,7 +1201,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-ldst",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1211,7 +1211,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-move",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1221,7 +1221,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-recoding",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1231,7 +1231,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-p-structural",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1241,7 +1241,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-fadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1251,7 +1251,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-fclass",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1261,7 +1261,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-fcmp",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1271,7 +1271,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-fcvt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1281,7 +1281,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-fcvt_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1291,7 +1291,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-fdiv",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1301,7 +1301,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-fmadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1311,7 +1311,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-fmin",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1321,7 +1321,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-ldst",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1331,7 +1331,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-move",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1341,7 +1341,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-recoding",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1351,7 +1351,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-ps-structural",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1361,7 +1361,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-fadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1371,7 +1371,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-fclass",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1381,7 +1381,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-fcmp",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1391,7 +1391,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-fcvt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1401,7 +1401,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-fcvt_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1411,7 +1411,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-fdiv",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1421,7 +1421,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-fmadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1431,7 +1431,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-fmin",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1441,7 +1441,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-ldst",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1451,7 +1451,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-move",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1461,7 +1461,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-recoding",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1471,7 +1471,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ud-v-structural",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1481,7 +1481,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-fadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1491,7 +1491,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-fclass",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1501,7 +1501,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-fcmp",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1511,7 +1511,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-fcvt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1521,7 +1521,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-fcvt_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1531,7 +1531,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-fdiv",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1541,7 +1541,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-fmadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1551,7 +1551,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-fmin",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1561,7 +1561,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-ldst",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1571,7 +1571,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-move",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1581,7 +1581,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-p-recoding",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1591,7 +1591,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-fadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1601,7 +1601,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-fclass",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1611,7 +1611,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-fcmp",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1621,7 +1621,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-fcvt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1631,7 +1631,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-fcvt_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1641,7 +1641,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-fdiv",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1651,7 +1651,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-fmadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1661,7 +1661,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-fmin",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1671,7 +1671,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-ldst",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1681,7 +1681,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-move",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1691,7 +1691,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-ps-recoding",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1701,7 +1701,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-fadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1711,7 +1711,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-fclass",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1721,7 +1721,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-fcmp",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1731,7 +1731,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-fcvt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1741,7 +1741,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-fcvt_w",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1751,7 +1751,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-fdiv",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1761,7 +1761,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-fmadd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1771,7 +1771,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-fmin",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1781,7 +1781,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-ldst",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1791,7 +1791,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-move",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1801,7 +1801,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64uf-v-recoding",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1811,7 +1811,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-add",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1821,7 +1821,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-addi",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1831,7 +1831,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-addiw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1841,7 +1841,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-addw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1851,7 +1851,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-and",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1861,7 +1861,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-andi",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1871,7 +1871,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-auipc",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1881,7 +1881,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-beq",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1891,7 +1891,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-bge",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1901,7 +1901,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-bgeu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1911,7 +1911,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-blt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1921,7 +1921,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-bltu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1931,7 +1931,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-bne",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1941,7 +1941,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-fence_i",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1951,7 +1951,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-jal",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1961,7 +1961,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-jalr",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1971,7 +1971,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-lb",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1981,7 +1981,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-lbu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -1991,7 +1991,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-ld",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2001,7 +2001,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-lh",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2011,7 +2011,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-lhu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2021,7 +2021,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-lui",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2031,7 +2031,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-lw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2041,7 +2041,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-lwu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2051,7 +2051,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-or",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2061,7 +2061,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-ori",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2071,7 +2071,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sb",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2081,7 +2081,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2091,7 +2091,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sh",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2101,7 +2101,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-simple",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2111,7 +2111,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sll",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2121,7 +2121,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-slli",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2131,7 +2131,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-slliw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2141,7 +2141,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sllw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2151,7 +2151,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-slt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2161,7 +2161,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-slti",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2171,7 +2171,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sltiu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2181,7 +2181,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sltu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2191,7 +2191,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sra",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2201,7 +2201,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-srai",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2211,7 +2211,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sraiw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2221,7 +2221,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sraw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2231,7 +2231,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-srl",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2241,7 +2241,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-srli",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2251,7 +2251,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-srliw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2261,7 +2261,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-srlw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2271,7 +2271,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sub",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2281,7 +2281,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-subw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2291,7 +2291,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-sw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2301,7 +2301,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-xor",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2311,7 +2311,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-p-xori",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2321,7 +2321,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-add",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2331,7 +2331,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-addi",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2341,7 +2341,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-addiw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2351,7 +2351,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-addw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2361,7 +2361,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-and",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2371,7 +2371,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-andi",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2381,7 +2381,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-auipc",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2391,7 +2391,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-beq",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2401,7 +2401,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-bge",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2411,7 +2411,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-bgeu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2421,7 +2421,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-blt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2431,7 +2431,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-bltu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2441,7 +2441,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-bne",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2451,7 +2451,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-fence_i",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2461,7 +2461,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-jal",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2471,7 +2471,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-jalr",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2481,7 +2481,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-lb",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2491,7 +2491,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-lbu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2501,7 +2501,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-ld",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2511,7 +2511,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-lh",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2521,7 +2521,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-lhu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2531,7 +2531,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-lui",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2541,7 +2541,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-lw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2551,7 +2551,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-lwu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2561,7 +2561,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-or",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2571,7 +2571,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-ori",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2581,7 +2581,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sb",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2591,7 +2591,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2601,7 +2601,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sh",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2611,7 +2611,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-simple",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2621,7 +2621,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sll",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2631,7 +2631,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-slli",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2641,7 +2641,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-slliw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2651,7 +2651,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sllw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2661,7 +2661,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-slt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2671,7 +2671,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-slti",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2681,7 +2681,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sltiu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2691,7 +2691,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sltu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2701,7 +2701,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sra",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2711,7 +2711,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-srai",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2721,7 +2721,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sraiw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2731,7 +2731,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sraw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2741,7 +2741,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-srl",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2751,7 +2751,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-srli",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2761,7 +2761,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-srliw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2771,7 +2771,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-srlw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2781,7 +2781,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sub",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2791,7 +2791,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-subw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2801,7 +2801,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-sw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2811,7 +2811,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-xor",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2821,7 +2821,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-ps-xori",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2831,7 +2831,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-add",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2841,7 +2841,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-addi",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2851,7 +2851,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-addiw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2861,7 +2861,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-addw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2871,7 +2871,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-and",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2881,7 +2881,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-andi",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2891,7 +2891,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-auipc",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2901,7 +2901,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-beq",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2911,7 +2911,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-bge",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2921,7 +2921,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-bgeu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2931,7 +2931,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-blt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2941,7 +2941,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-bltu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2951,7 +2951,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-bne",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2961,7 +2961,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-fence_i",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2971,7 +2971,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-jal",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2981,7 +2981,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-jalr",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -2991,7 +2991,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-lb",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3001,7 +3001,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-lbu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3011,7 +3011,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-ld",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3021,7 +3021,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-lh",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3031,7 +3031,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-lhu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3041,7 +3041,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-lui",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3051,7 +3051,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-lw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3061,7 +3061,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-lwu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3071,7 +3071,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-or",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3081,7 +3081,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-ori",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3091,7 +3091,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sb",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3101,7 +3101,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sd",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3111,7 +3111,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sh",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3121,7 +3121,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-simple",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3131,7 +3131,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sll",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3141,7 +3141,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-slli",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3151,7 +3151,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-slliw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3161,7 +3161,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sllw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3171,7 +3171,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-slt",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3181,7 +3181,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-slti",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3191,7 +3191,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sltiu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3201,7 +3201,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sltu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3211,7 +3211,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sra",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3221,7 +3221,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-srai",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3231,7 +3231,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sraiw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3241,7 +3241,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sraw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3251,7 +3251,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-srl",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3261,7 +3261,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-srli",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3271,7 +3271,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-srliw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3281,7 +3281,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-srlw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3291,7 +3291,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sub",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3301,7 +3301,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-subw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3311,7 +3311,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-sw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3321,7 +3321,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-xor",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3331,7 +3331,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64ui-v-xori",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3341,7 +3341,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-div",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3351,7 +3351,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-divu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3361,7 +3361,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-divuw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3371,7 +3371,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-divw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3381,7 +3381,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-mul",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3391,7 +3391,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-mulh",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3401,7 +3401,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-mulhsu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3411,7 +3411,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-mulhu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3421,7 +3421,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-mulw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3431,7 +3431,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-rem",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3441,7 +3441,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-remu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3451,7 +3451,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-remuw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3461,7 +3461,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-p-remw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3471,7 +3471,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-div",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3481,7 +3481,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-divu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3491,7 +3491,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-divuw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3501,7 +3501,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-divw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3511,7 +3511,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-mul",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3521,7 +3521,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-mulh",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3531,7 +3531,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-mulhsu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3541,7 +3541,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-mulhu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3551,7 +3551,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-mulw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3561,7 +3561,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-rem",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3571,7 +3571,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-remu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3581,7 +3581,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-remuw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3591,7 +3591,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-ps-remw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3601,7 +3601,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-div",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3611,7 +3611,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-divu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3621,7 +3621,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-divuw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3631,7 +3631,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-divw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3641,7 +3641,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-mul",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3651,7 +3651,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-mulh",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3661,7 +3661,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-mulhsu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3671,7 +3671,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-mulhu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3681,7 +3681,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-mulw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3691,7 +3691,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-rem",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3701,7 +3701,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-remu",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3711,7 +3711,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-remuw",
                     "documentation" : "",
                     "architecture" : "RISCV",
@@ -3721,7 +3721,7 @@
                     "source" : "src/asmtest"
                 },
                 {
-                    "type" : "artifact",
+                    "type" : "resource",
                     "name" : "rv64um-v-remw",
                     "documentation" : "",
                     "architecture" : "RISCV",
