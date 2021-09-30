@@ -17,7 +17,7 @@
         {
             "type" : "resource",
             "name" : "x86-m5-exit",
-            "documentation" : "",
+            "documentation" : "A simple binary which will run `m5 exit`. Compiled to the X86 ISA.",
             "architecture" : "X86",
             "is_zipped" : false,
             "md5sum" : "19e178622935fdcee1aff0dd7d6d0ebc",
@@ -27,7 +27,7 @@
         {
             "type" : "resource",
             "name" : "x86-parsec",
-            "documentation" : "The PARSEC benchmark suite disk image (X86).",
+            "documentation" : "A disk image containing the PARSEC benchmark suite, compiled to X86, built on top of Ubuntu 18.04.",
             "architecture" : "X86",
             "is_zipped" : true,
             "md5sum" : "19131e62c5b10f137948ec5975391477",
@@ -37,7 +37,7 @@
         {
             "type" : "resource",
             "name" : "x86-boot-exit",
-            "documentation" : "The boot-exit disk image (X86).",
+            "documentation" : "A disk image containing Ubuntu 18.04 for X86 which will run a `m5 exit` instruction after booting. [This is deprecated. Please use 'x86-ubuntu-18.04-img'].",
             "architecture" : "X86",
             "is_zipped" : true,
             "md5sum" : "008a4bf505a04efed0758b49183e01f7",
@@ -47,7 +47,7 @@
         {
             "type" : "resource",
             "name" : "x86-ubuntu-img",
-            "documentation" : "An x86 disk image with Ubuntu 18.04. [This is deprecated. Please use 'x86-ubuntu-18.04-img'].",
+            "documentation" : "A disk image containing Ubuntu 18.04 for x86. This image will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be executed. [This is deprecated. Please use 'x86-ubuntu-18.04-img'].",
             "architecture" : "X86",
             "is_zipped" : true,
             "md5sum" : "90e363abf0ddf22eefa2c7c5c9391c49",
@@ -57,7 +57,7 @@
         {
             "type" : "resource",
             "name" : "x86-ubuntu-18.04-img",
-            "documentation" : "An x86 disk image with Ubuntu 18.04.",
+            "documentation" : "A disk image containing Ubuntu 18.04 for x86. This image will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be executed.",
             "architecture" : "X86",
             "is_zipped" : true,
             "md5sum" : "90e363abf0ddf22eefa2c7c5c9391c49",
@@ -77,7 +77,7 @@
         {
             "type": "resource",
             "name" : "riscv-boot-exit-nodisk",
-            "documentation" : "A simple bootloader with Linux kernel 5.10. Early userspace includes busybox and m5 binary.",
+            "documentation" : "A simple RISCV bootloader with Linux kernel 5.10. The early userspace includes busybox and the m5 binary.",
             "architecture": "RISCV",
             "is_zipped" : false,
             "md5sum" : "8ec185abc97e42b4ab1f0a30fc720e09",
@@ -91,7 +91,7 @@
                 {
                     "type" : "resource",
                     "name" : "x86-linux-kernel-4.19.83",
-                    "documentation" : "The linux kernel (v4.19.83)",
+                    "documentation" : "The linux kernel (v4.19.83), compiled to X86.",
                     "architecture" : "X86",
                     "is_zipped" : false,
                     "md5sum" : "28228eac2eea81ee3ce36305b7641c18",
@@ -101,7 +101,7 @@
                 {
                     "type" : "resource",
                     "name" : "x86-linux-kernel-5.4.49",
-                    "documentation" : "The linux kernel (v5.4.49)",
+                    "documentation" : "The linux kernel (v5.4.49), compiled to X86.",
                     "architecture" : "X86",
                     "is_zipped" : false,
                     "md5sum" : "60a53c7d47d7057436bf4b9df707a841",
@@ -111,7 +111,7 @@
                 {
                     "type" : "resource",
                     "name" : "riscv-bootloader-vmlinux-5.10",
-                    "documentation" : "A RISCV bootloader binary with linnux 5.10",
+                    "documentation" : "A RISCV bootloader kernel binary with linux 5.10.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ac29fe5f71c096e6b2044b4e4d623edc",
@@ -127,7 +127,7 @@
                 {
                     "type" : "resource",
                     "name" : "riscv-hello",
-                    "documentation" : "",
+                    "documentation" : "A 'Hello World!' binary, compiled to RISCV.",
                     "architecture" : "RISCV",
                     "is_zipped" :  false,
                     "md5sum" : "6d9494d22b90d817e826b0d762fda973",
@@ -137,7 +137,7 @@
                 {
                     "type" : "resource",
                     "name" : "arm-hello64-static",
-                    "documentation" : "",
+                    "documentation" : "A 'Hello World!' binary, statically compiled to ARM 64 bit.",
                     "architecture" : "ARM",
                     "is_zipped" :  false,
                     "md5sum" : "71b2cb004fe2cda4556f0b1a38638af6",
@@ -147,7 +147,7 @@
                 {
                     "type" : "resource",
                     "name" : "arm-hello32-static",
-                    "documentation" : "",
+                    "documentation" : "A 'Hello World!' binary, statically compiled to ARM 32 bit.",
                     "architecture" : "ARM",
                     "is_zipped" :  false,
                     "md5sum" : "15defa57a6c0035590992f8d715e9318",
@@ -157,7 +157,7 @@
                 {
                     "type" : "resource",
                     "name" : "mips-hello",
-                    "documentation" : "",
+                    "documentation" : "A 'Hello World!' binary, compiled to MIPS.",
                     "architecture" : "MIPS",
                     "is_zipped" :  false,
                     "md5sum" : "c98040d3802b49c37b8d88811cd896d5",
@@ -167,7 +167,7 @@
                 {
                     "type" : "resource",
                     "name" : "sparc-hello",
-                    "documentation" : "",
+                    "documentation" : "A 'Hello World!' binary, compiled to SPARC.",
                     "architecture" : "SPARC",
                     "is_zipped" :  false,
                     "md5sum" : "b242b62c32dd0e0eb7b79141d2be7707",
@@ -177,7 +177,7 @@
                 {
                     "type" : "resource",
                     "name" : "power-hello",
-                    "documentation" : "",
+                    "documentation" : "A 'Hello World!' binary, compiled to POWER.",
                     "architecture" : "POWER",
                     "is_zipped" :  false,
                     "md5sum" : "3402ef20eb11e0a8580b0fde0a692bc3",
@@ -187,7 +187,7 @@
                 {
                     "type" : "resource",
                     "name" : "x86-hello64-static",
-                    "documentation" : "",
+                    "documentation" : "A 'Hello World!' binary, statically compiled to X86 64 bit.",
                     "architecture" : "X86",
                     "is_zipped" :  false,
                     "md5sum" : "dbf120338b37153e3334603970cebd8c",
@@ -197,7 +197,7 @@
                 {
                     "type" : "resource",
                     "name" : "x86-hello32-static",
-                    "documentation" : "",
+                    "documentation" : "A 'Hello World!' binary, statically compiled to X86 32 bit.",
                     "architecture" : "X86",
                     "is_zipped" :  false,
                     "md5sum" : "d46e559a4272e75a0086b382560d296e",
@@ -207,7 +207,7 @@
                 {
                     "type" : "resource",
                     "name" : "x86-hello64-dynamic",
-                    "documentation" : "",
+                    "documentation" : "A 'Hello World!' binary, dynamically compiled to X86 64 bit.",
                     "architecture" : "X86",
                     "is_zipped" :  false,
                     "md5sum" : "e9b31ab86ce0f95e290ce7661cf7cf88",
@@ -219,7 +219,7 @@
         {
             "type" : "resource",
             "name" : "sparc-insttest",
-            "documentation" : "",
+            "documentation" : "A binary which will run several SPARC ISA instruction tests.",
             "architecture" : "SPARC",
             "is_zipped" : false,
             "md5sum" : "621434719e68377443ea0f2e3a50e4cb",
@@ -233,7 +233,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64mi-p-access",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f79864adb24b4d9d58973fe296555dc3",
@@ -243,7 +243,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64mi-p-breakpoint",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cf9c2c258bc4ee79f6ab725dcd93c8a3",
@@ -253,7 +253,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64mi-p-csr",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d184e318ca5583c7459d210af833f67d",
@@ -263,7 +263,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64mi-p-illegal",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "7f5bb9a8dc5b3556c63f24966edf6ad2",
@@ -273,7 +273,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64mi-p-ma_addr",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "01720cfc720c49af44593fb66e63e06e",
@@ -283,7 +283,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64mi-p-ma_fetch",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6a8ee354739700aa4da0cf256ae3b623",
@@ -293,7 +293,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64mi-p-mcsr",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1894b9678b44a1317bf0fda2bc767443",
@@ -303,7 +303,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64mi-p-sbreak",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "50e24f358eeceb443c18fe4e566957b2",
@@ -313,7 +313,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64mi-p-scall",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b95617ad90fd92f3f518c626bc1c81fc",
@@ -323,7 +323,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64samt-ps-sysclone_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "84dc170bb877dc516f6127371f813087",
@@ -333,7 +333,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64samt-ps-sysfutex1_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "fe859cc6a504d62bc3abbb751b55e416",
@@ -343,7 +343,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64samt-ps-sysfutex2_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4a8d53dd89756e6c74ed0925fab72fc4",
@@ -353,7 +353,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64samt-ps-sysfutex3_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ec61b4108d4c6bb904600a588bb367d3",
@@ -363,7 +363,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64samt-ps-sysfutex_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3b805a4400927b59e97a2f678a622f7b",
@@ -373,7 +373,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64si-p-csr",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "fb9db247f8acd3fa330e383942b7170c",
@@ -383,7 +383,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64si-p-dirty",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "916747b2226aab4ae7ca05b7eaebc189",
@@ -393,7 +393,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64si-p-icache-alias",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "bf1d206a09b1b5506533db47d195e354",
@@ -403,7 +403,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64si-p-ma_fetch",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "a3451c72e5bc0fecdf34cf8c59ace267",
@@ -413,7 +413,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64si-p-sbreak",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "08afcd6a559f0625ff2ad490573da7c2",
@@ -423,7 +423,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64si-p-scall",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "08544fc1982fb4223b9516908d73c66e",
@@ -433,7 +433,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64si-p-wfi",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "22442bfd1982596f4b7d2ce34256a2d6",
@@ -443,7 +443,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoadd_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4ae52283ec5265491a331b040faf543c",
@@ -453,7 +453,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoadd_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "5317855fb37fdb1eadb141bc5de52c43",
@@ -463,7 +463,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoand_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e7621c3e127790675216e6fafb236ec0",
@@ -473,7 +473,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoand_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "2f017ecde182922b1039158a9f1252ef",
@@ -483,7 +483,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amomax_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0a172c82597d9614b93f074d7f4442d4",
@@ -493,7 +493,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amomax_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "089bf05a30b30d1d25f8858d9823087b",
@@ -503,7 +503,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amomaxu_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "82f82aedec0b48994f648082a8a06801",
@@ -513,7 +513,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amomaxu_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c3bfd1da662a92b8685839e85585b342",
@@ -523,7 +523,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amomin_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cb43912d40d8b0eea1ac9fe45557a32c",
@@ -533,7 +533,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amomin_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cb2488c129deaf82b1945d7617d45b94",
@@ -543,7 +543,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amominu_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "a2cc432c9f969a871b851d6ed7906e25",
@@ -553,7 +553,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amominu_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "796023fb8918ca75353d7850daf14a93",
@@ -563,7 +563,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoor_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "dc0dc9108bb9bdba7d75ecca8313216c",
@@ -573,7 +573,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoor_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4fda30de396c92eaaf16b69c728a3a7d",
@@ -583,7 +583,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoswap_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "83659ebf6fbd6a57648f1ba8c507aa4b",
@@ -593,7 +593,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoswap_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9d06c8c3ceb069ef86ff2de4815282cd",
@@ -603,7 +603,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoxor_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1af9fab80459fde57f4bf4e9c01d9093",
@@ -613,7 +613,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-amoxor_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "dda14b981718906fc234b8227904c7c6",
@@ -623,7 +623,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-p-lrsc",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8b6ad66b8bbb4df80d1516f6817b7660",
@@ -633,7 +633,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoadd_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1f03b3b804be0a2132057003b58f8a2b",
@@ -643,7 +643,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoadd_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "955744c2e0dbba10ca01e690c0958364",
@@ -653,7 +653,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoand_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cc3f74959c923b05340aa24cfc63a801",
@@ -663,7 +663,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoand_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "2c5ad7e346cc4e0e52dfc76789efe397",
@@ -673,7 +673,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amomax_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "2123dce5d094f2fc3bc5fb2943562be1",
@@ -683,7 +683,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amomax_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9270905c5113a039b637022170e1fc74",
@@ -693,7 +693,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amomaxu_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "808fd2cccbd11f6434b5dcb6c5d3c5bf",
@@ -703,7 +703,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amomaxu_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "26da4254d99e55fe009c7cc34ac1a987",
@@ -713,7 +713,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amomin_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "71b99433af69e09f63e0f22d5a02cc49",
@@ -723,7 +723,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amomin_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4f2f90ba9a75b85f9207850e27bb6d00",
@@ -733,7 +733,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amominu_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "636269f97f41643f004c259ec446649c",
@@ -743,7 +743,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amominu_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "584c473e61733eb5cf58911b3136647a",
@@ -753,7 +753,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoor_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4729ad637554898b6f26458a104f6b1c",
@@ -763,7 +763,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoor_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c671e3b095455b8401298009104e92ba",
@@ -773,7 +773,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoswap_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d4df6b07df820da6eb9eecd8a9029ff7",
@@ -783,7 +783,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoswap_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "2d9d9d3d6b02cfd4e3506b6b8b4557e7",
@@ -793,7 +793,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoxor_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0426ab864eae292dab59998e21b78e49",
@@ -803,7 +803,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-amoxor_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f5c17e8c932aeb0e9dc3ad2a4e0ba168",
@@ -813,7 +813,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-ps-lrsc",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "21090834e56595bfdb9c2fbb89114cb5",
@@ -823,7 +823,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoadd_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "af091994135470f609cab40bbcea1a63",
@@ -833,7 +833,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoadd_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d78c80bdab8a1fc073fa1f186cec8830",
@@ -843,7 +843,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoand_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1094cdd438411b12f827bf1dcdace80e",
@@ -853,7 +853,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoand_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ef5e91a05a48bb7d703841ce8ece84a6",
@@ -863,7 +863,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amomax_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "7ae80f64520e3c110b8bbec945094a53",
@@ -873,7 +873,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amomax_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "701a326352d18dbaffe806c109ad692a",
@@ -883,7 +883,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amomaxu_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "5ef8cc47ea14171f396ddbba188e3983",
@@ -893,7 +893,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amomaxu_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d999a055462eb4179be196d1125d876c",
@@ -903,7 +903,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amomin_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "09e4e4d639834b295a665051bf3ce1ef",
@@ -913,7 +913,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amomin_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "179c2591ce919a2488f1e22a0f5d283a",
@@ -923,7 +923,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amominu_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "910ad4686c643213a7829b586002637b",
@@ -933,7 +933,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amominu_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d808d5cd0398c9ecd5773e50e22abf2e",
@@ -943,7 +943,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoor_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "de1dcb7d714c669be86c86bd25a85651",
@@ -953,7 +953,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoor_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9780206d1b9518b10c8d9e72cf0239eb",
@@ -963,7 +963,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoswap_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8cc9a4f1d0b4489d0a0bd70186beaac2",
@@ -973,7 +973,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoswap_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "eca745d0dbe4ae57fe6b110317834875",
@@ -983,7 +983,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoxor_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3bbee5900b7d9e540ce212f4dd423c7d",
@@ -993,7 +993,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-amoxor_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8fb3a2fb5d50813d077d80210d010828",
@@ -1003,7 +1003,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ua-v-lrsc",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "932d6654d7a960b455dff6f09d5f69ea",
@@ -1013,7 +1013,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-amoadd_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "87b684a2f6bb281d7ad4b7b042b73854",
@@ -1023,7 +1023,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-amoand_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "24ccac26314dc1f05928f8244cb0cbe7",
@@ -1033,7 +1033,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-amomax_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e713e0e561b53e56f9339f67b663ca9c",
@@ -1043,7 +1043,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-amomaxu_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "da2bf05a420e75221056003767c878a8",
@@ -1053,7 +1053,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-amomin_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "97e120b06112fa2def234de4fede74ab",
@@ -1063,7 +1063,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-amominu_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8ea0a86db7b7e02ae78d4f07374ab52f",
@@ -1073,7 +1073,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-amoor_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b5f540731786f31803c3c60237623fe6",
@@ -1083,7 +1083,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-amoswap_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3775368c4726324b66150ea3f9d2a260",
@@ -1093,7 +1093,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-amoxor_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "57e926bd3326d5559e592c27c32e53fb",
@@ -1103,7 +1103,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uamt-ps-lrsc_d",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "70ff384c8ef9b66e564a273e9e6d2648",
@@ -1113,7 +1113,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uc-p-rvc",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6a75f689b2bd4582a43bdbbb31bb382c",
@@ -1123,7 +1123,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uc-v-rvc",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "5fe84fedbeb130f5817c0fe0a5584b3e",
@@ -1133,7 +1133,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-fadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "df0e68e382a89931501e2cc46314ff3b",
@@ -1143,7 +1143,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-fclass",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9ba1f2aab1822501ce977b7a2c7c4a6b",
@@ -1153,7 +1153,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-fcmp",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "46e7f1ce5cd54bf2d3419d84c0153f24",
@@ -1163,7 +1163,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-fcvt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "581531f02f3c135ed2c4ad6bd4ab6ee4",
@@ -1173,7 +1173,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-fcvt_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "7a937a695c44129aa6d182d435a421fc",
@@ -1183,7 +1183,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-fdiv",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ec2ce086d1bbe1b29622f70c7901abd8",
@@ -1193,7 +1193,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-fmadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e7163e05deadb1bfc22b81ba448a860f",
@@ -1203,7 +1203,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-fmin",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e2b6014cf013c294ad91558fe2f0ed21",
@@ -1213,7 +1213,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-ldst",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d9ba4fff56f725ea79d0e70862247c44",
@@ -1223,7 +1223,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-move",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ba51a7c9ac36c0f2258863e6c8a7bd0a",
@@ -1233,7 +1233,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-recoding",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "fc2e947926e128c983a957783f32daae",
@@ -1243,7 +1243,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-p-structural",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "a3a59386a27eea3f80f5461216c3344d",
@@ -1253,7 +1253,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-fadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "fc8de228dd951868fb274786b6ff9ff9",
@@ -1263,7 +1263,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-fclass",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "da76a1a5ed8c450e5fa76a4c27079bb6",
@@ -1273,7 +1273,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-fcmp",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "aa42a6da32ee329295640ebba07de718",
@@ -1283,7 +1283,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-fcvt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "87e11c0fa32e8ff3fd9a9f1781a91bb7",
@@ -1293,7 +1293,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-fcvt_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e2bb2d9995a606521e443713a99ac569",
@@ -1303,7 +1303,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-fdiv",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1aa837b6dccf2e11aceebed8d3a6a991",
@@ -1313,7 +1313,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-fmadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3125478135067cf9b44dfae5c4b6df31",
@@ -1323,7 +1323,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-fmin",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3cee89db4e4881f0f0f903114bf00fe0",
@@ -1333,7 +1333,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-ldst",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "254df67bb1e4ae17c381a6aa028ab217",
@@ -1343,7 +1343,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-move",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4bbd2e8d8929c0b5aa3984d4f07c9b7d",
@@ -1353,7 +1353,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-recoding",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "110a26cf26a24a787759dfd95ca6b57e",
@@ -1363,7 +1363,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-ps-structural",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "bfbd32687ce03667277b1aab264eaf0a",
@@ -1373,7 +1373,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-fadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b9163081289a8c6c54b9c01f94f11d03",
@@ -1383,7 +1383,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-fclass",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "dce53c303671f09b5c01216cfe14a641",
@@ -1393,7 +1393,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-fcmp",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3826335b0512b741305661eb57e86628",
@@ -1403,7 +1403,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-fcvt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "a6c4492502f5bb0f983d152b7b6c535d",
@@ -1413,7 +1413,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-fcvt_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f2261cec4e1bf4d253ab18d27f32f119",
@@ -1423,7 +1423,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-fdiv",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0bf318396f5fc0bebf810eca1f959a20",
@@ -1433,7 +1433,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-fmadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e628460d478c3db8080e7faaa0fc5b22",
@@ -1443,7 +1443,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-fmin",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9a738938d06df5ac12889e01c911f78d",
@@ -1453,7 +1453,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-ldst",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "97b2d693e4a9f6ed21137f4c7d541685",
@@ -1463,7 +1463,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-move",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4b758433d00da42338ddeaecc3e71e13",
@@ -1473,7 +1473,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-recoding",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "90dbc06d2f035deb55c9f03385d89908",
@@ -1483,7 +1483,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ud-v-structural",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e79911f5564596d0e6fcf74126f82928",
@@ -1493,7 +1493,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-fadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b72484f7b3acf248a0bb3b95dd2952e5",
@@ -1503,7 +1503,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-fclass",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "abc897ae9c8008ec62b4d487dc949bcd",
@@ -1513,7 +1513,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-fcmp",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d9d51339aaa8901bff0514d7b2d926b5",
@@ -1523,7 +1523,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-fcvt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "55461ce28b5f6d92dc6883e989493705",
@@ -1533,7 +1533,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-fcvt_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "54cf9f4b8b899881ddc9b07f8b980866",
@@ -1543,7 +1543,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-fdiv",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ecaabb4034c268fd73995f25570c7e8b",
@@ -1553,7 +1553,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-fmadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "89aaaa9e8ab9d822f384c3f3543d304d",
@@ -1563,7 +1563,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-fmin",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "abd4b19567c4c3aa3cd312180251b914",
@@ -1573,7 +1573,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-ldst",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "51590ab6fcb6975ddfca44a953d25ecb",
@@ -1583,7 +1583,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-move",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ff9b084b3f1e88ac8825a1726f1ac353",
@@ -1593,7 +1593,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-p-recoding",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d9df1aecd763a903e93f09ebcb6ac516",
@@ -1603,7 +1603,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-fadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4fc255350e09958b7d1dac5c15d6a458",
@@ -1613,7 +1613,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-fclass",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c779cb1efab84f59776d8c49f11b891d",
@@ -1623,7 +1623,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-fcmp",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d1b1e98a9cc071d68c037f21b1a6b515",
@@ -1633,7 +1633,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-fcvt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0c8d0365a7364f90fde48da56f8d17a0",
@@ -1643,7 +1643,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-fcvt_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9500c44421227806e1167c5ff63fc25e",
@@ -1653,7 +1653,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-fdiv",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3feb667478a073a4383987161ed1b3f5",
@@ -1663,7 +1663,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-fmadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b6684ec8e959dc350941d99188a4576f",
@@ -1673,7 +1673,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-fmin",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d7f7ca68f9b842c4df23170fcec42c8c",
@@ -1683,7 +1683,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-ldst",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "610fd5f2585be41fe2c6c7f14ef6874c",
@@ -1693,7 +1693,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-move",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "49c3b074e112f3736ed2dd9aa60ead5d",
@@ -1703,7 +1703,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-ps-recoding",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c3eb1450641d33083592fccb458f7054",
@@ -1713,7 +1713,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-fadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "5960892db8d92369fee8906f811c2b7e",
@@ -1723,7 +1723,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-fclass",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1e481a47ee5dde3cafafd811f26de687",
@@ -1733,7 +1733,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-fcmp",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0c1c49e5fa9d3c4710eb1aa8799ebe7d",
@@ -1743,7 +1743,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-fcvt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e355d5f88669f1eab54fdbb7a66cfbc1",
@@ -1753,7 +1753,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-fcvt_w",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "52e6bcfcd0fc671126f4f93277fdb33b",
@@ -1763,7 +1763,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-fdiv",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "585f6f7ff1426432841566996c8b1e86",
@@ -1773,7 +1773,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-fmadd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "a771e99476fe60661f70d2c38d482b59",
@@ -1783,7 +1783,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-fmin",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4277c4a3a15154418440f8b667fb5897",
@@ -1793,7 +1793,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-ldst",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "93ecdee8e10bad66a9dc87b4f0bd6abf",
@@ -1803,7 +1803,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-move",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "fab0d3008a72e65a8cda7b53bb2b4ef3",
@@ -1813,7 +1813,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64uf-v-recoding",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "93010be0f7532720e52b5c42e66cec4c",
@@ -1823,7 +1823,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-add",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "5ae1f4792f8ac4a4fd81f86244852429",
@@ -1833,7 +1833,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-addi",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f8ddfbd3eaf80ffe9f3ef962ce2fa3dc",
@@ -1843,7 +1843,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-addiw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "811df894399a88791205bed13af760df",
@@ -1853,7 +1853,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-addw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "5859a793f0c9ceea435d775acf9a809d",
@@ -1863,7 +1863,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-and",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "12c4f4a5d89fc1f8559176f58bba7fbc",
@@ -1873,7 +1873,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-andi",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d77d7713c2db6a4b4cde3f5635c0656a",
@@ -1883,7 +1883,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-auipc",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "08aefe8b537ba936dd9b6e1847efdda5",
@@ -1893,7 +1893,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-beq",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "34e3d014b15327200ae358288311449f",
@@ -1903,7 +1903,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-bge",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e3bde7e1a401b690f4aac83e27faf06d",
@@ -1913,7 +1913,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-bgeu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ce6e5c09f53074fb47ec9e138c839856",
@@ -1923,7 +1923,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-blt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "a40194025841ef4a97d75788f27e8901",
@@ -1933,7 +1933,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-bltu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9770c269235de402e047c2d77f317a00",
@@ -1943,7 +1943,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-bne",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8ecaadbc6f50336d3001993f6076da6d",
@@ -1953,7 +1953,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-fence_i",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6c68ee9ca88db3491d9964fb8fbb292e",
@@ -1963,7 +1963,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-jal",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d0c4593786e20835f21854187aab5336",
@@ -1973,7 +1973,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-jalr",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8f7b5ae0fb06339646d442faeb3d2112",
@@ -1983,7 +1983,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-lb",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "410b4b665b2700bfc7de8ca2bee13eba",
@@ -1993,7 +1993,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-lbu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b2a8b33f9ef795c61b20ad609e8d4f68",
@@ -2003,7 +2003,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-ld",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cfbbf197c28734913b82af86acb8c6b6",
@@ -2013,7 +2013,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-lh",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b27b4d2c93df265c40dd775db91a51d4",
@@ -2023,7 +2023,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-lhu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0191f964bb5943bc5190d053889bfe58",
@@ -2033,7 +2033,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-lui",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8710ceb57d6270e93036c17078d98d7c",
@@ -2043,7 +2043,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-lw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "dfcbdaea89a69181574935fa06480d19",
@@ -2053,7 +2053,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-lwu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d69dc6ea165ec6c9214b712e15a1d8ab",
@@ -2063,7 +2063,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-or",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "45482709f8564d4ba4b9906233b9bb7b",
@@ -2073,7 +2073,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-ori",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3c041292f2c31baa227c2e54975220fe",
@@ -2083,7 +2083,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sb",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1cd1d04fca58d003ce28b65d92aa8889",
@@ -2093,7 +2093,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c13a92bdf9d9faf4d991cbd4082b9166",
@@ -2103,7 +2103,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sh",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6741dde915fdb1fd7f8bb4ac7852158d",
@@ -2113,7 +2113,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-simple",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c036528d8a1f12baf7b546c9c43eac67",
@@ -2123,7 +2123,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sll",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "afaf75edf394431f0541421fdedef154",
@@ -2133,7 +2133,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-slli",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d9b824f13fe53593069279b587f0fd21",
@@ -2143,7 +2143,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-slliw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0483c28d9120c85221da62919075fe8e",
@@ -2153,7 +2153,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sllw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0d3f4747b0046b58b2ba155d20405fae",
@@ -2163,7 +2163,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-slt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b14b9dec4e19c6548d8e73a81c82fef3",
@@ -2173,7 +2173,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-slti",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9d161594c5ae5b1636d2ebc981d2a45e",
@@ -2183,7 +2183,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sltiu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6a8625e73078e75b778213565c7631dc",
@@ -2193,7 +2193,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sltu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "31ec3d8b7d4765ef07deb50d79d38ed0",
@@ -2203,7 +2203,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sra",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "7d956b7c764493886357194f5dbc476e",
@@ -2213,7 +2213,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-srai",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cd631b57809962e3237726aa159673c8",
@@ -2223,7 +2223,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sraiw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b61112cc7c6d550393660b872fb3f064",
@@ -2233,7 +2233,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sraw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d3c5aaa6c67ee3e423548f78c1e114ea",
@@ -2243,7 +2243,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-srl",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ed342633350a369977683b069bee7d3a",
@@ -2253,7 +2253,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-srli",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "da4399a1da3b5caf218ed4950e96762b",
@@ -2263,7 +2263,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-srliw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "85d33d6b905527fd99afc52979eb1612",
@@ -2273,7 +2273,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-srlw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3977283582e73e51cd67f828b2ee2315",
@@ -2283,7 +2283,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sub",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "592f8add96467450a7de320221d86d76",
@@ -2293,7 +2293,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-subw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8994d07e1f5b91610d95049cdf8287a9",
@@ -2303,7 +2303,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-sw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f61fa9d97a70fafcc77eeac8dae36484",
@@ -2313,7 +2313,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-xor",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "594712c1b8c74b5b087bac30246e9364",
@@ -2323,7 +2323,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-p-xori",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "19cc10117d97e3fbb41e2d2786f79198",
@@ -2333,7 +2333,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-add",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "13b6948da6a2357bcdcd829b56e84bd1",
@@ -2343,7 +2343,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-addi",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6dfbf697061615476057e460c9f62b3d",
@@ -2353,7 +2353,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-addiw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "015db9a17305885bd5907ab9d3fa91dc",
@@ -2363,7 +2363,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-addw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "a77aadcebc1f3d5cf4526dee37c90510",
@@ -2373,7 +2373,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-and",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "088d34a01ff842d44b5a4db607e549c4",
@@ -2383,7 +2383,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-andi",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ddde8986ae4e4fd87c4bf4b16b2544aa",
@@ -2393,7 +2393,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-auipc",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1a4847e8ec5d826eea60f709d95dac97",
@@ -2403,7 +2403,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-beq",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0434433ea79b6cc44c001a161babbd67",
@@ -2413,7 +2413,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-bge",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "fa822964f28d847ff7b1d69a1ee6aa7c",
@@ -2423,7 +2423,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-bgeu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c9680e0e6081fc0d6f0369c563165228",
@@ -2433,7 +2433,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-blt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f224e7e7ff0e6975d9ced89f4b78a62a",
@@ -2443,7 +2443,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-bltu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "842078af75769453b2df67c5c28babb3",
@@ -2453,7 +2453,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-bne",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6cf9760f0307b15b2ddcb317017e8087",
@@ -2463,7 +2463,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-fence_i",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "78d9408139d005819a58802aa6a20e7e",
@@ -2473,7 +2473,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-jal",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "30f8d2b4a754b1c0db615aa53f4204aa",
@@ -2483,7 +2483,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-jalr",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "656ba873c7261240d0bcc393a99644fa",
@@ -2493,7 +2493,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-lb",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "af983b6499aa6b1aa8f48625b28122fa",
@@ -2503,7 +2503,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-lbu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b862e0d36be2780fc2208853419208fa",
@@ -2513,7 +2513,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-ld",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "27cfd2226a88a83ec00a5f28e71f2591",
@@ -2523,7 +2523,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-lh",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e5de1e7f4798765fc25c5279fac8d1c4",
@@ -2533,7 +2533,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-lhu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4afe6afdc5320dd45e7080396f7378c4",
@@ -2543,7 +2543,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-lui",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0fb63e51ca357783e8134e55d0d6fd95",
@@ -2553,7 +2553,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-lw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "52ff2024de2a0f9c6c422bb6e5f1d2a3",
@@ -2563,7 +2563,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-lwu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ff71b5ac6e75680a90f825ba0cc78285",
@@ -2573,7 +2573,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-or",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "878d822e9a8825327f060200403d19d9",
@@ -2583,7 +2583,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-ori",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "69e92a5bfaff07667d904a5d4f26f47d",
@@ -2593,7 +2593,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sb",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "48de8bb47f1d4f4c2b8d67ccac452c3d",
@@ -2603,7 +2603,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cb1bb63deaa9da41714d9991553c2ef0",
@@ -2613,7 +2613,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sh",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c912983af1c58176fb7d567be732c87d",
@@ -2623,7 +2623,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-simple",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "62b01468e7c4d324c0acc7536b0b7e0a",
@@ -2633,7 +2633,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sll",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "283d19bdb002c986366ff270839cf15e",
@@ -2643,7 +2643,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-slli",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "50845da8fd5f57789c55e2b025f0e90f",
@@ -2653,7 +2653,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-slliw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "006859a1917f83aa5a7f1eb2ba61421a",
@@ -2663,7 +2663,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sllw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "fa74956bc42617642cf56b17ce7b7b82",
@@ -2673,7 +2673,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-slt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "669aa8ae65e5614752b5994eb81f7de1",
@@ -2683,7 +2683,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-slti",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "44d2269759e1b5fb2ab2d764060292fc",
@@ -2693,7 +2693,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sltiu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3415858543b5742bc5184e0b3c993300",
@@ -2703,7 +2703,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sltu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "28cb31170ad9d6c504c29d8c29edd24f",
@@ -2713,7 +2713,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sra",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f109c193247e2fb8434ce4c332f0cb41",
@@ -2723,7 +2723,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-srai",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "36d6c4883d27d7f6e96fd67cbeecca45",
@@ -2733,7 +2733,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sraiw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d8d62c3727e5176ede4ba3839dfcc9cb",
@@ -2743,7 +2743,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sraw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cb56211febe89c3b634c9b1de5d5f3e6",
@@ -2753,7 +2753,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-srl",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "981b412a0c1114c34dfdb66b8068af71",
@@ -2763,7 +2763,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-srli",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4c64e4c765ba8d1cbe12541473fd1f70",
@@ -2773,7 +2773,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-srliw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ed8bed99a31ef1434f8cc0eae36fb651",
@@ -2783,7 +2783,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-srlw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9ea198e8b3841fa717046342083b3db1",
@@ -2793,7 +2793,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sub",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d264dce065710136c1a8d351400f80df",
@@ -2803,7 +2803,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-subw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9ed1d807c716c7802ee8151d03daf9db",
@@ -2813,7 +2813,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-sw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f1e06d50f81552c17df23cd4ee17825e",
@@ -2823,7 +2823,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-xor",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "82b4ec464f6970b1aeea47aac09355ee",
@@ -2833,7 +2833,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-ps-xori",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "06c59f7a2962d7b43fffbb4c9a74f34e",
@@ -2843,7 +2843,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-add",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4ac53c865c9f93b7669e82ad445ad1c8",
@@ -2853,7 +2853,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-addi",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "a77b433e265327ae78581f03e4a0b2bc",
@@ -2863,7 +2863,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-addiw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3d289fb592df639eaffd4dc92516e3ce",
@@ -2873,7 +2873,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-addw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1f9b805b62b7a261aff16d682c0f9dab",
@@ -2883,7 +2883,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-and",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c536e569ec53a006b0f68954b2ac19a5",
@@ -2893,7 +2893,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-andi",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4851b63d6bf0a09235351eba6c4d3c21",
@@ -2903,7 +2903,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-auipc",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "314b3d6e861457ff8292b6591ffd4f51",
@@ -2913,7 +2913,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-beq",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6f9d00065f40ef22577d16c3a5b288f8",
@@ -2923,7 +2923,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-bge",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "feb48724a40b2a434331fc4562094b80",
@@ -2933,7 +2933,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-bgeu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9a5c00386faf006204bdaaf5e04e5a2d",
@@ -2943,7 +2943,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-blt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9346cee2df12e391250dba9f8407e668",
@@ -2953,7 +2953,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-bltu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "5ea5c0cd054c998a4779b4f96550fbfd",
@@ -2963,7 +2963,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-bne",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "4affbfe59c08c3c5df5e7c1aa2a575d3",
@@ -2973,7 +2973,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-fence_i",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8ca111c5153f595cdff1d0cbfb46d8d0",
@@ -2983,7 +2983,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-jal",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e53a4a6a608c32c3fc40220feffe74c4",
@@ -2993,7 +2993,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-jalr",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "a8883869a4cca9a62993eab586bf9983",
@@ -3003,7 +3003,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-lb",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b5ba6b4fe284446443e14a469a4201e9",
@@ -3013,7 +3013,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-lbu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d58a68b36b10f4b360e3b49890d8f747",
@@ -3023,7 +3023,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-ld",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "5106dc8f1c6fca7f05a592462ec26025",
@@ -3033,7 +3033,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-lh",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c745aebb75f4789ad7a944b326cc98bc",
@@ -3043,7 +3043,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-lhu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "95ca302d8064d31d5e7f675ede76e5d2",
@@ -3053,7 +3053,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-lui",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "d91f414651ab5d6820f327c6a0283f3e",
@@ -3063,7 +3063,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-lw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "75218650a406049dd98d8b563e75dd29",
@@ -3073,7 +3073,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-lwu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "65825081f96f22844a326a6d6790b755",
@@ -3083,7 +3083,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-or",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "bcf7ec774ba67868de996c94ffb28a8e",
@@ -3093,7 +3093,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-ori",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "9ab3eea49545d31068a6f52a3893a4d6",
@@ -3103,7 +3103,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sb",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6ee42880b6c060d2f7bcc217564f6450",
@@ -3113,7 +3113,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sd",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "676720cb24ac2adaee6ed0ec7ea27ccf",
@@ -3123,7 +3123,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sh",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "82aca94c8969bd2f8ea7ca9be7fbc8f2",
@@ -3133,7 +3133,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-simple",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b26c36216ac9b248a4434950d2c61a8e",
@@ -3143,7 +3143,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sll",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c328191502ac82baa27d920991349234",
@@ -3153,7 +3153,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-slli",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "258c49788d40ce7ff5fc7459ed0d8c76",
@@ -3163,7 +3163,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-slliw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "da8198692b96d46cfd2316590aa700de",
@@ -3173,7 +3173,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sllw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e8546fe87f70356c61be6c570e38b994",
@@ -3183,7 +3183,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-slt",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "5d4cd4d048577413992ad2f00204bc50",
@@ -3193,7 +3193,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-slti",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3ec767139c3603c9a610f29f1890e7a6",
@@ -3203,7 +3203,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sltiu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "17a4044b1ee6dd205a5e38752c4ce319",
@@ -3213,7 +3213,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sltu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0995455fe6716d8b64c3273661702164",
@@ -3223,7 +3223,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sra",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c6f8bf8fe35d6e972ef5010894462893",
@@ -3233,7 +3233,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-srai",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f4cf327543b4a02ff3d2fc9164dc8c3f",
@@ -3243,7 +3243,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sraiw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3115a0db99d8ca24af002f0375fa3336",
@@ -3253,7 +3253,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sraw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8cff4bf8c7c2d834f5a4b10e2f7571f3",
@@ -3263,7 +3263,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-srl",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f0a51bfd1ba6510f331d7c677af7ae74",
@@ -3273,7 +3273,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-srli",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "956f9fe8fdf55dfde2387334d3c57ce0",
@@ -3283,7 +3283,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-srliw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b0c31b43c2ce91b3c296122785f0c1fc",
@@ -3293,7 +3293,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-srlw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cac0b3d218e978e90d981259098152ed",
@@ -3303,7 +3303,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sub",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "12998e74b2b9f66ac1889de77158f553",
@@ -3313,7 +3313,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-subw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c14f2da36dd956c663e8b8d504ef87d3",
@@ -3323,7 +3323,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-sw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b65d836977544168934a5aa80e72a7b2",
@@ -3333,7 +3333,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-xor",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3fc976679b7404343f553cca9d837ccb",
@@ -3343,7 +3343,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64ui-v-xori",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "54e3e45b8715933284af73de1dea33f0",
@@ -3353,7 +3353,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-div",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "820dd93e9bd32aa0c6078e82b3a1d56e",
@@ -3363,7 +3363,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-divu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "2423002bc3997c1bb49db95ef5c2aae8",
@@ -3373,7 +3373,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-divuw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "87992ad64dd865331a4bcbf3fa14c014",
@@ -3383,7 +3383,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-divw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "94cdea0f7388a1c756017ad892842066",
@@ -3393,7 +3393,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-mul",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "56a0b94c8b01189a4ee89fa963fa8728",
@@ -3403,7 +3403,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-mulh",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "96b114196281da84401ea85fbe7374cd",
@@ -3413,7 +3413,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-mulhsu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c4e736755d41b88d38609d1e93c478b6",
@@ -3423,7 +3423,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-mulhu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "69eb85950fc484e5d342de6b3e5bff1d",
@@ -3433,7 +3433,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-mulw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "1e6b85556decd6f1fcce889f8d2013d3",
@@ -3443,7 +3443,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-rem",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8c8ddfce7ca7feb2c454b882cdb7633a",
@@ -3453,7 +3453,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-remu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "b8b793b7b178d986e36ff93e2b1e0f9c",
@@ -3463,7 +3463,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-remuw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "258ed5fc8d7cd8002fa3ec7288e63aaa",
@@ -3473,7 +3473,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-p-remw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "926257e6eccf64456086994635101f0c",
@@ -3483,7 +3483,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-div",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "602ae8b873ba3e39b4b62300b66f59a2",
@@ -3493,7 +3493,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-divu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8809b137e030244ca0f9ffc0d1989504",
@@ -3503,7 +3503,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-divuw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c294f1703a609b2ab91ef6b31e9fa1d8",
@@ -3513,7 +3513,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-divw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8c59d76fd7786c2b0bbd9f3c54794774",
@@ -3523,7 +3523,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-mul",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f9d4ede3f8427efdd0c79c2c17938f3b",
@@ -3533,7 +3533,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-mulh",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "34514d7c23c1ad2ce38746b79d398a24",
@@ -3543,7 +3543,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-mulhsu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "e7ff21e8c1ea8876d517145c25ab13d5",
@@ -3553,7 +3553,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-mulhu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "dc55005966c9c28062e8a79f83b65f96",
@@ -3563,7 +3563,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-mulw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "ae60abbf79902a2027a9e4338e74cc6b",
@@ -3573,7 +3573,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-rem",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c1736d9576801eb4bec8fa1685b44691",
@@ -3583,7 +3583,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-remu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "42d352b6738309f9068dd241f074370f",
@@ -3593,7 +3593,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-remuw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f314392cb6caea00338bb19ca720be12",
@@ -3603,7 +3603,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-ps-remw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "951f8ff2e317fd8789cf84b8a23150a2",
@@ -3613,7 +3613,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-div",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "3b5f9fed1d39c75ea32408e19bc4a0df",
@@ -3623,7 +3623,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-divu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "bd0825b6474751887b99d7a05df31fa8",
@@ -3633,7 +3633,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-divuw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "c8855c9a292eb86dee8e11ddcc88b843",
@@ -3643,7 +3643,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-divw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "6e33cb55a71ba378c739fb63cecf85a1",
@@ -3653,7 +3653,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-mul",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "cbf41e207dfb09c352582d97f1cf5ddf",
@@ -3663,7 +3663,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-mulh",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "387c221747ca8160b6f461060ea44640",
@@ -3673,7 +3673,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-mulhsu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "09d283d8a482edee0bbaa04abaffe587",
@@ -3683,7 +3683,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-mulhu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "f21396ba8d1feba4225413fcdd93e859",
@@ -3693,7 +3693,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-mulw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8b7409faa548e836aa8391544659b237",
@@ -3703,7 +3703,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-rem",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "0375cd5552dbfdfafe6272f34a4312bc",
@@ -3713,7 +3713,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-remu",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "8d2301cca38b588f03206b9dd4d0e082",
@@ -3723,7 +3723,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-remuw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "241e4de12fd79207aac6f321773b041c",
@@ -3733,7 +3733,7 @@
                 {
                     "type" : "resource",
                     "name" : "rv64um-v-remw",
-                    "documentation" : "",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
                     "architecture" : "RISCV",
                     "is_zipped" : false,
                     "md5sum" : "aff1c28cdb84b9509547935c62aec435",
