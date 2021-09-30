@@ -47,6 +47,16 @@
         {
             "type" : "resource",
             "name" : "x86-ubuntu-img",
+            "documentation" : "An x86 disk image with Ubuntu 18.04. [This is deprecated. Please use 'x86-ubuntu-18.04-img'].",
+            "architecture" : "X86",
+            "is_zipped" : true,
+            "md5sum" : "90e363abf0ddf22eefa2c7c5c9391c49",
+            "url" : "{url_base}/images/x86/ubuntu-18-04/x86-ubuntu.img.gz",
+            "source" : "src/x86-ubuntu"
+        },
+        {
+            "type" : "resource",
+            "name" : "x86-ubuntu-18.04-img",
             "documentation" : "An x86 disk image with Ubuntu 18.04.",
             "architecture" : "X86",
             "is_zipped" : true,
