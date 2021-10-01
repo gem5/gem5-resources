@@ -46,6 +46,16 @@
         },
         {
             "type" : "resource",
+            "name" : "x86-npb",
+            "documentation" : "A disk image containing the NAS Parallel benchmark (NPB) suite, compiled to X86, built on top of Ubuntu 18.04.",
+            "architecture" : "X86",
+            "is_zipped" : true,
+            "md5sum" : "68073181c1ecca2347ad18c3577e0cd9",
+            "url" : "{url_base}/images/x86/ubuntu-18-04/npb.img.gz",
+            "source" : "src/npb"
+        },
+        {
+            "type" : "resource",
             "name" : "x86-boot-exit",
             "documentation" : "A disk image containing Ubuntu 18.04 for X86 which will run a `m5 exit` instruction after booting. [This is deprecated. Please use 'x86-ubuntu-18.04-img'].",
             "architecture" : "X86",
