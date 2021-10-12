@@ -55,6 +55,16 @@
         },
         {
             "type": "artifact",
+            "name" : "riscv-ubuntu-20.04-img",
+            "documentation" : "A disk image containing Ubuntu 20.04 for RISCV which will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be exected",
+            "architecture" : "RISCV",
+            "is_zipped" : "True",
+            "md5sum" : "b017372639ba13ad9ee9d9283647fa20",
+            "url" : "http://dist.gem5.org/dist/develop/images/riscv/ubuntu-20-04/riscv-ubuntu.img.gz",
+            "source" : "src/riscv-ubuntu"
+        },
+        {
+            "type": "artifact",
             "name" : "riscv-boot-exit-nodisk",
             "documentation" : "A simple bootloader with Linux kernel 5.10. Early userspace includes busybox and m5 binary.",
             "architecture": "RISCV",
