@@ -33,7 +33,7 @@ that are currently unsupported in gem5.
 HeteroSync has multiple applications that can be run (see below).  For example, to run sleepMutex with 10 ld/st per thread, 16 WGs, and 4 iterations of the critical section:
 
 ```
-docker run -u $UID:$GUID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:latest gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n 3 -c bin/allSyncPrims-1kernel --options="sleepMutex 10 16 4"
+docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:latest gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n 3 -c bin/allSyncPrims-1kernel --options="sleepMutex 10 16 4"
 ```
 
 ## Pre-built binary

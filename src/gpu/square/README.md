@@ -34,11 +34,11 @@ The test is run with the GCN3_X86 gem5 variant, compiled using the gcn-gpu docke
 ```
 git clone https://gem5.googlesource.com/public/gem5
 cd gem5
-docker run -u $UID:$GUID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:latest scons build/GCN3_X86/gem5.opt -j <num cores>
+docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:latest scons build/GCN3_X86/gem5.opt -j <num cores>
 ```
 
 ## Running Square on GCN3_X86/gem5.opt
 
 ```
-docker run -u $UID:$GUID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:latest gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n 3 -c bin/square
+docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:latest gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n 3 -c bin/square
 ```
