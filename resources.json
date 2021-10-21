@@ -12,7 +12,10 @@
             "is_zipped" : true,
             "md5sum" : "d6126db9f6bed7774518ae25aa35f153",
             "url": "{url_base}/images/riscv/busybox/riscv-disk.img.gz",
-            "source" : "src/riscv-fs"
+            "source" : "src/riscv-fs",
+            "additional_metadata" : {
+                "root_partition": null
+            }
         },
         {
             "type" : "resource",
@@ -32,7 +35,10 @@
             "is_zipped" : true,
             "md5sum" : "19131e62c5b10f137948ec5975391477",
             "url" : "{url_base}/images/x86/ubuntu-18-04/parsec.img.gz",
-            "source" : "src/parsec"
+            "source" : "src/parsec",
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
         },
         {
             "type" : "resource",
@@ -42,7 +48,10 @@
             "is_zipped" : true,
             "md5sum" : "84dade91797d17e880845ad606348d49",
             "url" : "{url_base}/images/x86/ubuntu-18-04/gapbs.img.gz",
-            "source" : "src/gabps"
+            "source" : "src/gabps",
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
         },
         {
             "type" : "resource",
@@ -52,7 +61,10 @@
             "is_zipped" : true,
             "md5sum" : "68073181c1ecca2347ad18c3577e0cd9",
             "url" : "{url_base}/images/x86/ubuntu-18-04/npb.img.gz",
-            "source" : "src/npb"
+            "source" : "src/npb",
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
         },
         {
             "type" : "resource",
@@ -62,7 +74,10 @@
             "is_zipped" : true,
             "md5sum" : "008a4bf505a04efed0758b49183e01f7",
             "url" : "{url_base}/images/x86/ubuntu-18-04/boot-exit.img.gz",
-            "source" : "src/boot-exit"
+            "source" : "src/boot-exit",
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
         },
         {
             "type" : "resource",
@@ -72,7 +87,10 @@
             "is_zipped" : true,
             "md5sum" : "90e363abf0ddf22eefa2c7c5c9391c49",
             "url" : "{url_base}/images/x86/ubuntu-18-04/x86-ubuntu.img.gz",
-            "source" : "src/x86-ubuntu"
+            "source" : "src/x86-ubuntu",
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
         },
         {
             "type" : "resource",
@@ -82,7 +100,10 @@
             "is_zipped" : true,
             "md5sum" : "90e363abf0ddf22eefa2c7c5c9391c49",
             "url" : "{url_base}/images/x86/ubuntu-18-04/x86-ubuntu.img.gz",
-            "source" : "src/x86-ubuntu"
+            "source" : "src/x86-ubuntu",
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
         },
         {
             "type": "resource",
@@ -92,7 +113,10 @@
             "is_zipped" : true,
             "md5sum" : "b017372639ba13ad9ee9d9283647fa20",
             "url" : "{url_base}/images/riscv/ubuntu-20-04/riscv-ubuntu.img.gz",
-            "source" : "src/riscv-ubuntu"
+            "source" : "src/riscv-ubuntu",
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
         },
         {
             "type": "resource",
