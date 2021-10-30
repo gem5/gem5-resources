@@ -19,7 +19,7 @@ if [ -s workloads ]; then
 
     # run the commands
     read -r workload size m5filespath < workloads
-    runcpu --size $size --iterations 1 --config myconfig.x86.cfg --noreportable --nobuild $workload
+    runcpu --size $size --iterations 1 --config myconfig.x86.cfg --define gcc_dir="/usr" --noreportable --nobuild $workload
     m5 exit
 
     # copy the SPEC result files to host
