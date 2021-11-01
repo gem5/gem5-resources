@@ -68,7 +68,7 @@ uploaded to the gem5 resources bucket.
 
 ## Resource: RISCV Tests
 
-The RISCV Tests soruce can be found in the `src/riscv-tests` directory. More
+The RISCV Tests source can be found in the `src/riscv-tests` directory. More
 information about these tests can be found in `src/riscv-tests/README.md`.
 
 ### RISCV Tests Origins
@@ -123,7 +123,7 @@ directory.
 ## Resource: simple
 
 The simple resources are small binaries, often used to run quick tests and
-checks in gem5. Their bare-meltal
+checks in gem5. They are baremetal.
 
 ### simple Compilation
 
@@ -441,7 +441,7 @@ cd src/gpu/lulesh
 docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make
 ```
 
-By default, the makefile builds for gfx801, and is placed in the `src/gpu/lulesh/bin` folder.
+By default, the Makefile builds for gfx801, and is placed in the `src/gpu/lulesh/bin` folder.
 
 lulesh is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
 To build GCN3_X86:
@@ -673,7 +673,7 @@ Benchmark Suite on gem5 architectural simulations. Please consult
 
 The NAS Parallel Benchmarks (NPB) are a small set of programs designed to
 help evaluate the performance of parallel supercomputers. The set consists of
-five Lunux Kernels and three pseudo-applications. gem5 resources provides a
+five Linux Kernels and three pseudo-applications. gem5 resources provides a
 disk image, and scripts allowing for the NPB image to be run within gem5 X86
 simulations.
 
