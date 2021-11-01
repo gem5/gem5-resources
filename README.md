@@ -74,8 +74,8 @@ information about these tests can be found in `src/riscv-tests/README.md`.
 ### RISCV Tests Origins
 
 The RISCV Tests in this repository were obtained from
-<https://github.com/riscv/riscv-tests.git>, revision
-19bfdab48c2a6da4a2c67d5779757da7b073811d.
+<https://github.com/riscv-software-src/riscv-tests.git>, revision
+e65ecdf941a5484af27f9be223fb655ebcb0398b.
 
 ### RISCV Tests Compilation
 

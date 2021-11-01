@@ -8,13 +8,14 @@ import sys
 import tempfile
 import time
 import os
+import re
 
 import targets
 import testlib
 from testlib import assertEqual, assertNotEqual, assertIn, assertNotIn
 from testlib import assertGreater, assertRegex, assertLess
 from testlib import GdbTest, GdbSingleHartTest, TestFailed
-from testlib import assertTrue, TestNotApplicable
+from testlib import assertTrue, TestNotApplicable, CompileError
 
 MSTATUS_UIE = 0x00000001
 MSTATUS_SIE = 0x00000002
@@ -76,6 +77,23 @@ def srec_parse(line):
 
 def readable_binary_string(s):
     return "".join("%02x" % ord(c) for c in s)
+
+class InfoTest(GdbTest):
+    def test(self):
+        output = self.gdb.command("monitor riscv info")
+        info = {}
+        for line in output.splitlines():
+            if re.search(r"Found \d+ triggers", line):
+                continue
+            if re.search(r"Disabling abstract command writes to CSRs.", line):
+                continue
+            if re.search(
+                    r"keep_alive.. was not invoked in the \d+ ms timelimit.",
+                    line):
+                continue
+            k, v = line.strip().split()
+            info[k] = v
+        assertEqual(int(info.get("hart.xlen")), self.hart.xlen)
 
 class SimpleRegisterTest(GdbTest):
     def check_reg(self, name, alias):
@@ -170,7 +188,7 @@ class CustomRegisterTest(SimpleRegisterTest):
         return self.target.implements_custom_test
 
     def check_custom(self, magic):
-        regs = {k: v for k, v in self.gdb.info_registers("all").items()
+        regs = {k: v for k, v in self.gdb.info_registers("all", ops=20).items()
                 if k.startswith("custom")}
         assertEqual(set(regs.keys()),
                 set(("custom1",
@@ -237,18 +255,25 @@ class MemTest64(SimpleMemoryTest):
     def test(self):
         self.access_test(8, 'long long')
 
-# FIXME: I'm not passing back invalid addresses correctly in read/write memory.
-#class MemTestReadInvalid(SimpleMemoryTest):
-#    def test(self):
-#        # This test relies on 'gdb_report_data_abort enable' being executed in
-#        # the openocd.cfg file.
-#        try:
-#            self.gdb.p("*((int*)0xdeadbeef)")
-#            assert False, "Read should have failed."
-#        except testlib.CannotAccess as e:
-#            assertEqual(e.address, 0xdeadbeef)
-#        self.gdb.p("*((int*)0x%x)" % self.hart.ram)
-#
+class MemTestReadInvalid(SimpleMemoryTest):
+    def test(self):
+        bad_address = self.hart.bad_address
+        good_address = self.hart.ram + 0x80
+
+        self.write_nop_program(2)
+        self.gdb.p("$s0=0x12345678")
+        self.gdb.p("*((int*)0x%x)=0xabcdef" % good_address)
+        # This test relies on 'gdb_report_data_abort enable' being executed in
+        # the openocd.cfg file.
+        try:
+            self.gdb.p("*((int*)0x%x)" % bad_address)
+            assert False, "Read should have failed."
+        except testlib.CannotAccess as e:
+            assertEqual(e.address, bad_address)
+        self.gdb.stepi()    # Don't let gdb cache register read
+        assertEqual(self.gdb.p("*((int*)0x%x)" % good_address), 0xabcdef)
+        assertEqual(self.gdb.p("$s0"), 0x12345678)
+
 #class MemTestWriteInvalid(SimpleMemoryTest):
 #    def test(self):
 #        # This test relies on 'gdb_report_data_abort enable' being executed in
@@ -569,10 +594,10 @@ class DebugBreakpoint(DebugTest):
         self.exit()
 
 class Hwbp1(DebugTest):
-    def test(self):
-        if self.hart.instruction_hardware_breakpoint_count < 1:
-            raise TestNotApplicable
+    def early_applicable(self):
+        return self.hart.instruction_hardware_breakpoint_count > 0
 
+    def test(self):
         if not self.hart.honors_tdata1_hmode:
             # Run to main before setting the breakpoint, because startup code
             # will otherwise clear the trigger that we set.
@@ -590,11 +615,103 @@ class Hwbp1(DebugTest):
         self.gdb.b("_exit")
         self.exit()
 
-class Hwbp2(DebugTest):
-    def test(self):
-        if self.hart.instruction_hardware_breakpoint_count < 2:
-            raise TestNotApplicable
+def MCONTROL_TYPE(xlen):
+    return 0xf<<((xlen)-4)
+def MCONTROL_DMODE(xlen):
+    return 1<<((xlen)-5)
+def MCONTROL_MASKMAX(xlen):
+    return 0x3<<((xlen)-11)
 
+MCONTROL_SELECT = (1<<19)
+MCONTROL_TIMING = (1<<18)
+MCONTROL_ACTION = (0x3f<<12)
+MCONTROL_CHAIN = (1<<11)
+MCONTROL_MATCH = (0xf<<7)
+MCONTROL_M = (1<<6)
+MCONTROL_H = (1<<5)
+MCONTROL_S = (1<<4)
+MCONTROL_U = (1<<3)
+MCONTROL_EXECUTE = (1<<2)
+MCONTROL_STORE = (1<<1)
+MCONTROL_LOAD = (1<<0)
+
+MCONTROL_TYPE_NONE = 0
+MCONTROL_TYPE_MATCH = 2
+
+MCONTROL_ACTION_DEBUG_EXCEPTION = 0
+MCONTROL_ACTION_DEBUG_MODE = 1
+MCONTROL_ACTION_TRACE_START = 2
+MCONTROL_ACTION_TRACE_STOP = 3
+MCONTROL_ACTION_TRACE_EMIT = 4
+
+MCONTROL_MATCH_EQUAL = 0
+MCONTROL_MATCH_NAPOT = 1
+MCONTROL_MATCH_GE = 2
+MCONTROL_MATCH_LT = 3
+MCONTROL_MATCH_MASK_LOW = 4
+MCONTROL_MATCH_MASK_HIGH = 5
+
+def set_field(reg, mask, val):
+    return ((reg) & ~(mask)) | (((val) * ((mask) & ~((mask) << 1))) & (mask))
+
+class HwbpManual(DebugTest):
+    """Make sure OpenOCD behaves "normal" when the user sets a trigger by
+    writing the trigger registers themselves directly."""
+    def early_applicable(self):
+        return self.target.support_manual_hwbp and \
+            self.hart.instruction_hardware_breakpoint_count >= 1
+
+    def test(self):
+        if not self.hart.honors_tdata1_hmode:
+            # Run to main before setting the breakpoint, because startup code
+            # will otherwise clear the trigger that we set.
+            self.gdb.b("main")
+            self.gdb.c()
+
+        self.gdb.command("delete")
+        #self.gdb.hbreak("rot13")
+        tdata1 = MCONTROL_DMODE(self.hart.xlen)
+        tdata1 = set_field(tdata1, MCONTROL_ACTION, MCONTROL_ACTION_DEBUG_MODE)
+        tdata1 = set_field(tdata1, MCONTROL_MATCH, MCONTROL_MATCH_EQUAL)
+        tdata1 |= MCONTROL_M | MCONTROL_S | MCONTROL_U | MCONTROL_EXECUTE
+
+        tselect = 0
+        while True:
+            self.gdb.p("$tselect=%d" % tselect)
+            value = self.gdb.p("$tselect")
+            if value != tselect:
+                raise TestNotApplicable
+            self.gdb.p("$tdata1=0x%x" % tdata1)
+            value = self.gdb.p("$tselect")
+            if value == tdata1:
+                break
+            self.gdb.p("$tdata1=0")
+            tselect += 1
+
+        self.gdb.p("$tdata2=&rot13")
+        # The breakpoint should be hit exactly 2 times.
+        for _ in range(2):
+            output = self.gdb.c(ops=2)
+            self.gdb.p("$pc")
+            assertRegex(output, r"[bB]reakpoint")
+            assertIn("rot13 ", output)
+        self.gdb.p("$tdata2=&crc32a")
+        self.gdb.c()
+        before = self.gdb.p("$pc")
+        assertEqual(before, self.gdb.p("&crc32a"))
+        self.gdb.stepi()
+        after = self.gdb.p("$pc")
+        assertNotEqual(before, after)
+
+        self.gdb.b("_exit")
+        self.exit()
+
+
+class Hwbp2(DebugTest):
+    def early_applicable(self):
+        return self.hart.instruction_hardware_breakpoint_count >= 2
+
+    def test(self):
         self.gdb.command("delete")
         self.gdb.hbreak("main")
         self.gdb.hbreak("rot13")
@@ -615,9 +732,14 @@ class TooManyHwbp(DebugTest):
 
         output = self.gdb.c(checkOutput=False)
         assertIn("Cannot insert hardware breakpoint", output)
+        # There used to be a bug where this would fail if done twice in a row.
+        output = self.gdb.c(checkOutput=False)
+        assertIn("Cannot insert hardware breakpoint", output)
         # Clean up, otherwise the hardware breakpoints stay set and future
         # tests may fail.
-        self.gdb.command("D")
+        self.gdb.command("delete")
+        self.gdb.b("_exit")
+        self.exit()
 
 class Registers(DebugTest):
     def test(self):
@@ -666,6 +788,163 @@ class UserInterrupt(DebugTest):
         assertGreater(self.gdb.p("j"), 10)
         self.gdb.p("i=0")
         self.exit()
+
+class MemorySampleTest(DebugTest):
+    def early_applicable(self):
+        return self.target.support_memory_sampling
+
+    def setup(self):
+        DebugTest.setup(self)
+        self.gdb.b("main:start")
+        self.gdb.c()
+        self.gdb.p("i=123")
+
+    @staticmethod
+    def check_incrementing_samples(raw_samples, check_addr,
+                                   tolerance=0x200000):
+        first_timestamp = None
+        end = None
+        total_samples = 0
+        previous_value = None
+        for line in raw_samples.splitlines():
+            m = re.match(r"^timestamp \w+: (\d+)", line)
+            if m:
+                timestamp = int(m.group(1))
+                if not first_timestamp:
+                    first_timestamp = timestamp
+                else:
+                    end = (timestamp, total_samples)
+            else:
+                address, value = line.split(': ')
+                address = int(address, 16)
+                if address == check_addr:
+                    value = int(value, 16)
+                    if not previous_value is None:
+                        # TODO: what if the counter wraps?
+                        assertGreater(value, previous_value)
+                        assertLess(value, previous_value + tolerance)
+                    previous_value = value
+                total_samples += 1
+        if end and total_samples > 0:
+            print("%d samples/second" % (1000 * end[1] / (end[0] -
+                first_timestamp)))
+        else:
+            raise Exception("No samples collected.")
+
+    @staticmethod
+    def check_samples_equal(raw_samples, check_addr, check_value):
+        total_samples = 0
+        for line in raw_samples.splitlines():
+            if not line.startswith("timestamp "):
+                address, value = line.split(': ')
+                address = int(address, 16)
+                if address == check_addr:
+                    value = int(value, 16)
+                    assertEqual(value, check_value)
+                    total_samples += 1
+        assertGreater(total_samples, 0)
+
+    def collect_samples(self):
+        self.gdb.c(wait=False)
+        time.sleep(5)
+        output = self.gdb.interrupt()
+        assert "main" in output
+        return self.gdb.command("monitor riscv dump_sample_buf", ops=5)
+
+class MemorySampleSingle(MemorySampleTest):
+    def test(self):
+        addr = self.gdb.p("&j")
+        sizeof_j = self.gdb.p("sizeof(j)")
+        self.gdb.command("monitor riscv memory_sample 0 0x%x %d" % (
+                addr, sizeof_j))
+
+        raw_samples = self.collect_samples()
+        self.check_incrementing_samples(raw_samples, addr)
+
+        # Buffer should have been emptied by dumping.
+        raw_samples = self.gdb.command("monitor riscv dump_sample_buf", ops=5)
+        assertEqual(len(raw_samples), 0)
+
+class MemorySampleMixed(MemorySampleTest):
+    def test(self):
+        addr = {}
+        for i, name in enumerate(("j", "i32", "i64")):
+            addr[name] = self.gdb.p("&%s" % name)
+            sizeof = self.gdb.p("sizeof(%s)" % name)
+            self.gdb.command("monitor riscv memory_sample %d 0x%x %d" % (
+                    i, addr[name], sizeof))
+
+        raw_samples = self.collect_samples()
+        self.check_incrementing_samples(raw_samples, addr["j"],
+                                        tolerance=0x400000)
+        self.check_samples_equal(raw_samples, addr["i32"], 0xdeadbeef)
+        self.check_samples_equal(raw_samples, addr["i64"], 0x1122334455667788)
+
+class RepeatReadTest(DebugTest):
+    def early_applicable(self):
+        return self.target.supports_clint_mtime
+
+    def test(self):
+        self.gdb.b("main:start")
+        self.gdb.c()
+        mtime_addr = 0x02000000 + 0xbff8
+        count = 1024
+        output = self.gdb.command("monitor riscv repeat_read %d 0x%x 4" %
+                (count, mtime_addr))
+        values = []
+        for line in output.splitlines():
+            # Ignore warnings
+            if line.startswith("Batch memory"):
+                continue
+            for v in line.split():
+                values.append(int(v, 16))
+
+        assertEqual(len(values), count)
+        # mtime should only ever increase, unless it wraps
+        slop = 0x100000
+        for i in range(1, len(values)):
+            if values[i] < values[i-1]:
+                # wrapped
+                assertLess(values[i], slop)
+            else:
+                assertGreater(values[i], values[i-1])
+                assertLess(values[i], values[i-1] + slop)
+
+        output = self.gdb.command("monitor riscv repeat_read 0 0x%x 4" %
+                mtime_addr)
+        assertEqual(output, "")
+
+class Semihosting(GdbSingleHartTest):
+    # Include malloc so that gdb can assign a string.
+    compile_args = ("programs/semihosting.c", "programs/tiny-malloc.c",
+                    "-DDEFINE_MALLOC", "-DDEFINE_FREE")
+
+    def early_applicable(self):
+        return self.target.test_semihosting
+
+    def setup(self):
+        self.gdb.load()
+        self.parkOtherHarts()
+        self.gdb.b("_exit")
+
+    def exit(self, expected_result=0):
+        output = self.gdb.c()
+        assertIn("Breakpoint", output)
+        assertIn("_exit", output)
+        assertEqual(self.gdb.p("status"), expected_result)
+
+    def test(self):
+        """Sending gdb ^C while the program is running should cause it to
+        halt."""
+        temp = tempfile.NamedTemporaryFile(suffix=".data")
+
+        self.gdb.b("main:begin")
+        self.gdb.c()
+        self.gdb.p('filename="%s"' % temp.name, ops=3)
+        self.exit()
+
+        contents = open(temp.name, "r").readlines()
+        assertIn("Hello, world!\n", contents)
 
 class InterruptTest(GdbSingleHartTest):
     compile_args = ("programs/interrupt.c",)
@@ -738,18 +1017,18 @@ class MulticoreRegTest(GdbTest):
             self.gdb.c()
             assertIn("main_end", self.gdb.where())
 
-        hart_ids = []
+        hart_ids = set()
         for hart in self.target.harts:
             self.gdb.select_hart(hart)
             # Check register values.
             x1 = self.gdb.p("$x1")
             hart_id = self.gdb.p("$mhartid")
             assertEqual(x1, hart_id << 8)
-            assertNotIn(hart_id, hart_ids)
-            hart_ids.append(hart_id)
+            assertNotIn((hart.system, hart_id), hart_ids)
+            hart_ids.add((hart.system, hart_id))
             for n in range(2, 32):
                 value = self.gdb.p("$x%d" % n)
-                assertEqual(value, (hart_ids[-1] << 8) + n - 1)
+                assertEqual(value, (hart_id << 8) + n - 1)
 
         # Confirmed that we read different register values for different harts.
         # Write a new value to x1, and run through the add sequence again.
@@ -1053,7 +1332,8 @@ class TriggerStoreAddressInstant(TriggerTest):
 
 class TriggerDmode(TriggerTest):
     def early_applicable(self):
-        return self.hart.honors_tdata1_hmode
+        return self.hart.honors_tdata1_hmode and \
+                self.hart.instruction_hardware_breakpoint_count > 0
 
     def check_triggers(self, tdata1_lsbs, tdata2):
         dmode = 1 << (self.hart.xlen-5)
@@ -1156,6 +1436,8 @@ class WriteCsrs(RegsTest):
         assertEqual(123, self.gdb.p("$csr832"))
 
 class DownloadTest(GdbTest):
+    compile_args = ("programs/infinite_loop.S", )
+
     def setup(self):
         # pylint: disable=attribute-defined-outside-init
         length = min(2**18, max(2**10, self.hart.ram_size - 2048))
@@ -1188,15 +1470,23 @@ class DownloadTest(GdbTest):
         if self.crc < 0:
             self.crc += 2**32
 
-        self.binary = self.target.compile(self.hart, self.download_c.name,
-                "programs/checksum.c")
-        self.gdb.global_command("file %s" % self.binary)
+        compiled = {}
+        for hart in self.target.harts:
+            key = hart.system
+            if key not in compiled:
+                compiled[key] = self.target.compile(hart, self.download_c.name,
+                        "programs/checksum.c")
+            self.gdb.select_hart(hart)
+            self.gdb.command("file %s" % compiled.get(key))
+
+        self.gdb.select_hart(self.hart)
 
     def test(self):
         self.gdb.load()
         self.parkOtherHarts()
         self.gdb.command("b _exit")
-        self.gdb.c(ops=100)
+        #self.gdb.c(ops=100)
+        self.gdb.c()
         assertEqual(self.gdb.p("status"), self.crc)
         os.unlink(self.download_c.name)
 
@@ -1289,6 +1579,7 @@ class TranslateTest(GdbTest):
         self.disable_pmp()
 
         self.gdb.load()
+        self.parkOtherHarts()
         self.gdb.b("main")
         output = self.gdb.c()
         assertRegex(output, r"\bmain\b")
@@ -1351,6 +1642,132 @@ class Sv48Test(TranslateTest):
         self.check_satp(SATP_MODE_SV48)
         self.gdb.p("vms=&sv48")
         self.test_translation()
+
+class VectorTest(GdbSingleHartTest):
+    compile_args = ("programs/vectors.S", )
+
+    def early_applicable(self):
+        if not self.hart.extensionSupported('V'):
+            return False
+        # If the compiler can't build this test, say it's not applicable. At
+        # some time all compilers will support the V extension, but we're not
+        # there yet.
+        try:
+            self.compile()
+        except CompileError as e:
+            if b"Error: unknown CSR `vlenb'" in e.stderr:
+                return False
+        return True
+
+    def setup(self):
+        self.gdb.load()
+        self.gdb.b("main")
+        self.gdb.c()
+
+    def test(self):
+        vlenb = self.gdb.p("$vlenb")
+        self.gdb.command("delete")
+        self.gdb.b("_exit")
+        self.gdb.b("trap_entry")
+
+        self.gdb.b("test0")
+
+        output = self.gdb.c()
+        assertIn("Breakpoint", output)
+        assertIn("test0", output)
+
+        # I'm not convinced that writing 0 is supported on every vector
+        # implementation. If this test fails, that might be why.
+        for regname in ('$vl', '$vtype'):
+            value = self.gdb.p(regname)
+            assertNotEqual(value, 0)
+            self.gdb.p("%s=0" % regname)
+            self.gdb.command("flushregs")
+            assertEqual(self.gdb.p(regname), 0)
+            self.gdb.p("%s=0x%x" % (regname, value))
+            self.gdb.command("flushregs")
+            assertEqual(self.gdb.p(regname), value)
+
+        assertEqual(self.gdb.p("$a0"), 0)
+        a = self.gdb.x("&a", 'b', vlenb)
+        b = self.gdb.x("&b", 'b', vlenb)
+        v4 = self.gdb.p("$v4")
+        assertEqual(a, b)
+        assertEqual(b, v4["b"])
+        assertEqual(0, self.gdb.p("$a0"))
+
+        self.gdb.b("test1")
+
+        output = self.gdb.c()
+        assertIn("Breakpoint", output)
+        assertIn("test1", output)
+
+        assertEqual(self.gdb.p("$a0"), 0)
+        b = self.gdb.x("&b", 'b', vlenb)
+        c = self.gdb.x("&c", 'b', vlenb)
+        v4 = self.gdb.p("$v4")
+        assertEqual(b, c)
+        assertEqual(c, v4["b"])
+        assertEqual(0, self.gdb.p("$a0"))
+
+        output = self.gdb.c()
+        assertIn("Breakpoint", output)
+        assertIn("_exit", output)
+        assertEqual(self.gdb.p("status"), 0)
+
+class FreeRtosTest(GdbTest):
+    def early_applicable(self):
+        return self.target.freertos_binary
+
+    def freertos(self):
+        return True
+
+    def test(self):
+        self.gdb.command("file %s" % self.target.freertos_binary)
+        self.gdb.load()
+
+        output = self.gdb.command("monitor riscv_freertos_stacking mainline")
+
+        # Turn off htif, which doesn't work when the file is loaded into spike
+        # through gdb. It only works when spike loads the ELF file itself.
+        bp = self.gdb.b("main")
+        self.gdb.c()
+        self.gdb.command("delete %d" % bp)
+        self.gdb.p("*((int*) &use_htif) = 0")
+        # Need this, otherwise gdb complains that there is no current active
+        # thread.
+        self.gdb.threads()
+
+        bp = self.gdb.b("prvQueueReceiveTask")
+
+        self.gdb.c()
+        self.gdb.command("delete %d" % bp)
+
+        bp = self.gdb.b("prvQueueSendTask")
+        self.gdb.c()
+        self.gdb.command("delete %d" % bp)
+
+        # Now we know for sure at least 2 threads have executed.
+
+        threads = self.gdb.threads()
+        assertGreater(len(threads), 1)
+
+        values = {}
+        for thread in threads:
+            assertNotIn("No Name", thread[1])
+            self.gdb.thread(thread)
+            assertEqual(self.gdb.p("$zero"), 0)
+            output = self.gdb.command("info reg sp")
+            assertIn("ucHeap", output)
+            self.gdb.command("info reg mstatus")
+            values[thread.id] = self.gdb.p("$s11")
+            self.gdb.p("$s11=0x%x" % (values[thread.id] ^ int(thread.id)))
+
+        # Test that writing worked
+        self.gdb.stepi()
+        for thread in self.gdb.threads():
+            self.gdb.thread(thread)
+            assertEqual(self.gdb.p("$s11"), values[thread.id] ^ int(thread.id))
 
 parsed = None
 def main():

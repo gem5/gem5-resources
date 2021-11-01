@@ -1,5 +1,6 @@
 import importlib
 import os.path
+import re
 import sys
 import tempfile
 
@@ -28,6 +29,10 @@ class Hart:
     ram = None
     ram_size = None
 
+    # Address where we expect memory accesses to fail, usually because there is
+    # no device mapped to that location.
+    bad_address = None
+
     # Number of instruction triggers the hart supports.
     instruction_hardware_breakpoint_count = 0
 
@@ -38,6 +43,20 @@ class Hart:
     # This is a list because on some boards the reset vector depends on
     # jumpers.
     reset_vectors = []
+
+    # system is set to an identifier of the system this hart belongs to.  Harts
+    # within the same system are assumed to share memory, and to have unique
+    # hartids within that system.  So for most cases the default value of None
+    # is fine.
+    system = None
+
+    def __init__(self, misa=None, system=None, link_script_path=None):
+        if misa:
+            self.misa = misa
+        if system:
+            self.system = system
+        if link_script_path:
+            self.link_script_path = link_script_path
 
     def extensionSupported(self, letter):
         # target.misa is set by testlib.ExamineTarget
@@ -91,6 +110,22 @@ class Target:
     # whether they are applicable or not.
     skip_tests = []
 
+    # Set False if semihosting should not be tested in this configuration,
+    # because it doesn't work and isn't expected to work.
+    test_semihosting = True
+
+    # Set False if manual hwbps (breakpoints set by directly writing tdata*)
+    # isn't supposed to work.
+    support_manual_hwbp = True
+
+    # Set False if memory sampling is not supported due to OpenOCD
+    # limitation/hardware support.
+    support_memory_sampling = True
+
+    # Relative path to a FreeRTOS binary compiled from the spike demo project
+    # in https://github.com/FreeRTOS/FreeRTOS.
+    freertos_binary = None
+
     # Internal variables:
     directory = None
     temporary_files = []
@@ -102,6 +137,7 @@ class Target:
         self.server_cmd = parsed.server_cmd
         self.sim_cmd = parsed.sim_cmd
         self.temporary_binary = None
+        self.compiler_supports_v = True
         Target.isolate = parsed.isolate
         if not self.name:
             self.name = type(self).__name__
@@ -125,17 +161,18 @@ class Target:
     def create(self):
         """Create the target out of thin air, eg. start a simulator."""
 
-    def server(self):
+    def server(self, test):
         """Start the debug server that gdb connects to, eg. OpenOCD."""
         return testlib.Openocd(server_cmd=self.server_cmd,
                 config=self.openocd_config_path,
-                timeout=self.server_timeout_sec)
+                timeout=self.server_timeout_sec,
+                freertos=test.freertos())
 
-    def compile(self, hart, *sources):
-        binary_name = "%s_%s-%d" % (
+    def do_compile(self, hart, *sources):
+        binary_name = "%s_%s-%x" % (
                 self.name,
                 os.path.basename(os.path.splitext(sources[0])[0]),
-                hart.xlen)
+                hart.misa)
         if Target.isolate:
             self.temporary_binary = tempfile.NamedTemporaryFile(
                     prefix=binary_name + "_")
@@ -161,6 +198,8 @@ class Target:
             for letter in "fdc":
                 if hart.extensionSupported(letter):
                     march += letter
+            if hart.extensionSupported("v") and self.compiler_supports_v:
+                march += "v"
             args.append("-march=%s" % march)
             if hart.xlen == 32:
                 args.append("-mabi=ilp32")
@@ -169,6 +208,24 @@ class Target:
 
         testlib.compile(args)
         return binary_name
+
+    def compile(self, hart, *sources):
+        for _ in range(2):
+            try:
+                return self.do_compile(hart, *sources)
+            except testlib.CompileError as e:
+                # If the compiler doesn't support V, disable it from the
+                # current configuration. Eventually all gcc branches will
+                # support V, but we're not there yet.
+                m = re.search(r"Error: cannot find default versions of the "
+                        r"ISA extension `(\w)'", e.stderr.decode())
+                if m and m.group(1) in "v":
+                    extension = m.group(1)
+                    print("Disabling extension %r because the "
+                            "compiler doesn't support it." % extension)
+                    self.compiler_supports_v = False
+                else:
+                    raise
 
 def add_target_options(parser):
     parser.add_argument("target", help=".py file that contains definition for "
