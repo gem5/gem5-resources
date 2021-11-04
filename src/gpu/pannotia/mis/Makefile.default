@@ -17,4 +17,4 @@ $(BIN_DIR):
 clean:
 	rm -rf $(BIN_DIR)
 
-.PHONY: square clean
+.PHONY: mis clean
