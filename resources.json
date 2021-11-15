@@ -46,7 +46,7 @@
             "documentation" : "A disk image containing the GAPBS benchmark suite, compiled to X86, built on top of Ubuntu 18.04.",
             "architecture" : "X86",
             "is_zipped" : true,
-            "md5sum" : "84dade91797d17e880845ad606348d49",
+            "md5sum" : "c9217a88eff20e5547be87368a1499c1",
             "url" : "{url_base}/images/x86/ubuntu-18-04/gapbs.img.gz",
             "source" : "src/gabps",
             "additional_metadata" : {
