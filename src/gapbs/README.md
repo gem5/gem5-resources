@@ -10,9 +10,9 @@ author: ["Marjan Fariborz"]
 license: BSD-3-Clause
 ---
 
-This document provides instructions to create a GAP Benchmark Suite (GAPBS) disk image, which, along with provided configuration scripts, may be used to run GAPBS within gem5 simulations.
+This document provides instructions to create a GAP Benchmark Suite (GAPBS) disk image, which, along with an example script, may be used to run GAPBS within gem5 simulations. The example script uses a pre-built disk-image.
 
-A pre-build disk image, for X86, can be found, gzipped, here: <http://dist.gem5.org/dist/v21-1/images/x86/ubuntu-18-04/gapbs.img.gz>.
+A pre-built disk image, for X86, can be found, gzipped, here: <http://dist.gem5.org/dist/v21-1/images/x86/ubuntu-18-04/gapbs.img.gz>.
 
 ## Building the Disk Image
 
@@ -36,36 +36,43 @@ unzip packer_1.6.0_linux_amd64.zip # (if packer is not already installed)
 
 After this process succeeds, the disk image can be found on the `src/gapbs/disk-image/gapbs-image/gapbs`.
 
-GAPBS disk image can support both real and synthetic graph inputs. The current pre-build disk image contains only one graph input which includes the New York city road map (with 733K nodes) it can be found: <http://users.diag.uniroma1.it/challenge9/download.shtml>.
+GAPBS disk image can support both real and synthetic graph inputs. The current pre-built disk image contains only one graph input which includes the New York city road map (with 733K nodes) it can be found: <http://users.diag.uniroma1.it/challenge9/download.shtml>.
 
 To use other graphs simply copy the graph in the gapbs/ directory and add them to gapbs/gapbs.json.
 
-## gem5 Configuration Scripts
+## Simulating GAPBS using an example script
 
-gem5 scripts which configure the system and run the simulation are available in `configs/`.
-The main script `run_gapbs.py` expects following arguments:
+An example script with a pre-configured system is available in the following directory within the gem5 repository:
 
-* **kernel** : A manditory positional argument. The path to the Linux kernel. GAPBS has been tested with [vmlinux-5.2.3](http://dist.gem5.org/dist/v21-1/kernels/x86/static/vmlinux-5.2.3). See `src/linux-kernel` for information on building a linux kernel for gem5.
+```
+gem5/configs/example/gem5_library/x86-gapbs-benchmarks.py
+```
 
-* **disk** : A manditory positional argument. The path to the disk image.
+The example script specifies a system with the following parameters:
 
-* **cpu\_type** : A manditory positional argument. The cpu model (`kvm`, `atomic`, `simple`, `o3`).
+* A `SimpleSwitchableProcessor` (`KVM` for startup and `TIMING` for ROI execution). There are 2 CPU cores, each clocked at 3 GHz.
+* 2 Level `MESI_Two_Level` cache with 32 kB L1I and L1D size, and, 256 kB L2 size. The L1 cache(s) has associativity of 8, and, the L2 cache has associativity 16. There are 2 L2 cache banks.
+* The system has 3 GB `SingleChannelDDR4_2400` memory.
+* The script uses `x86-linux-kernel-4.19.83` and `x86-gapbs`, the disk image created from following the instructions in this `README.md`.
 
-* **num\_cpus** : A manditory positional argument. The number of cpu cores.
-
-* **mem\_sys** : A manditory positional argument. The memory model (`classic`, `MI_example`, or `MESI_Two_Level`).
-
-* **benchmark** : A manditory positional argument. The graph workload (`cc`, `bc`, `bfs`, `tc`, `pr`, `sssp`).
-
-* **synthetic** : A manditory positional argument. The graph type. If synthetic graph then `1`, otherwise `0` for a real world graph.
-
-* **graph** : A manditory positional argument. If synthetic, then the size of the graph. Otherwise the name of graph to execute.
-
-Example usage:
+The example script must be run with the `X86_MESI_Two_Level` binary. To build:
 
 ```sh
-<gem5 X86 binary> configs/run_gapbs.py <kernel> <disk> <cpu_type> <num_cpus> <mem_sys> <benchmark> <synthetic> <graph>
+git clone https://gem5.googlesource.com/public/gem5
+cd gem5
+scons build/X86/gem5.opt -j<proc>
 ```
+Once compiled, you may use the example config file to run the GAPBS benchmark programs using the following command:
+
+```sh
+# In the gem5 directory
+build/X86/gem5.opt \
+configs/example/gem5_library/x86-gapbs-benchmarks.py \
+--benchmark <benchmark_program> \
+--synthetic <synthetic> \
+--size <size_or_graph_name>
+```
+
 ## Working Status
 
 Working status of these tests for gem5-20 can be found [here](https://www.gem5.org/documentation/benchmark_status/gem5-20#gapbs-tests).
