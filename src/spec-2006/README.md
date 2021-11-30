@@ -11,8 +11,8 @@ license: Proprietary SPEC License
 ---
 
 This document aims to provide instructions to create a gem5-compatible disk
-image containing the SPEC 2006 benchmark suite and also to provide necessary
-configuration files.
+image containing the SPEC 2006 benchmark suite. It also demonstrates how to
+simulate the SPEC CPU2006 benchmarks using an example configuration script.
 
 ## Building the Disk Image
 Creating a disk-image for SPEC 2006 requires the benchmark suite ISO file.
@@ -37,10 +37,6 @@ spec-2006/
   |             |      |___ spec-2006          # the disk image will be generated here
   |             |___ spec-2006.json            # the Packer script
   |             |___ CPU2006v1.0.1.iso         # SPEC 2006 ISO (add here)
-  |
-  |___ configs
-  |      |___ system
-  |      |___ run_spec.py                      # gem5 config file
   |
   |___ vmlinux-4.19.83                         # download link below
   |
@@ -68,94 +64,76 @@ unzip packer_1.6.0_linux_amd64.zip
 ./packer build spec-2006/spec-2006.json
 ```
 
-## gem5 Configuration Scripts
-gem5 scripts which configure the system and run the simulation are available
-in `configs/`.
-The main script `run_spec.py` expects following arguments:
+## Simulating SPEC CPU2006 using an example script
 
-`usage: run_spec.py [-h] [-l] [-z] kernel disk cpu mem_sys benchmark size`
-
-`-h`: show this help message and exit.
-
-`-l`, `--no-copy-logs`: optional, to not copy SPEC run logs to the host system,
-logs are copied by default, and are available in the result folder.
-
-`-z`, `--allow-listeners`: optional, to turn on GDB listening ports, the ports
-are off by default.
-
-`kernel`: required, a positional argument specifying the path to the Linux
-kernel. We have tested using version 4.19.83, which can be downloaded from
-<http://dist.gem5.org/dist/v21-1/kernels/x86/static/vmlinux-4.19.83>. Info on
-building Linux kernels for gem5 can be found in `src/linux-kernel`
-
-`disk`: required, a positional argument specifying the path to the disk image
-containing SPEC 2006 benchmark suite.
-
-`cpu`: required, a positional argument specifying the name of either a
-detailed CPU model or KVM CPU model.
-
-The available CPU models are,
-
-| cpu      | Corresponding CPU model in gem5 |
-| ---------| ------------------------------- |
-| `kvm`    |                                 |
-| `o3`     | DerivO3CPU                      |
-| `atomic` | AtomicSimpleCPU                 |
-| `timing` | TimingSimpleCPU                 |
-
-`mem_sys`: required, a positional argument specifying the memory system.
-The available memory systems are,
-
-| mem\_sys              | Notes                  |
-| --------------------- | ---------------------- |
-| `classic`             | classic memory system  |
-| `MI_example`          | Ruby memory system     |
-| `MESI_Two_Level`      | Ruby memory system     |
-| `MOESI_CMP_directory` | Ruby memory system     |
-
-`benchmark`: required, a positional argument specifying the name of the SPEC
-2006 workload to run. The available benchmarks are,
-
-* 401.bzip2
-* 403.gcc
-* 410.bwaves
-* 416.gamess
-* 429.mcf
-* 433.milc
-* 434.zeusmp
-* 435.gromacs
-* 436.cactusADM
-* 437.leslie3d
-* 444.namd
-* 445.gobmk
-* 453.povray
-* 454.calculix
-* 456.hmmer
-* 458.sjeng
-* 459.GemsFDTD
-* 462.libquantum
-* 464.h264ref
-* 465.tonto
-* 470.lbm
-* 471.omnetpp
-* 473.astar
-* 481.wrf
-* 482.sphinx3
-* 998.specrand
-* 999.specrand
-
-`size`: required, a positional argument specifying the input data size. Valid
-values are `test`, `train`, and `ref`.
-
-As a minimum the following parameters must be specified:
+An example script with a pre-configured system is available in the following directory within the gem5 repository:
 
 ```
-<gem5 X86 binary> --outdir <output directory> configs/run_spec.py <kernel> <disk> <cpu> <mem_sys> <benchmark> <size>
+gem5/configs/example/gem5_library/x86-spec-cpu2006-benchmarks.py
 ```
 
-**Note**: `--outdir` is a required argument when running the gem5 binary with SPEC 2006.
-The path to the output directory must be an absoblute path.
+The example script specifies a system with the following parameters:
 
+* A `SimpleSwitchableProcessor` (`KVM` for startup and `TIMING` for ROI execution). There are 2 CPU cores, each clocked at 3 GHz.
+* 2 Level `MESI_Two_Level` cache with 32 kB L1I and L1D size, and, 256 kB L2 size. The L1 cache(s) has associativity of 8, and, the L2 cache has associativity 16. There are 2 L2 cache banks.
+* The system has 3 GB `SingleChannelDDR4_2400` memory.
+* The script uses `x86-linux-kernel-4.19.83` and the disk image created from following the instructions in this `README.md`.
+* The user inputs the path to the built disk image, along with the root partition.
+* The script then uses `CustomResource` class to use the `spec-2006` disk-image.
+
+The example script must be run with the `X86_MESI_Two_Level` binary. To build:
+
+```sh
+git clone https://gem5.googlesource.com/public/gem5
+cd gem5
+scons build/X86/gem5.opt -j<proc>
+```
+Once compiled, you may use the example configuration file to run the SPEC CPU2006 benchmark programs using the following command:
+
+```sh
+# In the gem5 directory
+build/X86/gem5.opt \
+configs/example/gem5_library/x86-spec-cpu2006-benchmarks.py \
+--image <path_to_built_spec-2006_disk_image> \
+--partition <root_partition_to_mount> \
+--benchmark <benchmark_program> \
+--size <workload_size>
+```
+
+Description of the four arguments, provided in the above command are:
+* **--image** refers to the full path of the the SPEC CPU2006 disk-image, built using the instructions specified above.
+* **--partition** refers to the root partition of the disk-image to mount. If the disk has no partitions, then pass `--partition ""`. Otherwise, pass an integer specifying the partition number. Set `--partition 1` if the above instructions to build the disk-image are followed.
+* **--benchmark**, which refers to one of 26 benchmark programs, provided in the SPEC CPU2006 Benchmark Suite. For more information on the workloads can be found at <https://www.spec.org/cpu2006/>. The list of benchmark programs include:
+  * 401.bzip2
+  * 403.gcc
+  * 410.bwaves
+  * 416.gamess
+  * 429.mcf
+  * 433.milc
+  * 434.zeusmp
+  * 435.gromacs
+  * 436.cactusADM
+  * 437.leslie3d
+  * 444.namd
+  * 445.gobmk
+  * 453.povray
+  * 454.calculix
+  * 456.hmmer
+  * 458.sjeng
+  * 459.GemsFDTD
+  * 462.libquantum
+  * 464.h264ref
+  * 465.tonto
+  * 470.lbm
+  * 471.omnetpp
+  * 473.astar
+  * 481.wrf
+  * 482.sphinx3
+  * 998.specrand
+  * 999.specrand
+* **--size**, which refers to the workload size to simulate. Valid choices for `--size` are `test`, `train` and `ref`.
+
+The output directory, where the simulation statistics will be redirected to, will have a new folder named `speclogs_<Day><Month><Date><Hour><Minute><Second>`. The time is of execution is appended to avoid conflicts while coping the files. The output files, generated on the disk-image in the folder `speclogs` will be copied to this aforementioned directory.
 ## Working Status
 Status of these benchmarks runs with respect to gem5-20, linux kernel version
 4.19.83 and gcc version 7.5.0 can be found
