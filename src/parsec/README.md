@@ -11,7 +11,7 @@ author: ["Mahyar Samani"]
 license: BSD-3-Clause
 ---
 
-This document includes instructions on how to create an Ubuntu 18.04 disk-image with PARSEC benchmark installed. The disk-image will be compatible with the gem5 simulator.
+This document includes instructions on how to create an Ubuntu 18.04 disk-image with PARSEC benchmark installed. The disk-image will be compatible with the gem5 simulator. It also demostrates how tosimulate the same using an example gem5 script with a pre-configured system. The script uses a pre-built disk-image.
 
 This is how the `src/parsec-tests/` directory will look like if all the artifacts are created correctly.
 
@@ -30,19 +30,8 @@ parsec/
   |             |___ runscript.sh              # script to run each workload
   |             |___ parsec-benchmark          # the parsec benchmark suite
   |
-  |___ configs
-  |      |___ system                           # system config directory
-  |      |___ run_parsec.py                    # gem5 run script
-  |
-  |___ configs-mesi-two-level
-  |      |___ system                           # system config directory
-  |      |___ run_parsec_mesi_two_level.py     # gem5 run script
-  |
   |___ README.md
 ```
-
-Notice that there are two sets of system configuration directories and run scripts. For further detail on the config files look [here](#gem5-run-scripts).
-
 ## Building the disk image
 
 In order to build the disk-image for PARSEC tests with gem5, build the m5 utility in `src/parsec-tests/` using the following:
@@ -75,29 +64,41 @@ After the script has been successfuly validated you can create the disk-image by
 
 You can find the disk-image in `parsec/parsec-image/parsec`.
 
-## gem5 run scripts
+## Simulating PARSEC using an example script
 
-There are two sets of run scripts and system configuration files in the directory. The scripts found in `configs` use the classic memory system while the scripts in `configs-mesi-two-level` use the ruby memory system with MESI_Two_Level cache coherency protocol. The parameters used in the both sets of experiments are explained below:
+An example script with a pre-configured system is available in the following directory within the gem5 repository:
 
-* **kernel**: The path to the linux kernel. We have verified capatibility with kernel version 4.19.83 which you can download at <http://dist.gem5.org/dist/v21-1/kernels/x86/static/vmlinux-4.19.83>. More information on building kernels for gem5 can be around in `src/linux-kernel`.
-* **disk**: The path to the PARSEC disk-image. This can be downloaded, gzipped, from <http://dist.gem5.org/dist/v21-1/images/x86/ubuntu-18-04/parsec.img.gz>.
-* **cpu**: The type of cpu to use. There are two supported options: `kvm` (KvmCPU) and `timing` (TimingSimpleCPU).
-* **benchmark**: The PARSEC workload to run. They include `blackscholes`, `bodytrack`, `canneal`, `dedup`, `facesim`, `ferret`, `fluidanimate`, `freqmine`, `raytrace`, `streamcluster`, `swaptions`, `vips`, `x264`. For more information on the workloads can be found at <https://parsec.cs.princeton.edu/>.
-* **size**: The size of the chosen workload. Valid sizes are `simsmall`, `simmedium`, and `simlarge`.
-* **num_cpus**: The number of cpus to simulate. When using `configs`, the only valid option is `1`. When using `configs-mesi-two-level` the number of supported cpus is show in the table below:
+```
+gem5/configs/example/gem5_library/x86-parsec-benchmarks.py
+```
 
+The example script specifies a system with the following parameters:
 
-| CPU Model       | Core Counts |
-|-----------------|-------------|
-| KvmCPU          | 1,2,8       |
-| TimingSimpleCPU | 1,2         |
+* A `SimpleSwitchableProcessor` (`KVM` for startup and `TIMING` for ROI execution). There are 2 CPU cores, each clocked at 3 GHz.
+* 2 Level `MESI_Two_Level` cache with 32 kB L1I and L1D size, and, 256 kB L2 size. The L1 cache(s) has associativity of 8, and, the L2 cache has associativity 16. There are 2 L2 cache banks.
+* The system has 3 GB `SingleChannelDDR4_2400` memory.
+* The script uses `x86-linux-kernel-4.19.83` and `x86-parsec`, the disk image created from following the instructions in this `README.md`.
 
-Below are the examples of running an experiment with the two configurations.
+The example script must be run with the `X86_MESI_Two_Level` binary. To build:
 
 ```sh
-<gem5 X86 binary> configs/run_parsec.py <kernel> <disk> <cpu> <benchmark> <size> <num_cpus>
-<gem5 X86_MESI_Two_Level binary> configs-mesi-two-level/run_parsec.py <kernel> <disk> <cpu> <benchmark> <size> <num_cpus>
+git clone https://gem5.googlesource.com/public/gem5
+cd gem5
+scons build/X86/gem5.opt -j<proc>
 ```
+Once compiled, you may use the example config file to run the PARSEC benchmark programs using the following command:
+
+```sh
+# In the gem5 directory
+build/X86/gem5.opt \
+configs/example/gem5_library/x86-parsec-benchmarks.py \
+--benchmark <benchmark_program> \
+--size <size> \
+```
+
+Description of the two arguments, provided in the above command are:
+* **--benchmark**, which refers to one of 13 benchmark programs, provided in the PARSEC benchmark suite. These include `blackscholes`, `bodytrack`, `canneal`, `dedup`, `facesim`, `ferret`, `fluidanimate`, `freqmine`, `raytrace`, `streamcluster`, `swaptions`, `vips`, `x264`. For more information on the workloads can be found at <https://parsec.cs.princeton.edu/>.
+* **--size**, which refers to the size of the workload to simulate. There are three valid choices for the same: `simsmall`, `simmedium` and `simlarge`.
 
 ## Working Status
 
