@@ -18,6 +18,20 @@
             }
         },
         {
+            "type": "resource",
+            "name" : "riscv-lupio-busybox-img",
+            "documentation" : "A RISCV disk image, based on busybox, to be used with the LupioBoard. Should be used with the 'riscv-lupio-busybox-img' kernel resource.",
+            "architecture": "RISCV",
+            "is_zipped" : true,
+            "md5sum" : "e5bee8a31f45f4803f87c0d781553ccc",
+            "url": "{url_base}/images/riscv/busybox/riscv-lupio-busybox.img.gz",
+            "source" : null,
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
+        },
+
+        {
             "type" : "resource",
             "name" : "x86-m5-exit",
             "documentation" : "A simple binary which will run `m5 exit`. Compiled to the X86 ISA.",
@@ -161,6 +175,15 @@
                     "md5sum" : "ac29fe5f71c096e6b2044b4e4d623edc",
                     "url" : "{url_base}/kernels/riscv/static/bootloader-vmlinux-5.10",
                     "source" : "src/riscv-fs"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "riscv-lupio-linux-kernel",
+                    "documentation": "A kernel built with LupIO device (https://gitlab.com/luplab/lupio) drivers. Must be used when setting LupIO board workloads. Compataible with the 'riscv-lupio-busybox-img' disk image resource.",
+                    "is_zipped" : false,
+                    "md5sum" : "f94351edbbb0e7bd9617f7b381635546",
+                    "url" : "{url_base}/kernels/riscv/static/lupio-linux",
+                    "source" : null
                 }
             ]
         },
