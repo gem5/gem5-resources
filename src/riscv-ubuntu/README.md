@@ -201,5 +201,6 @@ echo "/root/gem5_init.sh" >> /root/.bashrc
 A pre-build, gzipped, disk image is available at <http://dist.gem5.org/dist/develop/images/riscv/ubuntu-20-04/riscv-ubuntu.img.gz>. **Note**: The password set for the `ubuntu` user is `helloworld`.
 
 # Using the Disk Image
-This disk image is used in the gem5 example RISCV config, found within the gem5 repository:
-`gem5/configs/example/components-library/riscv_fs.py`.
+This disk image is used in the following gem5 example RISCV config files, found within the gem5 repository:
+* `gem5/configs/example/gem5_library/riscv-fs.py`, which simulates a full system running with RISCV ISA.
+* `gem5/configs/example/gem5_library/riscv-ubuntu-run.py`, which simulates a full system with RISCV based Ubuntu 20.04 disk-image. Upon successful start-up, a `m5_exit instruction encountered` is encountered. The simulation ends then.
