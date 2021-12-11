@@ -24,6 +24,7 @@ npb/
   |___ gem5/                                # gem5 source code
   |
   |___ disk-image/
+  |      |___ build.sh                      # The script downloading packer binary and building the disk image
   |      |___ shared/                       # Auxiliary files needed for disk creation
   |      |___ hack-back/
   |            |___ hack-back-image/        # Will be created once the disk is generated
@@ -50,14 +51,7 @@ Next,
 
 ```sh
 cd disk-image
-# if packer is not already installed
-wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip
-unzip packer_1.6.0_linux_amd64.zip
-
-# validate the packer script
-./packer validate hack-back/hack-back.json
-# build the disk image
-./packer build hack-back/hack-back.json
+./build.sh
 ```
 
 Once this process succeeds, the created disk image can be found on `hack-back/hack-back-image/hack-back`.

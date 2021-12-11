@@ -21,6 +21,7 @@ x86-ubuntu/
   |___ gem5/                                   # gem5 source code (to be cloned here)
   |
   |___ disk-image/
+  |      |___ build.sh                         # the script downloading packer binary and building the disk image
   |      |___ shared/                          # Auxiliary files needed for disk creation
   |      |___ x86-ubuntu/
   |            |___ x86-ubuntu-image/           # Will be created once the disk is generated
@@ -53,14 +54,7 @@ Next (within the `src/x86-ubuntu/` directory),
 
 ```sh
 cd disk-image
-# if packer (tool to build the disk) is not already installed
-wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip
-unzip packer_1.6.0_linux_amd64.zip
-
-# validate the packer script
-./packer validate x86-ubuntu/x86-ubuntu.json
-# build the disk image
-./packer build x86-ubuntu/x86-ubuntu.json
+./build.sh          # the script downloading packer binary and building the disk image
 ```
 
 If you see errors or warnings from `packer validate` you can modify the file `disk-image/x86-ubuntu/x86-ubuntu.json` to update the file.

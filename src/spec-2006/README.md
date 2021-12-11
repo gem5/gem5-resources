@@ -31,6 +31,7 @@ spec-2006/
   |___ gem5/                                   # gem5 folder
   |
   |___ disk-image/
+  |      |___ build.sh                         # the script downloading packer binary and building the disk image
   |      |___ shared/
   |      |___ spec-2006/
   |             |___ spec-2006-image/
@@ -58,10 +59,7 @@ In the root folder,
 
 ```sh
 cd disk-image
-wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip #(download the packer binary)
-unzip packer_1.6.0_linux_amd64.zip
-./packer validate spec-2006/spec-2006.json #validate the Packer script
-./packer build spec-2006/spec-2006.json
+./build.sh          # the script downloading packer binary and building the disk image
 ```
 
 ## Simulating SPEC CPU2006 using an example script
