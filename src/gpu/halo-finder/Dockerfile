@@ -1,7 +1,7 @@
 FROM gcr.io/gem5-test/gcn-gpu:latest
 RUN apt-get update && apt-get -y install libopenmpi-dev libomp-dev
 
-ENV HCC_AMDGPU_TARGET="gfx801,gfx803"
+ENV HCC_AMDGPU_TARGET="gfx801,gfx803,gfx900"
 
 ENV HIPCC_BIN=/opt/rocm/bin
 ENV MPI_INCLUDE=/usr/lib/x86_64-linux-gnu/openmpi/include

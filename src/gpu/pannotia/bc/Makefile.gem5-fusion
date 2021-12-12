@@ -17,7 +17,7 @@ BIN_DIR ?= ./bin
 all: $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR)/$(EXECUTABLE): $(CPPSRC) ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --amdgpu-target=gfx801,gfx803 $(CXXFLAGS) ../graph_parser/util.cpp $(CPPSRC) -DGEM5_FUSION -o $(BIN_DIR)/$(EXECUTABLE) $(CFLAGS) $(LDFLAGS)
+	$(HIPCC) $(OPTS) --amdgpu-target=gfx801,gfx803,gfx900 $(CXXFLAGS) ../graph_parser/util.cpp $(CPPSRC) -DGEM5_FUSION -o $(BIN_DIR)/$(EXECUTABLE) $(CFLAGS) $(LDFLAGS)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

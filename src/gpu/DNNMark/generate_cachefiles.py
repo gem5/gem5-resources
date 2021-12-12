@@ -20,7 +20,7 @@ def parseArgs():
     parser.add_argument('--num-cus', default=4, type=int,
                         help='Number of CUs in simulated GPU')
     parser.add_argument('--gfx-version', default='gfx801',
-                        choices=['gfx801', 'gfx803'],
+                        choices=['gfx801', 'gfx803', 'gfx900'],
                         help='gfx version of simulated GPU')
 
     return parser.parse_args()
@@ -57,6 +57,8 @@ def insertFiles(con, options):
     extra_args = {'gfx801': '-Wno-everything -Xclang '
                             '-target-feature -Xclang +code-object-v3',
                   'gfx803': '-Wno-everything -Xclang '
+                            '-target-feature -Xclang +code-object-v3',
+                  'gfx900': '-Wno-everything -Xclang '
                             '-target-feature -Xclang +code-object-v3'}
 
     with tempfile.TemporaryDirectory() as tmpdir:
