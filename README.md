@@ -336,7 +336,7 @@ The compiled binary can be found in `src/gpu/square/bin`
 
 ### Square Pre-built binary
 
-<http://dist.gem5.org/dist/v21-1/test-progs/square/square.o>
+<http://dist.gem5.org/dist/v21-2/test-progs/square/square>
 
 # Resource: HSA Agent Packet Example
 
