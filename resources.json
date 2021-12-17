@@ -1,8 +1,10 @@
 
 {
-    "version" : "[DEVELOP FOR v21.2]",
-    "url_base" : "http://dist.gem5.org/dist/develop",
-    "previous-versions" : {},
+    "version" : "21.2",
+    "url_base" : "http://dist.gem5.org/dist/v21-2",
+    "previous-versions" : {
+        "develop" : "https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/develop/resources.json?format=TEXT"
+    },
     "resources": [
         {
             "type": "resource",
