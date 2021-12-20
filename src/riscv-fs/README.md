@@ -112,7 +112,7 @@ make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu-  all -j$(nproc)
 ```
 
 This should generate a `vmlinux` image in the `linux` directory.
-A pre-built RISC-V 5.10 linux kernel can be downloaded [here](http://dist.gem5.org/dist/v21-1/kernels/riscv/static/vmlinux-5.10).
+A pre-built RISC-V 5.10 linux kernel can be downloaded [here](http://dist.gem5.org/dist/v21-2/kernels/riscv/static/vmlinux-5.10).
 
 ## Bootloader (bbl)
 
@@ -142,7 +142,7 @@ riscv64-unknown-linux-gnu-strip bbl
 ```
 
 This will produce a `bbl` bootloader binary with linux kernel in `riscv-pk/build` directory.
-A pre-built copy of this bootloard binary, with the linux kernel can be downloaded [here](http://dist.gem5.org/dist/develop/kernels/riscv/static/bootloader-vmlinux-5.10).
+A pre-built copy of this bootloard binary, with the linux kernel can be downloaded [here](http://dist.gem5.org/dist/v21-2/kernels/riscv/static/bootloader-vmlinux-5.10).
 
 ## Busy Box
 
@@ -226,7 +226,7 @@ sudo umount /mnt/rootfs
 ```
 
 The disk image `riscv_disk` is ready to use.
-A pre-built, gzipped, disk image can be downloaded [here](http://dist.gem5.org/dist/develop/images/riscv/busybox/riscv-disk.img.gz).
+A pre-built, gzipped, disk image can be downloaded [here](http://dist.gem5.org/dist/v21-2/images/riscv/busybox/riscv-disk.img.gz).
 
 **Note:** If you need to resize the disk image once it is created, you can do the following:
 
