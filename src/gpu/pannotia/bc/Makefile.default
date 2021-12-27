@@ -1,0 +1,24 @@
+CPPSRC = ../graph_parser/util.cpp
+CPPSRC = BC.cpp
+EXECUTABLE = bc_hip
+# BC has a compilation error in host code with ROCm 4.0, so O2 and O3 do not
+# pass even on real GPUs
+OPTS = -O1
+
+HIP_PATH ?= /opt/rocm/hip
+HIPCC = $(HIP_PATH)/bin/hipcc
+
+BIN_DIR ?= ./bin
+
+all: $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR)/$(EXECUTABLE): $(CPPSRC) ../graph_parser/util.cpp $(BIN_DIR)
+	$(HIPCC) $(OPTS) --amdgpu-target=gfx801,gfx803,gfx900,gfx906 $(CXXFLAGS) ../graph_parser/util.cpp $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+clean:
+	rm -rf $(BIN_DIR)
+
+.PHONY: bc clean

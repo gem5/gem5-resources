@@ -1,0 +1,23 @@
+HIP_PATH ?= /opt/rocm/hip
+HIPCC = $(HIP_PATH)/bin/hipcc
+
+# these are needed for m5ops
+# TODO: Need some sort of explicit PATH?  Read in?
+GEM5_PATH ?= /nobackup/sinclair/gem5
+CFLAGS += -I$(GEM5_PATH)/include
+LDFLAGS += -L$(GEM5_PATH)/util/m5/build/x86/out -lm5
+
+BIN_DIR ?= ./bin
+
+all: $(BIN_DIR)/fw_hip.gem5
+
+$(BIN_DIR)/fw_hip.gem5: Floyd-Warshall.cpp parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
+	$(HIPCC) -O3 --amdgpu-target=gfx801,gfx803,gfx900 $(CXXFLAGS) parse.cpp ../graph_parser/util.cpp Floyd-Warshall.cpp -DGEM5_FUSION -o $(BIN_DIR)/fw_hip.gem5 $(CFLAGS) $(LDFLAGS)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+clean:
+	rm -rf $(BIN_DIR)
+
+.PHONY: fw clean

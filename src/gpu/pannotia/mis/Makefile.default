@@ -1,0 +1,20 @@
+EXECUTABLE = mis_hip
+OPTS = -O3
+
+HIP_PATH ?= /opt/rocm/hip
+HIPCC = $(HIP_PATH)/bin/hipcc
+
+BIN_DIR ?= ./bin
+
+all: $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR)/$(EXECUTABLE): mis.cpp ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
+	$(HIPCC) $(OPTS) --amdgpu-target=gfx801,gfx803,gfx900,gfx906 $(CXXFLAGS) mis.cpp ../graph_parser/parse.cpp ../graph_parser/util.cpp -o $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+clean:
+	rm -rf $(BIN_DIR)
+
+.PHONY: mis clean

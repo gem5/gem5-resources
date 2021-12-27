@@ -1,3 +1,4 @@
+HIP_PATH ?= /opt/rocm/bin
 BUILDDIR := build
 PRODUCT := pennant
 
@@ -20,7 +21,7 @@ CPPFLAGS := -I.
 # begin compiler-dependent flags
 #
 # gcc flags:
-CXX := hipcc #g++
+CXX := $(HIP_PATH)/hipcc #g++
 CXXFLAGS_DEBUG := -g
 CXXFLAGS_OPT := -O3 #-mcpu=native
 CXXFLAGS_OPENMP := #-fopenmp
@@ -45,7 +46,7 @@ CXXFLAGS_OPENMP := #-fopenmp
 
 # end compiler-dependent flags
 
-CUDAC := hipcc 
+CUDAC := $(HIP_PATH)/hipcc
 CUDACFLAGS := #--generate-code arch=compute_60,code=sm_60 --ptxas-options=-v
 CUDACFLAGS_DEBUG := -G -lineinfo
 CUDACFLAGS_OPT := -O3
@@ -62,6 +63,9 @@ CUDACFLAGS += $(CUDACFLAGS_OPT) $(CPPFLAGS)
 # add openmp flags (comment out for serial build)
 #CXXFLAGS += $(CXXFLAGS_OPENMP)
 #LDFLAGS += $(CXXFLAGS_OPENMP)
+
+# add amdgpu targets
+CXXFLAGS += --amdgpu-target=gfx801,gfx803,gfx900
 
 all : $(BINARY)
 

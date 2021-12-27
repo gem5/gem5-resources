@@ -84,32 +84,6 @@
         },
         {
             "type" : "resource",
-            "name" : "x86-boot-exit",
-            "documentation" : "A disk image containing Ubuntu 18.04 for X86 which will run a `m5 exit` instruction after booting. [This is deprecated. Please use 'x86-ubuntu-18.04-img'].",
-            "architecture" : "X86",
-            "is_zipped" : true,
-            "md5sum" : "008a4bf505a04efed0758b49183e01f7",
-            "url" : "{url_base}/images/x86/ubuntu-18-04/boot-exit.img.gz",
-            "source" : "src/boot-exit",
-            "additional_metadata" : {
-                "root_partition": "1"
-            }
-        },
-        {
-            "type" : "resource",
-            "name" : "x86-ubuntu-img",
-            "documentation" : "A disk image containing Ubuntu 18.04 for x86. This image will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be executed. [This is deprecated. Please use 'x86-ubuntu-18.04-img'].",
-            "architecture" : "X86",
-            "is_zipped" : true,
-            "md5sum" : "90e363abf0ddf22eefa2c7c5c9391c49",
-            "url" : "{url_base}/images/x86/ubuntu-18-04/x86-ubuntu.img.gz",
-            "source" : "src/x86-ubuntu",
-            "additional_metadata" : {
-                "root_partition": "1"
-            }
-        },
-        {
-            "type" : "resource",
             "name" : "x86-ubuntu-18.04-img",
             "documentation" : "A disk image containing Ubuntu 18.04 for x86. This image will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be executed.",
             "architecture" : "X86",
@@ -183,6 +157,7 @@
                     "name" : "riscv-lupio-linux-kernel",
                     "documentation": "A kernel built with LupIO device (https://gitlab.com/luplab/lupio) drivers. Must be used when setting LupIO board workloads. Compataible with the 'riscv-lupio-busybox-img' disk image resource.",
                     "is_zipped" : false,
+                    "architecture" : "RISCV",
                     "md5sum" : "f94351edbbb0e7bd9617f7b381635546",
                     "url" : "{url_base}/kernels/riscv/static/lupio-linux",
                     "source" : null

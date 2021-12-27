@@ -119,6 +119,9 @@ class RiscvSystem(System):
         # Create the memory controller
         self.createMemoryControllerDDR3()
 
+        # Set number of CPU cores
+        self.platform.setNumCores(num_cpus)
+
         self.setupInterrupts()
 
         # using RiscvLinux as the base full system workload

@@ -5,6 +5,7 @@
 //newton should match theory prediction
 //short range may not due to lack of gauss law
 
+#include "hip/hip_runtime.h"
 #include <cassert>
 #include <cmath>
 #include <iostream>
@@ -79,13 +80,30 @@ int main(int argc, char *argv[])
   float m_rsm = 0.1;
 
   int Np = nSphere+1;
-  POSVEL_T* m_xArr = new POSVEL_T[Np];
-  POSVEL_T* m_yArr = new POSVEL_T[Np];
-  POSVEL_T* m_zArr = new POSVEL_T[Np];
-  POSVEL_T* m_vxArr = new POSVEL_T[Np];
-  POSVEL_T* m_vyArr = new POSVEL_T[Np];
-  POSVEL_T* m_vzArr = new POSVEL_T[Np];
-  POSVEL_T* m_massArr = new POSVEL_T[Np];
+
+  POSVEL_T* m_xArr;
+  hipHostMalloc(&m_xArr, Np*sizeof(POSVEL_T));
+  POSVEL_T* m_yArr;
+  hipHostMalloc(&m_yArr, Np*sizeof(POSVEL_T));
+  POSVEL_T* m_zArr;
+  hipHostMalloc(&m_zArr, Np*sizeof(POSVEL_T));
+  POSVEL_T* m_vxArr;
+  hipHostMalloc(&m_vxArr, Np*sizeof(POSVEL_T));
+  POSVEL_T* m_vyArr;
+  hipHostMalloc(&m_vyArr, Np*sizeof(POSVEL_T));
+  POSVEL_T* m_vzArr;
+  hipHostMalloc(&m_vzArr, Np*sizeof(POSVEL_T));
+  POSVEL_T* m_massArr;
+  hipHostMalloc(&m_massArr, Np*sizeof(POSVEL_T));
+  for(int i = 0; i < Np; i++) {
+        m_xArr[i] = 0;
+        m_yArr[i] = 0;
+        m_zArr[i] = 0;
+        m_vxArr[i] = 0;
+        m_vyArr[i] = 0;
+        m_vzArr[i] = 0;
+        m_massArr[i] = 0;
+  }
 
   FGrid *m_fg = new FGrid();
   FGridEval *m_fgore = new FGridEvalFit(m_fg);
@@ -308,13 +326,13 @@ int main(int argc, char *argv[])
   delete m_fgore;
   delete m_fg;
 
-  delete [] m_xArr;
-  delete [] m_yArr;
-  delete [] m_zArr;
-  delete [] m_vxArr;
-  delete [] m_vyArr;
-  delete [] m_vzArr;
-  delete [] m_massArr;
+  hipHostFree(m_xArr);
+  hipHostFree(m_yArr);
+  hipHostFree(m_zArr);
+  hipHostFree(m_vxArr);
+  hipHostFree(m_vyArr);
+  hipHostFree(m_vzArr);
+  hipHostFree(m_massArr);
 
 #ifndef USE_SERIAL_COSMO
   MPI_Finalize();

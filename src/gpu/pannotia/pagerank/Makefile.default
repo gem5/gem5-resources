@@ -1,0 +1,28 @@
+HIP_PATH ?= /opt/rocm/hip
+HIPCC = $(HIP_PATH)/bin/hipcc
+OPTS = -O3
+
+BASEEXE = pagerank
+VARIANT ?= DEFAULT
+ifeq ($(VARIANT),DEFAULT)
+    EXECUTABLE = $(BASEEXE)
+    CPPFILES += pagerank.cpp
+else ifeq ($(VARIANT),SPMV)
+    EXECUTABLE = $(BASEEXE)_spmv
+    CPPFILES += pagerank_spmv.cpp
+endif
+
+BIN_DIR ?= ./bin
+
+all: $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR)/$(EXECUTABLE): $(CPPFILES) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
+	$(HIPCC) $(OPTS) --amdgpu-target=gfx801,gfx803,gfx900,gfx906 $(CXXFLAGS) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(CPPFILES) -o $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+clean:
+	rm -rf $(BIN_DIR)
+
+.PHONY: pagerank clean

@@ -1,0 +1,104 @@
+{
+    "_author": "Hoa Nguyen <hoanguyen@ucdavis.edu>, Ayaz Akram <yazakram@ucdavis.edu>",
+    "_license": "Copyright (c) 2020 The Regents of the University of California. SPDX-License-Identifier: BSD 3-Clause",
+    "builders":
+    [
+        {
+            "type": "qemu",
+            "format": "raw",
+            "accelerator": "kvm",
+            "boot_command":
+            [
+                "{{ user `boot_command_prefix` }}",
+                "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
+                "file=/floppy/{{ user `preseed` }} ",
+                "fb=false debconf/frontend=noninteractive ",
+                "hostname={{ user `hostname` }} ",
+                "/install/vmlinuz noapic ",
+                "initrd=/install/initrd.gz ",
+                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+                "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+                "passwd/user-fullname={{ user `ssh_fullname` }} ",
+                "passwd/user-password={{ user `ssh_password` }} ",
+                "passwd/user-password-again={{ user `ssh_password` }} ",
+                "passwd/username={{ user `ssh_username` }} ",
+                "-- <enter>"
+            ],
+            "cpus": "{{ user `vm_cpus`}}",
+            "disk_size": "{{ user `image_size` }}",
+            "floppy_files":
+            [
+                "shared/{{ user `preseed` }}"
+            ],
+            "headless": "{{ user `headless` }}",
+            "http_directory": "shared",
+            "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum` }}",
+            "iso_urls": [ "{{ user `iso_url` }}" ],
+            "memory": "{{ user `vm_memory`}}",
+            "output_directory": "x86-ubuntu/{{ user `image_name` }}-image",
+            "qemuargs":
+            [
+                [ "-cpu", "host" ],
+                [ "-display", "none" ]
+            ],
+            "qemu_binary": "/usr/bin/qemu-system-x86_64",
+            "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_wait_timeout": "60m",
+            "vm_name": "{{ user `image_name` }}"
+        }
+    ],
+    "provisioners":
+    [
+        {
+            "type": "file",
+            "source": "x86-ubuntu/exit.sh",
+            "destination": "/home/gem5/"
+        },
+        {
+            "type": "file",
+            "source": "x86-ubuntu/gem5_init.sh",
+            "destination": "/home/gem5/"
+        },
+        {
+            "type": "file",
+            "source": "../gem5/util/m5/build/x86/out/m5",
+            "destination": "/home/gem5/"
+        },
+        {
+            "type": "file",
+            "source": "shared/serial-getty@.service",
+            "destination": "/home/gem5/"
+        },
+        {
+            "type": "shell",
+            "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+            "scripts":
+            [
+                "x86-ubuntu/post-installation.sh"
+            ]
+        }
+    ],
+    "variables":
+    {
+        "boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "desktop": "false",
+        "image_size": "2048",
+        "headless": "true",
+        "iso_checksum": "34416ff83179728d54583bf3f18d42d2",
+        "iso_checksum_type": "md5",
+        "iso_name": "ubuntu-18.04.2-server-amd64.iso",
+        "iso_url": "http://old-releases.ubuntu.com/releases/18.04.2/ubuntu-18.04.2-server-amd64.iso",
+        "locale": "en_US",
+        "preseed" : "preseed.cfg",
+        "hostname": "gem5",
+        "ssh_fullname": "gem5",
+        "ssh_password": "12345",
+        "ssh_username": "gem5",
+        "vm_cpus": "16",
+        "vm_memory": "8192",
+        "image_name": "x86-ubuntu"
+  }
+
+}

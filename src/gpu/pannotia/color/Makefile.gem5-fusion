@@ -1,0 +1,32 @@
+HIP_PATH ?= /opt/rocm/hip
+HIPCC = $(HIP_PATH)/bin/hipcc
+
+# these are needed for m5ops
+GEM5_PATH ?= /path/to/gem5
+CFLAGS += -I$(GEM5_PATH)/include -I/../graph_parser
+LDFLAGS += -L$(GEM5_PATH)/util/m5/build/x86/out -lm5
+
+BASEEXE = color
+VARIANT ?= MAX
+ifeq ($(VARIANT),MAX)
+	EXECUTABLE = $(BASEEXE)_max.gem5
+	CPPFILES += coloring_max.cpp
+else ifeq ($(VARIANT),MAXMIN)
+	EXECUTABLE = $(BASEEXE)_maxmin.gem5
+	CPPFILES += coloring_maxmin.cpp
+endif
+
+BIN_DIR ?= ./bin
+
+all: $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR)/$(EXECUTABLE): $(CPPFILES) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
+	$(HIPCC) -O3 --amdgpu-target=gfx801,gfx803,gfx900 $(CXXFLAGS) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(CPPFILES) -DGEM5_FUSION -o $(BIN_DIR)/$(EXECUTABLE) $(CFLAGS) $(LDFLAGS)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+clean:
+	rm -rf $(BIN_DIR)
+
+.PHONY: color clean

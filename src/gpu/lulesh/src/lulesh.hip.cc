@@ -804,7 +804,7 @@ void Release(T **ptr)
 template<typename T>
 void freshenGPU(std::vector<T>&cpu,T **gpu,int& stale) {
   if (stale!=GPU_STALE) return;
-  if (!(*gpu)) {HIP( hipMalloc(gpu,sizeof(T)*cpu.size()) );}
+  if (!(*gpu)) {HIP( hipHostMalloc(gpu,sizeof(T)*cpu.size()) );}
   HIP( hipMemcpy(*gpu,&cpu[0],sizeof(T)*cpu.size(),hipMemcpyHostToDevice) );
   stale=ALL_FRESH;
 }
@@ -1458,9 +1458,9 @@ void IntegrateStressForElems_gpu( Index_t numElem,
 {
   Real_t *fx_elem,*fy_elem,*fz_elem;
 
-  HIP( hipMalloc(&fx_elem,numElem*8*sizeof(Real_t)) );
-  HIP( hipMalloc(&fy_elem,numElem*8*sizeof(Real_t)) );
-  HIP( hipMalloc(&fz_elem,numElem*8*sizeof(Real_t)) );
+  HIP( hipHostMalloc(&fx_elem,numElem*8*sizeof(Real_t)) );
+  HIP( hipHostMalloc(&fy_elem,numElem*8*sizeof(Real_t)) );
+  HIP( hipHostMalloc(&fz_elem,numElem*8*sizeof(Real_t)) );
 
   dim3 dimBlock=dim3(BLOCKSIZE,1,1);
   dim3 dimGrid=dim3(PAD_DIV(numElem,dimBlock.x),1,1);
@@ -2425,9 +2425,9 @@ void CalcFBHourglassForceForElems_gpu(Real_t *determ,
   Index_t numElem = mesh.numElem();
   Real_t *fx_elem,*fy_elem,*fz_elem;
 
-  HIP( hipMalloc(&fx_elem,numElem*8*sizeof(Real_t)) );
-  HIP( hipMalloc(&fy_elem,numElem*8*sizeof(Real_t)) );
-  HIP( hipMalloc(&fz_elem,numElem*8*sizeof(Real_t)) );
+  HIP( hipHostMalloc(&fx_elem,numElem*8*sizeof(Real_t)) );
+  HIP( hipHostMalloc(&fy_elem,numElem*8*sizeof(Real_t)) );
+  HIP( hipHostMalloc(&fz_elem,numElem*8*sizeof(Real_t)) );
 
   dim3 dimBlock=dim3(256,1,1);
   dim3 dimGrid=dim3(PAD_DIV(numElem*8,dimBlock.x),1,1);
@@ -2521,12 +2521,12 @@ void CalcHourglassControlForElems_gpu(Real_t determ[], Real_t hgcoef)
   Real_t *dvdx,*dvdy,*dvdz;
   Real_t *x8n,*y8n,*z8n;
 
-  HIP( hipMalloc(&dvdx,sizeof(Real_t)*numElem8) );
-  HIP( hipMalloc(&dvdy,sizeof(Real_t)*numElem8) );
-  HIP( hipMalloc(&dvdz,sizeof(Real_t)*numElem8) );
-  HIP( hipMalloc(&x8n,sizeof(Real_t)*numElem8) );
-  HIP( hipMalloc(&y8n,sizeof(Real_t)*numElem8) );
-  HIP( hipMalloc(&z8n,sizeof(Real_t)*numElem8) );
+  HIP( hipHostMalloc(&dvdx,sizeof(Real_t)*numElem8) );
+  HIP( hipHostMalloc(&dvdy,sizeof(Real_t)*numElem8) );
+  HIP( hipHostMalloc(&dvdz,sizeof(Real_t)*numElem8) );
+  HIP( hipHostMalloc(&x8n,sizeof(Real_t)*numElem8) );
+  HIP( hipHostMalloc(&y8n,sizeof(Real_t)*numElem8) );
+  HIP( hipHostMalloc(&z8n,sizeof(Real_t)*numElem8) );
 
   dim3 dimBlock=dim3(256,1,1);
   dim3 dimGrid=dim3(PAD_DIV(numElem*8,dimBlock.x),1,1);
@@ -2641,10 +2641,10 @@ void CalcVolumeForceForElems_gpu()
         Real_t *sigxx, *sigyy, *sigzz, *determ;
         int badvol;
 
-        HIP( hipMalloc(&sigxx,numElem*sizeof(Real_t)) );
-        HIP( hipMalloc(&sigyy,numElem*sizeof(Real_t)) );
-        HIP( hipMalloc(&sigzz,numElem*sizeof(Real_t)) );
-        HIP( hipMalloc(&determ,numElem*sizeof(Real_t)) );
+        HIP( hipHostMalloc(&sigxx,numElem*sizeof(Real_t)) );
+        HIP( hipHostMalloc(&sigyy,numElem*sizeof(Real_t)) );
+        HIP( hipHostMalloc(&sigzz,numElem*sizeof(Real_t)) );
+        HIP( hipHostMalloc(&determ,numElem*sizeof(Real_t)) );
 
         /* Sum contributions to total stress tensor */
         InitStressTermsForElems(numElem, sigxx, sigyy, sigzz, 0);
@@ -4463,7 +4463,7 @@ void CalcEnergyForElems_gpu(Real_t* p_new, Real_t* e_new, Real_t* q_new,
   dim3 dimBlock=dim3(BLOCKSIZE,1,1);
   dim3 dimGrid=dim3(PAD_DIV(length,dimBlock.x),1,1);
 
-  HIP( hipMalloc(&pHalfStep,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&pHalfStep,sizeof(Real_t)*length) );
 
   hipLaunchKernelGGL((CalcEnergyForElemsPart1_kernel), dim3(dimGrid), dim3(dimBlock), 0, 0, length,emin,e_old,delvc,p_old,q_old,work,e_new);
   HIP_DEBUGSYNC;
@@ -4750,20 +4750,20 @@ void EvalEOSForElems_gpu(Real_t *vnewc, Index_t length)
   Real_t *compression,*compHalfStep;
   Real_t *qq,*ql,*work,*p_new,*e_new,*q_new,*bvc,*pbvc;
 
-  HIP( hipMalloc(&e_old,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&delvc,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&p_old,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&q_old,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&compression,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&compHalfStep,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&qq,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&ql,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&work,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&p_new,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&e_new,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&q_new,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&bvc,sizeof(Real_t)*length) );
-  HIP( hipMalloc(&pbvc,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&e_old,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&delvc,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&p_old,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&q_old,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&compression,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&compHalfStep,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&qq,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&ql,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&work,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&p_new,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&e_new,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&q_new,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&bvc,sizeof(Real_t)*length) );
+  HIP( hipHostMalloc(&pbvc,sizeof(Real_t)*length) );
 
   dim3 dimBlock=dim3(BLOCKSIZE,1,1);
   dim3 dimGrid=dim3(PAD_DIV(length,dimBlock.x),1,1);
@@ -4967,7 +4967,7 @@ void ApplyMaterialPropertiesForElems_gpu()
         Real_t eosvmax = mesh.eosvmax() ;
         Real_t *vnewc;
 
-        HIP( hipMalloc(&vnewc,sizeof(Real_t)*length) );
+        HIP( hipHostMalloc(&vnewc,sizeof(Real_t)*length) );
 
         dim3 dimBlock=dim3(BLOCKSIZE,1,1);
         dim3 dimGrid=dim3(PAD_DIV(length,dimBlock.x),1,1);
@@ -5197,7 +5197,7 @@ void CalcCourantConstraintForElems_gpu()
   dim3 dimGrid=dim3(PAD_DIV(length,dimBlock.x),1,1);
 
   Real_t *dev_mindtcourant;
-  HIP( hipMalloc(&dev_mindtcourant,sizeof(Real_t)*dimGrid.x) );
+  HIP( hipHostMalloc(&dev_mindtcourant,sizeof(Real_t)*dimGrid.x) );
 
   hipLaunchKernelGGL((CalcCourantConstraintForElems_kernel), dim3(dimGrid), dim3(dimBlock), 0, 0, length,qqc2,
          meshGPU.m_matElemlist,meshGPU.m_ss,meshGPU.m_vdov,meshGPU.m_arealg,
@@ -5316,7 +5316,7 @@ void CalcHydroConstraintForElems_gpu()
   dim3 dimGrid=dim3(PAD_DIV(length,dimBlock.x),1,1);
 
   Real_t *dev_mindthydro;
-  HIP( hipMalloc(&dev_mindthydro,sizeof(Real_t)*dimGrid.x) );
+  HIP( hipHostMalloc(&dev_mindthydro,sizeof(Real_t)*dimGrid.x) );
 
   hipLaunchKernelGGL((CalcHydroConstraintForElems_kernel), dim3(dimGrid), dim3(dimBlock), 0, 0, length,dvovmax,
          meshGPU.m_matElemlist,meshGPU.m_vdov,
