@@ -105,9 +105,9 @@ CCFLAGS_ISA = -msse3
 M5_ISA = x86
 PREFIX =
 else
-M5_ISA = $(ISA)
 ifeq ($(ISA),aarch64)
 CCFLAGS_ISA = -Xassembler -march=all
+M5_ISA = arm64
 # Input files just for this ISA.
 ISA_BARE_INS = semihost_exit
 # Exclude baremetal only builds.
@@ -117,6 +117,7 @@ USER_INS := $(filter-out $(ISA)/semihost_exit, $(USER_INS))
 #ISA_USER_INS =
 PREFIX = aarch64-linux-gnu-
 else
+M5_ISA = $(ISA)
 ifeq ($(ISA),arm)
 PREFIX = arm-linux-gnueabihf-
 else
@@ -205,4 +206,3 @@ mkdir-bare:
 
 mkdir-user:
 	mkdir -p '$(OUT_USER_DIR)/$(ISA)'
-
