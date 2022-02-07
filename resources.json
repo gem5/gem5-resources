@@ -27,7 +27,7 @@
             "is_zipped" : true,
             "md5sum" : "e5bee8a31f45f4803f87c0d781553ccc",
             "url": "{url_base}/images/riscv/busybox/riscv-lupio-busybox.img.gz",
-            "source" : null,
+            "source" : "src/lupv",
             "additional_metadata" : {
                 "root_partition": "1"
             }
@@ -160,7 +160,7 @@
                     "architecture" : "RISCV",
                     "md5sum" : "f94351edbbb0e7bd9617f7b381635546",
                     "url" : "{url_base}/kernels/riscv/static/lupio-linux",
-                    "source" : null
+                    "source" : "src/lupv"
                 }
             ]
         },
