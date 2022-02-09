@@ -22,7 +22,7 @@
         {
             "type": "resource",
             "name" : "riscv-lupio-busybox-img",
-            "documentation" : "A RISCV disk image, based on busybox, to be used with the LupioBoard. Should be used with the 'riscv-lupio-busybox-img' kernel resource.",
+            "documentation" : "A RISCV disk image, based on busybox, to be used with the LupvBoard. Should be used with the 'riscv-lupio-linux-kernel' kernel resource.",
             "architecture": "RISCV",
             "is_zipped" : true,
             "md5sum" : "e5bee8a31f45f4803f87c0d781553ccc",
