@@ -101,8 +101,8 @@
             "documentation" : "A disk image containing Ubuntu 20.04 for RISCV which will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be exected",
             "architecture" : "RISCV",
             "is_zipped" : true,
-            "md5sum" : "b017372639ba13ad9ee9d9283647fa20",
-            "url" : "{url_base}/images/riscv/ubuntu-20-04/riscv-ubuntu.img.gz",
+            "md5sum" : "fece1414df7fa534a837e460095a9be8",
+            "url" : "{url_base}/images/riscv/ubuntu-20-04/riscv-ubuntu-20220318.img.gz",
             "source" : "src/riscv-ubuntu",
             "additional_metadata" : {
                 "root_partition": "1"
