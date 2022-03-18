@@ -1,7 +1,7 @@
 
 {
-    "version" : "21.2",
-    "url_base" : "http://dist.gem5.org/dist/v21-2",
+    "version" : "develop",
+    "url_base" : "http://dist.gem5.org/dist/develop",
     "previous-versions" : {
         "develop" : "https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/develop/resources.json?format=TEXT"
     },
@@ -22,12 +22,12 @@
         {
             "type": "resource",
             "name" : "riscv-lupio-busybox-img",
-            "documentation" : "A RISCV disk image, based on busybox, to be used with the LupioBoard. Should be used with the 'riscv-lupio-busybox-img' kernel resource.",
+            "documentation" : "A RISCV disk image, based on busybox, to be used with the LupvBoard. Should be used with the 'riscv-lupio-linux-kernel' kernel resource.",
             "architecture": "RISCV",
             "is_zipped" : true,
             "md5sum" : "e5bee8a31f45f4803f87c0d781553ccc",
             "url": "{url_base}/images/riscv/busybox/riscv-lupio-busybox.img.gz",
-            "source" : null,
+            "source" : "src/lupv",
             "additional_metadata" : {
                 "root_partition": "1"
             }
@@ -101,8 +101,8 @@
             "documentation" : "A disk image containing Ubuntu 20.04 for RISCV which will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be exected",
             "architecture" : "RISCV",
             "is_zipped" : true,
-            "md5sum" : "b017372639ba13ad9ee9d9283647fa20",
-            "url" : "{url_base}/images/riscv/ubuntu-20-04/riscv-ubuntu.img.gz",
+            "md5sum" : "fece1414df7fa534a837e460095a9be8",
+            "url" : "{url_base}/images/riscv/ubuntu-20-04/riscv-ubuntu-20220318.img.gz",
             "source" : "src/riscv-ubuntu",
             "additional_metadata" : {
                 "root_partition": "1"
@@ -160,7 +160,7 @@
                     "architecture" : "RISCV",
                     "md5sum" : "f94351edbbb0e7bd9617f7b381635546",
                     "url" : "{url_base}/kernels/riscv/static/lupio-linux",
-                    "source" : null
+                    "source" : "src/lupv"
                 }
             ]
         },

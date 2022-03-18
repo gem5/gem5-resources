@@ -785,6 +785,21 @@ Instructions on how to use the scripts can be found here
 <http://dist.gem5.org/dist/v21-2/kernels/x86/static/vmlinux-4.14.134>
 <http://dist.gem5.org/dist/v21-2/kernels/x86/static/vmlinux-4.19.83>
 
+## Resource: LupV Disk image and Kernel/boot loader
+
+[gem5 supports LupIO](https://www.gem5.org/project/2022/02/07/lupio.html).
+An example of using gem5 with LupIO can be found in [`configs/example/lupv`](https://gem5.googlesource.com/public/gem5/+/refs/tags/v21.2.0.0/configs/example/lupv/).
+
+The sources to build a LupV (LupIO with RISC-V) disk image (based on busybox) and a LupV bootloader/kernel can be found in `src/lupv`.
+
+### LupV Pre-built disk image
+
+<http://dist.gem5.org/dist/v21-2/images/riscv/busybox/riscv-lupio-busybox.img.gz>
+
+### LupV Pre-built bootloader/kernel
+
+<http://dist.gem5.org/dist/v21-2/kernels/riscv/static/lupio-linux>
+
 ## Licensing
 
 There is no universal license encompassing all this repository's contents.

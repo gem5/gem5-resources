@@ -72,17 +72,17 @@ cd ..
 
 There are more versions of Ubuntu that are supported for RISCV, they
 are available at (https://wiki.ubuntu.com/RISC-V).
-In the following command, we will use the Ubuntu 20.04.3 disk image.
+In the following command, we will use the Ubuntu 20.04.4 disk image.
 
 ```sh
 # downloading the disk image
-wget https://cdimage.ubuntu.com/releases/20.04.3/release/ubuntu-20.04.3-preinstalled-server-riscv64+unmatched.img.xz
+wget https://cdimage.ubuntu.com/releases/20.04.3/release/ubuntu-20.04.4-preinstalled-server-riscv64+unmatched.img.xz
 # unpacking/decompressing the disk image
-xz -dk ubuntu-20.04.3-preinstalled-server-riscv64+unmatched.img.xz
+xz -dk ubuntu-20.04.4-preinstalled-server-riscv64+unmatched.img.xz
 # renaming the disk image
-mv ubuntu-20.04.3-preinstalled-server-riscv64+unmatched.img ubuntu.img
-# adding 10GB to the disk
-qemu-img resize -f raw ubuntu.img +10G
+mv ubuntu-20.04.4-preinstalled-server-riscv64+unmatched.img.xz ubuntu.img
+# adding 4GB to the disk
+qemu-img resize -f raw ubuntu.img +4G
 ```
 
 # Installing Ubuntu Packages Containing Necessary Files for Booting the Disk Image with QEMU
@@ -198,7 +198,7 @@ echo "/root/gem5_init.sh" >> /root/.bashrc
 
 # Pre-built disk image
 
-A pre-build, gzipped, disk image is available at <http://dist.gem5.org/dist/v21-2/images/riscv/ubuntu-20-04/riscv-ubuntu.img.gz>. **Note**: The password set for the `ubuntu` user is `helloworld`.
+A pre-build, gzipped, disk image is available at <http://dist.gem5.org/dist/v21-2/images/riscv/ubuntu-20-04/riscv-ubuntu-20220318.img.gz>. **Note**: The password set for the `ubuntu` user is `helloworld`.
 
 # Using the Disk Image
 This disk image is used in the following gem5 example RISCV config files, found within the gem5 repository:
