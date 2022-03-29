@@ -30,9 +30,15 @@ riscv-ubuntu/
   |___ qemu/
   |
   |___ disk-image/
+  |      |___ ubuntu.img                       # The ubuntu disk image should be downloaded and modified here
   |      |___ shared/                          # Auxiliary files needed for disk creation
+  |      |      |___ serial-getty@.service     # Auto-login script
   |      |___ riscv-ubuntu/
-  |              |___ exit.sh                  # Exits the simulated guest upon booting
+  |             |___ gem5_init.sh              # The script to be appended to .bashrc on the disk image
+  |             |___ post-installation.sh      # The script manipulating the disk image
+  |             |___ riscv-ubuntu.json         # The Packer script
+  |      
+  |                 
   |
   |___ ubuntu.img                              # The disk image
   |
@@ -142,7 +148,7 @@ bootloader downloaded earlier.
 ```
 **Note:** the above command will forward the guest's port 22 to the host's
 port 5555. This is done so that we can transfer and install benchmarks
-to the guest system from the host via SSH (and using `scp`).
+to the guest system from the host via SSH (facilitated by Packer).
 
 On the first boot, the guest OS will ask to input username and password.
 The default username and password is,
@@ -161,39 +167,19 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
+# Building the disk image
 
+The disk image can be built using (Packer)[https://www.packer.io/].
 
-**Notes:** it is strongly recommended to use key-based authentication to
-SSH to the guest.
+While the qemu instance is still running, we will use Packer to connect to the
+virtual machine and manipulate the disk image.
 
-# Install the Benchmark
-
-From host, copy the auto log-in script and the benchmark using `scp`,
 ```sh
-cd riscv-ubuntu/
-scp -P 5555 gem5/util/m5/build/riscv/out/m5 ubuntu@localhost:/home/ubuntu/
-scp -P 5555 disk-image/shared/serial-getty@.service ubuntu@localhost:/home/ubuntu/
-scp -P 5555 disk-image/riscv-ubuntu/gem5_init.sh ubuntu@localhost:/home/ubuntu/
-```
+cd src/riscv-ubuntu/disk-image/
+wget https://releases.hashicorp.com/packer/1.8.0/packer_1.8.0_linux_amd64.zip # Downloading Packer
+unzip packer_1.8.0_linux_amd64.zip
+./packer build riscv-ubuntu/riscv-ubuntu.json
 
-Connecting to the guest,
-```sh
-ssh -p 5555 ubuntu@localhost
-```
-
-In the guest,
-```sh
-sudo -i
-# input password
-
-mv /home/ubuntu/serial-getty@.service /lib/systemd/system/
-
-mv /home/ubuntu/m5 /sbin
-ln -s /sbin/m5 /sbin/gem5
-
-mv /home/ubuntu/gem5_init.sh /root/
-chmod +x /root/gem5_init.sh
-echo "/root/gem5_init.sh" >> /root/.bashrc
 ```
 
 # Pre-built disk image

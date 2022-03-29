@@ -1,0 +1,46 @@
+{
+    "_author": "Hoa Nguyen <hoanguyen@ucdavis.edu>",
+    "_license": "Copyright (c) 2022 The Regents of the University of California. SPDX-License-Identifier: BSD 3-Clause",
+    "builders":
+    [
+        {
+            "type": "null",
+            "ssh_host": "localhost",
+            "ssh_port": "5555",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_password": "{{ user `ssh_password` }}"
+        }
+    ],
+    "provisioners":
+    [
+        {
+            "type": "file",
+            "source": "riscv-ubuntu/gem5_init.sh",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "file",
+            "source": "shared/serial-getty@.service",
+            "destination": "/home/ubuntu"
+        },
+        {
+            "type": "file",
+            "source": "../gem5/util/m5/build/riscv/out/m5",
+            "destination": "/home/gem5/"
+        },
+        {
+            "type": "shell",
+            "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+            "scripts":
+            [
+                "riscv-ubuntu/post-installation.sh"
+            ]
+        }
+    ],
+    "variable":
+    {
+        "ssh_password": "helloworld",
+        "ssh_username": "ubuntu"
+    }
+}
+
