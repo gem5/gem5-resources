@@ -105,7 +105,3 @@ An example use of this script is the following:
 ```sh
 [gem5 binary] configs/run_exit.py [path to the Linux kernel] [path to the disk image] kvm classic 4 init
 ```
-
-## Working Status
-
-Working status of these tests for gem5-20 can be found [here](https://www.gem5.org/documentation/benchmark_status/gem5-20).

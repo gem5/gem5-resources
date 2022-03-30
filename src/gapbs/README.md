@@ -74,7 +74,3 @@ Description of the three arguments, provided in the above command are:
 * **--benchmark**, which refers to one of 5 benchmark programs, provided in the GAP Benchmark Suite. These include `cc`, `bc`, `tc`, `pr` and `bfs`. For more information on the workloads can be found at <http://gap.cs.berkeley.edu/benchmark.html>.
 * **--synthetic** refers whether to use a synthetic or a real graph. It accepts a boolean value.
 * **--size**, which refers to either the size of a synthetic graph from 1 to 16 nodes, or, a real graph. The real graph included in the pre-built disk-image is `USA-road-d.NY.gr`. Note that `--synthetic True` and `--size USA-road-d.NY.gr` cannot be combined, and, vice versa for real graphs.
-
-## Working Status
-
-Working status of these tests for gem5-20 can be found [here](https://www.gem5.org/documentation/benchmark_status/gem5-20#gapbs-tests).

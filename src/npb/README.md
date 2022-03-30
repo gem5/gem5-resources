@@ -117,7 +117,3 @@ A few important notes to keep in mind while simulating NPB using the disk-image 
 * Only benchmark `ep` with class `D` works in the aforemented configuration.
 * The configuration file `x86-npb-benchmarks.py` takes class input of `A`, `B` or `C`.
 * More information on memory footprint for NPB is available in the paper by [Akram et al.](https://arxiv.org/abs/2010.13216)
-
-## Working Status
-
-The working status of these tests for gem5-20 can be found [here](https://www.gem5.org/documentation/benchmark_status/gem5-20#npb-tests).
