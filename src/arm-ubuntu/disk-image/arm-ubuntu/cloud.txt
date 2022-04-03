@@ -1,0 +1,9 @@
+#cloud-config
+users:
+  - name: ### insert the username here ###
+    ssh-authorized-keys:
+      - ssh-rsa ### insert the rsa key here ###
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash
+    homedir: ### insert the home directory here ###

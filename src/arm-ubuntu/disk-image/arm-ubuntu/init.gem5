@@ -1,0 +1,15 @@
+#!/bin/sh
+# This script is taken from ubuntu-18.04-arm64-docker.img, hosted
+# on gem5 guest binaries.
+set -ex
+mount -t proc - /proc
+mount -t sysfs - /sys
+mount -t debugfs - /sys/kernel/debug/
+for DEV in /dev/vdb1; do
+  if [ -e "${DEV}" ]; then
+    mount "${DEV}" /data
+    break
+  fi
+done
+exec /sbin/getty -a root -L ttyAMA0 vt102
+

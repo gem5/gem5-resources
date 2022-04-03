@@ -1,0 +1,83 @@
+{
+    "_author": "Hoa Nguyen <hoanguyen@ucdavis.edu>, Kaustav Goswami <kggoswami@ucdavis.edu>",
+    "_license": "Copyright (c) 2022 The Regents of the University of California. SPDX-License-Identifier: BSD 3-Clause",
+    "builders": [
+        {
+            "type": "null",
+            "ssh_host": "localhost",
+            "ssh_port": "5555",
+            "ssh_username": "ubuntu",
+            "ssh_agent_auth": true,
+            "ssh_ciphers":  ["aes128-gcm@openssh.com", "chacha20-poly1305@openssh.com", "aes128-ctr", "aes192-ctr", "aes256-ctr"],
+            "ssh_certificate_file": "~/.ssh/id_rsa",
+            "ssh_clear_authorized_keys": true
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "file",
+            "source": "arm-ubuntu/init.gem5",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "shell",
+            "inline": "cd /home/ubuntu; chmod 775 init.gem5"
+        },
+        {
+            "type": "file",
+            "source": "../gem5/util/m5/build/arm64/out/m5",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "file",
+            "source": "arm-ubuntu/gem5_init.sh",
+            "destination": "/home/ubuntu/gem5_init.sh"
+        },
+        {
+            "type": "shell",
+            "inline": "cd /home/ubuntu; chmod +x gem5_init.sh"
+        },
+        {
+            "type": "file",
+            "source": "shared/serial-getty@.service",
+            "destination": "/home/ubuntu/serial-getty@.service"
+        },
+        {
+            "type": "file",
+            "source": "arm-ubuntu/post-installation.sh",
+            "destination": "/home/ubuntu/post-installation.sh"
+        },
+        {
+            "type": "shell",
+            "inline": "cd /home/ubuntu; chmod +x post-installation.sh; sudo ./post-installation.sh; rm post-installation.sh"
+        },
+        {
+            "type": "shell",
+            "inline": "sudo cp /home/ubuntu/init.gem5 /sbin/.."
+        },
+        {
+            "type": "shell",
+            "inline": "sudo cp /home/ubuntu/init.gem5 /"
+        },
+        {
+            "type": "shell",
+            "inline": "sudo mkdir /data"
+        },
+        {
+            "type": "shell",
+            "inline": "sudo mv /sbin/init /sbin/init_old"
+        },
+        {
+            "type": "shell",
+            "inline": "cd /sbin; sudo ln -s ../init.gem5 init"
+        },
+        {
+            "type": "shell",
+            "inline": "sudo apt-get -y remove --purge landscape-common"
+        },
+        {
+            "type": "shell",
+            "inline": "sudo apt-get -y remove lsb-release"
+        }
+    ]
+}
