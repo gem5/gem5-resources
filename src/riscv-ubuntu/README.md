@@ -1,5 +1,5 @@
 ---
-title: Linux x86-ubuntu image
+title: Linux riscv-ubuntu image
 tags:
     - riscv
     - fullsystem
@@ -37,10 +37,7 @@ riscv-ubuntu/
   |             |___ gem5_init.sh              # The script to be appended to .bashrc on the disk image
   |             |___ post-installation.sh      # The script manipulating the disk image
   |             |___ riscv-ubuntu.json         # The Packer script
-  |      
-  |                 
   |
-  |___ ubuntu.img                              # The disk image
   |
   |___ README.md                               # This README file
 ```
