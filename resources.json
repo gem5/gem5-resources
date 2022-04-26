@@ -135,6 +135,16 @@
             "contents" : [
                 {
                     "type" : "resource",
+                    "name" : "arm64-linux-kernel-4.18.0",
+                    "documentation": "The Linux kernel (v4.18.0), compile to arm64.",
+                    "architecture" : "ARM",
+                    "is_zipped" : false,
+                    "md5sum" : "29c4059d3b1b043e16bfbd8487acbcae",
+                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-4.18.0",
+                    "source" : null
+                },
+                {
+                    "type" : "resource",
                     "name" : "x86-linux-kernel-4.19.83",
                     "documentation" : "The linux kernel (v4.19.83), compiled to X86.",
                     "architecture" : "X86",
