@@ -143,7 +143,6 @@
             "source" : "src/riscv-boot-exit-nodisk"
         },
         {
-        },
             "type": "resource",
             "name" : "arm64-bootloader",
             "documentation" : "An arm64 bootloader. May be used with the 'arm64-linux-kernel-*' resources.",
@@ -152,6 +151,7 @@
             "md5sum" : "4ac285462723f2574c71526ae6717d24",
             "url": "{url_base)/bootloaders/arm/arm64-bootloader-20220425",
             "source" : null
+        },
         {
             "type" : "group",
             "name" : "linux-kernel",
