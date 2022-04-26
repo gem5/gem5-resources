@@ -121,6 +121,19 @@
         },
         {
             "type": "resource",
+            "name" : "arm64-ubuntu-18.04-img",
+            "documentation" : "A disk image containing Ubuntu 18.04 for arm64 which will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be exected.",
+            "architecture" : "ARM",
+            "is_zipped" : true,
+            "md5sum" : "ec7d0156366743fa7b93cbfcea82925c",
+            "url" : "{url_base}/images/arm/ubuntu-18-04/arm64-ubuntu-20220425.img.gz",
+            "source" : null,
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
+        },
+        {
+            "type": "resource",
             "name" : "riscv-boot-exit-nodisk",
             "documentation" : "A simple RISCV bootloader with Linux kernel 5.10. The early userspace includes busybox and the m5 binary.",
             "architecture": "RISCV",
