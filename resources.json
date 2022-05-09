@@ -158,8 +158,78 @@
             "contents" : [
                 {
                     "type" : "resource",
+                    "name" : "arm64-linux-kernel-4.14.134",
+                    "documentation": "The Linux kernel (v4.14.134), compiled to arm64.",
+                    "architecture" : "ARM",
+                    "is_zipped" : false,
+                    "md5sum" : "8771a6437106d680dc6287f27117ee07",
+                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-4.14.134",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "arm64-linux-kernel-4.19.83",
+                    "documentation": "The Linux kernel (v4.19.83), compiled to arm64.",
+                    "architecture" : "ARM",
+                    "is_zipped" : false,
+                    "md5sum" : "732f5c1df58a1d13292170385f2e3d17",
+                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-4.19.83",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "arm64-linux-kernel-4.4.186",
+                    "documentation": "The Linux kernel (v4.4.186), compiled to arm64.",
+                    "architecture" : "ARM",
+                    "is_zipped" : false,
+                    "md5sum" : "f4260a8cf51a2a2e3155ecd88098a558",
+                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-4.4.186",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "arm64-linux-kernel-4.9.186",
+                    "documentation": "The Linux kernel (v4.9.186), compiled to arm64.",
+                    "architecture" : "ARM",
+                    "is_zipped" : false,
+                    "md5sum" : "4ee3f8aceeb6c9805ad10388d8c499c1",
+                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-4.9.186",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "arm64-linux-kernel-5.10.110",
+                    "documentation": "The Linux kernel (v5.10.110), compiled to arm64.",
+                    "architecture" : "ARM",
+                    "is_zipped" : false,
+                    "md5sum" : "4b93e46bd18f74254af07e6610f77c29",
+                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-5.10.110",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "arm64-linux-kernel-5.15.36",
+                    "documentation": "The Linux kernel (v5.15.36), compiled to arm64.",
+                    "architecture" : "ARM",
+                    "is_zipped" : false,
+                    "md5sum" : "03bd04c44efc155d3a678ac3d7ed9b74",
+                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-5.15.36",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "arm64-linux-kernel-5.4.49",
+                    "documentation": "The Linux kernel (v5.4.49), compiled to arm64.",
+                    "architecture" : "ARM",
+                    "is_zipped" : false,
+                    "md5sum" : "1c6dbca1c7d4c44016147fc95cb0388c",
+                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-5.4.49",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
                     "name" : "arm64-linux-kernel-4.18.0",
-                    "documentation": "The Linux kernel (v4.18.0), compile to arm64.",
+                    "documentation": "The Linux kernel (v4.18.0), compiled to arm64.",
                     "architecture" : "ARM",
                     "is_zipped" : false,
                     "md5sum" : "29c4059d3b1b043e16bfbd8487acbcae",
