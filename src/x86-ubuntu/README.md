@@ -10,7 +10,7 @@ shortdoc: >
 author: ["Ayaz Akram"]
 ---
 
-This document provides instructions to create the "x86-ubuntu" image, the Linux kernel binaries, and also points to the gem5 configuration files needed to run the boot.
+This document provides instructions to create the "x86-ubuntu" image, the Linux kernel binaries, and also points to gem5 configuration files that use the image.
 The x86-ubuntu disk image is based on Ubuntu 18.04 and has its `.bashrc` file modified in such a way that it executes a script passed from the gem5 configuration files (using the `m5 readfile` instruction).
 The boot-exit test passes a script that causes the guest OS to terminate the simulation (using the `m5 exit` instruction) as soon as the system boots.
 
@@ -29,10 +29,6 @@ x86-ubuntu/
   |            |___ x86-ubuntu.json             # The Packer script
   |            |___ exit.sh                    # Exits the simulated guest upon booting
   |            |___ post-installation.sh       # Moves exit.sh to guest's .bashrc
-  |
-  |___ configs
-  |      |___ system                           # gem5 system config files
-  |      |___ run_exit.py                      # gem5 run script
   |
   |___ linux                                   # Linux source will be downloaded in this folder
   |
@@ -83,29 +79,26 @@ Once this process succeeds, the disk image can be found on `x86-ubuntu/x86-ubunt
 A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v21-2/images/x86/ubuntu-18-04/x86-ubuntu.img.gz).
 
 
-## gem5 Run Scripts
+## Example Run Scripts
 
-gem5 scripts which configure the system and run simulation are available in configs-boot-tests/.
-The main script `run_exit.py` expects following arguments:
+Within the gem5 repository, two example scripts are provided which utilize the x86-ubuntu resource.
 
-**kernel:** path to the Linux kernel (see `src/linux-kernel/` for information on building/obtaining a linux kernel binary).
-
-**disk:** path to the disk image.
-
-**cpu_type:** cpu model (`kvm`, `atomic`, `simple`, `o3`).
-
-**mem_sys:** memory system (`classic`, `MI_example`, `MESI_Two_Level`, `MOESI_CMP_directory`).
-
-**num_cpus:** number of cpu cores.
-
-**boot_type:** Linux kernel boot type (`init`, `systemd`).
-
-An example use of this script is the following:
+The first is `configs/example/gem5_library/x86-ubuntu-run.py`.
+This will boot the OS with a Timing CPU.
+To run:
 
 ```sh
-[gem5 binary] configs/run_exit.py [path to the Linux kernel] [path to the disk image] kvm classic 4 init
+scons build/X86/gem5.opt -j`nproc`
+./build/X86/gem5.opt configs/example/gem5_library/x86-ubuntu-run.py
 ```
 
-## Working Status
+The second is `configs/example/gem5_library/x86-ubuntu-run-with-kvm.py`.
+This will boot the OS using KVM cores before switching to Timing Cores to run a simple echo command.
+To run:
 
-Working status of these tests for gem5-20 can be found [here](https://www.gem5.org/documentation/benchmark_status/gem5-20).
+```sh
+scons build/X86/gem5.opt -j`nproc`
+./build/X86/gem5.opt configs/example/gem5_library/x86-ubuntu-run-with-kvm.py`
+```
+
+**Note:** the `x86-ubuntu-with-kvm.py` script requires a host machine with KVM to function correctly.

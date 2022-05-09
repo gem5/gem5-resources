@@ -35,12 +35,6 @@ riscv-fs/
   |       |__riscv-pk                          # riscv proxy kernel source (bbl)
   |       |__RootFS                            # root file system for disk image
   |
-  |
-  |___ configs
-  |      |___ system                           # gem5 system config files
-  |      |___ run_riscv.py                     # gem5 run script
-  |
-  |
   |___ README.md                               # This README file
 ```
 
@@ -241,26 +235,19 @@ Also, if it is required to change the contents of the disk image, it can be moun
 mount -o loop riscv_disk [some mount directory]
 ```
 
-## gem5 Run Scripts
+## Example Run Script
 
-gem5 scripts which can configure a riscv full system and run simulation are available in configs/.
-The main script `run_riscv.py` expects following arguments:
+An example configuration using this disk image with the boot loader can be found in `configs/example/gem5_library/riscv-fs.py` in the gem5 repository.
 
-**bbl:** path to the bbl (berkeley bootloader) binary with kernel payload (located at `riscv64-sample/riscv-pk/build/bbl`).
-
-**disk:** path to the disk image to use (located at `riscv64-sample/riscv_disk`).
-
-**cpu_type:** cpu model (`atomic` for AtomicSimpleCPU, `simple` for TimingSimpleCPU).
-
-**num_cpus:** number of cpu cores.
-
-An example use of this script is the following:
+To run this, you can execute the following within the gem5 repository:
 
 ```sh
-[gem5 binary] configs/run_riscv.py [path to bbl] [path to the disk image] atomic 1
+scons build/RISCV/gem5.opt -j`nproc`
+./build/RISCV/gem5.opt configs/example/gem5_library/riscv-fs.py
 ```
 
-To interact with the simulated system's console, you can use `telnet`,
+The gem5 stdlib will automatically download the resources as required.
+Once the simulation has booted you can interact with the system's console via `telnet`:
 
 ```sh
 telnet localhost <port>
@@ -273,4 +260,4 @@ make                         # compiling
 ./m5term localhost <port>    # launching the terminal
 ```
 
-The default linux system based on this README, has both `login` and `password` set as `root`.
+The linux has both `login` and `password` set as `root`.

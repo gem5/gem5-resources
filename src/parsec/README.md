@@ -99,7 +99,3 @@ configs/example/gem5_library/x86-parsec-benchmarks.py \
 Description of the two arguments, provided in the above command are:
 * **--benchmark**, which refers to one of 13 benchmark programs, provided in the PARSEC benchmark suite. These include `blackscholes`, `bodytrack`, `canneal`, `dedup`, `facesim`, `ferret`, `fluidanimate`, `freqmine`, `raytrace`, `streamcluster`, `swaptions`, `vips`, `x264`. For more information on the workloads can be found at <https://parsec.cs.princeton.edu/>.
 * **--size**, which refers to the size of the workload to simulate. There are three valid choices for the same: `simsmall`, `simmedium` and `simlarge`.
-
-## Working Status
-
-The working status of PARSEC runs for gem5-20 has been documented [here](https://www.gem5.org/documentation/benchmark_status/gem5-20#parsec-tests).

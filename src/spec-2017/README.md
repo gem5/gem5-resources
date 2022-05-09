@@ -153,8 +153,3 @@ Description of the four arguments, provided in the above command are:
 * **--size**, which refers to the workload size to simulate. Valid choices for `--size` are `test`, `train` and `ref`.
 
 The output directory, where the simulation statistics will be redirected to, will have a new folder named `speclogs_<Day><Month><Date><Hour><Minute><Second>`. The time is of execution is appended to avoid conflicts while coping the files. The output files, generated on the disk-image in the folder `speclogs` will be copied to this aforementioned directory.
-
-## Working Status
-Status of these benchmarks runs with respect to gem5-20, linux kernel version
-4.19.83 and gcc version 7.5.0 can be found
-[here](https://www.gem5.org/documentation/benchmark_status/gem5-20#spec-2017-tests)
