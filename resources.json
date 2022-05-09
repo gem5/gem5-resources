@@ -228,12 +228,52 @@
                 },
                 {
                     "type" : "resource",
+                    "name" : "x86-linux-kernel-4.14.134",
+                    "documentation" : "The linux kernel (v4.14.134), compiled to X86.",
+                    "architecture" : "X86",
+                    "is_zipped" : false,
+                    "md5sum" : "21beaaa085884480100e3968f74d4ae0",
+                    "url" : "{url_base}/kernels/x86/static/vmlinux-4.14.134",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
                     "name" : "x86-linux-kernel-4.19.83",
                     "documentation" : "The linux kernel (v4.19.83), compiled to X86.",
                     "architecture" : "X86",
                     "is_zipped" : false,
                     "md5sum" : "28228eac2eea81ee3ce36305b7641c18",
                     "url" : "{url_base}/kernels/x86/static/vmlinux-4.19.83",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "x86-linux-kernel-4.4.186",
+                    "documentation" : "The linux kernel (v4.4.186), compiled to X86.",
+                    "architecture" : "X86",
+                    "is_zipped" : false,
+                    "md5sum" : "23c2a5532d6a0b5dc68a5e089d12ae13",
+                    "url" : "{url_base}/kernels/x86/static/vmlinux-4.4.186",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "x86-linux-kernel-4.9.186",
+                    "documentation" : "The linux kernel (v4.9.186), compiled to X86.",
+                    "architecture" : "X86",
+                    "is_zipped" : false,
+                    "md5sum" : "e5f5355c9ec5bfa37ec1c289ac84853b",
+                    "url" : "{url_base}/kernels/x86/static/vmlinux-4.9.186",
+                    "source" : "src/linux-kernel"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "x86-linux-kernel-5.2.3",
+                    "documentation" : "The linux kernel (v5.2.3), compiled to X86.",
+                    "architecture" : "X86",
+                    "is_zipped" : false,
+                    "md5sum" : "4838c99b77d33c8307b939c16624e4ac",
+                    "url" : "{url_base}/kernels/x86/static/vmlinux-5.2.3",
                     "source" : "src/linux-kernel"
                 },
                 {
