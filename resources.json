@@ -126,7 +126,7 @@
             "architecture" : "ARM",
             "is_zipped" : true,
             "md5sum" : "708cafd0591b2cdd03179b494f7bbf1f",
-            "url" : "{url_base}/images/arm/ubuntu-20-04/arm64-ubuntu-20220425.img.gz",
+            "url" : "{url_base}/images/arm/ubuntu-20-04/arm64-ubuntu-20220509.img.gz",
             "source" : "src/arm-ubuntu",
             "additional_metadata" : {
                 "root_partition": "1"
