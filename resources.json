@@ -8,6 +8,16 @@
     "resources": [
         {
             "type": "resource",
+            "name" : "vega-mmio",
+            "documentation" : "Used with the 'x86-gpu-fs' disk image.",
+            "architecture": "X86",
+            "is_zipped" : false,
+            "md5sum" : "c4ff3326ae8a036e329b8b595c83bd6d",
+            "source" : "src/gpu-fs",
+            "url": "{url_base}/misc/gpu/vega-mmio.log"
+        },
+        {
+            "type": "resource",
             "name" : "riscv-hello-example-checkpoint",
             "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'.",
             "architecture": "RISCV",
@@ -95,6 +105,19 @@
         },
         {
             "type" : "resource",
+            "name" : "x86-gpu-fs",
+            "documentation" : "An Ubuntu 18.04 disk image with ROCm 4.2 installed. This can be used to run GPU full-system simulations.",
+            "architecture" : "X86",
+            "is_zipped" : true,
+            "md5sum" : "a9aa1159fa11a61e78db8afaddd89bb3",
+            "url" : "{url_base}/images/x86/ubuntu-18-04/x86-gpu-fs-20220512.img.gz",
+            "source" : "src/gpu-fs",
+            "additional_metadata" : {
+                "root_partition": "1"
+            }
+        },
+        {
+            "type" : "resource",
             "name" : "x86-ubuntu-18.04-img",
             "documentation" : "A disk image containing Ubuntu 18.04 for x86. This image will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be executed.",
             "architecture" : "X86",
@@ -156,6 +179,16 @@
             "type" : "group",
             "name" : "linux-kernel",
             "contents" : [
+                {
+                    "type" : "resource",
+                    "name" : "x86-linux-kernel-5.4.0-105-generic",
+                    "documentation" : "The linux kernel (v5.4.0-105-generic), compiled to X86. Used primarily with the 'x86-gpu-fs' disk image.",
+                    "architecture" : "X86",
+                    "is_zipped" : false,
+                    "md5sum" : "29b5dd6765d4040112cbf5e6a32ab1b5",
+                    "url" : "{url_base}/kernels/x86/static/vmlinux-5.4.0-105-generic",
+                    "source" : null
+                },
                 {
                     "type" : "resource",
                     "name" : "arm64-linux-kernel-4.14.134",
