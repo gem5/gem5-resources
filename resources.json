@@ -9,7 +9,7 @@
         {
             "type": "resource",
             "name" : "vega-mmio",
-            "documentation" : "Used with the 'x86-gpu-fs' disk image.",
+            "documentation" : "Used with the 'x86-gpu-fs-img' disk image.",
             "architecture": "X86",
             "is_zipped" : false,
             "md5sum" : "c4ff3326ae8a036e329b8b595c83bd6d",
@@ -105,7 +105,7 @@
         },
         {
             "type" : "resource",
-            "name" : "x86-gpu-fs",
+            "name" : "x86-gpu-fs-img",
             "documentation" : "An Ubuntu 18.04 disk image with ROCm 4.2 installed. This can be used to run GPU full-system simulations.",
             "architecture" : "X86",
             "is_zipped" : true,
@@ -182,7 +182,7 @@
                 {
                     "type" : "resource",
                     "name" : "x86-linux-kernel-5.4.0-105-generic",
-                    "documentation" : "The linux kernel (v5.4.0-105-generic), compiled to X86. Used primarily with the 'x86-gpu-fs' disk image.",
+                    "documentation" : "The linux kernel (v5.4.0-105-generic), compiled to X86. Used primarily with the 'x86-gpu-fs-img' disk image.",
                     "architecture" : "X86",
                     "is_zipped" : false,
                     "md5sum" : "29b5dd6765d4040112cbf5e6a32ab1b5",
