@@ -183,7 +183,7 @@
             "architecture": "ARM",
             "is_zipped" : false,
             "md5sum" : "d29def05c11ddb88d971c68401fc60d2",
-            "url": "{url_base}/bootloaders/arm/arm64-bootloader-emm-20220515",
+            "url": "{url_base}/bootloaders/arm/arm64-bootloader-emm-20220516",
             "source" : null
         },
         {
