@@ -202,7 +202,7 @@
             "documentation" : "An arm64 bootloader (v2). May be used with the 'arm64-linux-kernel-*' resources.",
             "architecture": "ARM",
             "is_zipped" : false,
-            "md5sum" : "4ac285462723f2574c71526ae6717d24",
+            "md5sum" : "458a9ddbd14fe3b253272d19f795c0f3",
             "url": "{url_base}/bootloaders/arm/arm64-bootloader-v2-20220516",
             "source" : null
         },
