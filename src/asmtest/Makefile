@@ -18,6 +18,7 @@ include $(src_dir)/rv64si/Makefrag
 include $(src_dir)/rv64mi/Makefrag
 include $(src_dir)/rv64uamt/Makefrag
 include $(src_dir)/rv64samt/Makefrag
+include $(src_dir)/rv64uzfh/Makefrag
 
 default: all
 
@@ -82,6 +83,7 @@ $(eval $(call compile_template,rv64si,-march=rv64g -mabi=lp64))
 $(eval $(call compile_template,rv64mi,-march=rv64g -mabi=lp64))
 $(eval $(call compile_template,rv64uamt,-march=rv64g -mabi=lp64))
 $(eval $(call compile_template,rv64samt,-march=rv64g -mabi=lp64))
+$(eval $(call compile_template,rv64uzfh,-march=rv64g_zfh -mabi=lp64))
 
 p_env_tests_dump = $(addsuffix .dump, $(p_env_tests))
 ps_env_tests_dump = $(addsuffix .dump, $(ps_env_tests))
