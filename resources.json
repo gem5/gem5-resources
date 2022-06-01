@@ -4004,6 +4004,116 @@
                     "md5sum" : "aff1c28cdb84b9509547935c62aec435",
                     "url" : "{url_base}/test-progs/asmtest/bin/rv64um-v-remw",
                     "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-fadd",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "b4b6127cf0b70dc428e9dc84ff924675",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-fclass",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "51987dc0a2e25c41ea7a60b3e1b6d3e1",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fclass",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-fcmp",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "38d202dfe077171e0dcfcd4f3a09e14d",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fcmp",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-fcvt",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "4e703e3534179c2db1173c7c67b2edb8",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fcvt",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-fcvt_w",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "195875e6a42e191681f0d0e0f7c4d5a2",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fcvt_w",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-fdiv",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "06c66b6a66480122699d3224f84e0abe",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fdiv",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-fmadd",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "096e6454a25877b19de22054ecc08540",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fmadd",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-fmin",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "3b392c9fb858199f6a701fd4b16feb0d",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fmin",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-ldst",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "794f5106977c726639e4d0f6b93fa38c",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-ldst",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-move",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "0d3bd78a75a3dded8d97be0965af1b90",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-move",
+                    "source" : "src/asmtest"
+                },
+                {
+                    "type" : "resource",
+                    "name" : "rv64uzfh-ps-recoding",
+                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
+                    "architecture" : "RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "8b6f3dbfa31f3e679417ba7b35ee8c2f",
+                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-recoding",
+                    "source" : "src/asmtest"
                 }
 			]
 		}
