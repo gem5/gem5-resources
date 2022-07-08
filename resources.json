@@ -185,8 +185,8 @@
             "documentation" : "An arm64 bootloader. May be used with the 'arm64-linux-kernel-*' resources.",
             "architecture": "ARM",
             "is_zipped" : false,
-            "md5sum" : "4ac285462723f2574c71526ae6717d24",
-            "url": "{url_base}/bootloaders/arm/arm64-bootloader-20220425",
+            "md5sum" : "94f1a2eecb1600384df54056227300e4",
+            "url": "{url_base}/bootloaders/arm/boot.arm64-20220707",
             "source" : null
         },
 
@@ -196,8 +196,8 @@
             "documentation" : "An arm64 bootloader (emm). May be used with the 'arm64-linux-kernel-*' resources.",
             "architecture": "ARM",
             "is_zipped" : false,
-            "md5sum" : "d29def05c11ddb88d971c68401fc60d2",
-            "url": "{url_base}/bootloaders/arm/arm64-bootloader-emm-20220516",
+            "md5sum" : "34865b170623b31721decf00d0c8d39f",
+            "url": "{url_base}/bootloaders/arm/boot_emm.arm64-20220707",
             "source" : null
         },
         {
@@ -206,8 +206,8 @@
             "documentation" : "An arm64 bootloader (foundation). May be used with the 'arm64-linux-kernel-*' resources.",
             "architecture": "ARM",
             "is_zipped" : false,
-            "md5sum" : "fd2b0ba67019fece52eb5fc8641c1a0a",
-            "url": "{url_base}/bootloaders/arm/arm64-bootloader-foundation-20220516",
+            "md5sum" : "15ffc9c932c6a52da0b560fe8b7b58a2",
+            "url": "{url_base}/bootloaders/arm/boot_foundation.arm64-20220707",
             "source" : null
         },
         {
@@ -216,8 +216,8 @@
             "documentation" : "An arm64 bootloader (v2). May be used with the 'arm64-linux-kernel-*' resources.",
             "architecture": "ARM",
             "is_zipped" : false,
-            "md5sum" : "458a9ddbd14fe3b253272d19f795c0f3",
-            "url": "{url_base}/bootloaders/arm/arm64-bootloader-v2-20220516",
+            "md5sum" : "c68beeb4d3ba395ae53c0ee999f91d96",
+            "url": "{url_base}/bootloaders/arm/boot_v2.arm64-20220707",
             "source" : null
         },
         {
