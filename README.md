@@ -88,9 +88,13 @@ Then, to compile:
 cd src/riscv-tests
 autoconf
 ./configure --prefix=/opt/riscv/target
-make -C src/riscv-tests
+RISCV_PREFIX=<COMPILER_PREFIX> make
 ```
-
+As an example for `make`, if the binary name for the RISCV compiler is
+`riscv64-linux-gnu-gcc`, then the make command is the following:
+```
+RISCV_PREFIX=riscv64-linux-gnu- make
+```
 This RISCV binaries can then be found within the `src/riscv-tests/benchmarks`
 directory.
 
