@@ -11,9 +11,11 @@ shortdoc: >
 author: ["Joël Porquet-Lupine"]
 ---
 
-This README will cover how to create a bootloader/kernel, and a disk image which may be used to run LupV (LupIO with RISC-V) in gem5.
+This README will cover how to create a bootloader/kernel, and a disk image which
+may be used to run LupV (LupIO with RISC-V) in gem5.
 
-An example script which uses these resources is provided here: <https://gem5.googlesource.com/public/gem5/+/refs/tags/v21.2.0.0/configs/example/lupv/>.
+An example script which uses these resources is provided here:
+<https://gem5.googlesource.com/public/gem5/+/refs/tags/v21.2.0.0/configs/example/lupv/>.
 
 
 ## Toolchain
@@ -45,9 +47,7 @@ Note:
 - Adapt `CROSS_COMPILE` to your toolchain's prefix
 - Adapt `-j8` to the number of parallel jobs you want to run
 
-The resulting kernel image is in `arch/riscv/boot/Image`
-
-
+The resulting kernel image is in `arch/riscv/boot/Image`.
 
 ### Bootloader
 
@@ -65,7 +65,8 @@ $ make
 The resulting firmware which includes the bootloader and the kernel, and can be
 loaded as a kernel image in gem5, is in `build/bbl`.
 
-A pre-built bootloader/kernel binary can be obtained from [here](http://dist.gem5.org/dist/v21-2/kernels/riscv/static/lupio-linux).
+A pre-built bootloader/kernel binary can be obtained from
+[here](http://dist.gem5.org/dist/v21-2/kernels/riscv/static/lupio-linux).
 
 ## Root filesystem
 
@@ -76,8 +77,8 @@ Note that you need root access in order to create the root filesystem.
 
 ### Busybox
 
-Copy `config_busybox_rv64_092021` file to your computer and compile busybox using this
-configuration.
+Copy `config_busybox_rv64_092021` file to your computer and compile busybox
+using this configuration.
 
 ```terminal
 $ git clone https://git.busybox.net/busybox/
@@ -134,4 +135,5 @@ $ sudo kpartx -d rootfs.img
 The resulting filesystem image, which can be loaded as a partition image in
 gem5, is `rootfs.img`.
 
-A pre-built, gzipped, image can be obtained [here](http://dist.gem5.org/dist/v21-2/images/riscv/busybox/riscv-lupio-busybox.img.gz).
+A pre-built, gzipped, image can be obtained
+[here](http://dist.gem5.org/dist/v21-2/images/riscv/busybox/riscv-lupio-busybox.img.gz).
