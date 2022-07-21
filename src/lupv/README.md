@@ -38,7 +38,7 @@ First compile the linux kernel.
 ```terminal
 $ git clone https://gitlab.com/luplab/lupio/linux
 $ cd linux
-$ git checkout lupio
+$ git checkout lupio-dev-v5.8
 $ make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- lupv_defconfig
 $ make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- -j8
 ```
