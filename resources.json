@@ -379,8 +379,8 @@
                     "documentation": "A kernel built with LupIO device (https://gitlab.com/luplab/lupio) drivers. Must be used when setting LupIO board workloads. Compatible with the 'riscv-lupio-busybox-img' disk image resource.",
                     "is_zipped" : false,
                     "architecture" : "RISCV",
-                    "md5sum" : "f94351edbbb0e7bd9617f7b381635546",
-                    "url" : "{url_base}/kernels/riscv/static/lupio-linux",
+                    "md5sum" : "1b7d6523647db85f9dd2b00d751f5f6f",
+                    "url" : "{url_base}/kernels/riscv/static/lupio-linux-20220727",
                     "source" : "src/lupv"
                 }
             ]
