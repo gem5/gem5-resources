@@ -386,6 +386,32 @@
             ]
         },
         {
+            "type": "group",
+            "name": "print-this",
+            "contents": [
+                {
+                    "type" : "resource",
+                    "name": "riscv-print-this",
+                    "documentation": "A simple RISC-V binary that prints a string a set number of times. It takes two mandatory arguments: A string to print and an integer specifying how many times the string is to be printed.",
+                    "architecture" :"RISCV",
+                    "is_zipped" : false,
+                    "md5sum" : "ee2963ca71ce13ae2f096198b58064ad",
+                    "url" : "{url_base}/test-progs/print-this/riscv-print-this",
+                    "source" : "src/print-this"
+                },
+                {
+                    "type" : "resource",
+                    "name": "x86-print-this",
+                    "documentation": "A simple X86 binary that prints a string a set number of times. It takes two mandatory arguments: A string to print and an integer specifying how many times the string is to be printed.",
+                    "architecture" :"X86",
+                    "is_zipped" : false,
+                    "md5sum" : "eab785f7c14ab97b89e17c9af2f43002",
+                    "url" : "{url_base}/test-progs/print-this/x86-print-this",
+                    "source" : "src/print-this"
+                }
+            ]
+        },
+        {
             "type" : "group",
             "name" : "hello",
             "contents" : [
