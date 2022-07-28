@@ -158,15 +158,15 @@
         },
         {
             "type": "resource",
-            "name" : "arm64-ubuntu-20.04-img",
-            "documentation" : "A disk image containing Ubuntu 18.04 for arm64 which will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be exected.",
+            "name": "arm64-ubuntu-20.04-img",
+            "documentation": "A disk image containing Ubuntu 20.04 for ARM which will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be executed.",
             "architecture" : "ARM",
             "is_zipped" : true,
-            "md5sum" : "708cafd0591b2cdd03179b494f7bbf1f",
-            "url" : "{url_base}/images/arm/ubuntu-20-04/arm64-ubuntu-20220509.img.gz",
+            "md5sum" : "56cb88c9351bb9b0e65cfe689a205eab",
+            "url" : "{url_base}/images/arm/ubuntu-20-04/arm64-ubuntu-20220727.img.gz",
             "source" : "src/arm-ubuntu",
             "additional_metadata" : {
-                "root_partition": "1"
+                "root_partition" : "1"
             }
         },
         {
