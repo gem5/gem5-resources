@@ -422,7 +422,7 @@
                     "architecture" : "RISCV",
                     "is_zipped" :  false,
                     "md5sum" : "6d9494d22b90d817e826b0d762fda973",
-                    "url" : "{url_base}/test-progs/hello/bin/riscv/linux/hello",
+                    "url" : "{url_base}/test-progs/hello/bin/riscv/linux/hello-20220728",
                     "source" : "src/simple"
                 },
                 {
