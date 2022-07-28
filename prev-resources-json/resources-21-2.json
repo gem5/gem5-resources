@@ -1,33 +1,11 @@
 
 {
-    "version" : "22.0",
-    "url_base" : "http://dist.gem5.org/dist/v22-0",
+    "version" : "21.2",
+    "url_base" : "http://dist.gem5.org/dist/v21-2",
     "previous-versions" : {
-        "develop" : "https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/develop/resources.json?format=TEXT",
-        "21.2" : "http://resources.gem5.org/prev-resources-json/resources-21-2.json"
+        "develop" : "https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/develop/resources.json?format=TEXT"
     },
     "resources": [
-        {
-            "type": "resource",
-            "name" : "vega-mmio",
-            "documentation" : "Used with the 'x86-gpu-fs-img' disk image.",
-            "architecture": "X86",
-            "is_zipped" : false,
-            "md5sum" : "c4ff3326ae8a036e329b8b595c83bd6d",
-            "source" : "src/gpu-fs",
-            "url": "{url_base}/misc/gpu/vega-mmio.log"
-        },
-        {
-            "type": "resource",
-            "name" : "riscv-hello-example-checkpoint",
-            "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'.",
-            "architecture": "RISCV",
-            "is_zipped" : false,
-            "md5sum" : "3a57c1bb1077176c4587b8a3bf4f8ace",
-            "source" : null,
-            "is_tar_archive" : true,
-            "url": "{url_base}/checkpoints/riscv-hello-example-checkpoint.tar"
-        },
         {
             "type": "resource",
             "name" : "riscv-disk-img",
@@ -106,19 +84,6 @@
         },
         {
             "type" : "resource",
-            "name" : "x86-gpu-fs-img",
-            "documentation" : "An Ubuntu 18.04 disk image with ROCm 4.2 installed. This can be used to run GPU full-system simulations.",
-            "architecture" : "X86",
-            "is_zipped" : true,
-            "md5sum" : "a9aa1159fa11a61e78db8afaddd89bb3",
-            "url" : "{url_base}/images/x86/ubuntu-18-04/x86-gpu-fs-20220512.img.gz",
-            "source" : "src/gpu-fs",
-            "additional_metadata" : {
-                "root_partition": "1"
-            }
-        },
-        {
-            "type" : "resource",
             "name" : "x86-ubuntu-18.04-img",
             "documentation" : "A disk image containing Ubuntu 18.04 for x86. This image will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be executed.",
             "architecture" : "X86",
@@ -145,32 +110,6 @@
         },
         {
             "type": "resource",
-            "name" : "arm64-ubuntu-18.04-img",
-            "documentation" : "A disk image containing Ubuntu 18.04 for arm64.",
-            "architecture" : "ARM",
-            "is_zipped" : true,
-            "md5sum" : "ec7d0156366743fa7b93cbfcea82925c",
-            "url" : "{url_base}/images/arm/ubuntu-18-04/arm64-ubuntu-20220425.img.gz",
-            "source" : null,
-            "additional_metadata" : {
-                "root_partition": "1"
-            }
-        },
-        {
-            "type": "resource",
-            "name" : "arm64-ubuntu-20.04-img",
-            "documentation" : "A disk image containing Ubuntu 18.04 for arm64 which will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be exected.",
-            "architecture" : "ARM",
-            "is_zipped" : true,
-            "md5sum" : "708cafd0591b2cdd03179b494f7bbf1f",
-            "url" : "{url_base}/images/arm/ubuntu-20-04/arm64-ubuntu-20220509.img.gz",
-            "source" : "src/arm-ubuntu",
-            "additional_metadata" : {
-                "root_partition": "1"
-            }
-        },
-        {
-            "type": "resource",
             "name" : "riscv-boot-exit-nodisk",
             "documentation" : "A simple RISCV bootloader with Linux kernel 5.10. The early userspace includes busybox and the m5 binary.",
             "architecture": "RISCV",
@@ -180,140 +119,9 @@
             "source" : "src/riscv-boot-exit-nodisk"
         },
         {
-            "type": "resource",
-            "name" : "arm64-bootloader",
-            "documentation" : "An arm64 bootloader. May be used with the 'arm64-linux-kernel-*' resources.",
-            "architecture": "ARM",
-            "is_zipped" : false,
-            "md5sum" : "94f1a2eecb1600384df54056227300e4",
-            "url": "{url_base}/bootloaders/arm/boot.arm64-20220707",
-            "source" : null
-        },
-
-        {
-            "type": "resource",
-            "name" : "arm64-bootloader-emm",
-            "documentation" : "An arm64 bootloader (emm). May be used with the 'arm64-linux-kernel-*' resources.",
-            "architecture": "ARM",
-            "is_zipped" : false,
-            "md5sum" : "34865b170623b31721decf00d0c8d39f",
-            "url": "{url_base}/bootloaders/arm/boot_emm.arm64-20220707",
-            "source" : null
-        },
-        {
-            "type": "resource",
-            "name" : "arm64-bootloader-foundation",
-            "documentation" : "An arm64 bootloader (foundation). May be used with the 'arm64-linux-kernel-*' resources.",
-            "architecture": "ARM",
-            "is_zipped" : false,
-            "md5sum" : "15ffc9c932c6a52da0b560fe8b7b58a2",
-            "url": "{url_base}/bootloaders/arm/boot_foundation.arm64-20220707",
-            "source" : null
-        },
-        {
-            "type": "resource",
-            "name" : "arm64-bootloader-v2",
-            "documentation" : "An arm64 bootloader (v2). May be used with the 'arm64-linux-kernel-*' resources.",
-            "architecture": "ARM",
-            "is_zipped" : false,
-            "md5sum" : "c68beeb4d3ba395ae53c0ee999f91d96",
-            "url": "{url_base}/bootloaders/arm/boot_v2.arm64-20220707",
-            "source" : null
-        },
-        {
             "type" : "group",
             "name" : "linux-kernel",
             "contents" : [
-                {
-                    "type" : "resource",
-                    "name" : "x86-linux-kernel-5.4.0-105-generic",
-                    "documentation" : "The linux kernel (v5.4.0-105-generic), compiled to X86. Used primarily with the 'x86-gpu-fs-img' disk image.",
-                    "architecture" : "X86",
-                    "is_zipped" : false,
-                    "md5sum" : "29b5dd6765d4040112cbf5e6a32ab1b5",
-                    "url" : "{url_base}/kernels/x86/static/vmlinux-5.4.0-105-generic",
-                    "source" : null
-                },
-                {
-                    "type" : "resource",
-                    "name" : "arm64-linux-kernel-4.14.134",
-                    "documentation": "The Linux kernel (v4.14.134), compiled to arm64.",
-                    "architecture" : "ARM",
-                    "is_zipped" : false,
-                    "md5sum" : "8771a6437106d680dc6287f27117ee07",
-                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-4.14.134",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "arm64-linux-kernel-4.19.83",
-                    "documentation": "The Linux kernel (v4.19.83), compiled to arm64.",
-                    "architecture" : "ARM",
-                    "is_zipped" : false,
-                    "md5sum" : "732f5c1df58a1d13292170385f2e3d17",
-                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-4.19.83",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "arm64-linux-kernel-4.4.186",
-                    "documentation": "The Linux kernel (v4.4.186), compiled to arm64.",
-                    "architecture" : "ARM",
-                    "is_zipped" : false,
-                    "md5sum" : "f4260a8cf51a2a2e3155ecd88098a558",
-                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-4.4.186",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "arm64-linux-kernel-4.9.186",
-                    "documentation": "The Linux kernel (v4.9.186), compiled to arm64.",
-                    "architecture" : "ARM",
-                    "is_zipped" : false,
-                    "md5sum" : "4ee3f8aceeb6c9805ad10388d8c499c1",
-                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-4.9.186",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "arm64-linux-kernel-5.10.110",
-                    "documentation": "The Linux kernel (v5.10.110), compiled to arm64.",
-                    "architecture" : "ARM",
-                    "is_zipped" : false,
-                    "md5sum" : "4b93e46bd18f74254af07e6610f77c29",
-                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-5.10.110",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "arm64-linux-kernel-5.15.36",
-                    "documentation": "The Linux kernel (v5.15.36), compiled to arm64.",
-                    "architecture" : "ARM",
-                    "is_zipped" : false,
-                    "md5sum" : "03bd04c44efc155d3a678ac3d7ed9b74",
-                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-5.15.36",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "arm64-linux-kernel-5.4.49",
-                    "documentation": "The Linux kernel (v5.4.49), compiled to arm64.",
-                    "architecture" : "ARM",
-                    "is_zipped" : false,
-                    "md5sum" : "1c6dbca1c7d4c44016147fc95cb0388c",
-                    "url" : "{url_base}/kernels/arm/static/arm64-vmlinux-5.4.49",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "x86-linux-kernel-4.14.134",
-                    "documentation" : "The linux kernel (v4.14.134), compiled to X86.",
-                    "architecture" : "X86",
-                    "is_zipped" : false,
-                    "md5sum" : "21beaaa085884480100e3968f74d4ae0",
-                    "url" : "{url_base}/kernels/x86/static/vmlinux-4.14.134",
-                    "source" : "src/linux-kernel"
-                },
                 {
                     "type" : "resource",
                     "name" : "x86-linux-kernel-4.19.83",
@@ -322,36 +130,6 @@
                     "is_zipped" : false,
                     "md5sum" : "28228eac2eea81ee3ce36305b7641c18",
                     "url" : "{url_base}/kernels/x86/static/vmlinux-4.19.83",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "x86-linux-kernel-4.4.186",
-                    "documentation" : "The linux kernel (v4.4.186), compiled to X86.",
-                    "architecture" : "X86",
-                    "is_zipped" : false,
-                    "md5sum" : "23c2a5532d6a0b5dc68a5e089d12ae13",
-                    "url" : "{url_base}/kernels/x86/static/vmlinux-4.4.186",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "x86-linux-kernel-4.9.186",
-                    "documentation" : "The linux kernel (v4.9.186), compiled to X86.",
-                    "architecture" : "X86",
-                    "is_zipped" : false,
-                    "md5sum" : "e5f5355c9ec5bfa37ec1c289ac84853b",
-                    "url" : "{url_base}/kernels/x86/static/vmlinux-4.9.186",
-                    "source" : "src/linux-kernel"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "x86-linux-kernel-5.2.3",
-                    "documentation" : "The linux kernel (v5.2.3), compiled to X86.",
-                    "architecture" : "X86",
-                    "is_zipped" : false,
-                    "md5sum" : "4838c99b77d33c8307b939c16624e4ac",
-                    "url" : "{url_base}/kernels/x86/static/vmlinux-5.2.3",
                     "source" : "src/linux-kernel"
                 },
                 {
@@ -377,38 +155,12 @@
                 {
                     "type" : "resource",
                     "name" : "riscv-lupio-linux-kernel",
-                    "documentation": "A kernel built with LupIO device (https://gitlab.com/luplab/lupio) drivers. Must be used when setting LupIO board workloads. Compatible with the 'riscv-lupio-busybox-img' disk image resource.",
+                    "documentation": "A kernel built with LupIO device (https://gitlab.com/luplab/lupio) drivers. Must be used when setting LupIO board workloads. Compataible with the 'riscv-lupio-busybox-img' disk image resource.",
                     "is_zipped" : false,
                     "architecture" : "RISCV",
-                    "md5sum" : "1b7d6523647db85f9dd2b00d751f5f6f",
-                    "url" : "{url_base}/kernels/riscv/static/lupio-linux-20220727",
+                    "md5sum" : "f94351edbbb0e7bd9617f7b381635546",
+                    "url" : "{url_base}/kernels/riscv/static/lupio-linux",
                     "source" : "src/lupv"
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "name": "print-this",
-            "contents": [
-                {
-                    "type" : "resource",
-                    "name": "riscv-print-this",
-                    "documentation": "A simple RISC-V binary that prints a string a set number of times. It takes two mandatory arguments: A string to print and an integer specifying how many times the string is to be printed.",
-                    "architecture" :"RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "ee2963ca71ce13ae2f096198b58064ad",
-                    "url" : "{url_base}/test-progs/print-this/riscv-print-this",
-                    "source" : "src/print-this"
-                },
-                {
-                    "type" : "resource",
-                    "name": "x86-print-this",
-                    "documentation": "A simple X86 binary that prints a string a set number of times. It takes two mandatory arguments: A string to print and an integer specifying how many times the string is to be printed.",
-                    "architecture" :"X86",
-                    "is_zipped" : false,
-                    "md5sum" : "eab785f7c14ab97b89e17c9af2f43002",
-                    "url" : "{url_base}/test-progs/print-this/x86-print-this",
-                    "source" : "src/print-this"
                 }
             ]
         },
@@ -423,7 +175,7 @@
                     "architecture" : "RISCV",
                     "is_zipped" :  false,
                     "md5sum" : "6d9494d22b90d817e826b0d762fda973",
-                    "url" : "{url_base}/test-progs/hello/bin/riscv/linux/hello-20220728",
+                    "url" : "{url_base}/test-progs/hello/bin/riscv/linux/hello",
                     "source" : "src/simple"
                 },
                 {
@@ -4030,116 +3782,6 @@
                     "is_zipped" : false,
                     "md5sum" : "aff1c28cdb84b9509547935c62aec435",
                     "url" : "{url_base}/test-progs/asmtest/bin/rv64um-v-remw",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-fadd",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "b4b6127cf0b70dc428e9dc84ff924675",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fadd",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-fclass",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "51987dc0a2e25c41ea7a60b3e1b6d3e1",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fclass",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-fcmp",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "38d202dfe077171e0dcfcd4f3a09e14d",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fcmp",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-fcvt",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "4e703e3534179c2db1173c7c67b2edb8",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fcvt",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-fcvt_w",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "195875e6a42e191681f0d0e0f7c4d5a2",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fcvt_w",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-fdiv",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "06c66b6a66480122699d3224f84e0abe",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fdiv",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-fmadd",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "096e6454a25877b19de22054ecc08540",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fmadd",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-fmin",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "3b392c9fb858199f6a701fd4b16feb0d",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-fmin",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-ldst",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "794f5106977c726639e4d0f6b93fa38c",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-ldst",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-move",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "0d3bd78a75a3dded8d97be0965af1b90",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-move",
-                    "source" : "src/asmtest"
-                },
-                {
-                    "type" : "resource",
-                    "name" : "rv64uzfh-ps-recoding",
-                    "documentation" : "A RISCV binary used to test a specific RISCV instruction.",
-                    "architecture" : "RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "8b6f3dbfa31f3e679417ba7b35ee8c2f",
-                    "url" : "{url_base}/test-progs/asmtest/bin/rv64uzfh-ps-recoding",
                     "source" : "src/asmtest"
                 }
 			]
