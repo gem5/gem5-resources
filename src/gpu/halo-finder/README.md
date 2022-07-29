@@ -59,4 +59,4 @@ docker run --rm -v $PWD:$PWD -w $PWD -u $UID:$GID <image_name> gem5/build/GCN3_X
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v21-2/test-progs/halo-finder/ForceTreeTest>
+<http://dist.gem5.org/dist/v22-0/test-progs/halo-finder/ForceTreeTest>

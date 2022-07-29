@@ -29,7 +29,7 @@ To compile:
 
 ```
 cd src/gpu/hsa-agent-pkt
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu:v21-2 make gfx8-apu
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu:v22-0 make gfx8-apu
 ```
 
 The compiled binary can be found in `src/gpu/hsa-agent-pkt/bin`
