@@ -20,13 +20,24 @@
         {
             "type": "resource",
             "name" : "riscv-hello-example-checkpoint",
-            "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'.",
+            "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'. This was used for the v22.0 release and should not be used for future releases.",
             "architecture": "RISCV",
             "is_zipped" : false,
             "md5sum" : "3a57c1bb1077176c4587b8a3bf4f8ace",
             "source" : null,
             "is_tar_archive" : true,
             "url": "{url_base}/checkpoints/riscv-hello-example-checkpoint.tar"
+        },
+        {
+            "type": "resource",
+            "name" : "riscv-hello-example-checkpoint-v22-1",
+            "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'. Used for v22.1 onwards.",
+            "architecture": "RISCV",
+            "is_zipped" : false,
+            "md5sum" : "cb8d8e41cfe13b2baf50f69de78c0cdf",
+            "source" : null,
+            "is_tar_archive" : true,
+            "url": "{url_base}/checkpoints/riscv-hello-example-checkpoint-20220801.tar"
         },
         {
             "type": "resource",
