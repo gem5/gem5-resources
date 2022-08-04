@@ -34,7 +34,7 @@
             "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'. Used for v22.1 onwards.",
             "architecture": "RISCV",
             "is_zipped" : false,
-            "md5sum" : "e3734b63149869696b26b24e088a1d2a",
+            "md5sum" : "346c7d079320ef7daead4e03914266c7",
             "source" : null,
             "is_tar_archive" : true,
             "url": "{url_base}/checkpoints/riscv-hello-example-checkpoint-20220801.tar"
