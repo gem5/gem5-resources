@@ -76,7 +76,7 @@ You can update the following line in the `x86-ubuntu.json` file.
 ```
 
 Once this process succeeds, the disk image can be found on `x86-ubuntu/x86-ubuntu-image/x86-ubuntu`.
-A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v21-2/images/x86/ubuntu-18-04/x86-ubuntu.img.gz).
+A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v22-0/images/x86/ubuntu-18-04/x86-ubuntu.img.gz).
 
 
 ## Example Run Scripts

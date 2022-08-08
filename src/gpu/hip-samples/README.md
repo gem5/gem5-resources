@@ -28,7 +28,7 @@ Compiling the HIP samples, compiling the GCN3_X86 gem5, and running the HIP samp
 
 ```
 cd src/gpu/hip-samples
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu:v21-2 make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu:v22-0 make
 ```
 
 Individual programs can be made by specifying the name of the program
@@ -38,18 +38,18 @@ This can be changed by editing the --amdgpu-target argument in the Makefile.
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v21-2/test-progs/hip-samples/2dshfl>
+<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/2dshfl>
 
-<http://dist.gem5.org/dist/v21-2/test-progs/hip-samples/dynamic_shared>
+<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/dynamic_shared>
 
-<http://dist.gem5.org/dist/v21-2/test-progs/hip-samples/inline_asm>
+<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/inline_asm>
 
-<http://dist.gem5.org/dist/v21-2/test-progs/hip-samples/MatrixTranspose>
+<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/MatrixTranspose>
 
-<http://dist.gem5.org/dist/v21-2/test-progs/hip-samples/sharedMemory>
+<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/sharedMemory>
 
-<http://dist.gem5.org/dist/v21-2/test-progs/hip-samples/shfl>
+<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/shfl>
 
-<http://dist.gem5.org/dist/v21-2/test-progs/hip-samples/stream>
+<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/stream>
 
-<http://dist.gem5.org/dist/v21-2/test-progs/hip-samples/unroll>
+<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/unroll>

@@ -14,8 +14,7 @@ author: ["Joël Porquet-Lupine"]
 This README will cover how to create a bootloader/kernel, and a disk image which
 may be used to run LupV (LupIO with RISC-V) in gem5.
 
-An example script which uses these resources is provided here:
-<https://gem5.googlesource.com/public/gem5/+/refs/tags/v21.2.0.0/configs/example/lupv/>.
+An example script which uses these resources is provided here: <https://gem5.googlesource.com/public/gem5/+/refs/tags/v22.0.0.0/configs/example/lupv/>.
 
 
 ## Toolchain
@@ -65,8 +64,12 @@ $ make
 The resulting firmware which includes the bootloader and the kernel, and can be
 loaded as a kernel image in gem5, is in `build/bbl`.
 
+<<<<<<< HEAD
 A pre-built bootloader/kernel binary can be obtained from
 [here](http://dist.gem5.org/dist/v21-2/kernels/riscv/static/lupio-linux).
+=======
+A pre-built bootloader/kernel binary can be obtained from [here](http://dist.gem5.org/dist/v22-0/kernels/riscv/static/lupio-linux).
+>>>>>>> stable
 
 ## Root filesystem
 
@@ -135,5 +138,9 @@ $ sudo kpartx -d rootfs.img
 The resulting filesystem image, which can be loaded as a partition image in
 gem5, is `rootfs.img`.
 
+<<<<<<< HEAD
 A pre-built, gzipped, image can be obtained
 [here](http://dist.gem5.org/dist/v21-2/images/riscv/busybox/riscv-lupio-busybox.img.gz).
+=======
+A pre-built, gzipped, image can be obtained [here](http://dist.gem5.org/dist/v22-0/images/riscv/busybox/riscv-lupio-busybox.img.gz).
+>>>>>>> stable
