@@ -8,6 +8,17 @@
     },
     "resources": [
         {
+            "type" : "workload",
+            "name" : "x86-ubuntu-18.04-boot",
+            "documentation" : "A full boot of Ubuntu 18.04 with Linux 5.4.49 for X86. It runs an `m5 exit` command when the boot is completed unless the readfile is specified. If specified the readfile will be executed after booting.",
+            "function": "set_kernel_disk_workload",
+            "resources" : {
+                "kernel" : "x86-linux-kernel-5.4.49",
+                "disk_image":"x86-ubuntu-18.04-img"
+            },
+            "additional_params" : {}
+        },
+        {
             "type": "resource",
             "name" : "vega-mmio",
             "documentation" : "Used with the 'x86-gpu-fs-img' disk image.",
