@@ -19,6 +19,17 @@
             "additional_params" : {}
         },
         {
+            "type" : "workload",
+            "name" : "riscv-ubuntu-20.04-boot",
+            "documentation" : "A full boot of Ubuntu 20.04 with Linux 5.10 for RISCV. It runs an `m5 exit` command when the boot is completed unless the readfile is specified. If specified the readfile will be executed after booting.",
+            "function": "set_kernel_disk_workload",
+            "resources" : {
+                "kernel" : "riscv-bootloader-vmlinux-5.10",
+                "disk_image":"riscv-ubuntu-20.04-img"
+            },
+            "additional_params" : {}
+        },
+        {
             "type": "resource",
             "name" : "vega-mmio",
             "documentation" : "Used with the 'x86-gpu-fs-img' disk image.",
