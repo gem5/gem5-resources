@@ -30,6 +30,18 @@
             "additional_params" : {}
         },
         {
+            "type" : "workload",
+            "name" : "arm64-ubuntu-20.04-boot",
+            "documentation" : "A full boot of Ubuntu 20.04 with Linux 5.4.49 for ARM64. It runs an `m5 exit` command when the boot is completed unless the readfile is specified. If specified the readfile will be executed after booting.",
+            "function": "set_kernel_disk_workload",
+            "resources" : {
+                "kernel" : "arm64-linux-kernel-5.4.49",
+                "disk_image": "arm64-ubuntu-20.04-img",
+                "bootloader": "arm64-bootloader-foundation"
+            },
+            "additional_params" : {}
+        },
+        {
             "type": "resource",
             "name" : "vega-mmio",
             "documentation" : "Used with the 'x86-gpu-fs-img' disk image.",
