@@ -78,6 +78,16 @@
         },
         {
             "type" : "resource",
+            "name" : "x86-m5-exit-repeat",
+            "documentation" : "A simple binary which will run `m5 exit` in an infinite loop. Compiled to the X86 ISA.",
+            "architecture" : "X86",
+            "is_zipped" : false,
+            "md5sum" : "0a19604f669c4b9e468cc2bedee62199",
+            "url" : "{url_base}/test-progs/m5-exit-repeat/x86-m5-exit-repeat-20220825",
+            "source" : "src/m5-exit-repeat"
+        },
+        {
+            "type" : "resource",
             "name" : "x86-parsec",
             "documentation" : "A disk image containing the PARSEC benchmark suite, compiled to X86, built on top of Ubuntu 18.04.",
             "architecture" : "X86",
