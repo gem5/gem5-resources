@@ -8,40 +8,6 @@
     },
     "resources": [
         {
-            "type" : "workload",
-            "name" : "x86-ubuntu-18.04-boot",
-            "documentation" : "A full boot of Ubuntu 18.04 with Linux 5.4.49 for X86. It runs an `m5 exit` command when the boot is completed unless the readfile is specified. If specified the readfile will be executed after booting.",
-            "function": "set_kernel_disk_workload",
-            "resources" : {
-                "kernel" : "x86-linux-kernel-5.4.49",
-                "disk_image":"x86-ubuntu-18.04-img"
-            },
-            "additional_params" : {}
-        },
-        {
-            "type" : "workload",
-            "name" : "riscv-ubuntu-20.04-boot",
-            "documentation" : "A full boot of Ubuntu 20.04 with Linux 5.10 for RISCV. It runs an `m5 exit` command when the boot is completed unless the readfile is specified. If specified the readfile will be executed after booting.",
-            "function": "set_kernel_disk_workload",
-            "resources" : {
-                "kernel" : "riscv-bootloader-vmlinux-5.10",
-                "disk_image":"riscv-ubuntu-20.04-img"
-            },
-            "additional_params" : {}
-        },
-        {
-            "type" : "workload",
-            "name" : "arm64-ubuntu-20.04-boot",
-            "documentation" : "A full boot of Ubuntu 20.04 with Linux 5.4.49 for ARM64. It runs an `m5 exit` command when the boot is completed unless the readfile is specified. If specified the readfile will be executed after booting.",
-            "function": "set_kernel_disk_workload",
-            "resources" : {
-                "kernel" : "arm64-linux-kernel-5.4.49",
-                "disk_image": "arm64-ubuntu-20.04-img",
-                "bootloader": "arm64-bootloader-foundation"
-            },
-            "additional_params" : {}
-        },
-        {
             "type": "resource",
             "name" : "vega-mmio",
             "documentation" : "Used with the 'x86-gpu-fs-img' disk image.",
