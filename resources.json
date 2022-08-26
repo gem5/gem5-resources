@@ -88,6 +88,16 @@
         },
         {
             "type" : "resource",
+            "name" : "x86-matrix-multiply",
+            "documentation" : "A simple binary which runs a matrix mutiply operation on two 100x100 matrixes. After multiplication it will return the print the of the multiplication.",
+            "architecture" : "X86",
+            "is_zipped" : false,
+            "md5sum" : "bfedb18f311ba5f59af6e115c1f7f58c",
+            "url" : "{url_base}/test-progs/matrix-multiply/x86-matrix-multiply-20220825",
+            "source" : "src/matrix-multiply"
+        },
+        {
+            "type" : "resource",
             "name" : "x86-parsec",
             "documentation" : "A disk image containing the PARSEC benchmark suite, compiled to X86, built on top of Ubuntu 18.04.",
             "architecture" : "X86",
