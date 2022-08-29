@@ -103,7 +103,7 @@ To use Hirsute's version of u-boot-qemu, we will download the package from here,
 download and install the package.
 
 ```sh
-wget http://mirrors.kernel.org/ubuntu/pool/main/u/u-boot/u-boot-qemu_2021.01+dfsg-3ubuntu9_all.deb
+wget http://old-releases.ubuntu.com/ubuntu/pool/main/u/u-boot/u-boot-qemu_2021.01+dfsg-3ubuntu9_all.deb
 dpkg -i u-boot-qemu_2021.01+dfsg-3ubuntu9_all.deb
 apt-get install -f
 ```
