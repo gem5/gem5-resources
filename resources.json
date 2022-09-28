@@ -64,6 +64,17 @@
         },
         {
             "type": "resource",
+            "name" : "simpoints-se-checkpoints-v22-1",
+            "documentation" : "Checkpoints used in 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py'.",
+            "architecture": "X86",
+            "is_zipped" : true,
+            "md5sum" : "ebab7fffb11e93f2aa6ccfed9a0f692a",
+            "source" : null,
+            "is_tar_archive" : true,
+            "url": "{url_base}/checkpoints/simpoints-se-checkpoints-example-20220928.tar.gz"
+        },
+        {
+            "type": "resource",
             "name" : "riscv-hello-example-checkpoint-v22-1",
             "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'. Used for v22.1 onwards.",
             "architecture": "RISCV",
