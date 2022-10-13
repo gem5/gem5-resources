@@ -42,6 +42,34 @@
             "additional_params" : {}
         },
         {
+            "type": "workload",
+            "name": "x86-print-this-15000-with-simpoints",
+            "documentation": "This workload is used in the 'configs/example/gem5_library/checkpoints/simpoints-se-checkpoint.py' and 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py' example configuration scripts.",
+            "function": "set_se_simpoint_workload",
+            "resources": {
+                "binary": "x86-print-this",
+                "simpoint": "x86-print-this-1500-simpoints"
+            },
+            "additional_params" :{
+                "arguments": ["print this", 15000]
+            }
+        },
+        {
+            "type": "resource",
+            "name": "x86-print-this-1500-simpoints",
+            "documentation": "Simpoints for running the 'x86-print-this' resource with the parameters `\"print this\" 15000`. This is encapsulated in the 'x86-print-this-15000-with-simpoints' workload.",
+            "architecture": "X86",
+            "is_zipped" : false,
+            "md5sum" : "3fcffe3956c8a95e3fb82e232e2b41fb",
+            "source" : null,
+            "is_tar_archive" : true,
+            "url": "{url_base}/simpoints/x86-print-this-15000-simpoints-20221013.tar",
+            "additional_metadata" : {
+                "simpoint_interval": 1000000,
+                "warmup_interval": 1000000
+            }
+        },
+        {
             "type": "resource",
             "name" : "vega-mmio",
             "documentation" : "Used with the 'x86-gpu-fs-img' disk image.",
