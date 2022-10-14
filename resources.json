@@ -44,11 +44,25 @@
         {
             "type": "workload",
             "name": "x86-print-this-15000-with-simpoints",
-            "documentation": "This workload is used in the 'configs/example/gem5_library/checkpoints/simpoints-se-checkpoint.py' and 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py' example configuration scripts.",
+            "documentation": "This workload is used in the 'configs/example/gem5_library/checkpoints/simpoints-se-checkpoint.py' example configuration script.",
             "function": "set_se_simpoint_workload",
             "resources": {
                 "binary": "x86-print-this",
                 "simpoint": "x86-print-this-1500-simpoints"
+            },
+            "additional_params" :{
+                "arguments": ["print this", 15000]
+            }
+        },
+        {
+            "type": "workload",
+            "name": "x86-print-this-15000-with-simpoints-and-checkpoint",
+            "documentation": "This workload is used in the 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py' example configuration script.",
+            "function": "set_se_simpoint_workload",
+            "resources": {
+                "binary": "x86-print-this",
+                "simpoint": "x86-print-this-1500-simpoints",
+                "checkpoint_dir": "simpoints-se-checkpoints-v22-1-v2"
             },
             "additional_params" :{
                 "arguments": ["print this", 15000]
@@ -93,13 +107,24 @@
         {
             "type": "resource",
             "name" : "simpoints-se-checkpoints-v22-1",
-            "documentation" : "Checkpoints used in 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py'.",
+            "documentation" : "Checkpoints used in 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py'. This is deprecated, 'simpoints-se-checkpits-v22-1-v2' should be used instead. This resource will be removed in future releases of gem5.",
             "architecture": "X86",
             "is_zipped" : true,
             "md5sum" : "ebab7fffb11e93f2aa6ccfed9a0f692a",
             "source" : null,
             "is_tar_archive" : true,
             "url": "{url_base}/checkpoints/simpoints-se-checkpoints-example-20220928.tar.gz"
+        },
+        {
+            "type": "resource",
+            "name" : "simpoints-se-checkpoints-v22-1-v2",
+            "documentation" : "Checkpoints used in 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py'.",
+            "architecture": "X86",
+            "is_zipped" : true,
+            "md5sum" : "c88e51cca030720f4cc3e1d24a5cfd75",
+            "source" : null,
+            "is_tar_archive" : true,
+            "url": "{url_base}/checkpoints/simpoints-se-checkpoints-example-20221014.tar.gz"
         },
         {
             "type": "resource",
