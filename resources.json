@@ -62,7 +62,7 @@
             "resources": {
                 "binary": "x86-print-this",
                 "simpoint": "x86-print-this-1500-simpoints",
-                "checkpoint_dir": "simpoints-se-checkpoints-v22-1-v2"
+                "checkpoint": "simpoints-se-checkpoints-v22-1-v2"
             },
             "additional_params" :{
                 "arguments": ["print this", 15000]
