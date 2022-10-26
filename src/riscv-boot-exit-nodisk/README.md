@@ -259,6 +259,6 @@ The desired bootloader is file is at `riscv-fs-nodisk/riscv-pk/build/bbl` or
 
 
 ## Example
-```sh
-gem5/build/RISCV/gem5.opt configs/run_riscv.py bbl-m5-exit atomic 1
-```
+This resource is used in gem5/SST integration.
+For instructions to run the integeration, please refer to `ext/sst/README.md`
+of the gem5 repo.
