@@ -6,5 +6,5 @@ if [ ! -f ./packer ]; then
     rm packer_${PACKER_VERSION}_linux_amd64.zip;
 fi
 
-./packer validate boot-exit/boot-exit.json
-./packer build boot-exit/boot-exit.json
+./packer validate x86-ubuntu/x86-ubuntu.json
+./packer build x86-ubuntu/x86-ubuntu.json
