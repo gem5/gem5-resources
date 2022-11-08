@@ -1,5 +1,5 @@
 ---
-title: Linux x86-ubuntu image
+title: Linux riscv-ubuntu image
 tags:
     - riscv
     - fullsystem
@@ -31,8 +31,10 @@ riscv-ubuntu/
   |
   |___ disk-image/
   |      |___ shared/                          # Auxiliary files needed for disk creation
+  |      |      |___ serial-getty@.service     # Auto-login script
   |      |___ riscv-ubuntu/
-  |              |___ exit.sh                  # Exits the simulated guest upon booting
+  |              |___ gem5_init.sh             # The script to be appended to .bashrc on the disk image
+  |              |___ exit.sh                  # A script that calls m5 exit
   |
   |___ ubuntu.img                              # The disk image
   |
@@ -80,7 +82,7 @@ wget https://cdimage.ubuntu.com/releases/20.04.3/release/ubuntu-20.04.4-preinsta
 # unpacking/decompressing the disk image
 xz -dk ubuntu-20.04.4-preinstalled-server-riscv64+unmatched.img.xz
 # renaming the disk image
-mv ubuntu-20.04.4-preinstalled-server-riscv64+unmatched.img.xz ubuntu.img
+mv ubuntu-20.04.4-preinstalled-server-riscv64+unmatched.img ubuntu.img
 # adding 4GB to the disk
 qemu-img resize -f raw ubuntu.img +4G
 ```
@@ -93,16 +95,21 @@ According to (https://wiki.ubuntu.com/RISC-V),
 >
 >    apt install qemu-system-misc opensbi u-boot-qemu qemu-utils
 >
-> Hirsute's version of u-boot-qemu is required at the moment to boot hirsute images.
+> u-boot-qemu version 2022.01 (or newer) is required to boot in qemu.
 
-To use Hirsute's version of u-boot-qemu, we will download the package from here,
-(https://packages.ubuntu.com/hirsute/u-boot-qemu). The following command will
+To use this version of u-boot-qemu, we will download the package from here,
+(https://mirrors.edge.kernel.org/ubuntu/pool/main/u/u-boot/). The following command will
 download and install the package.
 
 ```sh
-wget http://mirrors.kernel.org/ubuntu/pool/main/u/u-boot/u-boot-qemu_2021.01+dfsg-3ubuntu9_all.deb
-dpkg -i u-boot-qemu_2021.01+dfsg-3ubuntu9_all.deb
+wget https://mirrors.edge.kernel.org/ubuntu/pool/main/u/u-boot/u-boot-qemu_2022.01%2Bdfsg-2ubuntu2_all.deb
+dpkg -i u-boot-qemu_2022.01+dfsg-2ubuntu2_all.deb
 apt-get install -f
+```
+
+The correct version of u-boot-qemu is also available in the Ubuntu 22.04 or later.
+```sh
+apt install u-boot-qemu
 ```
 
 The following command will install the rest of the dependencies,
@@ -174,6 +181,7 @@ cd riscv-ubuntu/
 scp -P 5555 gem5/util/m5/build/riscv/out/m5 ubuntu@localhost:/home/ubuntu/
 scp -P 5555 disk-image/shared/serial-getty@.service ubuntu@localhost:/home/ubuntu/
 scp -P 5555 disk-image/riscv-ubuntu/gem5_init.sh ubuntu@localhost:/home/ubuntu/
+scp -P 5555 disk-image/riscv-ubuntu/exit.sh ubuntu@localhost:/home/ubuntu/
 ```
 
 Connecting to the guest,
@@ -194,6 +202,9 @@ ln -s /sbin/m5 /sbin/gem5
 mv /home/ubuntu/gem5_init.sh /root/
 chmod +x /root/gem5_init.sh
 echo "/root/gem5_init.sh" >> /root/.bashrc
+
+mv /home/ubuntu/exit.sh /root/
+chmod +x /root/exit.sh
 ```
 
 # Pre-built disk image
@@ -204,3 +215,15 @@ A pre-build, gzipped, disk image is available at <http://dist.gem5.org/dist/v22-
 This disk image is used in the following gem5 example RISCV config files, found within the gem5 repository:
 * `gem5/configs/example/gem5_library/riscv-fs.py`, which simulates a full system running with RISCV ISA.
 * `gem5/configs/example/gem5_library/riscv-ubuntu-run.py`, which simulates a full system with RISCV based Ubuntu 20.04 disk-image. Upon successful start-up, a `m5_exit instruction encountered` is encountered. The simulation ends then.
+
+Note: To use the locally built Ubuntu image in gem5, make sure to pass the `root_partition`
+parameter to `CustomResource` or `CustomDiskImageResource`. For example,
+```py
+board.set_kernel_disk_workload(
+    kernel=Resource("riscv-bootloader-vmlinux-5.10"),
+    disk_image=CustomDiskImageResource(
+        local_path="<RESOURCES_PARENT_PATH>/gem5-resources/src/riscv-ubuntu/ubuntu.img",
+        disk_root_partition="1",
+    )
+)
+```
