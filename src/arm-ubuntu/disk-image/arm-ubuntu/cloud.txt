@@ -1,6 +1,6 @@
 #cloud-config
 users:
-  - name: ### insert the username here ###
+  - name: ubuntu ### change this name to the current user (use `whoami`) ###
     ssh-authorized-keys:
       - ssh-rsa ### insert the rsa key here ###
     sudo: ['ALL=(ALL) NOPASSWD:ALL']

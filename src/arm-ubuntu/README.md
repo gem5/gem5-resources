@@ -49,11 +49,11 @@ arm-ubuntu/
 ## Building the disk image
 
 This requires an ARM cross compiler to be installed. The disk image is a 64-bit
-ARM 64 (aarch64) disk iamge. Therefore, we only focus on the 64-bit version of
+ARM 64 (aarch64) disk image. Therefore, we only focus on the 64-bit version of
 the cross compiler. It can be installed by:
 
 ```sh
-sudo apt-get install aarch64-linux-gnu-g++-10 aarch64-linux-gnu-gcc-10
+sudo apt-get install g++-10-aarch64-linux-gnu gcc-10-aarch64-linux-gnu
 ```
 
 In order to build the ARM based Ubuntu disk-image for with gem5, build the m5
@@ -99,6 +99,18 @@ wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.i
 
 # Booting the disk image using QEMU
 
+## Generating an SSH key pair
+```sh
+ssh-keygen -t rsa -b 4096
+```
+Leave all prompted fields empty and hit enter. This will generate a public and
+private key pair in files `~/.ssh/id_rsa` and `~/.ssh/id_rsa.pub`. If your username
+is different from what is printed by command `whoami`, then add `-C "<username>*<hostname>"`
+to the command:
+```sh
+ssh-keygen -t rsa -b 4096 -C "<username>*<hostname>"
+```
+
 ## Making a cloud config file
 
 First, we need a cloud config that will have the authorization information
@@ -120,12 +132,14 @@ users:
 ```
 
 * Note: Do not leave stray spaces in the `cloud.txt` file.
+* If your username is different from what is printed by command `whoami`, then use that for parameter "name" in cloud.txt
 
 More information about generating an ssh rsa key is available
 [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key).
 You can ignore the GitHub email address part.
 
 ## Booting the cloud disk image with the cloud config file
+In the `arm-ubuntu/disk-image` directory,
 
 ```sh
 dd if=/dev/zero of=flash0.img bs=1M count=64
@@ -150,15 +164,19 @@ qemu-system-aarch64 \
 
 ## Manipulating the disk image
 
-While the qemu instance is still running, we will use Packer to connect
-to the virtual machine and manipulate the disk image. Before doing that, we
-need to add the private key using `ssh-add`.
+When the qemu instance has fully booted, cloud-init has completed, and while it
+is still running, we will use Packer to connect to the virtual machine and
+manipulate the disk image. Before doing that, we need to add the private key using `ssh-add`.
 
 ```sh
 ssh-add ~/.ssh/id_rsa
 ```
 
-This process is automated. In the `arm-ubuntu/disk-image/` directory,
+If the image was booted in qemu on a port number other than 5555, edit the `ssh_port`
+parameter in `arm-ubuntu/arm-ubuntu.json` accordingly. The disk manipulation
+process is automated. If your username is different from what is printed by
+command `whoami`, then edit `build.sh` and change the value of `USER` to `"<your_username>"`.
+Then in the `arm-ubuntu/disk-image/` directory,
 
 ```sh
 chmod +x build.sh

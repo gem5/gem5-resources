@@ -27,7 +27,7 @@ if [ ! $USER = "ubuntu" ]; then
 
         count=`grep "name: ubuntu" arm-ubuntu/cloud.txt |wc -l`
         if [ $count -ne 0 ]; then
-            echo "cloud.txt is not modified correctly! Please refer to the README.md file on how to modify name and ssh-rsa in the cloud.txt file."
+            echo "cloud.txt 'name' is not modified correctly! Please refer to the README.md file on how to modify name and ssh-rsa in the cloud.txt file."
             exit
         fi
 
@@ -38,7 +38,7 @@ if [ ! $USER = "ubuntu" ]; then
         if [[ "$KEY" == *"$USER@$HOSTNAME"* ]]; then
             echo "cloud.txt verified!"
         else
-            echo "cloud.txt is not modified correctly! Please refer to the README.md file on how to modify ssh-rsa in the cloud.txt file."
+            echo "cloud.txt 'ssh-rsa' key is not modified correctly! Please refer to the README.md file on how to modify ssh-rsa in the cloud.txt file."
             exit
         fi
     fi
