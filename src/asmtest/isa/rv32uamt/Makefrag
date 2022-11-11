@@ -1,0 +1,10 @@
+#=======================================================================
+# Makefrag for rv64ua_mt tests
+#-----------------------------------------------------------------------
+
+rv32ua_mt_tests = amoadd_w amoswap_w amoxor_w amoand_w \
+                  amoor_w amomin_w amomax_w amominu_w amomaxu_w lrsc_w \
+
+rv32uamt_ps_tests = $(addprefix rv32uamt-ps-, $(rv32ua_mt_tests))
+
+spike_tests += $(rv32uamt_ps_tests)
