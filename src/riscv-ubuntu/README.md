@@ -51,7 +51,7 @@ sudo apt-get install ninja-build
 cd riscv-ubuntu/
 
 # QEMU
-git clone https://github.com/qemu/qemu
+git clone https://github.com/qemu/qemu --recursive
 cd qemu
 git checkout 0021c4765a6b83e5b09409b75d50c6caaa6971b9
 ./configure --target-list=riscv64-softmmu
