@@ -1,89 +1,12 @@
 
 {
-    "version" : "22.1",
-    "url_base" : "http://dist.gem5.org/dist/v22-1",
+    "version" : "22.0",
+    "url_base" : "http://dist.gem5.org/dist/v22-0",
     "previous-versions" : {
         "develop" : "https://gem5.googlesource.com/public/gem5-resources/+/refs/heads/develop/resources.json?format=TEXT",
-        "21.2" : "http://resources.gem5.org/prev-resources-json/resources-21-2.json",
-        "22.0" : "http://resources.gem5.org/prev-resources-json/resources-22-0.json"
+        "21.2" : "http://resources.gem5.org/prev-resources-json/resources-21-2.json"
     },
     "resources": [
-        {
-            "type" : "workload",
-            "name" : "x86-ubuntu-18.04-boot",
-            "documentation" : "A full boot of Ubuntu 18.04 with Linux 5.4.49 for X86. It runs an `m5 exit` command when the boot is completed unless the readfile is specified. If specified the readfile will be executed after booting.",
-            "function": "set_kernel_disk_workload",
-            "resources" : {
-                "kernel" : "x86-linux-kernel-5.4.49",
-                "disk_image":"x86-ubuntu-18.04-img"
-            },
-            "additional_params" : {}
-        },
-        {
-            "type" : "workload",
-            "name" : "riscv-ubuntu-20.04-boot",
-            "documentation" : "A full boot of Ubuntu 20.04 with Linux 5.10 for RISCV. It runs an `m5 exit` command when the boot is completed unless the readfile is specified. If specified the readfile will be executed after booting.",
-            "function": "set_kernel_disk_workload",
-            "resources" : {
-                "kernel" : "riscv-bootloader-vmlinux-5.10",
-                "disk_image":"riscv-ubuntu-20.04-img"
-            },
-            "additional_params" : {}
-        },
-        {
-            "type" : "workload",
-            "name" : "arm64-ubuntu-20.04-boot",
-            "documentation" : "A full boot of Ubuntu 20.04 with Linux 5.4.49 for ARM64. It runs an `m5 exit` command when the boot is completed unless the readfile is specified. If specified the readfile will be executed after booting.",
-            "function": "set_kernel_disk_workload",
-            "resources" : {
-                "kernel" : "arm64-linux-kernel-5.4.49",
-                "disk_image": "arm64-ubuntu-20.04-img",
-                "bootloader": "arm64-bootloader-foundation"
-            },
-            "additional_params" : {}
-        },
-        {
-            "type": "workload",
-            "name": "x86-print-this-15000-with-simpoints",
-            "documentation": "This workload is used in the 'configs/example/gem5_library/checkpoints/simpoints-se-checkpoint.py' example configuration script.",
-            "function": "set_se_simpoint_workload",
-            "resources": {
-                "binary": "x86-print-this",
-                "simpoint": "x86-print-this-1500-simpoints"
-            },
-            "additional_params" :{
-                "arguments": ["print this", 15000]
-            }
-        },
-        {
-            "type": "workload",
-            "name": "x86-print-this-15000-with-simpoints-and-checkpoint",
-            "documentation": "This workload is used in the 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py' example configuration script.",
-            "function": "set_se_simpoint_workload",
-            "resources": {
-                "binary": "x86-print-this",
-                "simpoint": "x86-print-this-1500-simpoints",
-                "checkpoint": "simpoints-se-checkpoints-v22-1-v2"
-            },
-            "additional_params" :{
-                "arguments": ["print this", 15000]
-            }
-        },
-        {
-            "type": "resource",
-            "name": "x86-print-this-1500-simpoints",
-            "documentation": "Simpoints for running the 'x86-print-this' resource with the parameters `\"print this\" 15000`. This is encapsulated in the 'x86-print-this-15000-with-simpoints' workload.",
-            "architecture": "X86",
-            "is_zipped" : false,
-            "md5sum" : "3fcffe3956c8a95e3fb82e232e2b41fb",
-            "source" : null,
-            "is_tar_archive" : true,
-            "url": "{url_base}/simpoints/x86-print-this-15000-simpoints-20221013.tar",
-            "additional_metadata" : {
-                "simpoint_interval": 1000000,
-                "warmup_interval": 1000000
-            }
-        },
         {
             "type": "resource",
             "name" : "vega-mmio",
@@ -97,46 +20,13 @@
         {
             "type": "resource",
             "name" : "riscv-hello-example-checkpoint",
-            "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'. This was used for the v22.0 release and should not be used for future releases.",
+            "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'.",
             "architecture": "RISCV",
             "is_zipped" : false,
             "md5sum" : "3a57c1bb1077176c4587b8a3bf4f8ace",
             "source" : null,
             "is_tar_archive" : true,
             "url": "{url_base}/checkpoints/riscv-hello-example-checkpoint.tar"
-        },
-        {
-            "type": "resource",
-            "name" : "simpoints-se-checkpoints-v22-1",
-            "documentation" : "Checkpoints used in 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py'. This is deprecated, 'simpoints-se-checkpits-v22-1-v2' should be used instead. This resource will be removed in future releases of gem5.",
-            "architecture": "X86",
-            "is_zipped" : true,
-            "md5sum" : "ebab7fffb11e93f2aa6ccfed9a0f692a",
-            "source" : null,
-            "is_tar_archive" : true,
-            "url": "{url_base}/checkpoints/simpoints-se-checkpoints-example-20220928.tar.gz"
-        },
-        {
-            "type": "resource",
-            "name" : "simpoints-se-checkpoints-v22-1-v2",
-            "documentation" : "Checkpoints used in 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py'.",
-            "architecture": "X86",
-            "is_zipped" : true,
-            "md5sum" : "c88e51cca030720f4cc3e1d24a5cfd75",
-            "source" : null,
-            "is_tar_archive" : true,
-            "url": "{url_base}/checkpoints/simpoints-se-checkpoints-example-20221014.tar.gz"
-        },
-        {
-            "type": "resource",
-            "name" : "riscv-hello-example-checkpoint-v22-1",
-            "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'. Used for v22.1 onwards.",
-            "architecture": "RISCV",
-            "is_zipped" : false,
-            "md5sum" : "346c7d079320ef7daead4e03914266c7",
-            "source" : null,
-            "is_tar_archive" : true,
-            "url": "{url_base}/checkpoints/riscv-hello-example-checkpoint-20220801.tar"
         },
         {
             "type": "resource",
@@ -174,26 +64,6 @@
             "md5sum" : "19e178622935fdcee1aff0dd7d6d0ebc",
             "url" : "{url_base}/test-progs/m5-exit/bin/x86/linux/m5_exit",
             "source" : "src/simple"
-        },
-        {
-            "type" : "resource",
-            "name" : "x86-m5-exit-repeat",
-            "documentation" : "A simple binary which will run `m5 exit` in an infinite loop. Compiled to the X86 ISA.",
-            "architecture" : "X86",
-            "is_zipped" : false,
-            "md5sum" : "0a19604f669c4b9e468cc2bedee62199",
-            "url" : "{url_base}/test-progs/m5-exit-repeat/x86-m5-exit-repeat-20220825",
-            "source" : "src/m5-exit-repeat"
-        },
-        {
-            "type" : "resource",
-            "name" : "x86-matrix-multiply",
-            "documentation" : "A simple binary which runs a matrix mutiply operation on two 100x100 matrixes. After multiplication it will return the print the of the multiplication.",
-            "architecture" : "X86",
-            "is_zipped" : false,
-            "md5sum" : "9e758bad40bafef98720085fc3c635b3",
-            "url" : "{url_base}/test-progs/matrix-multiply/x86-matrix-multiply-20220826",
-            "source" : "src/matrix-multiply"
         },
         {
             "type" : "resource",
@@ -266,8 +136,8 @@
             "documentation" : "A disk image containing Ubuntu 20.04 for RISCV which will run an `m5 readfile` instruction after booting. If no script file is specified an `m5 exit` instruction will be exected",
             "architecture" : "RISCV",
             "is_zipped" : true,
-            "md5sum" : "e9ea10a3c606d26e2fa2f8ce5d1a8758",
-            "url" : "{url_base}/images/riscv/ubuntu-20-04/riscv-ubuntu-20221118.img.gz",
+            "md5sum" : "fece1414df7fa534a837e460095a9be8",
+            "url" : "{url_base}/images/riscv/ubuntu-20-04/riscv-ubuntu-20220318.img.gz",
             "source" : "src/riscv-ubuntu",
             "additional_metadata" : {
                 "root_partition": "1"
@@ -507,38 +377,12 @@
                 {
                     "type" : "resource",
                     "name" : "riscv-lupio-linux-kernel",
-                    "documentation": "A kernel built with LupIO device (https://gitlab.com/luplab/lupio) drivers. Must be used when setting LupIO board workloads. Compatible with the 'riscv-lupio-busybox-img' disk image resource.",
+                    "documentation": "A kernel built with LupIO device (https://gitlab.com/luplab/lupio) drivers. Must be used when setting LupIO board workloads. Compataible with the 'riscv-lupio-busybox-img' disk image resource.",
                     "is_zipped" : false,
                     "architecture" : "RISCV",
-                    "md5sum" : "1b7d6523647db85f9dd2b00d751f5f6f",
-                    "url" : "{url_base}/kernels/riscv/static/lupio-linux-20220727",
+                    "md5sum" : "f94351edbbb0e7bd9617f7b381635546",
+                    "url" : "{url_base}/kernels/riscv/static/lupio-linux",
                     "source" : "src/lupv"
-                }
-            ]
-        },
-        {
-            "type": "group",
-            "name": "print-this",
-            "contents": [
-                {
-                    "type" : "resource",
-                    "name": "riscv-print-this",
-                    "documentation": "A simple RISC-V binary that prints a string a set number of times. It takes two mandatory arguments: A string to print and an integer specifying how many times the string is to be printed.",
-                    "architecture" :"RISCV",
-                    "is_zipped" : false,
-                    "md5sum" : "ee2963ca71ce13ae2f096198b58064ad",
-                    "url" : "{url_base}/test-progs/print-this/riscv-print-this",
-                    "source" : "src/print-this"
-                },
-                {
-                    "type" : "resource",
-                    "name": "x86-print-this",
-                    "documentation": "A simple X86 binary that prints a string a set number of times. It takes two mandatory arguments: A string to print and an integer specifying how many times the string is to be printed.",
-                    "architecture" :"X86",
-                    "is_zipped" : false,
-                    "md5sum" : "eab785f7c14ab97b89e17c9af2f43002",
-                    "url" : "{url_base}/test-progs/print-this/x86-print-this",
-                    "source" : "src/print-this"
                 }
             ]
         },
@@ -553,7 +397,7 @@
                     "architecture" : "RISCV",
                     "is_zipped" :  false,
                     "md5sum" : "6d9494d22b90d817e826b0d762fda973",
-                    "url" : "{url_base}/test-progs/hello/bin/riscv/linux/hello-20220728",
+                    "url" : "{url_base}/test-progs/hello/bin/riscv/linux/hello",
                     "source" : "src/simple"
                 },
                 {
