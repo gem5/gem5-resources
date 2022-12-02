@@ -28,7 +28,7 @@ The release-gfx8 target builds for gfx801, a GCN3-based APU, and gfx803, a
 GCN3-based dGPU. There are other targets (release) that build for GPU types
 that are currently unsupported in gem5.
 
-## Running HeterSync on GCN3_X86/gem5.opt
+## Running HeteroSync on GCN3_X86/gem5.opt
 
 HeteroSync has multiple applications that can be run (see below).  For example, to run sleepMutex with 10 ld/st per thread, 16 WGs, and 4 iterations of the critical section:
 

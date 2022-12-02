@@ -4,7 +4,7 @@ tags:
     - x86
     - amdgpu
 layout: default
-permalink: resources/pannotia/bc
+permalink: resources/pannotia/color
 shortdoc: >
     Resources to build a disk image with the GCN3 Pannotia Color workload.
 ---
