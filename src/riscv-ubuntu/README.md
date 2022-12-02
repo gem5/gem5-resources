@@ -34,12 +34,10 @@ riscv-ubuntu/
   |      |___ shared/                          # Auxiliary files needed for disk creation
   |      |      |___ serial-getty@.service     # Auto-login script
   |      |___ riscv-ubuntu/
-<<<<<<< HEAD
   |             |___ gem5_init.sh              # The script to be appended to .bashrc on the disk image
   |             |___ post-installation.sh      # The script manipulating the disk image
   |             |___ riscv-ubuntu.json         # The Packer script
   |             |___ exit.sh                  # A script that calls m5 exit
->>>>>>> develop
   |
   |
   |___ README.md                               # This README file
