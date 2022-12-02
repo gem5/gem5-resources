@@ -18,14 +18,14 @@ Compiling square, compiling the GCN3_X86 gem5, and running square on gem5 is dep
 By default, square will build for all supported GPU types (gfx801, gfx803)
 ```
 cd src/gpu/square
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu:v22-0 make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu:v22-1 make
 ```
 
 The compiled binary can be found in the `bin` directory.
 
 ## Pre-built binary
 
-A pre-built binary can be found at <http://dist.gem5.org/dist/v22-0/test-progs/square/square>.
+A pre-built binary can be found at <http://dist.gem5.org/dist/v22-1/test-progs/square/square>.
 
 ## Compiling GCN3_X86/gem5.opt
 
@@ -34,11 +34,11 @@ The test is run with the GCN3_X86 gem5 variant, compiled using the gcn-gpu docke
 ```
 git clone https://gem5.googlesource.com/public/gem5
 cd gem5
-docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:v22-0 scons build/GCN3_X86/gem5.opt -j <num cores>
+docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:v22-1 scons build/GCN3_X86/gem5.opt -j <num cores>
 ```
 
 ## Running Square on GCN3_X86/gem5.opt
 
 ```
-docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:v22-0 gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n 3 -c bin/square
+docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:v22-1 gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n 3 -c bin/square
 ```

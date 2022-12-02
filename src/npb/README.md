@@ -72,7 +72,7 @@ cd disk-image
 ```
 
 Once this process succeeds, the created disk image can be found on `npb/npb-image/npb`.
-A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v22-0/images/x86/ubuntu-18-04/npb.img.gz).
+A disk image already created following the above instructions can be found, gzipped, [here](http://dist.gem5.org/dist/v22-1/images/x86/ubuntu-18-04/npb.img.gz).
 
 ## Simulating NPB using an example script
 

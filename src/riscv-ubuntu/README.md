@@ -212,7 +212,7 @@ chmod +x /root/exit.sh
 
 # Pre-built disk image
 
-A pre-build, gzipped, disk image is available at <http://dist.gem5.org/dist/v22-0/images/riscv/ubuntu-20-04/riscv-ubuntu-20220318.img.gz>. **Note**: The password set for the `ubuntu` user is `helloworld`.
+A pre-build, gzipped, disk image is available at <http://dist.gem5.org/dist/v22-1/images/riscv/ubuntu-20-04/riscv-ubuntu-20220318.img.gz>. **Note**: The password set for the `ubuntu` user is `helloworld`.
 
 # Using the Disk Image
 This disk image is used in the following gem5 example RISCV config files, found within the gem5 repository:

@@ -68,7 +68,7 @@ loaded as a kernel image in gem5, is in `build/bbl`.
 A pre-built bootloader/kernel binary can be obtained from
 [here](http://dist.gem5.org/dist/v21-2/kernels/riscv/static/lupio-linux).
 =======
-A pre-built bootloader/kernel binary can be obtained from [here](http://dist.gem5.org/dist/v22-0/kernels/riscv/static/lupio-linux).
+A pre-built bootloader/kernel binary can be obtained from [here](http://dist.gem5.org/dist/v22-1/kernels/riscv/static/lupio-linux).
 >>>>>>> stable
 
 ## Root filesystem
@@ -142,5 +142,5 @@ gem5, is `rootfs.img`.
 A pre-built, gzipped, image can be obtained
 [here](http://dist.gem5.org/dist/v21-2/images/riscv/busybox/riscv-lupio-busybox.img.gz).
 =======
-A pre-built, gzipped, image can be obtained [here](http://dist.gem5.org/dist/v22-0/images/riscv/busybox/riscv-lupio-busybox.img.gz).
+A pre-built, gzipped, image can be obtained [here](http://dist.gem5.org/dist/v22-1/images/riscv/busybox/riscv-lupio-busybox.img.gz).
 >>>>>>> stable

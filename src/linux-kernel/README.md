@@ -80,11 +80,11 @@ kernel binaries have been tested using the `gcc 7.5.0` compile
 The pre-build compiled x86 Linux binaries can be downloaded from the following
 links:
 
-- [vmlinux-4.4.186](http://dist.gem5.org/dist/v22-0/kernels/x86/static/vmlinux-4.4.186)
-- [vmlinux-4.9.186](http://dist.gem5.org/dist/v22-0/kernels/x86/static/vmlinux-4.9.186)
-- [vmlinux-4.14.134](http://dist.gem5.org/dist/v22-0/kernels/x86/static/vmlinux-4.14.134)
-- [vmlinux-4.19.83](http://dist.gem5.org/dist/v22-0/kernels/x86/static/vmlinux-4.19.83)
-- [vmlinux-5.4.49](http://dist.gem5.org/dist/v22-0/kernels/x86/static/vmlinux-5.4.49)
+- [vmlinux-4.4.186](http://dist.gem5.org/dist/v22-1/kernels/x86/static/vmlinux-4.4.186)
+- [vmlinux-4.9.186](http://dist.gem5.org/dist/v22-1/kernels/x86/static/vmlinux-4.9.186)
+- [vmlinux-4.14.134](http://dist.gem5.org/dist/v22-1/kernels/x86/static/vmlinux-4.14.134)
+- [vmlinux-4.19.83](http://dist.gem5.org/dist/v22-1/kernels/x86/static/vmlinux-4.19.83)
+- [vmlinux-5.4.49](http://dist.gem5.org/dist/v22-1/kernels/x86/static/vmlinux-5.4.49)
 
 **Note on ARM Kernel Binaries:** A cross-compiler is needed to compile ARM
 kernel binaries on a x86 machine. We used `gcc 10.3.0
@@ -93,13 +93,13 @@ limited to arm64 architecture only.
 
 The pre-build compiled ARM Linux binaries can be downloaded from the following links:
 
-- [arm64-vmlinux-4.4.186](http://dist.gem5.org/dist/v22-0/kernels/arm/static/arm64-vmlinux-4.4.186)
-- [arm64-vmlinux-4.9.186](http://dist.gem5.org/dist/v22-0/kernels/arm/static/arm64-vmlinux-4.9.186)
-- [arm64-vmlinux-4.14.134](http://dist.gem5.org/dist/v22-0/kernels/arm/static/arm64-vmlinux-4.14.134)
-- [arm64-vmlinux-4.19.83](http://dist.gem5.org/dist/v22-0/kernels/arm/static/arm64-vmlinux-4.19.83)
-- [arm64-vmlinux-5.10.110](http://dist.gem5.org/dist/v22-0/kernels/arm/static/arm64-vmlinux-5.10.110)
-- [arm64-vmlinux-5.15.36](http://dist.gem5.org/dist/v22-0/kernels/arm/static/arm64-vmlinux-5.15.36)
-- [arm64-vmlinux-5.4.49](http://dist.gem5.org/dist/v22-0/kernels/arm/static/arm64-vmlinux-5.4.49)
+- [arm64-vmlinux-4.4.186](http://dist.gem5.org/dist/v22-1/kernels/arm/static/arm64-vmlinux-4.4.186)
+- [arm64-vmlinux-4.9.186](http://dist.gem5.org/dist/v22-1/kernels/arm/static/arm64-vmlinux-4.9.186)
+- [arm64-vmlinux-4.14.134](http://dist.gem5.org/dist/v22-1/kernels/arm/static/arm64-vmlinux-4.14.134)
+- [arm64-vmlinux-4.19.83](http://dist.gem5.org/dist/v22-1/kernels/arm/static/arm64-vmlinux-4.19.83)
+- [arm64-vmlinux-5.10.110](http://dist.gem5.org/dist/v22-1/kernels/arm/static/arm64-vmlinux-5.10.110)
+- [arm64-vmlinux-5.15.36](http://dist.gem5.org/dist/v22-1/kernels/arm/static/arm64-vmlinux-5.15.36)
+- [arm64-vmlinux-5.4.49](http://dist.gem5.org/dist/v22-1/kernels/arm/static/arm64-vmlinux-5.4.49)
 
 Alternatively to the vanilla kernel + linux-configs described above, it is also
 possible to compile a gem5 port of the Linux Kernel 4.14.0 for ARM. The
