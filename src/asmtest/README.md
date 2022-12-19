@@ -32,13 +32,7 @@ Specific commit ID that this work is based off: <https://github.com/riscv/riscv-
 Changes from the orignal riscv-tests project
 --------------------------------------------
 
-1. Only rv64 tests are used in this work
-
-The original project offers both rv64 and rv32 tests. Since the current
-implementation of RISC-V in gem5 is focused on its 64-bit version, only
-64-bit tests (rv64) are imported from the original project.
-
-2. New testing environment for gem5
+1. New testing environment for gem5
 
 Since the original riscv-tests project is designed for bare-metal systems (i.e.,
 without OS support), it offers several environments to control how a test
@@ -51,7 +45,7 @@ exit code of a particular test instead of writing them to a host machine. This
 environment requires the testing platform to implement/emulate at least `exit`
 system call.
 
-3. Minimal threading library written in assembly (`isa/macros/mt`)
+2. Minimal threading library written in assembly (`isa/macros/mt`)
 
 To simplify debugging multi-threading systems, we developed a minimal threading
 library that supports very basic threading functionality including creating a
@@ -60,7 +54,7 @@ up some thread(s).
 
 Multi-threaded tests can rely on this library to manage multiple threads.
 
-4. RISC-V AMO, LR, and SC instruction tests (`isa/rv64uamt`)
+3. RISC-V AMO, LR, and SC instruction tests (`isa/rv32uamt`, `isa/rv64uamt`)
 
 This is a set of assembly tests that target multi-core systems and test AMO
 instructions. This test set uses a minimal number of system calls (i.e., clone,
@@ -71,7 +65,7 @@ stress AMO instructions. Threads only synchronize at the end of their
 execution. The master thread does a spin-wait to wait for all threads to
 complete before it checks final results.
 
-5. Thread-related system call tests (`isa/rv64samt`)
+4. Thread-related system call tests (`isa/rv32samt`, `isa/rv64samt`)
 
 This is a set of assembly tests that target thread-related system calls and
 thread wait/wakeup behaviors. This set reuses some of the tests in
