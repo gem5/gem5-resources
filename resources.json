@@ -196,6 +196,16 @@
         },
         {
             "type" : "resource",
+            "name" : "x86-matrix-multiply-omp",
+            "documentation" : "A binary which runs a matrix mutiply operation on two 300x300 matrixes followed by a multiplication of two 150x150 matrices. These two matrix opperations are iterated over by an amount specified by the user via the first parameter. This binary utilizes OpenMP to parallelize the matrix operation. The number of threads used is specified by the user via the second parameter.",
+            "architecture" : "X86",
+            "is_zipped" : false,
+            "md5sum" : "922c9d005fdd22ca0fc3e501cc3eda58",
+            "url" : "{url_base}/test-progs/matrix-multiply-omp/x86-matrix-multiply-omp-20230127",
+            "source" : "src/matrix-multiply-omp"
+        },
+        {
+            "type" : "resource",
             "name" : "x86-parsec",
             "documentation" : "A disk image containing the PARSEC benchmark suite, compiled to X86, built on top of Ubuntu 18.04.",
             "architecture" : "X86",
