@@ -196,6 +196,16 @@
         },
         {
             "type" : "resource",
+            "name" : "x86-matrix-multiply-omp-100-8-global-pinpoints",
+            "documentation" : "The Simpoint pinpoints file for the 'x86-matrix-multiply-omp' binary when running with the inputs '100' (iterations) and '8' (threads).",
+            "architecture" : "X86",
+            "is_zipped" : false,
+            "md5sum" : "199ab22dd463dc70ee2d034bfe045082",
+            "url" : "{url_base}/pinpoints/x86-matrix-multiply-omp-100-8-global-pinpoints-20230127",
+            "source" : null
+        },
+        {
+            "type" : "resource",
             "name" : "x86-matrix-multiply-omp",
             "documentation" : "A binary which runs a matrix mutiply operation on two 300x300 matrixes followed by a multiplication of two 150x150 matrices. These two matrix opperations are iterated over by an amount specified by the user via the first parameter. This binary utilizes OpenMP to parallelize the matrix operation. The number of threads used is specified by the user via the second parameter.",
             "architecture" : "X86",
