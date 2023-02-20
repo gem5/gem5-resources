@@ -594,7 +594,7 @@
             "is_zipped" : true,
             "md5sum" : "c9217a88eff20e5547be87368a1499c1",
             "url" : "{url_base}/images/x86/ubuntu-18-04/gapbs.img.gz",
-            "source" : "src/gabps",
+            "source" : "src/gapbs",
             "additional_metadata" : {
                 "root_partition": "1"
             }
