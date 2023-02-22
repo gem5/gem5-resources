@@ -494,7 +494,7 @@
             "md5sum" : "5c6e787965cecc4ebbee0119886f358c",
             "source" : null,
             "is_tar_archive" : true,
-            "url": "{url_base}/checkpoints/riscv-hello-example-checkpoint-20220222.tar"
+            "url": "{url_base}/checkpoints/riscv-hello-example-checkpoint-20230222.tar"
         },
         {
             "type": "resource",
