@@ -487,6 +487,17 @@
         },
         {
             "type": "resource",
+            "name" : "riscv-hello-example-checkpoint-v22-1-1",
+            "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'. Used for v22.1.1 onwards.",
+            "architecture": "RISCV",
+            "is_zipped" : false,
+            "md5sum" : "5c6e787965cecc4ebbee0119886f358c",
+            "source" : null,
+            "is_tar_archive" : true,
+            "url": "{url_base}/checkpoints/riscv-hello-example-checkpoint-20220222.tar"
+        },
+        {
+            "type": "resource",
             "name" : "riscv-disk-img",
             "documentation" : "A simple RISCV disk image based on busybox.",
             "architecture": "RISCV",
