@@ -323,6 +323,18 @@
         },
         {
             "type": "resource",
+            "name" : "simpoints-se-checkpoints-v23-0-v1",
+            "documentation" : "The checkpoint used in 'configs/example/gem5_library/checkpoints/simpoints-se-restore.py'.",
+            "architecture": "X86",
+            "is_zipped" : true,
+            "md5sum" : "8b4772fa3d652d03b6d21fd172846810",
+            "source" : null,
+            "is_tar_archive" : true,
+            "url": "{url_base}/checkpoints/simpoints-se-checkpoint-example-20230222.tar.gz"
+        },
+
+        {
+            "type": "resource",
             "name" : "x86-matrix-multiply-omp-100-8-looppoint-checkpoint-region-1",
             "documentation" : "The region 1 looppoint checkpoint for the 'matrix-multiple-omp' resource with '100' and '8' as input parameters. Created with the 'configs/example/gem5_library/looppoints/create-looppoint-checkpoints.py' script",
             "architecture": "X86",
