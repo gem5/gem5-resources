@@ -499,7 +499,7 @@
         },
         {
             "type": "resource",
-            "name" : "riscv-hello-example-checkpoint-v22-1-1",
+            "name" : "riscv-hello-example-checkpoint-v23",
             "documentation" : "A checkpoint used in 'configs/example/gem5_library/checkpoints/riscv-hello-restore-checkpoint.py'. Used for v22.1.1 onwards.",
             "architecture": "RISCV",
             "is_zipped" : false,
