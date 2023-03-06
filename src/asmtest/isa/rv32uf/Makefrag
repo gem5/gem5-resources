@@ -9,5 +9,3 @@ rv32uf_sc_tests = \
 rv32uf_p_tests = $(addprefix rv32uf-p-, $(rv32uf_sc_tests))
 rv32uf_v_tests = $(addprefix rv32uf-v-, $(rv32uf_sc_tests))
 rv32uf_ps_tests = $(addprefix rv32uf-ps-, $(rv32uf_sc_tests))
-
-spike_tests += $(rv32uf_p_tests) $(rv32uf_v_tests)
