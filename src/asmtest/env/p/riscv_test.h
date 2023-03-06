@@ -110,16 +110,16 @@
 #define INIT_SATP                                                      \
   la t0, 1f;                                                            \
   csrw mtvec, t0;                                                       \
-  csrwi sptbr, 0;                                                       \
+  csrwi satp, 0;                                                       \
   .align 2;                                                             \
 1:
 
 #define DELEGATE_NO_TRAPS                                               \
+  csrwi mie, 0;                                                         \
   la t0, 1f;                                                            \
   csrw mtvec, t0;                                                       \
   csrwi medeleg, 0;                                                     \
   csrwi mideleg, 0;                                                     \
-  csrwi mie, 0;                                                         \
   .align 2;                                                             \
 1:
 
@@ -142,7 +142,8 @@
   li a0, (MSTATUS_VS & (MSTATUS_VS >> 1)) |                             \
          (MSTATUS_FS & (MSTATUS_FS >> 1));                              \
   csrs mstatus, a0;                                                     \
-  csrwi fcsr, 0
+  csrwi fcsr, 0;                                                        \
+  csrwi vcsr, 0;
 
 #define RISCV_MULTICORE_DISABLE                                         \
   csrr a0, mhartid;                                                     \
