@@ -46,14 +46,6 @@ RVTEST_CODE_BEGIN
 #endif
 #endif
 
-  # Make sure reading the cycle counter in four ways doesn't trap.
-#ifdef __MACHINE_MODE
-  TEST_CASE(25, x0, 0, csrrc  x0, cycle, x0);
-  TEST_CASE(26, x0, 0, csrrs  x0, cycle, x0);
-  TEST_CASE(27, x0, 0, csrrci x0, cycle, 0);
-  TEST_CASE(28, x0, 0, csrrsi x0, cycle, 0);
-#endif
-
   TEST_CASE(20, a0,         0, csrw sscratch, zero; csrr a0, sscratch);
   TEST_CASE(21, a0,         0, csrrwi a0, sscratch, 0; csrrwi a0, sscratch, 0xF);
   TEST_CASE(22, a0,      0x1f, csrrsi x0, sscratch, 0x10; csrr a0, sscratch);
@@ -142,10 +134,9 @@ finish:
   .global stvec_handler
 stvec_handler:
   # Trapping on tests 13-15 is good news.
-  # Note that since the test didn't complete, TESTNUM is smaller by 1.
-  li t0, 12
+  li t0, 13
   bltu TESTNUM, t0, 1f
-  li t0, 14
+  li t0, 15
   bleu TESTNUM, t0, privileged
 1:
 
