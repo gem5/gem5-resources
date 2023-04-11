@@ -10,7 +10,7 @@
 # define REGBYTES 4
 #endif
 
-#define STACK_TOP (_end + 4096)
+#define STACK_TOP (_end + RISCV_PGSIZE * 4)
 
   .section ".text.init","ax",@progbits
   .globl _start
@@ -59,6 +59,8 @@ handle_reset:
   li x29, 0
   li x30, 0
   li x31, 0
+
+  INIT_RNMI
 
   la t0, trap_vector
   csrw mtvec, t0
