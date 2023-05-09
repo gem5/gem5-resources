@@ -280,6 +280,17 @@
             }
         },
         {
+            "type": "binary",
+            "name": "x86-gpu-square",
+            "documentation": "A simple GPU kernel which squares a vector.",
+            "architecture": "X86",
+            "is_zipped" : false,
+            "md5sum" : "54dde4b5199ab2808dd3e90cf33f66bf",
+            "source" : "src/gpu/square",
+            "is_tar_archive" : false,
+            "url": "{url_base}/test-progs/square/square"
+        },
+        {
             "type": "resource",
             "name" : "vega-mmio",
             "documentation" : "Used with the 'x86-gpu-fs-img' disk image.",
