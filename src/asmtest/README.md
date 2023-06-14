@@ -73,6 +73,11 @@ thread wait/wakeup behaviors. This set reuses some of the tests in
 threads wait and wake up in certain cases. This test set also checks functional
 behaviors of threads after a wait/wakeup operation.
 
+5. Bit-manipulation ISA tests (`isa/rv32ub`, `isa/rv64ub`)
+
+This is a instructions test sets of Zba, Zbb, Zbc and Zbs extensions. They are
+bit-manipulations of registers.
+
 How to compile this test suite
 ------------------------------
 
