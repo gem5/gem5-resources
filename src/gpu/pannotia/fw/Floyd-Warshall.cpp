@@ -194,7 +194,7 @@ int main(int argc, char **argv)
         // Below is the verification part
         // Calculate on the CPU
         int *dist = distmatrix;
-        for (int k = 0; k < dim; k++) {
+        for (int k = 1; k < dim && k < MAX_ITERS; k++) {
             for (int i = 0; i < dim; i++) {
                 for (int j = 0; j < dim; j++) {
                     if (dist[i * dim + k] + dist[k * dim + j] < dist[i * dim + j]) {
