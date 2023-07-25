@@ -171,8 +171,8 @@ int main(int argc, char **argv)
     // Main computation loop
     for (int k = 1; k < dim && k < MAX_ITERS; k++) {
         hipLaunchKernelGGL(HIP_KERNEL_NAME(floydwarshall), dim3(grid), dim3(threads), 0, 0, dist_d, next_d, dim, k);
+        hipDeviceSynchronize();
     }
-    hipDeviceSynchronize();
 
     //double timer4 = gettime();
     err = hipMemcpy(result, dist_d, dim * dim * sizeof(int), hipMemcpyDeviceToHost);
