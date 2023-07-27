@@ -1,0 +1,70 @@
+# Adding a Workload to gem5
+
+This tutorial will walk you through the process of creating a Workload in gem5 and testing it, through the new gem5 Resources infrastructure introduced in gem5 v23.0.
+
+## Introduction
+
+The gem5 Resources infrastructure allows adding a local JSON data source that can be added to the main gem5 Resources MongoDB database. We will use the local JSON data source to add a new Workload to gem5.
+
+## Prerequisites
+
+This tutorial assumes that you already have a pre-compiled Resource that you want to make into a Workload.
+
+## Defining the Workload
+
+### Defining the Resource JSON
+
+The first step is to define the Resource that is used in a Workload. In case the Resource already exists in gem5, you may skip this step.
+
+Let's assume that the Resource we want to wrap in a Workload is compiled for `RISC-V`, categorized as a `binary`, and has the name `binary-resource`. We can define this Resource in a JSON object as follows:
+
+``` json
+{
+    "category": "binary",
+    "id": "binary-resource",
+    "description": "A RISCV binary used to test a specific RISCV instruction.",
+    "architecture": "RISCV",
+    "is_zipped": false,
+    "resource_version": "1.0.0",
+    "gem5_versions": [
+        "23.0"
+    ],
+}
+```
+
+It is important to initialize all the fields here correctly, as they are used by gem5 to initialize and run the Resource.
+
+### Defining the Workload JSON
+
+Assuming you have the Resource JSON and the Resource is part of gem5 Resources, you can now define the Workload JSON. Let's assume that the Workload we are building wraps `binary-resource`, and is called `binary-workload`. We can define this Workload in a local JSON file as follows:
+
+``` json
+{
+    "id": "binary-workload",
+    "description": "A RISCV binary used to test a specific RISCV instruction.",
+    "architecture": "RISCV",
+    "function": "set_se_binary_workload",
+    "resource_version": "1.0.0",
+    "gem5_versions": [
+        "23.0"
+    ],
+    "resources": {
+        "binary": "binary-resource"
+    },
+}
+```
+
+## Testing the Workload
+
+To test the Workload, we first have to add the local JSON file as a data source for gem5. This can be done by navigating to `src/python/gem5_default_config.py` and adding a JSON object to `"sources"` in the following format:
+
+``` python
+    "my-resources": {
+        "url": "<PATH_TO_JSON_FILE>",
+        "isMongo": False,
+    }
+```
+
+Rebuild gem5, and you should now be able to use the Workload in your simulations through its name, `binary-workload`.
+
+NOTE: In order to check if the Resources you specified as part of a Workload are being passed into the Workload correctly, you can use the get_parameters() function in the Workload class. This function returns a dictionary of the Resources passed into the Workload. Its implementation can be found in [`src/python/gem5/resources/workload.py`](https://github.com/gem5/gem5/blob/af72b9ba580546ac12ce05bfaac3fd53fa8699f4/src/python/gem5/resources/workload.py#L92b).
