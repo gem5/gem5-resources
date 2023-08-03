@@ -17,13 +17,20 @@
 void trap_entry();
 void pop_tf(trapframe_t*);
 
+extern volatile uint64_t tohost;
+extern volatile uint64_t fromhost;
+
+static void do_tohost(uint64_t tohost_value)
+{
+  while (tohost)
+    fromhost = 0;
+  tohost = tohost_value;
+}
+
 #define pa2kva(pa) ((void*)(pa) - DRAM_BASE - MEGAPAGE_SIZE)
 #define uva2kva(pa) ((void*)(pa) - MEGAPAGE_SIZE)
 
 #define flush_page(addr) asm volatile ("sfence.vma %0" : : "r" (addr) : "memory")
-
-static const char *stdoutFile = "stdout";
-static const char *exitcodeFile = "exitcode";
 
 static uint64_t lfsr63(uint64_t x)
 {
@@ -31,33 +38,26 @@ static uint64_t lfsr63(uint64_t x)
   return (x >> 1) | (bit << 62);
 }
 
-static void cputchar(const char *file, int x)
+static void cputchar(int x)
 {
-  volatile char c = x;
-  register size_t a0 asm("a0") = (uintptr_t)(&c);
-  register size_t a1 asm("a1") = 1;
-  register size_t a2 asm("a2") = 0;
-  register size_t a3 asm("a3") = (uintptr_t)file;
-  asm volatile (".long 0x9E00007B" : : "r"(a0), "r"(a1), "r"(a2), "r"(a3));
+  do_tohost(0x0101000000000000 | (unsigned char)x);
 }
 
 static void cputstring(const char* s)
 {
   while (*s)
-    cputchar(stdoutFile, *s++);
+    cputchar(*s++);
 }
 
 static void terminate(int code)
 {
-  cputchar(exitcodeFile, code >> 1);
-  register size_t a0 asm("a0") = 0;
-  asm volatile (".long 0x4200007B" : : "r"(a0));
+  do_tohost(code);
   while (1);
 }
 
 void wtf()
 {
-  terminate(255 << 1);
+  terminate(841);
 }
 
 #define stringify1(x) #x
