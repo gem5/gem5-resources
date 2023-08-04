@@ -198,8 +198,19 @@ handle_exception:                                                       \
         /* some unhandlable exception occurred */                       \
   1:    ori TESTNUM, TESTNUM, 1337;                                     \
   write_tohost:                                                         \
-        sw TESTNUM, tohost, t5;                                         \
-        sw zero, tohost + 4, t5;                                        \
+        mv a1, TESTNUM;                                                 \
+        /* 1 = success; otherwise (a0 >> 1) is the failed test */       \
+        srl a1, a1, 1;                                                  \
+        la a0, tohost_data;                                             \
+        sb a1, 0(a0);                                                   \
+        /* write exit code (binary) to file */                          \
+        li a1, 1;                                                       \
+        li a2, 0;                                                       \
+        la a3, tohost_file;                                             \
+        .long 0x9E00007B;                                               \
+        /* shutdown gem5 */                                             \
+        li a0, 0;                                                       \
+        .long 0x4200007B;                                               \
         j write_tohost;                                                 \
 reset_vector:                                                           \
         INIT_XREG;                                                      \
@@ -265,7 +276,11 @@ reset_vector:                                                           \
 // Data Section Macro
 //-----------------------------------------------------------------------
 
-#define EXTRA_DATA
+#define EXTRA_DATA                                                      \
+tohost_file:                                                            \
+        .asciz "exitcode";                                              \
+tohost_data:                                                            \
+        .byte 0;
 
 #define RVTEST_DATA_BEGIN                                               \
         EXTRA_DATA                                                      \

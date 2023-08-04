@@ -18,6 +18,8 @@
 
 #include "dataset1.h"
 
+#include <gem5/include/gem5/m5ops.h>
+
 //--------------------------------------------------------------------------
 // Main
 
@@ -31,9 +33,9 @@ int main( int argc, char* argv[] )
 #endif
 
   // Do the filter
-  setStats(1);
+  m5_work_begin(0, 0);
   median( DATA_SIZE, input_data, results_data );
-  setStats(0);
+  m5_work_end(0, 0);
 
   // Check the results
   return verify( DATA_SIZE, results_data, verify_data );

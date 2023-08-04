@@ -75,7 +75,7 @@ bmarks = $(bmarks_vvadd) $(bmarks_matmul)
 # Build rules
 #--------------------------------------------------------------------
 
-RISCV_PREFIX=riscv$(XLEN)-unknown-elf-
+RISCV_PREFIX=riscv64-linux-gnu-
 RISCV_GCC = $(RISCV_PREFIX)gcc
 RISCV_GCC_OPTS = -std=gnu99 -O2 -ffast-math
 RISCV_LINK = $(RISCV_GCC) -T $(common)/test.ld $(incs)
@@ -128,11 +128,11 @@ $(bmarks_riscv_out): %.riscv.out: %.riscv
 	$(RISCV_GCC) $(RISCV_GCC_OPTS) $(bmarks_defs) \
 	             -c $(incs) $< -o $@
 
-riscv: $(bmarks_riscv_dump) $(bmarks_riscv_hex)
+riscv: $(bmarks_riscv_dump)
 run-riscv: $(bmarks_riscv_out)
 	echo; perl -ne 'print "  [$$1] $$ARGV \t$$2\n" if /\*{3}(.{8})\*{3}(.*)/' \
  
-junk += $(bmarks_riscv_bin) $(bmarks_riscv_dump) $(bmarks_riscv_hex) $(bmarks_riscv_out) $(bmarks_riscv_obj)
+junk += $(bmarks_riscv_bin) $(bmarks_riscv_dump) $(bmarks_riscv_out) $(bmarks_riscv_obj)
 
  
 #------------------------------------------------------------

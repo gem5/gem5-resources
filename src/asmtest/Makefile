@@ -7,6 +7,7 @@ XLEN ?= 64
 src_dir 	:= ./isa
 bin_dir 	:= ./bin
 dump_dir 	:= ./dump
+bench_dir 	:= ./benchmarks
 
 include $(src_dir)/rv64ui/Makefrag
 include $(src_dir)/rv64uc/Makefrag
@@ -35,6 +36,8 @@ include $(src_dir)/rv32uamt/Makefrag
 include $(src_dir)/rv32samt/Makefrag
 include $(src_dir)/rv32ub/Makefrag
 
+include $(bench_dir)/Makefile
+
 default: all
 
 #--------------------------------------------------------------------
@@ -45,7 +48,7 @@ RISCV_PREFIX ?= riscv$(XLEN)-unknown-elf-
 RISCV_GCC ?= $(RISCV_PREFIX)gcc
 RISCV_GCC_OPTS ?= -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles
 RISCV_OBJDUMP ?= $(RISCV_PREFIX)objdump --disassemble-all --disassemble-zeroes --section=.text --section=.text.startup --section=.text.init --section=.data
-RISCV_SIM ?= spike
+RISCV_SIM ?= spike --isa=rv$(XLEN)gcv
 
 vpath %.S $(src_dir)
 

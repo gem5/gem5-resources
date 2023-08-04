@@ -16,6 +16,7 @@
 // algorithm to sovel the puzzle.
 
 #include "util.h"
+#include <gem5/include/gem5/m5ops.h>
 
 // This is the number of discs in the puzzle.
 
@@ -224,9 +225,9 @@ int main( int argc, char* argv[] )
   // Solve it
 
   towers_clear( &towers );
-  setStats(1);
+  m5_work_begin(0,0);
   towers_solve( &towers );
-  setStats(0);
+  m5_work_end(0,0);
 
   // Check the results
   return towers_verify( &towers );

@@ -13,6 +13,7 @@
 #include "util.h"
 #include <string.h>
 #include <assert.h>
+#include <gem5/include/gem5/m5ops.h>
 
 // The INSERTION_THRESHOLD is the size of the subarray when the
 // algorithm switches to using an insertion sort instead of
@@ -144,9 +145,9 @@ int main( int argc, char* argv[] )
 #endif
 
   // Do the sort
-  setStats(1);
+  m5_work_begin(0,0);
   sort( DATA_SIZE, input_data );
-  setStats(0);
+  m5_work_end(0,0);
 
   // Check the results
   return verify( DATA_SIZE, input_data, verify_data );
