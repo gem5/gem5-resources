@@ -13,6 +13,7 @@
 #include "util.h"
 #include <string.h>
 #include <limits.h>
+#include <gem5/include/gem5/m5ops.h>
 
 //--------------------------------------------------------------------------
 // Input/Reference Data
@@ -113,9 +114,9 @@ int main( int argc, char* argv[] )
 #endif
 
   // Do the sort
-  setStats(1);
+  m5_work_begin(0, 0);
   sort(DATA_SIZE, input_data, scratch);
-  setStats(0);
+  m5_work_end(0, 0);
 
   // Check the results
   return verify( DATA_SIZE, input_data, verify_data );

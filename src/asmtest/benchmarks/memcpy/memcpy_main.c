@@ -16,6 +16,7 @@
 // Input/Reference Data
 
 #include "dataset1.h"
+#include <gem5/include/gem5/m5ops.h>
 
 //--------------------------------------------------------------------------
 // Main
@@ -30,9 +31,9 @@ int main( int argc, char* argv[] )
 #endif
 
   // Do the riscv-linux memcpy
-  setStats(1);
+  m5_work_begin(0, 0);
   memcpy(results_data, input_data, sizeof(int) * DATA_SIZE); //, DATA_SIZE * sizeof(int));
-  setStats(0);
+  m5_work_end(0, 0);
 
   // Check the results
   return verify( DATA_SIZE, results_data, input_data );

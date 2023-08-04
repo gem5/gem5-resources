@@ -10,6 +10,7 @@
 // Input/Reference Data
 
 #include "dataset1.h"
+#include <gem5/include/gem5/m5ops.h>
 
 void spmv(int r, const double* val, const int* idx, const double* x,
           const int* ptr, double* y)
@@ -44,9 +45,9 @@ int main( int argc, char* argv[] )
   spmv(R, val, idx, x, ptr, y);
 #endif
 
-  setStats(1);
+  m5_work_begin(0, 0);
   spmv(R, val, idx, x, ptr, y);
-  setStats(0);
+  m5_work_end(0, 0);
 
   return verifyDouble(R, y, verify_data);
 }

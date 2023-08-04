@@ -15,6 +15,7 @@
 // Input/Reference Data
 
 #include "dataset1.h"
+#include <gem5/include/gem5/m5ops.h>
 
 //--------------------------------------------------------------------------
 // vvadd function
@@ -39,9 +40,9 @@ int main( int argc, char* argv[] )
 #endif
 
   // Do the vvadd
-  setStats(1);
+  m5_work_begin(0, 0);
   vvadd( DATA_SIZE, input1_data, input2_data, results_data );
-  setStats(0);
+  m5_work_end(0, 0);
 
   // Check the results
   return verify( DATA_SIZE, results_data, verify_data );
