@@ -2,6 +2,15 @@
 
 This tutorial will walk you through the process of creating a Workload in gem5 and testing it, through the new gem5 Resources infrastructure introduced in gem5 v23.0.
 
+A workload is set to a board in gem5 through the following line:
+
+``` python
+board.set_workload(Workload(<ID_OF_WORKLOAD>))
+```
+
+The Workload with ID '<ID_OF_WORKLOAD>' will be parsed and it will be used to construct the function call it defines. The function call specified in the `"function"` field of the Workload JSON is then executed on the board, along with any parameters it has defined in the `"additional_parameters"` field.
+
+
 ## Introduction
 
 The gem5 Resources infrastructure allows adding a local JSON data source that can be added to the main gem5 Resources MongoDB database. We will use the local JSON data source to add a new Workload to gem5.
@@ -52,7 +61,16 @@ Assuming you have the Resource JSON and the Resource is part of gem5 Resources, 
     "resources": {
         "binary": "binary-resource"
     },
+    "additional_parameters": {
+        "arguments": ["arg1", "arg2"]
+    }
 }
+```
+
+The `"function"` field defines the function that will be called on the board. The `"resources"` field defines the Resources that will be passed into the Workload. The `"additional_parameters"` field defines the additional parameters that will be passed into the Workload. So, the Workload defined above is equivalent to the following line of code:
+
+``` python
+board.set_se_binary_workload(binary = obtain_resource("binary_resource"), arguments = ["arg1", "arg2"])
 ```
 
 To see more about the fields required and not required by the workloads, see the [gem5 Resources JSON Schema](https://github.com/gem5/gem5-resources-website/blob/main/public/gem5-resources-schema.json)
