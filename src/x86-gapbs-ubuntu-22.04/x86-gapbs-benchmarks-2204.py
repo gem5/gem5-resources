@@ -175,6 +175,9 @@ processor = SimpleSwitchableProcessor(
 
 # Here we setup the board. The X86Board allows for Full-System X86 simulations
 
+"""
+Uncomment the X86Board_sda class and board setup when using Linux kernel version 5.15.36.
+"""
 
 # class X86Board_sda(X86Board):
 #     @overrides(X86Board)
@@ -187,6 +190,7 @@ processor = SimpleSwitchableProcessor(
 #     memory=memory,
 #     cache_hierarchy=cache_hierarchy,
 # )
+
 board = X86Board(
     clk_freq="3GHz",
     processor=processor,
@@ -218,7 +222,7 @@ else:
     command = f"./{args.benchmark} -sf ../{args.size}"
 
 board.set_kernel_disk_workload(
-    kernel=obtain_resource("x86-linux-kernel-4.19.83"),
+    kernel=obtain_resource("x86-linux-kernel-5.4.49"),
     disk_image=DiskImageResource(
         local_path="./qemu_files/x86_64-hpc-2204.img",
         root_partition="1"

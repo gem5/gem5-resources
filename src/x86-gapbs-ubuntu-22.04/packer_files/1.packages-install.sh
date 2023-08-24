@@ -24,7 +24,3 @@ sudo systemctl disable boot-efi.mount
 
 # Removing cloud-init
 sudo touch /etc/cloud/cloud-init.disabled
-
-# Use `systemctl mask <service/target/socket/timer>` to stop a systemd object from starting during the booting time
-# Use `systemd-analyze blame` and `systemd-analyze critical-chain` to figure out the computing intensive services
-# Use `grep` in /usr/lib/systemd to find which service to stop

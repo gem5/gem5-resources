@@ -14,7 +14,7 @@ In short, you will need to:
 2. Obtain the X86 Ubuntu disk image by running `get-disk-img.sh` in the 
     qemu_files directory.
     
-3. Generate a new pair of ssh keys and modify `X86_64-hpc.json` and/or  `cloud.txt` to match. 
+3. Generate a new pair of ssh keys and modify `X86_64-hpc.json` and `cloud.txt` to match. 
 4. Create `cloud.img` with `make-cloud-img.sh`.
 5. Launch a QEMU instance with `qemu-launch.sh`.
 6. Run Packer with `./packer build x86_64-hpc.json`.
@@ -32,15 +32,16 @@ After obtaining Packer, step 7 of the tutorial, "7. Building the x86_64 Disk Ima
 
 See Part 3 of this README for a diagram of the file structure.
 
-(3) You will also need to either (a)generate a new pair of ssh keys, replace the public key in `cloud.txt`, and change the filepath of the private key in `x86_64-hpc.json`, or (b)generate a new private key from the provided public key and update the filepath in `x86-64-hpc.json`. 
-    - The private key filepath in `x86-64-hpc.json` is under "ssh_certificate_file", in "builders"
-    - The public key in `cloud.txt` is under ssh-authorized-keys, at the bottom of the file.
+(3) You will also need to generate a new pair of ssh keys, replace the public key in `cloud.txt`, and change the filepath to the private key in `x86_64-hpc.json`. 
+- The public key in `cloud.txt` is under ssh-authorized-keys, at the bottom of the file.
+- The private key filepath in `x86-64-hpc.json` is under "ssh_certificate_file", in "builders"
+
 
 (4, 5) After this, make cloud.img by running `make-cloud-img.sh`and launch the disk image with `qemu-launch.sh`.
 
 (6) After launching the qemu instance, run Packer (in a different terminal) using `./packer build x86_64-hpc.json` in the packer_files directory. 
 
-Please note that the `x86_64-hpc.json` included in packer_files/x86_64-hpc.json is a modified version of the one in the linked tutorial. All scripts except for the first two were removed, as they weren't necessary for the GAPBS benchmarks, and `gapbs-install.sh` and `post-installation.sh` were added.
+Please note that the `x86_64-hpc.json` included in `packer_files/x86_64-hpc.json` is a modified version of the one in the linked tutorial. All scripts except for the first two were removed, as they weren't necessary for the GAPBS benchmarks, and `gapbs-install.sh` and `post-installation.sh` were added.
 
 If Packer hangs on "Waiting for ssh", follow the troubleshooting steps at the bottom of the linked tutorial. If a "Permission denied (publickey)" error occurs when attempting to ssh, try the following:
 ```
@@ -108,14 +109,11 @@ x86-gapbs-ubuntu-22.04/
   |      |___ runscript.sh
   |      |___ serial-getty@.service
   |      |___ x86_64-hpc.json
-  |             
-  |            
+  |           
+  |           
   |
   |___ qemu_files/
-  |      |___ cloud.img
   |      |___ cloud.txt
-  |      |___ flash0.img
-  |      |___ flash1.img
   |      |___ get-disk-img.sh
   |      |___ make-cloud-img.sh
   |      |___ qemu-launch.sh
