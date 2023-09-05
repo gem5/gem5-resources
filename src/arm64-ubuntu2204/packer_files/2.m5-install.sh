@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: BSD 3-Clause
 
 cd $HOME
-git clone https://gem5.googlesource.com/public/gem5/
+git clone https://github.com/gem5/gem5
 cd $HOME/gem5/util/m5
 /home/ubuntu/.local/bin/scons arm64.CROSS_COMPILE= build/arm64/out/m5
 
