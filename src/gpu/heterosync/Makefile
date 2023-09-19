@@ -9,7 +9,7 @@ BIN_DIR := bin
 all: release
 
 release: $(SRC) | $(BIN_DIR)
-	$(HIP_PATH)/bin/hipcc -DGFX9 --amdgpu-target=gfx900 $(SRC) -o $(BIN_DIR)/$(EXECUTABLE)
+	$(HIP_PATH)/bin/hipcc -DGFX9 --amdgpu-target=gfx900,gfx902 $(SRC) -o $(BIN_DIR)/$(EXECUTABLE)
 
 # gfx8 has a different number of bits it uses for sleeps, so compile accordingly
 release-gfx8: $(SRC) | $(BIN_DIR)

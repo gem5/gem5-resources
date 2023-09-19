@@ -12,7 +12,7 @@ EXECUTABLES := $(basename $(notdir $(SOURCES)))
 all: $(EXECUTABLES)
 
 $(EXECUTABLES): %: $(SRC_DIR)/%.cpp | $(BIN_DIR)
-	$(HIPCC) --amdgpu-target=gfx801,gfx803,gfx900 $< -o $(BIN_DIR)/$@
+	$(HIPCC) --amdgpu-target=gfx801,gfx803,gfx900,gfx902 $< -o $(BIN_DIR)/$@
 
 $(BIN_DIR):
 	mkdir -p $@
