@@ -14,7 +14,7 @@ author: ["Hoa Nguyen"]
 # RISCV Full System with Bootloader
 
 This document provides instructions to create an (OpenSBI)[https://github.com/riscv-software-src/opensbi] bootloader binary and a Linux kernel binary that work with gem5 full system simulations.
-The bootloader and the kernel binaries are completely independent; however, we'll provide instructions to build both binaries for the sake of completeness.
+The bootloader and the kernel binaries are completely independent; however, we'll provide instructions to build both binaries for completeness.
 
 In gem5, this bootloader is supposed to work with the default RISC-V Linux kernel configuration from the Linux project, as well as with any disk RISC-V image provided by `gem5-resources`.
 Different from the `riscv-fs` resource, the bootloader and the Linux kernel are separate inputs to gem5.
@@ -43,9 +43,13 @@ Despite the name, `OpenSBI` itself can act as a first-stage bootloader setting u
 
 `OpenSBI` offers 3 different boot flows: `FW_JUMP`, `FW_DYNAMIC`, and `FW_PAYLOAD`.
 The definition for each can be found in the official documentation.
-We use `FW_JUMP` as a bootloader.
+In this document, we use `FW_JUMP` as a bootloader.
 
-TODO: inputs to `FW_JUMP` and how it works.
+The `FW_JUMP` bootloader assumes that the device tree blob and the payload (in this case, the linux kernel) are written to memory before `FW_JUMP` bootloader is executed.
+In gem5 simulation, the `FW_JUMP` bootloader itself, the device tree blob, and the linux kernel are written to memory before simulation.
+
+During simulation, the `FW_JUMP` bootloader performs the first stage of booting then jumps to a specific address hardcoded in the bootloader.
+Therefore, you need to make sure that the linux kernel is written to memory starting from that specific address.
 
 ## Building the Docker Image
 
