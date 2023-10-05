@@ -11,7 +11,7 @@ shortdoc: >
 author: ["Hoa Nguyen"]
 ---
 
-# RISCV Full System with Bootloader
+# RISCV Full System with OpenSBI Firmware as a Bootloader
 
 This document provides instructions to create an (OpenSBI)[https://github.com/riscv-software-src/opensbi] bootloader binary and a Linux kernel binary that work with gem5 full system simulations.
 The bootloader and the kernel binaries are completely independent; however, we'll provide instructions to build both binaries for completeness.
