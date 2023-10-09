@@ -77,9 +77,9 @@ You can obtain the `vmlinux-5.4.0-105-generic` kernel using the following path f
 It is sometimes useful to build your own application and run in gem5. A docker is provided to allow users to build applications without needing to install ROCm locally. A pre-built docker image is available on gcr.io. This image can be pulled then used to build as follows:
 
 ```sh
-docker pull gcr.io/gem5-test/gpu-fs:latest
+docker pull ghcr.io/gem5/gpu-fs:latest
 cd /path/to/gem5-resources/src/gpu/square
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} gcr.io/gem5-test/gpu-fs:latest bash -c 'make clean; HCC_AMDGPU_TARGET=gfx900 make'
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} ghcr.io/gem5/gpu-fs:latest bash -c 'make clean; HCC_AMDGPU_TARGET=gfx900 make'
 ```
 
 Currently only Vega (gfx900) is supported for full system GPU simulation in gem5. It is therefore required to tell the compiler to build for this ISA using the HCC_AMDGPU_TARGET environment variable. Otherwise, the command to build the application is the same as if you were building locally.
