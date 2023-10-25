@@ -28,7 +28,7 @@ Compiling the HIP samples, compiling the GCN3_X86 gem5, and running the HIP samp
 
 ```
 cd src/gpu/hip-samples
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu:v22-1 make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v22-1 make
 ```
 
 Individual programs can be made by specifying the name of the program
