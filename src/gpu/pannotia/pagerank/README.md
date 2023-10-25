@@ -19,14 +19,14 @@ PR has two variants: default and spmv.  To compile the "default" variant:
 
 ```
 cd src/gpu/pannotia/pagerank
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make gem5-fusion
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make gem5-fusion
 ```
 
 To compile the "spmv" variant:
 
 ```
 cd src/gpu/pannotia/pagerank
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu bash -c "export VARIANT=SPMV ; make gem5-fusion"
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu bash -c "export VARIANT=SPMV ; make gem5-fusion"
 ```
 
 If you use the Makefile.default file instead, the Makefile will generate code designed to run on the real GPU instead.  Moreover, note that Makefile.gem5-fusion requires you to set the GEM5_ROOT variable (either on the command line or by modifying the Makefile), because the Pannotia applications have been updated to use [m5ops](https://www.gem5.org/documentation/general_docs/m5ops/).  By default, for both variants the Makefile builds for gfx801 and gfx803, and the binaries are placed in the src/gpu/pannotia/pagerank/bin folder.  Moreover, by default the VARIANT variable PageRank's Makefile assumes the csr variant is being used, hence why this variable does not need to be set for compiling it.
@@ -38,7 +38,7 @@ PageRank is a GPU application, which requires that gem5 is built with the GCN3_X
 ```
 git clone https://gem5.googlesource.com/public/gem5
 cd gem5
-docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) gcr.io/gem5-test/gcn-gpu:latest scons build/GCN3_X86/gem5.opt -j <num cores>
+docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) ghcr.io/gem5/gcn-gpu:latest scons build/GCN3_X86/gem5.opt -j <num cores>
 ```
 
 ## Running PageRank on GCN3_X86/gem5.opt
@@ -48,7 +48,7 @@ The following command shows how to run the PageRank default version:
 # Assuming gem5 and gem5-resources are in your working directory
 ```
 wget http://dist.gem5.org/dist/develop/datasets/pannotia/pagerank/coAuthorsDBLP.graph
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/pannotia/pagerank/bin -c pagerank.gem5 --options="coAuthorsDBLP.graph 1"
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/pannotia/pagerank/bin -c pagerank.gem5 --options="coAuthorsDBLP.graph 1"
 ```
 
 To run the PageRank spmv version:
@@ -56,7 +56,7 @@ To run the PageRank spmv version:
 # Assuming gem5, pannotia (input graphs, see below), and gem5-resources are in your working directory
 ```
 wget http://dist.gem5.org/dist/develop/datasets/pannotia/pagerank/coAuthorsDBLP.graph
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/pannotia/pagerank/bin -c pagerank_spmv.gem5 --options="coAuthorsDBLP.graph 1"
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/pannotia/pagerank/bin -c pagerank_spmv.gem5 --options="coAuthorsDBLP.graph 1"
 ```
 
 Note that the datasets from the original Pannotia suite have been uploaded to: <http://dist.gem5.org/dist/develop/datasets/pannotia>.  We recommend you start with the coAuthorsDBLP input for PR.

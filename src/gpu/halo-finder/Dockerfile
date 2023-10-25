@@ -1,4 +1,4 @@
-FROM gcr.io/gem5-test/gcn-gpu:latest
+FROM ghcr.io/gem5/gcn-gpu:latest
 RUN apt-get update && apt-get -y install libopenmpi-dev libomp-dev
 
 ENV HCC_AMDGPU_TARGET="gfx801,gfx803,gfx900"
