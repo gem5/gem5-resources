@@ -8,7 +8,7 @@ BIN_DIR ?= ./bin
 all: $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR)/$(EXECUTABLE): Floyd-Warshall.cpp parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --amdgpu-target=gfx801,gfx803,gfx900,gfx906 $(CXXFLAGS) parse.cpp ../graph_parser/util.cpp Floyd-Warshall.cpp -o $(BIN_DIR)/$(EXECUTABLE)
+	$(HIPCC) $(OPTS) --amdgpu-target=gfx801,gfx803,gfx900,gfx902,gfx906 $(CXXFLAGS) parse.cpp ../graph_parser/util.cpp Floyd-Warshall.cpp -o $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

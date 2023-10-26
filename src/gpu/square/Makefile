@@ -6,7 +6,7 @@ BIN_DIR?= ./bin
 square: $(BIN_DIR)/square
 
 $(BIN_DIR)/square: square.cpp $(BIN_DIR)
-	$(HIPCC) --amdgpu-target=gfx801,gfx803,gfx900 $(CXXFLAGS) square.cpp -o $(BIN_DIR)/square
+	$(HIPCC) --amdgpu-target=gfx801,gfx803,gfx900,gfx902 $(CXXFLAGS) square.cpp -o $(BIN_DIR)/square
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
