@@ -380,7 +380,7 @@ git clone https://github.com/gem5/gem5-resources.git
 
 ```
 cd src/gpu/square
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make gfx8-apu
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make gfx8-apu
 ```
 
 The compiled binary can be found in `src/gpu/square/bin`
@@ -409,7 +409,7 @@ To compile:
 
 ```
 cd src/gpu/hsa-agent-pkt
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make gfx8-apu
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make gfx8-apu
 ```
 
 The compiled binary can be found in `src/gpu/hsa-agent-pkt/bin`
@@ -431,7 +431,7 @@ Certain apps aren't included due to complexities with either ROCm or Docker
 
 ```
 cd src/gpu/hip-samples
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make
 ```
 
 Individual programs can be made by specifying the name of the program
@@ -469,7 +469,7 @@ and the other command-line arguments for use with heterosync.
 ## Compilation
 ```
 cd src/gpu/heterosync
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make release-gfx8
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make release-gfx8
 ```
 
 The release-gfx8 target builds for gfx801, a GCN3-based APU, and gfx803, a
@@ -489,7 +489,7 @@ provided is for use with the gpu-compute model of gem5.
 ## Compilation and Running
 ```
 cd src/gpu/lulesh
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make
 ```
 
 By default, the Makefile builds for gfx801, and is placed in the 
@@ -500,7 +500,7 @@ architecture. To build GCN3_X86:
 
 ```
 # Working directory is your gem5 directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
 ```
 
 The following command shows how to run lulesh
@@ -513,7 +513,7 @@ are equivalent to `--options="1.0e-2 10"`.
 
 ```
 # Assuming gem5 and gem5-resources are in your working directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/lulesh/bin -clulesh
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/lulesh/bin -clulesh
 ```
 
 ## Pre-built binary
@@ -584,8 +584,8 @@ commands do this by using `-v ${PWD}:${PWD}` in the docker run commands
 
 ```
 cd src/gpu/DNNMark
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu ./setup.sh HIP
-docker run --rm -v ${PWD}:${PWD} -w ${PWD}/build -u $UID:$GID gcr.io/gem5-test/gcn-gpu make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu ./setup.sh HIP
+docker run --rm -v ${PWD}:${PWD} -w ${PWD}/build -u $UID:$GID ghcr.io/gem5/gcn-gpu make
 ```
 
 DNNMark uses MIOpen kernels, which are unable to be compiled on-the-fly in gem5.
@@ -595,7 +595,7 @@ benchmarks for a gfx801 GPU with 4 CUs by default
 To generate the MIOpen kernels:
 ```
 cd src/gpu/DNNMark
-docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} gcr.io/gem5-test/gcn-gpu python3 generate_cachefiles.py cachefiles.csv [--gfx-version={gfx801,gfx803}] [--num-cus=N]
+docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu python3 generate_cachefiles.py cachefiles.csv [--gfx-version={gfx801,gfx803}] [--num-cus=N]
 ```
 
 Due to the large amounts of memory that need to be set up for DNNMark, we have
@@ -614,13 +614,13 @@ GCN3_X86 architecture.
 To build GCN3_X86:
 ```
 # Working directory is your gem5 directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
 ```
 
 To run one of the benchmarks (fwd softmax) in gem5:
 ```
 # Assuming gem5 and gem5-resources are sub-directories of the current directory
-docker run --rm -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
+docker run --rm -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
 ```
 
 
@@ -635,7 +635,7 @@ a sample of the typical memory access patterns of FLAG.
 
 ```
 cd src/gpu/pennant
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make
 ```
 
 By default, the binary is built for gfx801 and is placed in `src/gpu/pennant/build`.
@@ -648,7 +648,7 @@ command shows how to run the sample `noh`:
 
 ```
 # Assuming gem5 and gem5-resources are in your working directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID gcr.io/gem5-test/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/pennant/build -cpennant --options="gem5-resources/src/gpu/pennant/test/noh/noh.pnt"
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/pennant/build -cpennant --options="gem5-resources/src/gpu/pennant/test/noh/noh.pnt"
 ```
 
 The output gets placed in `src/gpu/pennant/test/noh/`, and the file `noh.xy`
@@ -841,7 +841,7 @@ We provide a docker image with a pre-loaded SPARC cross compiler. To use:
 
 ```
 cd src/insttest
-docker run --volume $(pwd):$(pwd) -w $(pwd) --rm gcr.io/gem5-test/sparc64-gnu-cross:latest make
+docker run --volume $(pwd):$(pwd) -w $(pwd) --rm ghcr.io/gem5/sparc64-gnu-cross:latest make
 ```
 
 The compiled binary can be found in `src/insttest/bin`.
