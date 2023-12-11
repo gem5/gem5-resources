@@ -217,15 +217,18 @@ int main(int argc, char **argv)
 
         // Launch the assignment kernel
         hipLaunchKernelGGL(vector_assign, dim3(grid), dim3(threads), 0, 0, vector_d1, vector_d2, num_nodes);
+        hipDeviceSynchronize();
 
         // Launch the min.+ kernel
         hipLaunchKernelGGL(ell_min_dot_plus_kernel, dim3(grid), dim3(threads), 0, 0, num_nodes, height,
                                                     ell_col_d, ell_data_d,
                                                     vector_d1, vector_d2);
+        hipDeviceSynchronize();
 
         // Launch the check kernel
         hipLaunchKernelGGL(vector_diff, dim3(grid), dim3(threads), 0, 0, vector_d1, vector_d2,
                                         stop_d, num_nodes);
+        hipDeviceSynchronize();
 
         // Read the termination variable back
         err = hipMemcpy(&stop, stop_d, sizeof(int), hipMemcpyDeviceToHost);
@@ -240,7 +243,6 @@ int main(int argc, char **argv)
         }
         cnt++;
     }
-    hipDeviceSynchronize();
     double timer4 = gettime();
 
     // Read the cost_array back

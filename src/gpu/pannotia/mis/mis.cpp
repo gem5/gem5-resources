@@ -241,14 +241,17 @@ int main(int argc, char **argv)
         hipLaunchKernelGGL(HIP_KERNEL_NAME(mis1), dim3(grid), dim3(threads), 0, 0, row_d, col_d, node_value_d, s_array_d,
                                  c_array_d, min_array_d, stop_d, num_nodes,
                                  num_edges);
+        hipDeviceSynchronize();
 
         // Launch mis2
         hipLaunchKernelGGL(HIP_KERNEL_NAME(mis2), dim3(grid), dim3(threads), 0, 0, row_d, col_d, node_value_d, s_array_d,
                                  c_array_d, c_array_u_d, min_array_d, num_nodes,
                                  num_edges);
+        hipDeviceSynchronize();
 
         // Launch mis3
         hipLaunchKernelGGL(HIP_KERNEL_NAME(mis3), dim3(grid), dim3(threads), 0, 0, c_array_u_d, c_array_d, num_nodes);
+        hipDeviceSynchronize();
 
         // Copy the termination variable back
         err = hipMemcpy(&stop, stop_d, sizeof(int), hipMemcpyDeviceToHost);
@@ -259,8 +262,6 @@ int main(int argc, char **argv)
 
         iterations++;
     }
-
-    hipDeviceSynchronize();
 
     err = hipMemcpy(s_array, s_array_d, num_nodes * sizeof(int), hipMemcpyDeviceToHost);
     if (err != hipSuccess) {

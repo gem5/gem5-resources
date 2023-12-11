@@ -198,12 +198,13 @@ int main(int argc, char **argv)
         // Launch pagerank kernel 1
         hipLaunchKernelGGL(HIP_KERNEL_NAME(pagerank1), dim3(grid), dim3(threads), 0, 0, row_d, col_d, data_d, pagerank1_d,
                                       pagerank2_d, num_nodes, num_edges);
+        hipDeviceSynchronize();
 
         // Launch pagerank kernel 2
         hipLaunchKernelGGL(HIP_KERNEL_NAME(pagerank2), dim3(grid), dim3(threads), 0, 0, row_d, col_d, data_d, pagerank1_d,
                                       pagerank2_d, num_nodes, num_edges);
+        hipDeviceSynchronize();
     }
-    hipDeviceSynchronize();
 
 //    double timer4 = gettime();
 
