@@ -1,4 +1,4 @@
 **packer
 **packer_*.zip
 packer_cache/
-disk-image/boot-exit/boot-exit-image/boot-exit
+disk-image/*
