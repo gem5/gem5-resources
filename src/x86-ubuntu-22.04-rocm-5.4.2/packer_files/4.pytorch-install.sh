@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Advanced Micro Devices, Inc.
+# Copyright (c) 2023 Advanced Micro Devices, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -27,13 +27,11 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-PACKER_VERSION="1.7.8"
 
-if [ ! -f ./packer ]; then
-    wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip;
-    unzip packer_${PACKER_VERSION}_linux_amd64.zip;
-    rm packer_${PACKER_VERSION}_linux_amd64.zip;
-fi
-
-./packer validate rocm42/rocm42.json
-./packer build rocm42/rocm42.json
+# See https://pytorch.org/ . At the time of writing the selector was:
+# Build: 2.0.1
+# OS: Linux
+# Package: Pip
+# Language: Python
+# Compute Platfrom: ROCm 5.4.2
+sudo pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.4.2

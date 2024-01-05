@@ -1,4 +1,6 @@
-# Copyright (c) 2022 Advanced Micro Devices, Inc.
+#!/bin/bash
+
+# Copyright (c) 2023 Advanced Micro Devices, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -27,12 +29,9 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#!/bin/sh
-m5 readfile > script.sh
-if [ -s script.sh ]; then
-    # if the file is not empty, execute it
-    chmod +x script.sh
-    ./script.sh
-    m5 exit
-fi
-# otherwise, drop to the terminal
+
+# Make the directory for vbios files
+
+sudo mkdir /root/roms
+sudo chmod 777 /root
+sudo chmod 777 /root/roms

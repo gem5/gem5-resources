@@ -1,4 +1,6 @@
-# Copyright (c) 2022 Advanced Micro Devices, Inc.
+#!/bin/bash
+
+# Copyright (c) 2023 Advanced Micro Devices, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -27,21 +29,37 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#!/bin/bash
-echo 'Post Installation Started'
+# Copyright (c) 2023 The Regents of the University of California.
+# SPDX-License-Identifier: BSD 3-Clause
 
-# Auto-login as root
-rm -f /lib/systemd/system/serial-getty@.service
-cp -v '/home/gem5/serial-getty@.service' /lib/systemd/system/
 
-# Move m5 binary to the location the example config scripts look for
-mv /home/gem5/m5 /sbin
+# Installing dependencies for gem5
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install build-essential git python3-pip cmake
+pip install scons --user
+pip install meson --user
 
-# Enable m5 readfile upon boot in gem5 with root user
-cat /home/gem5/runscript.sh >> /root/.bashrc
+# Removing snapd
+sudo snap remove $(snap list | awk '!/^Name|^core/ {print $1}') # not removing the core package as others depend on it
+sudo snap remove $(snap list | awk '!/^Name/ {print $1}')
+sudo systemctl disable snapd.service
+sudo systemctl disable snapd.socket
+sudo systemctl disable snapd.seeded.service
+sudo apt remove --purge -y snapd
+sudo apt -y autoremove
+sudo apt -y autopurge
 
-# Move vega10 VBIOS ROM to location expected by example config scripts
-mkdir /root/roms/
-mv /home/gem5/vega10.rom /root/roms/
+# Removing mounting /boot/efi
+sudo sed -i '/\/boot\/efi/d' /etc/fstab
+sudo systemctl stop boot-efi.mount
+sudo systemctl disable boot-efi.mount
 
-echo 'Post Installation Done'
+# Removing cloud-init
+sudo touch /etc/cloud/cloud-init.disabled
+
+# Disable iSCSI
+# This causes booting in gem5 to wait ~2 minutes for network services to come
+# up. Since we don't care about this in simulation and simulating two minutes
+# of waiting is not valuable, turn it off.
+sudo systemctl mask open-iscsi.service iscsid.service iscsid.socket
