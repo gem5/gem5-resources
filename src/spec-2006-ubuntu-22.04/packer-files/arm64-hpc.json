@@ -1,0 +1,58 @@
+{
+    "_author": "Hoa Nguyen <hoanguyen@ucdavis.edu>",
+    "_license": "Copyright (c) 2023 The Regents of the University of California. SPDX-License-Identifier: BSD 3-Clause",
+    "builders":
+    [
+        {
+            "type": "null",
+            "ssh_host": "localhost",
+            "ssh_port": "5555",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_agent_auth": true,
+            "ssh_ciphers":  ["aes128-gcm@openssh.com", "chacha20-poly1305@openssh.com", "aes128-ctr", "aes192-ctr", "aes256-ctr"],
+            "ssh_certificate_file": "~/.ssh/id_rsa_spec2006",
+            "ssh_clear_authorized_keys": true
+        }
+    ],
+    "provisioners":
+    [
+        {
+            "type": "file",
+            "source": "gem5-init.sh",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "file",
+            "source": "serial-getty@.service",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "file",
+            "source": "CPU2006v1.0.1.iso",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "file",
+            "source": "install-spec2006.sh",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "file",
+            "source": "replace-configs.sh",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "shell",
+            "execute_command": "{{.Vars}} bash '{{.Path}}'",
+            "scripts":
+            [
+                "1.packages-install.sh",
+                "2.m5-install.sh"
+            ]
+        }
+    ],
+    "variables":
+    {
+        "ssh_username": "ubuntu"
+    }
+}
