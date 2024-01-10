@@ -15,6 +15,17 @@ The provided version is for use with the gpu-compute model of gem5.  Thus, it ha
 
 Compiling FW, compiling the GCN3_X86/Vega_X86 versions of gem5, and running FW on gem5 is dependent on the gcn-gpu docker image, `util/dockerfiles/gcn-gpu/Dockerfile` on the [gem5 stable branch](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable).
 
+## Compilation and Running
+
+To compile FW:
+
+```
+cd src/gpu/pannotia/fw
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make gem5-fusion; make default
+```
+
+If you use the Makefile.default file instead, the Makefile will generate code designed to run on the real GPU instead.  Moreover, note that Makefile.gem5-fusion requires you to set the GEM5_ROOT variable (either on the command line or by modifying the Makefile), because the Pannotia applications have been updated to use [m5ops](https://www.gem5.org/documentation/general_docs/m5ops/).  By default, the Makefile builds for gfx801 and gfx803, and is placed in the src/gpu/pannotia/fw/bin folder. FW can be run on a non-mmapped input file, used to generate an mmapped input file, or run on an mmapped input file. To run FW using an mmapped input file, you must generate it first. An input file can be reused until it is overwritten by another file generation.  
+
 ## Compiling GCN3_X86/gem5.opt
 
 FW is a GPU application, which requires that gem5 is built with the GCN3_X86 (or Vega_X86, although this has been less heavily tested) architecture.

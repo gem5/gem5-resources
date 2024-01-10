@@ -1,5 +1,5 @@
 ---
-title: gem5 Specifc RISC-V tests
+title: gem5 Specific RISC-V tests
 tags:
     - testing
     - riscv
@@ -73,12 +73,38 @@ thread wait/wakeup behaviors. This set reuses some of the tests in
 threads wait and wake up in certain cases. This test set also checks functional
 behaviors of threads after a wait/wakeup operation.
 
+5. Bit-manipulation ISA tests (`isa/rv32ub`, `isa/rv64ub`)
+
+This is a instructions test sets of Zba, Zbb, Zbc and Zbs extensions. They are
+bit-manipulations of registers.
+
+6. Makefile for `benchmarks` directory
+
+The `compile_template` in the Makefile has been changed to not use 
+the default `gcc` options and the `riscv-tests` linkers. 
+Instead, the new compile template only uses the `common` directory in `benchmarks` and the `-static` and `-O2` flags. 
+To facilitate gem5 compatible ROIs, the `Makefile` links with the `libm5.a` present in the `gem5/include` directory 
+(NOTE: the `gem5` directory must be in the `common` directory for compiling the benchmarks).
+As part of this change, all the source code of the benchmarks use `m5_work_begin` and `m5_work_end` to mark the beginning and end of the ROI.
+
+7. `mm` benchmark source code
+
+A minor change was made to the `mm` benchmark source code to make it 
+compatible with the `Makefile` changes mentioned above. 
+Since `mm_main.c` used `thread_entry` as the `main` function, 
+the compiler was not able to find the `main` function. 
+This was fixed by renaming `thread_entry` to `main`.
+
 How to compile this test suite
 ------------------------------
 
 1. Install RISC-V GNU toolchain. Source code and instruction on how to install
 it can be found here: <https://github.com/riscv/riscv-gnu-toolchain>.
 
-2. Run `make`
+2. Put gem5 with compiled m5ops in the `common` directory. Documentation on how to compile m5ops can be found here: <http://www.gem5.org/documentation/general_docs/m5ops>.
 
-3. Test binaries are in `bin`
+3. Navigate to `gem5/include/gem5/m5ops.h` and change the `#include <gem5/asm/generic/m5ops.h>` statement to `#include <gem5/include/gem5/asm/generic/m5ops.h>`.
+
+4. Run `make`.
+
+5. Test binaries are in `bin`.

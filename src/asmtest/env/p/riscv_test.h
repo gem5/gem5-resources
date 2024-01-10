@@ -107,19 +107,26 @@
   .align 2;                                                             \
 1:
 
+#define INIT_RNMI                                                       \
+  la t0, 1f;                                                            \
+  csrw mtvec, t0;                                                       \
+  csrwi CSR_MNSTATUS, MNSTATUS_NMIE;                                    \
+  .align 2;                                                             \
+1:
+
 #define INIT_SATP                                                      \
   la t0, 1f;                                                            \
   csrw mtvec, t0;                                                       \
-  csrwi sptbr, 0;                                                       \
+  csrwi satp, 0;                                                       \
   .align 2;                                                             \
 1:
 
 #define DELEGATE_NO_TRAPS                                               \
+  csrwi mie, 0;                                                         \
   la t0, 1f;                                                            \
   csrw mtvec, t0;                                                       \
   csrwi medeleg, 0;                                                     \
   csrwi mideleg, 0;                                                     \
-  csrwi mie, 0;                                                         \
   .align 2;                                                             \
 1:
 
@@ -142,7 +149,8 @@
   li a0, (MSTATUS_VS & (MSTATUS_VS >> 1)) |                             \
          (MSTATUS_FS & (MSTATUS_FS >> 1));                              \
   csrs mstatus, a0;                                                     \
-  csrwi fcsr, 0
+  csrwi fcsr, 0;                                                        \
+  csrwi vcsr, 0;
 
 #define RISCV_MULTICORE_DISABLE                                         \
   csrr a0, mhartid;                                                     \
@@ -152,6 +160,8 @@
 #define EXTRA_TVEC_MACHINE
 #define EXTRA_INIT
 #define EXTRA_INIT_TIMER
+#define FILTER_TRAP
+#define FILTER_PAGE_FAULT
 
 #define INTERRUPT_HANDLER j other_exception /* No interrupts should occur */
 
@@ -205,6 +215,7 @@ handle_exception:                                                       \
 reset_vector:                                                           \
         INIT_XREG;                                                      \
         RISCV_MULTICORE_DISABLE;                                        \
+        INIT_RNMI;                                                      \
         INIT_SATP;                                                      \
         INIT_PMP;                                                       \
         DELEGATE_NO_TRAPS;                                              \
@@ -274,8 +285,8 @@ tohost_data:                                                            \
 #define RVTEST_DATA_BEGIN                                               \
         EXTRA_DATA                                                      \
         .pushsection .tohost,"aw",@progbits;                            \
-        .align 6; .global tohost; tohost: .dword 0;                     \
-        .align 6; .global fromhost; fromhost: .dword 0;                 \
+        .align 6; .global tohost; tohost: .dword 0; .size tohost, 8;    \
+        .align 6; .global fromhost; fromhost: .dword 0; .size fromhost, 8;\
         .popsection;                                                    \
         .align 4; .global begin_signature; begin_signature:
 

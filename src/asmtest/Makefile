@@ -7,6 +7,7 @@ XLEN ?= 64
 src_dir 	:= ./isa
 bin_dir 	:= ./bin
 dump_dir 	:= ./dump
+bench_dir 	:= ./benchmarks
 
 include $(src_dir)/rv64ui/Makefrag
 include $(src_dir)/rv64uc/Makefrag
@@ -14,11 +15,13 @@ include $(src_dir)/rv64um/Makefrag
 include $(src_dir)/rv64ua/Makefrag
 include $(src_dir)/rv64uf/Makefrag
 include $(src_dir)/rv64ud/Makefrag
+include $(src_dir)/rv64uzfh/Makefrag
 include $(src_dir)/rv64si/Makefrag
+include $(src_dir)/rv64ssvnapot/Makefrag
 include $(src_dir)/rv64mi/Makefrag
+include $(src_dir)/rv64mzicbo/Makefrag
 include $(src_dir)/rv64uamt/Makefrag
 include $(src_dir)/rv64samt/Makefrag
-include $(src_dir)/rv64uzfh/Makefrag
 include $(src_dir)/rv64ub/Makefrag
 include $(src_dir)/rv32ui/Makefrag
 include $(src_dir)/rv32uc/Makefrag
@@ -33,6 +36,8 @@ include $(src_dir)/rv32uamt/Makefrag
 include $(src_dir)/rv32samt/Makefrag
 include $(src_dir)/rv32ub/Makefrag
 
+include $(bench_dir)/Makefile
+
 default: all
 
 #--------------------------------------------------------------------
@@ -43,7 +48,7 @@ RISCV_PREFIX ?= riscv$(XLEN)-unknown-elf-
 RISCV_GCC ?= $(RISCV_PREFIX)gcc
 RISCV_GCC_OPTS ?= -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles
 RISCV_OBJDUMP ?= $(RISCV_PREFIX)objdump --disassemble-all --disassemble-zeroes --section=.text --section=.text.startup --section=.text.init --section=.data
-RISCV_SIM ?= spike
+RISCV_SIM ?= spike --isa=rv$(XLEN)gcv
 
 vpath %.S $(src_dir)
 
@@ -55,7 +60,10 @@ vpath %.S $(src_dir)
 	$(RISCV_OBJDUMP) $(bin_dir)/$< > $(dump_dir)/$@
 
 %.out: %
-	$(RISCV_SIM) --isa=rv64gc $< 2> $@
+	$(RISCV_SIM) --isa=rv64gc_zfh_zicboz_svnapot_zicntr --misaligned $< 2> $@
+
+%.out32: %
+	$(RISCV_SIM) --isa=rv32gc_zfh_zicboz_svnapot_zicntr --misaligned $< 2> $@
 
 define compile_template
 
@@ -104,11 +112,13 @@ $(eval $(call compile_template,rv64um,-march=rv64g -mabi=lp64))
 $(eval $(call compile_template,rv64ua,-march=rv64g -mabi=lp64))
 $(eval $(call compile_template,rv64uf,-march=rv64g -mabi=lp64))
 $(eval $(call compile_template,rv64ud,-march=rv64g -mabi=lp64))
+$(eval $(call compile_template,rv64uzfh,-march=rv64g_zfh -mabi=lp64))
+$(eval $(call compile_template,rv64mzicbo,-march=rv64g_zicboz -mabi=lp64))
 $(eval $(call compile_template,rv64si,-march=rv64g -mabi=lp64))
+$(eval $(call compile_template,rv64ssvnapot,-march=rv64g -mabi=lp64))
 $(eval $(call compile_template,rv64mi,-march=rv64g -mabi=lp64))
 $(eval $(call compile_template,rv64uamt,-march=rv64g -mabi=lp64))
 $(eval $(call compile_template,rv64samt,-march=rv64g -mabi=lp64))
-$(eval $(call compile_template,rv64uzfh,-march=rv64g_zfh -mabi=lp64))
 $(eval $(call compile_template,rv64ub,-march=rv64g_zba_zbb_zbc_zbs -mabi=lp64))
 
 p_env_tests_dump = $(addsuffix .dump, $(p_env_tests))

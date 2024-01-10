@@ -48,6 +48,7 @@ RVTEST_CODE_BEGIN
 
   TEST_CASE(20, a0,         0, csrw sscratch, zero; csrr a0, sscratch);
   TEST_CASE(21, a0,         0, csrrwi a0, sscratch, 0; csrrwi a0, sscratch, 0xF);
+  TEST_CASE(22, a0,      0x1f, csrrsi x0, sscratch, 0x10; csrr a0, sscratch);
 
   csrwi sscratch, 3
   TEST_CASE( 2, a0,         3, csrr a0, sscratch);
@@ -86,6 +87,19 @@ RVTEST_CODE_BEGIN
   srli a0, a0, 20 # a0 = a0 >> 20
   andi a0, a0, 1  # a0 = a0 & 1
   beqz a0, finish # if no user mode, skip the rest of these checks
+
+  # Enable access to the cycle counter
+  csrwi mcounteren, 1
+
+  # Figure out if 'S' is set in misa
+  csrr a0, misa   # a0 = csr(misa)
+  srli a0, a0, 18 # a0 = a0 >> 20
+  andi a0, a0, 1  # a0 = a0 & 1
+  beqz a0, 1f
+
+  # Enable access to the cycle counter
+  csrwi scounteren, 1
+1:
 #endif /* __MACHINE_MODE */
 
   # jump to user land
@@ -120,10 +134,9 @@ finish:
   .global stvec_handler
 stvec_handler:
   # Trapping on tests 13-15 is good news.
-  # Note that since the test didn't complete, TESTNUM is smaller by 1.
-  li t0, 12
+  li t0, 13
   bltu TESTNUM, t0, 1f
-  li t0, 14
+  li t0, 15
   bleu TESTNUM, t0, privileged
 1:
 
