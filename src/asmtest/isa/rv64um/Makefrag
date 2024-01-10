@@ -10,5 +10,3 @@ rv64um_sc_tests = \
 rv64um_p_tests = $(addprefix rv64um-p-, $(rv64um_sc_tests))
 rv64um_v_tests = $(addprefix rv64um-v-, $(rv64um_sc_tests))
 rv64um_ps_tests = $(addprefix rv64um-ps-, $(rv64um_sc_tests))
-
-spike_tests += $(rv64um_p_tests) $(rv64um_v_tests)

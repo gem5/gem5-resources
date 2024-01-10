@@ -120,7 +120,7 @@ static void evict(unsigned long addr)
     uintptr_t sstatus = set_csr(sstatus, SSTATUS_SUM);
     if (memcmp((void*)addr, uva2kva(addr), PGSIZE)) {
       assert(user_llpt[addr/PGSIZE] & PTE_D);
-      memcpy((void*)addr, uva2kva(addr), PGSIZE);
+      memcpy(uva2kva(addr), (void*)addr, PGSIZE);
     }
     write_csr(sstatus, sstatus);
 
@@ -136,8 +136,14 @@ static void evict(unsigned long addr)
   }
 }
 
+extern int pf_filter(uintptr_t addr, uintptr_t *pte, int *copy);
+extern int trap_filter(trapframe_t *tf);
+
 void handle_fault(uintptr_t addr, uintptr_t cause)
 {
+  uintptr_t filter_encodings = 0;
+  int copy_page = 1;
+
   assert(addr >= PGSIZE && addr < MAX_TEST_PAGES * PGSIZE);
   addr = addr/PGSIZE*PGSIZE;
 
@@ -159,6 +165,11 @@ void handle_fault(uintptr_t addr, uintptr_t cause)
     freelist_tail = 0;
 
   uintptr_t new_pte = (node->addr >> PGSHIFT << PTE_PPN_SHIFT) | PTE_V | PTE_U | PTE_R | PTE_W | PTE_X;
+
+  if (pf_filter(addr, &filter_encodings, &copy_page)) {
+      new_pte = (node->addr >> PGSHIFT << PTE_PPN_SHIFT) | filter_encodings;
+  }
+
   user_llpt[addr/PGSIZE] = new_pte | PTE_A | PTE_D;
   flush_page(addr);
 
@@ -172,11 +183,15 @@ void handle_fault(uintptr_t addr, uintptr_t cause)
   user_llpt[addr/PGSIZE] = new_pte;
   flush_page(addr);
 
-  __builtin___clear_cache(0,0);
+  asm volatile ("fence.i");
 }
 
 void handle_trap(trapframe_t* tf)
 {
+  if (trap_filter(tf)) {
+    pop_tf(tf);
+  }
+
   if (tf->cause == CAUSE_USER_ECALL)
   {
     int n = tf->gpr[10];
@@ -253,10 +268,10 @@ void vm_boot(uintptr_t test_addr)
 # error
 #endif
   uintptr_t vm_choice = SATP_MODE_CHOICE;
-  uintptr_t sptbr_value = ((uintptr_t)l1pt >> PGSHIFT)
+  uintptr_t satp_value = ((uintptr_t)l1pt >> PGSHIFT)
                         | (vm_choice * (SATP_MODE & ~(SATP_MODE<<1)));
-  write_csr(sptbr, sptbr_value);
-  if (read_csr(sptbr) != sptbr_value)
+  write_csr(satp, satp_value);
+  if (read_csr(satp) != satp_value)
     assert(!"unsupported satp mode");
 
   // Set up PMPs if present, ignoring illegal instruction trap if not.
