@@ -1,1 +1,0 @@
-cloud-localds --disk-format qcow2 cloud.img cloud.txt
