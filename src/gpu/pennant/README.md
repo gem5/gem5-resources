@@ -1,12 +1,12 @@
 ---
-title: GCN3 PENNANT Test
+title: VEGA PENNANT Test
 tags:
     - x86
     - amdgpu
 layout: default
 permalink: resources/pennant
 shortdoc: >
-    Resources to build a disk image with the GCN3 PENNANT workload.
+    Resources to build a disk image with the VEGA PENNANT workload.
 ---
 
 # Resource: PENNANT
@@ -20,18 +20,18 @@ a sample of the typical memory access patterns of FLAG.
 
 ```
 cd src/gpu/pennant
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v22-1 make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v24-0 make
 ```
 
-By default, the binary is built for gfx801 and is placed in `src/gpu/pennant/build`
+By default, the binary is built for gfx902 and is placed in `src/gpu/pennant/build`
 
-pennant is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
+pennant is a GPU application, which requires that gem5 is built with the VEGA_X86 architecture.
 
 pennant has sample input files located at `src/gpu/pennant/test`. The following command shows how to run the sample `noh`
 
 ```
 # Assuming gem5 and gem5-resources are in your working directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v22-1 gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/pennant/build -cpennant --options="gem5-resources/src/gpu/pennant/test/noh/noh.pnt"
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v24-0 gem5/build/VEGA_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/pennant/build -c pennant --options="gem5-resources/src/gpu/pennant/test/noh/noh.pnt"
 ```
 
 The output gets placed in `src/gpu/pennant/test/noh/`, and the file `noh.xy`
@@ -40,7 +40,7 @@ compare against, and there may be slight differences due to floating-point round
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v22-1/test-progs/pennant/pennant>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/pennant/pennant>
 
 The information from the original PENNANT README is included below.
 

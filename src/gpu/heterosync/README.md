@@ -1,12 +1,12 @@
 ---
-title: GCN3 HeteroSync Tests
+title: VEGA HeteroSync Tests
 tags:
     - x86
     - amdgpu
 layout: default
 permalink: resources/heterosync
 shortdoc: >
-    Resources to build a disk image with the GCN3 HeteroSync workloads.
+    Resources to build a disk image with the VEGA HeteroSync workloads.
 ---
 
 # Resource: HeteroSync
@@ -21,24 +21,24 @@ command-line arguments for use with heterosync.
 ## Compilation
 ```
 cd src/gpu/heterosync
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v22-1 make release-gfx8
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v24-0 make release-gfx9
 ```
 
-The release-gfx8 target builds for gfx801, a GCN3-based APU, and gfx803, a
-GCN3-based dGPU. There are other targets (release) that build for GPU types
+The release-gfx9 target builds for gfx902, a VEGA-based APU, and gfx900, a
+VEGA-based dGPU. There are other targets (release) that build for GPU types
 that are currently unsupported in gem5.
 
-## Running HeteroSync on GCN3_X86/gem5.opt
+## Running HeteroSync on VEGA_X86/gem5.opt
 
 HeteroSync has multiple applications that can be run (see below).  For example, to run sleepMutex with 10 ld/st per thread, 16 WGs, and 4 iterations of the critical section:
 
 ```
-docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) ghcr.io/gem5/gcn-gpu:v22-1 gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n 3 -c bin/allSyncPrims-1kernel --options="sleepMutex 10 16 4"
+docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) ghcr.io/gem5/gcn-gpu:v24-0 gem5/build/VEGA_X86/gem5.opt gem5/configs/example/apu_se.py -n 3 -c bin/allSyncPrims-1kernel --options="sleepMutex 10 16 4"
 ```
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v22-1/test-progs/heterosync/gcn3/allSyncPrims-1kernel>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/heterosync/allSyncPrims-1kernel>
 
 Information from original HeteroSync README included below:
 
