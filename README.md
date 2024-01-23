@@ -350,31 +350,6 @@ The compiled binary can be found in `src/gpu/square/bin`
 
 <https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/square/square>
 
-# Resource: HSA Agent Packet Example
-
-Based off of the Square resource in this repository, this resource serves as
-an example for using an HSA Agent Packet to send commands to the GPU command
-processor included in the VEGA_X86 build of gem5.
-
-The example command extracts the kernel's completion signal from the domain
-of the command processor and the GPU's dispatcher. Initially this was a
-workaround for the hipDeviceSynchronize bug, now fixed. The method of
-waiting on a signal can be applied to other agent packet commands though.
-
-Custom commands can be added to the command processor in gem5 to control
-the GPU in novel ways.
-
-## Compilation
-
-To compile:
-
-```
-cd src/gpu/hsa-agent-pkt
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make gfx9-apu
-```
-
-The compiled binary can be found in `src/gpu/hsa-agent-pkt/bin`
-
 # Resource: HIP Sample Applications
 
 The [HIP sample apps](https://github.com/ROCm/HIP/tree/rocm-4.0.x/samples)
