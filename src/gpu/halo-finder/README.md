@@ -25,23 +25,16 @@ Compiling HACC, compiling the VEGA_X86 gem5, and running HACC on gem5 is depende
 
 ## Compilation and Running
 
-halo-finder requires that certain libraries that aren't installed by default in the
-VEGA docker container provided by gem5, and that the environment is configured properly
-in order to build. We provide a Dockerfile that installs those libraries and
-sets the environment.
-
 In order to test the GPU code in halo-finder, we compile and run ForceTreeTest.
 
-To build the Docker image and the benchmark:
-
-Note: HACC requires a number of environment variables to be set to compile and run correctly.  Our Dockerfile sets these flags appropriately for you.  This Dockerfile automatically runs when a new docker image is created, including building for both gfx900 and gfx902, which is why our instructions below recommend doing this.  If you would prefer not doing this, then you will need to pass in these environment variables using -e.
+Note: HACC requires a number of environment variables to be set to compile and run correctly.  Our Dockerfile sets these flags appropriately for you, including building for both gfx900 and gfx902.  If you would prefer not doing this, then you will need to pass in these environment variables using -e.
 
 ```
 cd src/gpu/halo-finder
 docker run --rm -v ${PWD}:${PWD} -w ${PWD}/src -u $UID:$GID ghcr.io/gem5/gcn-gpu:v24-0 make hip/ForceTreeTest
 ```
 
-The binary is built for gfx902 by default and is placed at `src/gpu/halo-finder/src/hip/ForceTreeTest`
+The binary is built for gfx900 and gfx902 by default and is placed at `src/gpu/halo-finder/src/hip/ForceTreeTest`
 
 ForceTreeTest is a GPU application, which requires that gem5 is built with the VEGA_X86 architecture.
 To build VEGA_X86:
