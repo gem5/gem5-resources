@@ -3,7 +3,7 @@
  * Copyright © 2014 Advanced Micro Devices, Inc.                                    *
  * Copyright (c) 2015 Mark D. Hill and David A. Wood                                *
  * Copyright (c) 2021 Gaurav Jain and Matthew D. Sinclair                           *
- * Copyright (c) 2023 James Braun and Matthew D. Sinclair                           *
+ * Copyright (c) 2024 James Braun and Matthew D. Sinclair                           *
  * All rights reserved.                                                             *
  *                                                                                  *
  * Redistribution and use in source and binary forms, with or without               *
@@ -99,8 +99,8 @@ int main(int argc, char **argv)
 
     int dim;
     int num_edges;
-    int * distmatrix = NULL;
-    int * result = NULL;
+    int *distmatrix = NULL;
+    int *result = NULL;
 
     int opt;
     hipError_t err = hipSuccess;
@@ -108,35 +108,38 @@ int main(int argc, char **argv)
     // Get program input
     while ((opt = getopt(argc, argv, "f:hm:v")) != -1) {
         switch (opt) {
-	case 'f':  // Input file name
-	    tmpchar = optarg;
+        case 'f':  // Input file name
+            tmpchar = optarg;
             break;
-	case 'h':  // Help
-            fprintf(stderr, "SWITCHES\n    -f [file name]\n            input file name\n");
-            fprintf(stderr, "    -m [mode]\n            operation mode: default (run without mmap), generate, usemmap\n");
-	    fprintf(stderr, "    -v,    verify results\n");
-	    exit(0);
-	    break;
-	case 'm':  // Mode
-	    if (strcmp(optarg, "default") == 0 || optarg[0] == '0') {
-		mode_set = true;
-	    } else if (strcmp(optarg, "generate") == 0 || optarg[0] == '1') {
-		create_mmap = true;
-	    } else if (strcmp(optarg, "usemmap") == 0 || optarg[0] == '2') {
-		use_mmap = true;
-	    } else {
-	        fprintf(stderr, "Unrecognized mode: %s\n", optarg);
-		exit(1);
-	    }
-	    break;
-	case 'v':  // Error checking
+        case 'h':  // Help
+            fprintf(stderr, "SWITCHES\n");
+            fprintf(stderr, "\t-f [file name]\n");
+            fprintf(stderr, "\t\t\tinput file name\n");
+            fprintf(stderr, "\t-m [mode]\n");
+            fprintf(stderr, "\t\t\toperation mode: default (run without mmap), generate, usemmap\n");
+            fprintf(stderr, "\t-v,\tverify results\n");
+            exit(0);
+            break;
+        case 'm':  // Mode
+            if (strcmp(optarg, "default") == 0 || optarg[0] == '0') {
+                mode_set = true;
+            } else if (strcmp(optarg, "generate") == 0 || optarg[0] == '1') {
+                create_mmap = true;
+            } else if (strcmp(optarg, "usemmap") == 0 || optarg[0] == '2') {
+                use_mmap = true;
+            } else {
+                fprintf(stderr, "Unrecognized mode: %s\n", optarg);
+                exit(1);
+            }
+            break;
+        case 'v':  // Error checking
             verify_results = true;
-	    break;
-	default:
-	    fprintf(stderr, "Unrecognized switch: -%c\n", opt);
-	    exit(1);
-	break;
-	}
+            break;
+        default:
+            fprintf(stderr, "Unrecognized switch: -%c\n", opt);
+            exit(1);
+            break;
+        }
     }
 
     if (!(mode_set || create_mmap || use_mmap)) {
@@ -148,31 +151,31 @@ int main(int argc, char **argv)
         fprintf(stdout, "Ignoring input file\n");
     } else if ((mode_set || create_mmap) && tmpchar == NULL) {
         fprintf(stderr, "Input file not specified! Use -h for help\n");
-	exit(1);
+        exit(1);
     }
-	
+
     if (use_mmap) {
         printf("Using an mmap!\n");
-    
+
         // Get # of nodes
         int fd = open("mmap.bin", std::ios::binary | std::fstream::in);
-	if (fd == -1) {
-	    fprintf(stderr, "error: %s\n", strerror(errno));
-	    fprintf(stderr, "You need to create an mmapped input file!\n");
-	    exit(1);
-	}
-	int offset = 0;
+        if (fd == -1) {
+            fprintf(stderr, "error: %s\n", strerror(errno));
+            fprintf(stderr, "You need to create an mmapped input file!\n");
+            exit(1);
+        }
+        int offset = 0;
         dim = *((int *)mmap(NULL, 1 * sizeof(int), PROT_READ, MAP_PRIVATE, fd, offset));
-        
+
         // Read distmatrix in
         int *distmatrixmap = (int *)mmap(NULL, (dim * dim + 1) * sizeof(int), PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, offset);
-        
+
         // Check that mmaping was successful
         if (distmatrixmap == MAP_FAILED) {
-	    fprintf(stderr, "mmap failed\n");
-	    exit(1);
-	}
-	
+            fprintf(stderr, "mmap failed\n");
+            exit(1);
+        }
+
         // move everything to array from index 1
         distmatrix = (int *)malloc(dim * dim * sizeof(int));
         memcpy(distmatrix, &distmatrixmap[1], dim * dim * sizeof(int));
@@ -183,7 +186,7 @@ int main(int argc, char **argv)
     } else { 
         // Parse the adjacency matrix
         int *adjmatrix = parse_graph_file(&dim, &num_edges, tmpchar);
-        
+
         // Initialize the distance matrix
         distmatrix = (int *)malloc(dim * dim * sizeof(int));
         if (!distmatrix) fprintf(stderr, "malloc failed - distmatrix\n");
@@ -206,12 +209,12 @@ int main(int argc, char **argv)
         }
         if (create_mmap) { 
             printf("creating an mmap\n");
-            
+
             // Prints distmatrix to file
             std::ofstream fout("mmap.bin", std::ios::binary);
             fout.write((char *)&dim, sizeof(int));
             fout.write((char *)distmatrix, dim * dim * sizeof(int));
-            
+
             free(distmatrix);
             free(adjmatrix);
             fout.close();
@@ -220,7 +223,7 @@ int main(int argc, char **argv)
         }
         free(adjmatrix);
     }    
-    
+
     // Initialize the result matrix
     result = (int *)malloc(dim * dim * sizeof(int));
     if (!result) fprintf(stderr, "malloc failed - result\n");
