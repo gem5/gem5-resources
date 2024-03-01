@@ -7,7 +7,7 @@ if [ ! -f ./packer ]; then
 fi
 
 # Install the needed plugins
-./packer init x86-ubuntu/x86-ubuntu.pkr.hcl 
+./packer init x86-ubuntu.pkr.hcl 
 
 # Build the image
-./packer build x86-ubuntu/x86-ubuntu.pkr.hcl 
+./packer build x86-ubuntu.pkr.hcl 

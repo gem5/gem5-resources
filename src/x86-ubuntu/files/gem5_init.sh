@@ -1,25 +1,25 @@
 #!/bin/bash
 
+# mount /proc and /sys
+mount -t proc /proc /proc
+mount -t sysfs /sys /sys
 # Read /proc/cmdline and parse options
 cmdline=$(cat /proc/cmdline)
 no_systemd=false
-no_m5_exit_on_boot=false
+
+# gem5-bridge exit signifying that kernel is booted
+printf "Kernel booted, starting gem5 init..."
+gem5-bridge exit
 
 if [[ $cmdline == *"no_systemd"* ]]; then
     no_systemd=true
 fi
 
-if [[ $cmdline == *"no_m5_exit_on_boot"* ]]; then
-    no_m5_exit_on_boot=true
-fi
-
-# Run m5 exit if not disabled
-if [[ $no_m5_exit_on_boot == false ]]; then
-    m5 exit
-fi
-
 # Run systemd via exec if not disabled
 if [[ $no_systemd == false ]]; then
+    # gem5-bridge exit signifying that systemd will be booted
+    printf "Starting systemd..."
+    gem5-bridge exit
     exec /lib/systemd/systemd
 else
     exec /bin/bash

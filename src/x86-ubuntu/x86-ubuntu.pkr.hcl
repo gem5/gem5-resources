@@ -27,7 +27,7 @@ source "qemu" "initialize" {
   boot_command     = ["e<wait>",
                       "<down><down><down>",
                       "<end><bs><bs><bs><bs><wait>",
-                      "autoinstall ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ---<wait>",
+                      "autoinstall  ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ---<wait>",
                       "<f10><wait>"
                     ]
   cpus             = "4"
@@ -60,6 +60,11 @@ build {
   provisioner "file" {
     destination = "/home/gem5/"
     source      = "files/gem5_init.sh"
+  }
+
+  provisioner "file" {
+    destination = "/home/gem5/"
+    source      = "files/after_boot.sh"
   }
 
   provisioner "file" {
