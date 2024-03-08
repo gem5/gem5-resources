@@ -1,5 +1,5 @@
 ---
-title: GCN3 DNNMark Tests
+title: VEGA DNNMark Tests
 tags:
     - x86
     - amdgpu
@@ -8,15 +8,15 @@ permalink: resources/dnn-mark
 author: ["Kyle Roarty"]
 license: MIT License
 shortdoc: >
-    Resources to build a disk image with the GCN3 DNNMark workloads.
+    Resources to build a disk image with the VEGA DNNMark workloads.
 ---
 
 [DNNMark](https://github.com/shidong-ai/DNNMark) is a benchmark framework used
 to characterize the performance of deep neural network (DNN) primitive workloads.
 
-The gem5 DNNMark tests can be used to test the GCN3-GPU model.
+The gem5 DNNMark tests can be used to test the VEGA-GPU model.
 
-Compiling DNNMark, compiling the GCN3_X86 gem5, and running DNNMark on gem5 is dependent on the gcn-gpu docker image, built from the `util/dockerfiles/gcn-gpu/Dockerfile` on the [gem5 stable branch](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable).
+Compiling DNNMark, compiling the VEGA_X86 gem5, and running DNNMark on gem5 is dependent on the gcn-gpu docker image, built from the `util/dockerfiles/gcn-gpu/Dockerfile` on the [gem5 stable branch](https://github.com/gem5/gem5).
 
 ## Compilation and Running
 
@@ -27,18 +27,18 @@ won't be able to link against the library. The example commands do this by using
 `-v ${PWD}:${PWD}` in the docker run commands
 ```
 cd src/gpu/DNNMark
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v22-1 ./setup.sh HIP
-docker run --rm -v ${PWD}:${PWD} -w ${PWD}/build -u $UID:$GID ghcr.io/gem5/gcn-gpu:v22-1 make
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v24-0 ./setup.sh HIP
+docker run --rm -v ${PWD}:${PWD} -w ${PWD}/build -u $UID:$GID ghcr.io/gem5/gcn-gpu:v24-0 make
 ```
 
 DNNMark uses MIOpen kernels, which are unable to be compiled on-the-fly in gem5.
 We have provided a python script to generate these kernels for a subset of the
-benchmarks for a gfx801 GPU with 4 CUs by default
+benchmarks for a gfx902 APU with 4 CUs by default
 
 To generate the MIOpen kernels:
 ```
 cd src/gpu/DNNMark
-docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu:v22-1 python3 generate_cachefiles.py cachefiles.csv [--gfx-version={gfx801,gfx803}] [--num-cus=N]
+docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu:v24-0 python3 generate_cachefiles.py cachefiles.csv [--gfx-version={gfx900,gfx902}] [--num-cus=N]
 ```
 
 Due to the large amounts of memory that need to be set up for DNNMark, we have
@@ -52,17 +52,17 @@ g++ -std=c++0x generate_rand_data.cpp -o generate_rand_data
 ./generate_rand_data
 ```
 
-DNNMark is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
-To build GCN3_X86:
+DNNMark is a GPU application, which requires that gem5 is built with the VEGA_X86 architecture.
+To build VEGA_X86:
 ```
 # Working directory is your gem5 directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v22-1 scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu:v24-0 scons -sQ -j$(nproc) build/VEGA_X86/gem5.opt
 ```
 
 To run one of the benchmarks (fwd softmax) in gem5:
 ```
 # Assuming gem5 and gem5-resources are sub-directories of the current directory
-docker run --rm -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu:v22-1 gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
+docker run --rm -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu:v24-0 gem5/build/VEGA_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -c dnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
 ```
 
 Information from the original DNNMark README included below.

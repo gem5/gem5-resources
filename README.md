@@ -335,52 +335,26 @@ To compile:
 To clone the gem5-resources repository, run the following command:
 
 ```
-git clone https://gem5.googlesource.com/public/gem5-resources
+git clone https://github.com/gem5/gem5-resources
 ```
 
 
 ```
 cd src/gpu/square
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make gfx8-apu
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make gfx9-apu
 ```
 
 The compiled binary can be found in `src/gpu/square/bin`
 
 ### Square Pre-built binary
 
-<http://dist.gem5.org/dist/v22-0/test-progs/square/square>
-
-# Resource: HSA Agent Packet Example
-
-Based off of the Square resource in this repository, this resource serves as
-an example for using an HSA Agent Packet to send commands to the GPU command
-processor included in the GCN_X86 build of gem5.
-
-The example command extracts the kernel's completion signal from the domain
-of the command processor and the GPU's dispatcher. Initially this was a
-workaround for the hipDeviceSynchronize bug, now fixed. The method of
-waiting on a signal can be applied to other agent packet commands though.
-
-Custom commands can be added to the command processor in gem5 to control
-the GPU in novel ways.
-
-## Compilation
-
-To compile:
-
-```
-cd src/gpu/hsa-agent-pkt
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make gfx8-apu
-```
-
-The compiled binary can be found in `src/gpu/hsa-agent-pkt/bin`
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/square/square>
 
 # Resource: HIP Sample Applications
 
-The [HIP sample apps](
-https://github.com/ROCm-Developer-Tools/HIP/tree/roc-1.6.0/samples) contain
-applications that introduce various GPU programming concepts that are usable
-in HIP.
+The [HIP sample apps](https://github.com/ROCm/HIP/tree/rocm-4.0.x/samples)
+contain applications that introduce various GPU programming concepts that are
+usable in HIP.
 
 The samples cover topics such as using and accessing different parts of GPU
 memory, running multiple GPU streams, and optimization techniques for GPU code.
@@ -397,26 +371,26 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu mak
 
 Individual programs can be made by specifying the name of the program
 
-By default, this code builds for gfx801, a GCN3-based APU. This can be
+By default, this code builds for gfx902, a VEGA-based APU. This can be
 overridden by specifying `-e HCC_AMDGPU_TARGET=<target>` in the build command.
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/2dshfl>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/2dshfl>
 
-<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/dynamic_shared>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/dynamic_shared>
 
-<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/inline_asm>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/inline_asm>
 
-<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/MatrixTranspose>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/MatrixTranspose>
 
-<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/sharedMemory>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/sharedMemory>
 
-<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/shfl>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/shfl>
 
-<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/stream>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/stream>
 
-<http://dist.gem5.org/dist/v22-0/test-progs/hip-samples/unroll>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/unroll>
 
 # Resource: Heterosync
 
@@ -430,16 +404,16 @@ and the other command-line arguments for use with heterosync.
 ## Compilation
 ```
 cd src/gpu/heterosync
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make release-gfx8
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make release-gfx9
 ```
 
-The release-gfx8 target builds for gfx801, a GCN3-based APU, and gfx803, a
-GCN3-based dGPU. There are other targets (release) that build for GPU types
+The release-gfx9 target builds for gfx902, a VEGA-based APU, and gfx900, a
+VEGA-based dGPU. There are other targets (release) that build for GPU types
 that are currently unsupported in gem5.
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v22-0/test-progs/heterosync/gcn3/allSyncPrims-1kernel>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/heterosync/allSyncPrims-1kernel>
 
 # Resource: lulesh
 
@@ -453,14 +427,14 @@ cd src/gpu/lulesh
 docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make
 ```
 
-By default, the Makefile builds for gfx801, and is placed in the `src/gpu/lulesh/bin` folder.
+By default, the Makefile builds for gfx902, and is placed in the `src/gpu/lulesh/bin` folder.
 
-lulesh is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
-To build GCN3_X86:
+lulesh is a GPU application, which requires that gem5 is built with the VEGA_X86 architecture.
+To build VEGA_X86:
 
 ```
 # Working directory is your gem5 directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu scons -sQ -j$(nproc) build/VEGA_X86/gem5.opt
 ```
 
 The following command shows how to run lulesh
@@ -472,12 +446,12 @@ to the run command. The default arguments are equivalent to `--options="1.0e-2 1
 
 ```
 # Assuming gem5 and gem5-resources are in your working directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/lulesh/bin -clulesh
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu gem5/build/VEGA_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --mem-size=8GB --benchmark-root=gem5-resources/src/gpu/lulesh/bin -clulesh
 ```
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v22-0/test-progs/lulesh/lulesh>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/lulesh/lulesh>
 
 # Resource: halo-finder (HACC)
 
@@ -492,7 +466,7 @@ the code in RCBForceTree.cxx
 ## Compilation and Running
 
 halo-finder requires that certain libraries that aren't installed by default in the
-GCN3 docker container provided by gem5, and that the environment is configured properly
+VEGA docker container provided by gem5, and that the environment is configured properly
 in order to build. We provide a Dockerfile that installs those libraries and
 sets the environment.
 
@@ -505,24 +479,24 @@ docker build -t <image_name> .
 docker run --rm -v ${PWD}:${PWD} -w ${PWD}/src -u $UID:$GID <image_name> make hip/ForceTreeTest
 ```
 
-The binary is built for gfx801 by default and is placed at `src/gpu/halo-finder/src/hip/ForceTreeTest`
+The binary is built for gfx902 by default and is placed at `src/gpu/halo-finder/src/hip/ForceTreeTest`
 
-ForceTreeTest is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
-To build GCN3_X86:
+ForceTreeTest is a GPU application, which requires that gem5 is built with the VEGA_X86 architecture.
+To build VEGA_X86:
 ```
 # Working directory is your gem5 directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID <image_name> scons -sQ -j$(nproc) build/VEGA_X86/gem5.opt
 ```
 
 To run ForceTreeTest:
 ```
 # Assuming gem5 and gem5-resources are in the working directory
-docker run --rm -v $PWD:$PWD -w $PWD -u $UID:$GID <image_name> gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/halo-finder/src/hip -cForceTreeTest --options="0.5 0.1 64 0.1 1 N 12 rcb"
+docker run --rm -v $PWD:$PWD -w $PWD -u $UID:$GID <image_name> gem5/build/VEGA_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/halo-finder/src/hip -cForceTreeTest --options="0.5 0.1 64 0.1 1 N 12 rcb"
 ```
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v22-0/test-progs/halo-finder/ForceTreeTest>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/halo-finder/ForceTreeTest>
 
 # Resource: DNNMark
 
@@ -544,12 +518,12 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD}/build -u $UID:$GID ghcr.io/gem5/gcn-g
 
 DNNMark uses MIOpen kernels, which are unable to be compiled on-the-fly in gem5.
 We have provided a python script to generate these kernels for a subset of the
-benchmarks for a gfx801 GPU with 4 CUs by default
+benchmarks for a gfx902 GPU with 4 CUs by default
 
 To generate the MIOpen kernels:
 ```
 cd src/gpu/DNNMark
-docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu python3 generate_cachefiles.py cachefiles.csv [--gfx-version={gfx801,gfx803}] [--num-cus=N]
+docker run --rm -v ${PWD}:${PWD} -v${PWD}/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu python3 generate_cachefiles.py cachefiles.csv [--gfx-version={gfx902,gfx900}] [--num-cus=N]
 ```
 
 Due to the large amounts of memory that need to be set up for DNNMark, we have
@@ -563,17 +537,17 @@ g++ -std=c++0x generate_rand_data.cpp -o generate_rand_data
 ./generate_rand_data
 ```
 
-DNNMark is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
-To build GCN3_X86:
+DNNMark is a GPU application, which requires that gem5 is built with the VEGA_X86 architecture.
+To build VEGA_X86:
 ```
 # Working directory is your gem5 directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu scons -sQ -j$(nproc) build/GCN3_X86/gem5.opt
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu scons -sQ -j$(nproc) build/VEGA_X86/gem5.opt
 ```
 
 To run one of the benchmarks (fwd softmax) in gem5:
 ```
 # Assuming gem5 and gem5-resources are sub-directories of the current directory
-docker run --rm -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
+docker run --rm -v ${PWD}:${PWD} -v ${PWD}/gem5-resources/src/gpu/DNNMark/cachefiles:/root/.cache/miopen/2.9.0 -w ${PWD} ghcr.io/gem5/gcn-gpu gem5/build/VEGA_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/DNNMark/build/benchmarks/test_fwd_softmax -cdnnmark_test_fwd_softmax --options="-config gem5-resources/src/gpu/DNNMark/config_example/softmax_config.dnnmark -mmap gem5-resources/src/gpu/DNNMark/mmap.bin"
 ```
 
 
@@ -591,15 +565,15 @@ cd src/gpu/pennant
 docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu make
 ```
 
-By default, the binary is built for gfx801 and is placed in `src/gpu/pennant/build`
+By default, the binary is built for gfx902 and is placed in `src/gpu/pennant/build`
 
-pennant is a GPU application, which requires that gem5 is built with the GCN3_X86 architecture.
+pennant is a GPU application, which requires that gem5 is built with the VEGA_X86 architecture.
 
 pennant has sample input files located at `src/gpu/pennant/test`. The following command shows how to run the sample `noh`
 
 ```
 # Assuming gem5 and gem5-resources are in your working directory
-docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu gem5/build/GCN3_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/pennant/build -cpennant --options="gem5-resources/src/gpu/pennant/test/noh/noh.pnt"
+docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu gem5/build/VEGA_X86/gem5.opt gem5/configs/example/apu_se.py -n3 --benchmark-root=gem5-resources/src/gpu/pennant/build -cpennant --options="gem5-resources/src/gpu/pennant/test/noh/noh.pnt"
 ```
 
 The output gets placed in `src/gpu/pennant/test/noh/`, and the file `noh.xy`
@@ -608,7 +582,7 @@ compare against, and there may be slight differences due to floating-point round
 
 ## Pre-built binary
 
-<http://dist.gem5.org/dist/v22-0/test-progs/pennant/pennant>
+<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/pennant/pennant>
 
 ## Resource: SPEC 2006
 

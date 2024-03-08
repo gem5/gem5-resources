@@ -19,8 +19,8 @@ def parseArgs():
                              'in the format of: filename, args')
     parser.add_argument('--num-cus', default=4, type=int,
                         help='Number of CUs in simulated GPU')
-    parser.add_argument('--gfx-version', default='gfx801',
-                        choices=['gfx801', 'gfx803', 'gfx900'],
+    parser.add_argument('--gfx-version', default='gfx902',
+                        choices=['gfx900', 'gfx902'],
                         help='gfx version of simulated GPU')
 
     return parser.parse_args()
@@ -54,11 +54,9 @@ def getDb(options):
 def insertFiles(con, options):
     miopen_kern_path = '/MIOpen/src/kernels'
 
-    extra_args = {'gfx801': '-Wno-everything -Xclang '
+    extra_args = {'gfx900': '-Wno-everything -Xclang '
                             '-target-feature -Xclang +code-object-v3',
-                  'gfx803': '-Wno-everything -Xclang '
-                            '-target-feature -Xclang +code-object-v3',
-                  'gfx900': '-Wno-everything -Xclang '
+                  'gfx902': '-Wno-everything -Xclang '
                             '-target-feature -Xclang +code-object-v3'}
 
     with tempfile.TemporaryDirectory() as tmpdir:

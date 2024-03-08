@@ -65,7 +65,7 @@ CUDACFLAGS += $(CUDACFLAGS_OPT) $(CPPFLAGS)
 #LDFLAGS += $(CXXFLAGS_OPENMP)
 
 # add amdgpu targets
-CXXFLAGS += --amdgpu-target=gfx801,gfx803,gfx900
+CXXFLAGS += --amdgpu-target=gfx900,gfx902
 
 all : $(BINARY)
 
