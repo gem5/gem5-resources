@@ -62,6 +62,7 @@
 #include <algorithm>
 #include <sys/time.h>
 #include "util.h"
+#include <fstream>
 
 bool doCompare(CooTuple elem1, CooTuple elem2)
 {
@@ -124,18 +125,18 @@ csr_array *parseMetis(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool di
     char *line = (char *)malloc(8192);
     int num_edges = 0, num_nodes = 0;
 
-    FILE *fptr;
+    std::fstream fp(tmpchar, std::ios_base::in);
     CooTuple *tuple_array = NULL;
 
-    fptr = fopen(tmpchar, "r");
-    if (!fptr) {
+    if (!fp.good()) {
         fprintf(stderr, "Error when opening file: %s\n", tmpchar);
         exit(1);
     }
 
     printf("Opening file: %s\n", tmpchar);
 
-    while (fgets(line, 8192, fptr)) {
+    while (!fp.eof()) {
+        fp.getline(line, 8192);
         int head, tail, weight = 0;
         CooTuple temp;
 
@@ -220,7 +221,7 @@ csr_array *parseMetis(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool di
     csr->col_array = col_array;
     csr->data_array = data_array;
 
-    fclose(fptr);
+    fp.close();
     free(tuple_array);
     free(line);
 
@@ -236,18 +237,19 @@ csr_array *parseCOO(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool dire
     char line[128], sp[2], a, p;
     int num_nodes = 0, num_edges = 0;
 
-    FILE *fptr;
+    std::fstream fp(tmpchar, std::ios_base::in);
     CooTuple *tuple_array = NULL;
 
-    fptr = fopen(tmpchar, "r");
-    if (!fptr) {
+    if (!fp.good()) {
         fprintf(stderr, "Error when opening file: %s\n", tmpchar);
         exit(1);
     }
 
     printf("Opening file: %s\n", tmpchar);
 
-    while (fgets(line, 100, fptr)) {
+    while (!fp.eof()) {
+        fp.getline(line, 100);
+
         int head, tail, weight;
         switch (line[0]) {
         case 'c':
@@ -323,7 +325,7 @@ csr_array *parseCOO(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool dire
 
     row_array[row_cnt] = idx;
 
-    fclose(fptr);
+    fp.close();
     free(tuple_array);
 
     csr_array *csr = (csr_array *)malloc(sizeof(csr_array));
@@ -343,18 +345,19 @@ double_edges *parseMetis_doubleEdge(char* tmpchar, int *p_num_nodes, int *p_num_
     unsigned int lineno = 0;
     char line[4096];
     int num_edges = 0, num_nodes = 0;
-    FILE *fptr;
+
+    std::fstream fp(tmpchar, std::ios_base::in);
     CooTuple *tuple_array = NULL;
 
-    fptr = fopen(tmpchar, "r");
-    if (!fptr) {
+    if (!fp.good()) {
         fprintf(stderr, "Error when opening file: %s\n", tmpchar);
         exit(1);
     }
 
     printf("Opening file: %s\n", tmpchar);
 
-    while (fgets(line, 4096, fptr)) {
+    while (!fp.eof()) {
+        fp.getline(line, 4096);
         int head, tail, weight = 0;
         CooTuple temp;
 
@@ -421,7 +424,7 @@ double_edges *parseMetis_doubleEdge(char* tmpchar, int *p_num_nodes, int *p_num_
         edge_array2[i] = tuple_array[i].col;
     }
 
-    fclose(fptr);
+    fp.close();
     free(tuple_array);
 
     double_edges *de = (double_edges *)malloc(sizeof(double_edges));
@@ -440,18 +443,18 @@ double_edges *parseCOO_doubleEdge(char* tmpchar, int *p_num_nodes, int *p_num_ed
     char line[128], sp[2], a, p;
     int num_nodes = 0, num_edges = 0;
 
-    FILE *fptr;
+    std::fstream fp(tmpchar, std::ios_base::in);
     CooTuple *tuple_array = NULL;
 
-    fptr = fopen(tmpchar, "r");
-    if (!fptr) {
+    if (!fp.good()) {
         fprintf(stderr, "Error when opening file: %s\n", tmpchar);
         exit(1);
     }
 
     printf("Opening file: %s\n", tmpchar);
 
-    while (fgets(line, 100, fptr)) {
+    while (!fp.eof()) {
+        fp.getline(line, 100);
         int head, tail, weight;
         switch (line[0]) {
         case 'c':
@@ -515,7 +518,7 @@ double_edges *parseCOO_doubleEdge(char* tmpchar, int *p_num_nodes, int *p_num_ed
         edge_array2[i] = tuple_array[i].col;
     }
 
-    fclose(fptr);
+    fp.close();
     free(tuple_array);
 
     double_edges *de = (double_edges *)malloc(sizeof(double_edges));
@@ -533,18 +536,18 @@ csr_array *parseMM(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool direc
     char line[128];
     int num_nodes = 0, num_edges = 0, num_nodes2 = 0;
 
-    FILE *fptr;
+    std::fstream fp(tmpchar, std::ios_base::in);
     CooTuple *tuple_array = NULL;
 
-    fptr = fopen(tmpchar, "r");
-    if (!fptr) {
+    if (!fp.good()) {
         fprintf(stderr, "Error when opening file: %s\n", tmpchar);
         exit(1);
     }
 
     printf("Opening file: %s\n", tmpchar);
 
-    while (fgets(line, 100, fptr)) {
+    while (!fp.eof()) {
+        fp.getline(line, 100);
         int head, tail, weight;
         if (line[0] == '%') continue;
         if (lineno == 0) {
@@ -629,7 +632,7 @@ csr_array *parseMM(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool direc
     }
     row_array[row_cnt] = idx;
 
-    fclose(fptr);
+    fp.close();
     free(tuple_array);
 
     csr_array *csr = (csr_array *)malloc(sizeof(csr_array));
@@ -650,17 +653,17 @@ csr_array *parseMetis_transpose(char* tmpchar, int *p_num_nodes, int *p_num_edge
     int num_edges = 0, num_nodes = 0;
     int *col_cnt = NULL;
 
-    FILE *fptr;
+    std::fstream fp(tmpchar, std::ios_base::in);
     CooTuple *tuple_array = NULL;
 
-    fptr = fopen(tmpchar, "r");
-    if (!fptr) {
+    if (!fp.good()) {
         fprintf(stderr, "Error when opening file: %s\n", tmpchar);
         exit(1);
     }
 
     printf("Opening file: %s\n", tmpchar);
-    while (fgets(line, 8192, fptr)) {
+    while (!fp.eof()) {
+        fp.getline(line, 8192);
         int head, tail, weight = 0;
         CooTuple temp;
 
@@ -765,7 +768,7 @@ csr_array *parseMetis_transpose(char* tmpchar, int *p_num_nodes, int *p_num_edge
     csr->data_array = data_array;
     csr->col_cnt = col_cnt;
 
-    fclose(fptr);
+    fp.close();
     free(tuple_array);
 
     return csr;
@@ -779,18 +782,18 @@ csr_array *parseCOO_transpose(char* tmpchar, int *p_num_nodes, int *p_num_edges,
     char line[128], sp[2], a, p;
     int num_nodes = 0, num_edges = 0;
 
-    FILE *fptr;
+    std::fstream fp(tmpchar, std::ios_base::in);
     CooTuple *tuple_array = NULL;
 
-    fptr = fopen(tmpchar, "r");
-    if (!fptr) {
+    if (!fp.good()) {
         fprintf(stderr, "Error when opening file: %s\n", tmpchar);
         exit(1);
     }
 
     printf("Opening file: %s\n", tmpchar);
 
-    while (fgets(line, 100, fptr)) {
+    while (!fp.eof()) {
+        fp.getline(line, 100);
         int head, tail, weight;
         switch (line[0]) {
         case 'c':
@@ -874,7 +877,7 @@ csr_array *parseCOO_transpose(char* tmpchar, int *p_num_nodes, int *p_num_edges,
     csr->col_array = col_array;
     csr->data_array = data_array;
 
-    fclose(fptr);
+    fp.close();
     free(tuple_array);
 
     return csr;
