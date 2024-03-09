@@ -17,8 +17,8 @@ ln -s /sbin/gem5_init.sh /sbin/init
 # mv /home/gem5/after_boot.sh /root/
 
 # Add init script to bashrc
-# echo "/root/after_boot.sh" >> /root/.bashrc
-echo "/home/gem5/after_boot.sh" >> /home/gem5/.bashrc
+echo -e "\nif [ -z \"\$AFTER_BOOT_EXECUTED\" ]; then\n   export AFTER_BOOT_EXECUTED=1\n    /home/gem5/after_boot.sh\nfi\n" >> /home/gem5/.bashrc
+
 # Remove the motd
 rm /etc/update-motd.d/*
 

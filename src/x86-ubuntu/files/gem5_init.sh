@@ -8,7 +8,7 @@ cmdline=$(cat /proc/cmdline)
 no_systemd=false
 
 # gem5-bridge exit signifying that kernel is booted
-printf "Kernel booted, starting gem5 init..."
+printf "Kernel booted, In gem5 init...\n"
 gem5-bridge exit
 
 if [[ $cmdline == *"no_systemd"* ]]; then
@@ -18,9 +18,8 @@ fi
 # Run systemd via exec if not disabled
 if [[ $no_systemd == false ]]; then
     # gem5-bridge exit signifying that systemd will be booted
-    printf "Starting systemd..."
-    gem5-bridge exit
+    printf "Starting systemd...\n"
     exec /lib/systemd/systemd
 else
-    exec /bin/bash
+    exec su - gem5
 fi
