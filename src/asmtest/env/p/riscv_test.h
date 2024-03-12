@@ -165,6 +165,13 @@
 
 #define INTERRUPT_HANDLER j other_exception /* No interrupts should occur */
 
+#define PUT_EXITCODE                                                    \
+        la a0, tohost_file;                                             \
+        li t0, 'e' | ('x' << 8) | ('i' << 16) | ('t' << 24);            \
+        li t1, 'c' | ('o' << 8) | ('d' << 16) | ('e' << 24);            \
+        sw t0, 0(a0);                                                   \
+        sw t1, 4(a0);
+
 #if __riscv_xlen == 64
 #define M5_WRITE_FILE(vaddr, len, offset, filename_addr)                \
         la a0, vaddr;                                                   \
@@ -232,6 +239,8 @@ handle_exception:                                                       \
         srl a1, a1, 1;                                                  \
         la a0, tohost_data;                                             \
         sb a1, 0(a0);                                                   \
+        /* Put "exitcode" to the tohost_file to avoid failed by overwrite */ \
+        PUT_EXITCODE;                                                   \
         /* write exit code (binary) to file */                          \
         M5_WRITE_FILE(tohost_data, 1, 0, tohost_file)                   \
         /* shutdown gem5 */                                             \
@@ -302,6 +311,7 @@ reset_vector:                                                           \
 //-----------------------------------------------------------------------
 
 #define EXTRA_DATA                                                      \
+.align 4;                                                               \
 tohost_file:                                                            \
         .asciz "exitcode";                                              \
 tohost_data:                                                            \
