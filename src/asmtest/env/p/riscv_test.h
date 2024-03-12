@@ -165,6 +165,35 @@
 
 #define INTERRUPT_HANDLER j other_exception /* No interrupts should occur */
 
+#if __riscv_xlen == 64
+#define M5_WRITE_FILE(vaddr, len, offset, filename_addr)                \
+        la a0, vaddr;                                                   \
+        li a1, len;                                                     \
+        li a2, offset;                                                  \
+        la a3, filename_addr;                                           \
+        .long 0x9E00007B;
+#else
+#define M5_WRITE_FILE(vaddr, len, offset, filename_addr)                \
+        la a0, vaddr;                                                   \
+        li a1, len & ((1 << __riscv_xlen) - 1);                         \
+        li a2, len >> __riscv_xlen;                                     \
+        li a3, offset & ((1 << __riscv_xlen) - 1);                      \
+        li a4, offset >> __riscv_xlen;                                  \
+        la a5, filename_addr;                                           \
+        .long 0x9E00007B;
+#endif
+
+#if __riscv_xlen == 64
+#define M5_EXIT(delay)                                                  \
+        li a0, delay;                                                   \
+        .long 0x4200007B;
+#else
+#define M5_EXIT(delay)                                                  \
+        li a0, delay & ((1 << __riscv_xlen) - 1);                       \
+        li a1, delay >> __riscv_xlen;                                   \
+        .long 0x4200007B;
+#endif
+
 #define RVTEST_CODE_BEGIN                                               \
         .section .text.init;                                            \
         .align  6;                                                      \
@@ -204,13 +233,9 @@ handle_exception:                                                       \
         la a0, tohost_data;                                             \
         sb a1, 0(a0);                                                   \
         /* write exit code (binary) to file */                          \
-        li a1, 1;                                                       \
-        li a2, 0;                                                       \
-        la a3, tohost_file;                                             \
-        .long 0x9E00007B;                                               \
+        M5_WRITE_FILE(tohost_data, 1, 0, tohost_file)                   \
         /* shutdown gem5 */                                             \
-        li a0, 0;                                                       \
-        .long 0x4200007B;                                               \
+        M5_EXIT(0);                                                     \
         j write_tohost;                                                 \
 reset_vector:                                                           \
         INIT_XREG;                                                      \
