@@ -8,7 +8,7 @@
 // third vector. The input data (and reference data) should be
 // generated using the vvadd_gendata.pl perl script and dumped
 // to a file named dataset1.h.
- 
+
 #include "util.h"
 
 //--------------------------------------------------------------------------

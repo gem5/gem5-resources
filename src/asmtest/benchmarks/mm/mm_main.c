@@ -13,7 +13,7 @@ void main(int cid, int nc)
   const int R = 8;
   int m, n, p;
   uint64_t s = 0xdeadbeefU;
-  
+
   m = CBM;
   n = CBN;
   p = CBK;

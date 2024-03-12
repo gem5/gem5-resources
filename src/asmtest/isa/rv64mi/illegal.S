@@ -66,7 +66,7 @@ msip:
   li t0, (SSTATUS_SUM | SSTATUS_MXR)
   csrc sstatus, t0
   and t1, t1, zero
-  li t1, (SSTATUS_SUM | SSTATUS_MXR) 
+  li t1, (SSTATUS_SUM | SSTATUS_MXR)
   csrs sstatus, t1
   csrr t2, sstatus
   and t2, t2, t0
@@ -116,7 +116,7 @@ bare_s_1:
   j fail
 
 bare_s_2:
-  # Set TVM=1. TVM should stay 0 and SFENCE.VMA should still trap 
+  # Set TVM=1. TVM should stay 0 and SFENCE.VMA should still trap
   sfence.vma
   j fail
 

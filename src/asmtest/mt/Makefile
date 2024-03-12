@@ -83,7 +83,7 @@ RISCV_LINK_OPTS = -nostdlib -nostartfiles -ffast-math -lc
 RISCV_OBJDUMP = $(RISCV_PREFIX)objdump --disassemble-all --disassemble-zeroes --section=.text --section=.text.startup --section=.data
 RISCV_SIM = spike -p2
 
-VPATH += $(common) $(common)/../mt-matmul $(common)/../mt-vvadd 
+VPATH += $(common) $(common)/../mt-matmul $(common)/../mt-vvadd
 
 incs  += -I. -I$(bmarkdir)/../env -I$(common) -I$(common)/../mt-matmul -I$(common)/../mt-vvadd
 objs  :=
@@ -131,15 +131,15 @@ $(bmarks_riscv_out): %.riscv.out: %.riscv
 riscv: $(bmarks_riscv_dump)
 run-riscv: $(bmarks_riscv_out)
 	echo; perl -ne 'print "  [$$1] $$ARGV \t$$2\n" if /\*{3}(.{8})\*{3}(.*)/' \
- 
+
 junk += $(bmarks_riscv_bin) $(bmarks_riscv_dump) $(bmarks_riscv_out) $(bmarks_riscv_obj)
 
- 
+
 #------------------------------------------------------------
 # Default
- 
+
 all:  riscv
- 
+
 #------------------------------------------------------------
 # Install
 
