@@ -206,11 +206,13 @@ int main(int argc, char **argv)
 
     // Initialization
     hipLaunchKernelGGL(HIP_KERNEL_NAME(clean_bc), dim3(grid), dim3(threads ), 0, 0, bc_d, num_nodes);
+    hipDeviceSynchronize();
 
     // Main computation loop
     for (int i = 0; i < num_nodes && i < MAX_ITERS; i++) {
         hipLaunchKernelGGL(HIP_KERNEL_NAME(clean_1d_array), dim3(grid), dim3(threads ), 0, 0, i, dist_d, sigma_d, rho_d,
                                             num_nodes);
+        hipDeviceSynchronize();
 
         // Depth of the traversal
         int dist = 0;
@@ -226,6 +228,7 @@ int main(int argc, char **argv)
 
             hipLaunchKernelGGL(HIP_KERNEL_NAME(bfs_kernel), dim3(grid), dim3(threads ), 0, 0, row_d, col_d, dist_d, rho_d, stop_d,
                                             num_nodes, num_edges, dist);
+            hipDeviceSynchronize();
 
             // Copy back the termination variable from the device
             hipMemcpy(&stop, stop_d, sizeof(int), hipMemcpyDeviceToHost);
@@ -235,22 +238,20 @@ int main(int argc, char **argv)
 
         } while (stop);
 
-        hipDeviceSynchronize();
-
         // Traverse back from the deepest part of the tree
         while (dist) {
             hipLaunchKernelGGL(HIP_KERNEL_NAME(backtrack_kernel), dim3(grid), dim3(threads ), 0, 0, row_trans_d, col_trans_d,
                                                 dist_d, rho_d, sigma_d,
                                                 num_nodes, num_edges, dist, i,
                                                 bc_d);
+            hipDeviceSynchronize();
 
             // Back one level
             dist--;
         }
-        hipDeviceSynchronize();
 	fprintf(stdout, "Completed iteration %d\n", i);
     }
-    hipDeviceSynchronize();
+
     //timer4 = gettime();
 
     // Copy back the results for the bc array

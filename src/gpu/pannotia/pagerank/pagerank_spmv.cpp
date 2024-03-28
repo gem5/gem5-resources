@@ -214,11 +214,12 @@ int main(int argc, char **argv)
         hipLaunchKernelGGL(spmv_csr_scalar_kernel, dim3(grid), dim3(threads), 0, 0, num_nodes, row_d, col_d,
                                                    data_d, pagerank1_d,
                                                    pagerank2_d);
+        hipDeviceSynchronize();
 
         // Launch pagerank kernel 2
         hipLaunchKernelGGL(pagerank2, dim3(grid), dim3(threads), 0, 0, pagerank1_d, pagerank2_d, num_nodes);
+        hipDeviceSynchronize();
     }
-    hipDeviceSynchronize();
 
     double timer4 = gettime();
 

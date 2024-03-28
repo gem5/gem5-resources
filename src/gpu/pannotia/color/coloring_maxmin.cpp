@@ -215,6 +215,7 @@ int main(int argc, char **argv)
 
     // Initialize arrays
     hipLaunchKernelGGL(ini, dim3(grid), dim3(threads ), 0, 0, max_d, min_d, num_nodes);
+    hipDeviceSynchronize();
 
     // Main computation loop
     double timer3 = gettime();
@@ -233,10 +234,12 @@ int main(int argc, char **argv)
         hipLaunchKernelGGL(color1, dim3(grid), dim3(threads ), 0, 0, row_d, col_d, node_value_d, color_d,
                                      stop_d, max_d, min_d, graph_color,
                                      num_nodes, num_edges);
+        hipDeviceSynchronize();
 
         // Launch the color kernel 2
         hipLaunchKernelGGL(color2, dim3(grid), dim3(threads ), 0, 0, node_value_d, color_d, max_d, min_d,
                                      graph_color, num_nodes, num_edges);
+        hipDeviceSynchronize();
 
         err = hipMemcpy(&stop, stop_d, sizeof(int), hipMemcpyDeviceToHost);
         if (err != hipSuccess) {
@@ -247,7 +250,6 @@ int main(int argc, char **argv)
         graph_color = graph_color + 2;
 
     }
-    hipDeviceSynchronize();
 
     double timer4 = gettime();
 
