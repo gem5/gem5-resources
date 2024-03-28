@@ -4,4 +4,4 @@
 #undef RVTEST_RV64U
 #define RVTEST_RV64U RVTEST_RV32U
 
-#include "../rv64ub/sext_h.S"
+#include "../rv64uzbb/sext_b.S"

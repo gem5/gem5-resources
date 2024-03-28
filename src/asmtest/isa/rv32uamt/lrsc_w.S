@@ -48,7 +48,7 @@
 
 #include "riscv_test.h"
 #include "test_macros.h"
-#include "test_macros_mt_rv32.h"
+#include "test_macros_mt.h"
 
   RVTEST_RV32U
   RVTEST_CODE_BEGIN

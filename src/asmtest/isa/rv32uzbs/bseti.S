@@ -4,4 +4,4 @@
 #undef RVTEST_RV64U
 #define RVTEST_RV64U RVTEST_RV32U
 
-#include "../rv64ub/bclri.S"
+#include "../rv64uzbs/bseti.S"

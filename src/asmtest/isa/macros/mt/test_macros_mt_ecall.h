@@ -118,6 +118,18 @@
 #define FAILURE               1
 #define SUCCESS               0
 
+#if __riscv_xlen == 64
+# define STORE    sd
+# define LOAD     ld
+# define REGBYTES 8
+# define AMOADD amoadd.d
+#else
+# define STORE    sw
+# define LOAD     lw
+# define REGBYTES 4
+# define AMOADD amoadd.w
+#endif
+
 //------------------------------------------------------------------------
 // _create_threads: create a given number of threads
 //
@@ -161,19 +173,19 @@ _create_threads:
 1:
   // allocate a new stack space and save its pointer in the caller's stack
   jal     ra, _alloc_mem
-  addi    sp, sp, -8
-  sd      a0, (sp)
+  addi    sp, sp, -REGBYTES
+  STORE   a0, (sp)
   mv      t1, a0
 
   // allocate a new thread local storage (TLS) and save its pointer in the
   // caller's stack
   jal     ra, _alloc_mem
-  addi    sp, sp, -8
-  sd      a0, (sp)
+  addi    sp, sp, -REGBYTES
+  STORE   a0, (sp)
   mv      t2, a0
 
   // allocate space in the caller's stack to store new thread ID
-  addi    sp, sp, -8
+  addi    sp, sp, -REGBYTES
 
   // clone a new thread
   li      a0, CLONE_FLAGS
@@ -189,15 +201,15 @@ _create_threads:
   beqz    a0, _mt_test      // only the new thread jumps to _mt_test
 
   // save child thread ID in the caller's stack
-  addi      sp, sp, -8
-  sd        a0, (sp)
+  addi      sp, sp, -REGBYTES
+  STORE     a0, (sp)
 
   // decrement the number of threads to create
   addi      t0, t0, -1
 
   // increment the number of successfully created threads sofar
   addi      t4, zero, 1
-  amoadd.d  zero, t4, (t3)
+  AMOADD    zero, t4, (t3)
 
   // check if we still need to spawn more threads
   bnez      t0, 1b
@@ -205,17 +217,17 @@ _create_threads:
 2:
   // handle clone syscall error by deleting the last memory frame created
   // for the unsuccessfully spawned thread.
-  addi      sp, sp, 8       // skip child_thread_id
+  addi      sp, sp, REGBYTES // skip child_thread_id
 
   // deallocate last allocated tls
-  ld        a0, (sp)
+  LOAD      a0, (sp)
   jal       ra, _dealloc_mem
-  addi      sp, sp, 8
+  addi      sp, sp, REGBYTES
 
   // deallocate last allocated stack
-  ld        a0, (sp)
+  LOAD      a0, (sp)
   jal       ra, _dealloc_mem
-  addi      sp, sp, 8
+  addi      sp, sp, REGBYTES
 3:
   // finish creating threads
   mv        ra, s0
@@ -235,6 +247,10 @@ _alloc_mem:
   li      a3, MMAP_MAP_FLAGS
   li      a4, -1
   li      a5, 0
+#if __riscv_xlen == 32
+  // We need to set upper bits of off_t to zero
+  li      a6, 0
+#endif
   li      a7, SYSCALL_MMAP
   ecall
   ret
@@ -262,18 +278,18 @@ _delete_threads:
   mv      t0, a0                  // get the number of threads to delete
   mv      s0, ra                  // save return register
 1:
-  addi    sp, sp, 8               // skip saved_child_thread_id
-  addi    sp, sp, 8               // skip child_thread_id
+  addi    sp, sp, REGBYTES        // skip saved_child_thread_id
+  addi    sp, sp, REGBYTES        // skip child_thread_id
 
   // deallocate thread's tls
-  ld      a0, (sp)
+  LOAD    a0, (sp)
   jal     ra, _dealloc_mem
-  addi    sp, sp, 8
+  addi    sp, sp, REGBYTES
 
   // deallocate thread's stack
-  ld      a0, (sp)
+  LOAD    a0, (sp)
   jal     ra, _dealloc_mem
-  addi    sp, sp, 8
+  addi    sp, sp, REGBYTES
 
   // decrement the number of threads to delete
   addi    t0, t0, -1
@@ -324,16 +340,16 @@ _join:
   mv      s1, sp          // save stack pointer
 1:
   // Calling futex_wait on ctidptr
-  ld      a2, (sp)                // get child thread ID from
+  LOAD    a2, (sp)                // get child thread ID from
                                   // saved_child_thread_id
-  addi    sp, sp, 8
+  addi    sp, sp, REGBYTES
   mv      a0, sp                  // futex address (child_thread_id)
   li      a1, FUTEX_WAIT_PRIVATE
   li      a7, SYSCALL_FUTEX
   ecall
 
-  addi    sp, sp, 8              // skip child_tls_ptr
-  addi    sp, sp, 8              // skip child_stack_ptr
+  addi    sp, sp, REGBYTES        // skip child_tls_ptr
+  addi    sp, sp, REGBYTES        // skip child_stack_ptr
 
   // decrement the number of threads to wait for
   addi    t0, t0, -1
@@ -344,6 +360,7 @@ _join:
   mv      sp, s1                  // restore stack pointer
   ret
 
+#if __riscv_xlen == 64
 #define MT_DATA                                                           \
   n_worker_threads:     .dword    0;                                      \
   shared_var:           .dword    0;                                      \
@@ -351,5 +368,16 @@ _join:
   array:                .dword    0x00000000deadbeef,                     \
                                   0xdeadbeefdeadbeef,                     \
                                   0x12343eeaaf423451;                     \
+
+#else
+#define MT_DATA                                                           \
+  n_worker_threads:     .word    0;                                       \
+  shared_var:   .word    0;                                               \
+  barrier:      .word    0;                                               \
+  array:        .word    0x0000beef,                                      \
+                          0xdeadbeef,                                     \
+                          0x123aa451;                                     \
+
+#endif
 
 #endif

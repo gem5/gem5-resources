@@ -73,26 +73,21 @@ thread wait/wakeup behaviors. This set reuses some of the tests in
 threads wait and wake up in certain cases. This test set also checks functional
 behaviors of threads after a wait/wakeup operation.
 
-5. Bit-manipulation ISA tests (`isa/rv32ub`, `isa/rv64ub`)
+5. Makefile for `benchmarks` directory
 
-This is a instructions test sets of Zba, Zbb, Zbc and Zbs extensions. They are
-bit-manipulations of registers.
-
-6. Makefile for `benchmarks` directory
-
-The `compile_template` in the Makefile has been changed to not use 
-the default `gcc` options and the `riscv-tests` linkers. 
-Instead, the new compile template only uses the `common` directory in `benchmarks` and the `-static` and `-O2` flags. 
-To facilitate gem5 compatible ROIs, the `Makefile` links with the `libm5.a` present in the `gem5/include` directory 
+The `compile_template` in the Makefile has been changed to not use
+the default `gcc` options and the `riscv-tests` linkers.
+Instead, the new compile template only uses the `common` directory in `benchmarks` and the `-static` and `-O2` flags.
+To facilitate gem5 compatible ROIs, the `Makefile` links with the `libm5.a` present in the `gem5/include` directory
 (NOTE: the `gem5` directory must be in the `common` directory for compiling the benchmarks).
 As part of this change, all the source code of the benchmarks use `m5_work_begin` and `m5_work_end` to mark the beginning and end of the ROI.
 
-7. `mm` benchmark source code
+6. `mm` benchmark source code
 
-A minor change was made to the `mm` benchmark source code to make it 
-compatible with the `Makefile` changes mentioned above. 
-Since `mm_main.c` used `thread_entry` as the `main` function, 
-the compiler was not able to find the `main` function. 
+A minor change was made to the `mm` benchmark source code to make it
+compatible with the `Makefile` changes mentioned above.
+Since `mm_main.c` used `thread_entry` as the `main` function,
+the compiler was not able to find the `main` function.
 This was fixed by renaming `thread_entry` to `main`.
 
 How to compile this test suite

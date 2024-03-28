@@ -75,6 +75,16 @@
 
 #define HARTID          0xF14
 
+#if __riscv_xlen == 64
+# define STORE    sd
+# define LOAD     ld
+# define REGBYTES 8
+#else
+# define STORE    sw
+# define LOAD     lw
+# define REGBYTES 4
+#endif
+
 //------------------------------------------------------------------------
 // create NUM_THREADS child threads
 //------------------------------------------------------------------------
@@ -83,8 +93,8 @@ _create_threads:
   mv      s0, ra                  // save return register
 1:
   jal     ra, _alloc_stack
-  addi    sp, sp, -8
-  sd      a0, (sp)                // save pointer to the new stack
+  addi    sp, sp, -REGBYTES
+  STORE   a0, (sp)                // save pointer to the new stack
   jal     ra, _clone_thread       // clone a new thread
   addi    t0, t0, -1
   bnez    t0, 1b
@@ -98,6 +108,10 @@ _alloc_stack:
   li      a3, MMAP_MAP_FLAGS
   li      a4, -1
   li      a5, 0
+#if __riscv_xlen == 32
+  // We need to set upper bits of off_t to zero
+  li      a6, 0
+#endif
   li      a7, SYSCALL_MMAP
   ecall
   ret
@@ -118,7 +132,7 @@ _join:
   la      t0, barrier
   li      t1, NUM_THREADS
 1:
-  ld      t2, (t0)
+  LOAD    t2, (t0)
   bne     t1, t2, 1b
   ret
 
@@ -129,8 +143,8 @@ _delete_threads:
   li      t0, NUM_THREADS
   mv      s0, ra                  // save return register
 1:
-  ld      a0, (sp)                // pop the new stack's pointer
-  addi    sp, sp, 8
+  LOAD    a0, (sp)                // pop the new stack's pointer
+  addi    sp, sp, REGBYTES
   jal     ra, _dealloc_stack
   addi    t0, t0, -1
   bnez    t0, 1b
@@ -143,11 +157,22 @@ _dealloc_stack:
   ecall
   ret
 
+#if __riscv_xlen == 64
 #define MT_DATA                                                           \
   shared_var:   .dword    0;                                              \
   barrier:      .dword    0;                                              \
   array:        .dword    0x00000000deadbeef,                             \
                           0xdeadbeefdeadbeef,                             \
                           0x12343eeaaf423451;                             \
+
+#else
+#define MT_DATA                                                           \
+  shared_var:   .word     0;                                              \
+  barrier:      .word     0;                                              \
+  array:        .word     0x0000beef,                                     \
+                          0xdeadbeef,                                     \
+                          0x123aa451;                                     \
+
+#endif
 
 #endif

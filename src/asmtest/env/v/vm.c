@@ -34,11 +34,22 @@ static uint64_t lfsr63(uint64_t x)
 static void cputchar(const char *file, int x)
 {
   volatile char c = x;
+#if __riscv_xlen == 64
   register size_t a0 asm("a0") = (uintptr_t)(&c);
   register size_t a1 asm("a1") = 1;
   register size_t a2 asm("a2") = 0;
   register size_t a3 asm("a3") = (uintptr_t)file;
   asm volatile (".long 0x9E00007B" : : "r"(a0), "r"(a1), "r"(a2), "r"(a3));
+#else
+  register size_t a0 asm("a0") = (uintptr_t)(&c);
+  register size_t a1 asm("a1") = 0;
+  register size_t a2 asm("a2") = 1;
+  register size_t a3 asm("a3") = 0;
+  register size_t a4 asm("a4") = 0;
+  register size_t a5 asm("a5") = (uintptr_t)file;
+  asm volatile (".long 0x9E00007B" : :
+      "r"(a0), "r"(a1), "r"(a2), "r"(a3), "r"(a4), "r"(a5));
+#endif
 }
 
 static void cputstring(const char* s)
@@ -51,7 +62,12 @@ static void terminate(int code)
 {
   cputchar(exitcodeFile, code >> 1);
   register size_t a0 asm("a0") = 0;
+#if __riscv_xlen == 64
   asm volatile (".long 0x4200007B" : : "r"(a0));
+#else
+  register size_t a1 asm("a1") = 0;
+  asm volatile (".long 0x4200007B" : : "r"(a0), "r"(a1));
+#endif
   while (1);
 }
 
