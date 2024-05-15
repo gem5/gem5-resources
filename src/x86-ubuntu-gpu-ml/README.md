@@ -21,7 +21,7 @@ Details of the disk contents are:
     - [HIP](https://github.com/ROCm/HIP): hipcc LLVM compiler and HIP versions of roc libraries.
     - roc Libraries: rocBLAS, rocSPARSE, rocgdb, etc.
     - MI libraries: MIOpen, MIGraphX, etc.
-- [PyTorch](https://pytorch.org/) 2.2.2: PyTorch is a machine learning library based on the Torch library
+- [PyTorch](https://pytorch.org/) 2.3.0: PyTorch is a machine learning library based on the Torch library
 - [TensorFlow](https://tensorflow.org/) 2.14: a free and open-source software library for machine learning and artificial intelligence.
     - The python package tensorflow_datasets is also installed for convenience as these are used in the first TensorFlow tutorials.
 

@@ -7,6 +7,16 @@
 # All rights reserved.
 # SPDX-License-Identifier: BSD 3-Clause
 
+# Installing the packages in this script instead of the user-data
+# file dueing ubuntu autoinstall. The reason is that sometimes
+# the package install failes. This method is more reliable.
+echo 'installing packages'
+apt-get update
+apt-get install -y scons
+apt-get install -y git
+apt-get install -y vim
+apt-get install -y build-essential
+
 # Remove the motd
 rm /etc/update-motd.d/*
 
@@ -68,12 +78,12 @@ sudo chmod 777 /root/roms
 
 
 # See https://pytorch.org/ . At the time of writing the selector was:
-# Build: 2.2.2
+# Build: 2.3.0
 # OS: Linux
 # Package: Pip
 # Language: Python
-# Compute Platfrom: ROCm 5.7 (Note: This is currently the latest ROCm supported)
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7
+# Compute Platfrom: ROCm 6.0 (Note: Latest ROCm when this file was last modified)
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.0
 
 # See https://pypi.org/project/tensorflow-rocm/#description
 # Datasets are also installed as gem5 has no internet connection.

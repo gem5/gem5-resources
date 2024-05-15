@@ -12,11 +12,6 @@ autoinstall:
     - arches:
       - default
       uri: http://ports.ubuntu.com/ubuntu-ports
-  packages:
-  - build-essential
-  - git
-  - scons
-  - vim
   drivers:
     install: false
   identity:
