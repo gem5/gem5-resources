@@ -1,0 +1,12 @@
+BIN_DIR ?= ./bin.default
+HIP_PATH ?= /opt/rocm
+
+all: $(BIN_DIR)
+	$(HIP_PATH)/bin/hipcc src/lulesh.hip.cc -o $(BIN_DIR)/lulesh.default --offload-arch=gfx900,gfx90a,gfx942
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+clean:
+	rm -f $(BIN_DIR)/lulesh.default
+	rmdir --ignore-fail-on-non-empty $(BIN_DIR)

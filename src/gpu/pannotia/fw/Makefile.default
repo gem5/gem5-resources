@@ -1,14 +1,16 @@
-HIP_PATH ?= /opt/rocm/hip
+HIP_PATH ?= /opt/rocm
 HIPCC = $(HIP_PATH)/bin/hipcc
-EXECUTABLE = fw_hip
-OPTS = -O3
 
-BIN_DIR ?= ./bin
+EXECUTABLE = fw_hip.default
+CPPSRC = Floyd-Warshall.cpp
+
+OPTS = -O3 -Wno-unused-result
+BIN_DIR ?= ./bin.default
 
 all: $(BIN_DIR)/$(EXECUTABLE)
 
-$(BIN_DIR)/$(EXECUTABLE): Floyd-Warshall.cpp parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --amdgpu-target=gfx900,gfx902 $(CXXFLAGS) parse.cpp ../graph_parser/util.cpp Floyd-Warshall.cpp -o $(BIN_DIR)/$(EXECUTABLE)
+$(BIN_DIR)/$(EXECUTABLE): $(CPPSRC) parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) parse.cpp ../graph_parser/util.cpp $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

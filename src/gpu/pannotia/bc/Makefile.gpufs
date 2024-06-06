@@ -1,17 +1,18 @@
 HIP_PATH ?= /opt/rocm
 HIPCC = $(HIP_PATH)/bin/hipcc
 
-EXECUTABLE = bc_hip.default
+EXECUTABLE = bc_hip.gpufs
 CPPSRC = BC.cpp 
 
 # BC has a runtime error in fgets with -O2 and -O3
-OPTS = -O1 -Wno-unused-result
-BIN_DIR ?= ./bin.default
+OPTS = -O1 -Wno-unused-result -DGEM5_FS -I$(GEM5_PATH)/include -I$(GEM5_PATH)
+BIN_DIR ?= ./bin.gpufs
+LDFLAGS += -L$(GEM5_PATH)/util/m5/build/x86/out -lm5
 
 all: $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR)/$(EXECUTABLE): $(CPPSRC) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/util.cpp $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/util.cpp $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE) $(LDFLAGS)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

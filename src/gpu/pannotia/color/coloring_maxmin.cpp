@@ -65,9 +65,13 @@
 #include "../graph_parser/util.h"
 #include "kernel_maxmin.h"
 
-#ifdef GEM5_FUSION
+#if defined(GEM5_FUSION) || defined(GEM5_FS)
 #include <stdint.h>
 #include <gem5/m5ops.h>
+#endif
+
+#ifdef GEM5_FS
+#include <util/m5/src/m5_mmap.h>
 #endif
 
 #define RANGE 2048
@@ -179,6 +183,12 @@ int main(int argc, char **argv)
     m5_work_begin(0, 0);
 #endif
 
+#ifdef GEM5_FS
+    m5op_addr = 0xFFFF0000;
+    map_m5_mem();
+    m5_work_begin_addr(0, 0);
+#endif
+
     err = hipMemcpy(color_d, color, num_nodes * sizeof(int), hipMemcpyHostToDevice);
     if (err != hipSuccess) {
         fprintf(stderr, "ERROR: hipMemcpy color_d (size:%d) => %s\n", num_nodes, hipGetErrorString(err));
@@ -260,6 +270,11 @@ int main(int argc, char **argv)
 
 #ifdef GEM5_FUSION
     m5_work_end(0, 0);
+#endif
+
+#ifdef GEM5_FS
+    m5_work_end_addr(0, 0);
+    unmap_m5_mem();
 #endif
 
     double timer2 = gettime();

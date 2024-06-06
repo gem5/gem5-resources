@@ -1,0 +1,22 @@
+HIP_PATH?= /opt/rocm
+HIPCC=$(HIP_PATH)/bin/hipcc
+
+SRC_DIR := src
+BIN_DIR := bin.default
+
+SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
+EXECUTABLES := $(basename $(notdir $(SOURCES)))
+
+.PHONY: all clean
+
+all: $(EXECUTABLES)
+
+$(EXECUTABLES): %: $(SRC_DIR)/%.cpp | $(BIN_DIR)
+	$(HIPCC) -Wno-unused-result --offload-arch=gfx900,gfx90a,gfx942 $< -o $(BIN_DIR)/$@.default
+
+$(BIN_DIR):
+	mkdir -p $@
+
+clean:
+	rm -f $(BIN_DIR)/*.default
+	rmdir --ignore-fail-on-non-empty $(BIN_DIR)

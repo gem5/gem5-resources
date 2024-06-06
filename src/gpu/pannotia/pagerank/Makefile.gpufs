@@ -1,23 +1,24 @@
 HIP_PATH ?= /opt/rocm
 HIPCC = $(HIP_PATH)/bin/hipcc
 
-DEF_EXE = pagerank_default.default
-SPMV_EXE = pagerank_spmv.default
+DEF_EXE = pagerank_default.gpufs
+SPMV_EXE = pagerank_spmv.gpufs
 
 DEF_CPP = pagerank.cpp
 SPMV_CPP = pagerank_spmv.cpp
 
 CPPSRC = ../graph_parser/util.cpp ../graph_parser/parse.cpp
-OPTS = -O3 -Wno-unused-result
-BIN_DIR ?= ./bin.default
+OPTS = -O3 -Wno-unused-result -DGEM5_FS -I$(GEM5_PATH)/include -I$(GEM5_PATH)
+BIN_DIR ?= ./bin.gpufs
+LDFLAGS += -L$(GEM5_PATH)/util/m5/build/x86/out -lm5
 
 all: $(BIN_DIR)/$(DEF_EXE) $(BIN_DIR)/$(SPMV_EXE)
 
 $(BIN_DIR)/$(DEF_EXE): $(DEF_CPP) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(DEF_CPP) $(CPPSRC) -o $(BIN_DIR)/$(DEF_EXE)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(DEF_CPP) $(CPPSRC) -o $(BIN_DIR)/$(DEF_EXE) $(LDFLAGS)
 
 $(BIN_DIR)/$(SPMV_EXE): $(SPMV_CPP) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(SPMV_CPP) $(CPPSRC) -o $(BIN_DIR)/$(SPMV_EXE)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(SPMV_CPP) $(CPPSRC) -o $(BIN_DIR)/$(SPMV_EXE) $(LDFLAGS)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

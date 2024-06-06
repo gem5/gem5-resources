@@ -2,10 +2,18 @@
 
 extraparams=""
 buildparams=""
-if [ ! -z "$1" ]
+
+if [ -z "$1" ]
 then
-	extraparams="$1"
-	buildparams="gem5-fusion"
+    echo "Must specify build target: default, gem5-fusion, or gpufs"
+    exit
+fi
+
+buildparams=$1
+
+if [ ! -z "$2" ]
+then
+	extraparams="$2"
 fi
 
 function savebin {

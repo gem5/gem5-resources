@@ -1,0 +1,22 @@
+HIP_PATH ?= /opt/rocm
+HIPCC = $(HIP_PATH)/bin/hipcc
+
+EXECUTABLE = fw_hip.gpufs
+CPPSRC = Floyd-Warshall.cpp
+
+OPTS = -O3 -Wno-unused-result -DGEM5_FS -I$(GEM5_PATH)/include -I$(GEM5_PATH)
+BIN_DIR ?= ./bin.gpufs
+LDFLAGS += -L$(GEM5_PATH)/util/m5/build/x86/out -lm5
+
+all: $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR)/$(EXECUTABLE): $(CPPSRC) parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) parse.cpp ../graph_parser/util.cpp $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE) $(LDFLAGS)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+clean:
+	rm -rf $(BIN_DIR)
+
+.PHONY: fw clean

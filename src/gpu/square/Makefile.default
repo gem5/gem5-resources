@@ -1,0 +1,22 @@
+HIP_PATH?= /opt/rocm
+HIPCC=$(HIP_PATH)/bin/hipcc
+
+EXECUTABLE = square.default
+CPPSRC = square.cpp
+
+OPTS = -O3 -Wno-unused-result
+BIN_DIR?= ./bin.default
+
+square: $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR)/$(EXECUTABLE): $(CPPSRC) $(BIN_DIR)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+clean:
+	rm -f $(BIN_DIR)/$(EXECUTABLE)
+	rmdir --ignore-fail-on-non-empty $(BIN_DIR)
+
+.PHONY: square clean

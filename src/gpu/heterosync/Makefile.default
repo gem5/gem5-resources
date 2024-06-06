@@ -1,0 +1,22 @@
+EXECUTABLE := allSyncPrims-1kernel.default
+HIP_PATH ?= /opt/rocm
+
+SRC_DIR := src
+SRC := $(wildcard $(SRC_DIR)/*.hip.cpp)
+
+BIN_DIR := bin.default
+
+all: release-gfx9
+
+release-gfx9: $(SRC) | $(BIN_DIR)
+	$(HIP_PATH)/bin/hipcc -DGFX9 -Wno-unused-result --offload-arch=gfx900,gfx90a,gfx942 $(SRC) -o $(BIN_DIR)/$(EXECUTABLE)
+
+debug: $(SRC) | $(BIN_DIR)
+	$(HIP_PATH)/bin/hipcc -DDEBUG -g -O0 -Wno-unused-result --offload-arch=gfx900,gfx90a,gfx942 $(SRC) -o $(BIN_DIR)/$(EXECUTABLE).debug
+
+$(BIN_DIR):
+	mkdir -p $@
+
+clean:
+	rm -f $(BIN_DIR)/$(EXECUTABLE)
+	rmdir --ignore-fail-on-non-empty $(BIN_DIR)

@@ -1,15 +1,16 @@
-EXECUTABLE = mis_hip
-OPTS = -O3
-
-HIP_PATH ?= /opt/rocm/hip
+HIP_PATH ?= /opt/rocm
 HIPCC = $(HIP_PATH)/bin/hipcc
 
-BIN_DIR ?= ./bin
+EXECUTABLE = mis_hip.default
+CPPSRC = mis.cpp
+
+OPTS = -O3 -Wno-unused-result
+BIN_DIR ?= ./bin.default
 
 all: $(BIN_DIR)/$(EXECUTABLE)
 
-$(BIN_DIR)/$(EXECUTABLE): mis.cpp ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --amdgpu-target=gfx900,gfx902 $(CXXFLAGS) mis.cpp ../graph_parser/parse.cpp ../graph_parser/util.cpp -o $(BIN_DIR)/$(EXECUTABLE)
+$(BIN_DIR)/$(EXECUTABLE): $(CPPSRC) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

@@ -724,6 +724,8 @@ static __device__ void hydroCalcDtVolume(
 
 }
 
+
+#ifndef ATOMIC_MIN_DEFINED
 static __device__ double atomicMin(double* address, double val)
 {
     unsigned long long int* address_as_ull =
@@ -738,6 +740,7 @@ static __device__ double atomicMin(double* address, double val)
     } while (assumed != old);
     return __longlong_as_double(old);
 }
+#endif
 
 
 static __device__ void hydroFindMinDt(

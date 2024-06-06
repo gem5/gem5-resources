@@ -1,23 +1,24 @@
 HIP_PATH ?= /opt/rocm
 HIPCC = $(HIP_PATH)/bin/hipcc
 
-CSR_EXE = sssp.default
-ELL_EXE = sssp_ell.default
+CSR_EXE = sssp.gpufs
+ELL_EXE = sssp_ell.gpufs
 
 CSR_CPP = sssp_csr.cpp
 ELL_CPP = sssp_ell.cpp
 
 CPPSRC = ../graph_parser/util.cpp ../graph_parser/parse.cpp
-OPTS = -O3 -Wno-unused-result
-BIN_DIR ?= ./bin.default
+OPTS = -O3 -Wno-unused-result -DGEM5_FS -I$(GEM5_PATH)/include -I$(GEM5_PATH)
+BIN_DIR ?= ./bin.gpufs
+LDFLAGS += -L$(GEM5_PATH)/util/m5/build/x86/out -lm5
 
 all: $(BIN_DIR)/$(CSR_EXE) $(BIN_DIR)/$(ELL_EXE)
 
 $(BIN_DIR)/$(CSR_EXE): $(CSR_CPP) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(CSR_CPP) $(CPPSRC) -o $(BIN_DIR)/$(CSR_EXE)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(CSR_CPP) $(CPPSRC) -o $(BIN_DIR)/$(CSR_EXE) $(LDFLAGS)
 
 $(BIN_DIR)/$(ELL_EXE): $(ELL_CPP) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(ELL_CPP) $(CPPSRC) -o $(BIN_DIR)/$(ELL_EXE)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(ELL_CPP) $(CPPSRC) -o $(BIN_DIR)/$(ELL_EXE) $(LDFLAGS)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
