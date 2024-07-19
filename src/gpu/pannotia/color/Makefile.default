@@ -7,17 +7,22 @@ MAXMIN_EXE = color_maxmin.default
 MAX_CPP = coloring_max.cpp
 MAXMIN_CPP = coloring_maxmin.cpp
 
-CPPSRC = ../graph_parser/util.cpp ../graph_parser/parse.cpp
 OPTS = -O3 -Wno-unused-result
 BIN_DIR ?= ./bin.default
 
 all: $(BIN_DIR)/$(MAX_EXE) $(BIN_DIR)/$(MAXMIN_EXE)
 
 $(BIN_DIR)/$(MAX_EXE): $(MAX_CPP) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(MAX_CPP) $(CPPSRC) -o $(BIN_DIR)/$(MAX_EXE)
+	# There is a futex issue in hipcc with the graph parser. Compile without opts until this is fixed.
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/parse.cpp -o $(BIN_DIR)/parse.o -c
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/util.cpp -o $(BIN_DIR)/util.o -c
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(BIN_DIR)/parse.o $(BIN_DIR)/util.o $(MAX_CPP) -o $(BIN_DIR)/$(MAX_EXE)
 
 $(BIN_DIR)/$(MAXMIN_EXE): $(MAXMIN_CPP) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(MAXMIN_CPP) $(CPPSRC) -o $(BIN_DIR)/$(MAXMIN_EXE)
+	# There is a futex issue in hipcc with the graph parser. Compile without opts until this is fixed.
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/parse.cpp -o $(BIN_DIR)/parse.o -c
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/util.cpp -o $(BIN_DIR)/util.o -c
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(BIN_DIR)/parse.o $(BIN_DIR)/util.o $(MAXMIN_CPP) -o $(BIN_DIR)/$(MAXMIN_EXE)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

@@ -7,18 +7,26 @@ ELL_EXE = sssp_ell.gpufs
 CSR_CPP = sssp_csr.cpp
 ELL_CPP = sssp_ell.cpp
 
-CPPSRC = ../graph_parser/util.cpp ../graph_parser/parse.cpp
-OPTS = -O3 -Wno-unused-result -DGEM5_FS -I$(GEM5_PATH)/include -I$(GEM5_PATH)
+# Assumes gem5 and gem5-resources share a common parent directory.
+GEM5_ROOT ?= ../../../../../gem5
+
+OPTS = -O3 -Wno-unused-result -DGEM5_FS -I$(GEM5_ROOT)/include -I$(GEM5_ROOT)
 BIN_DIR ?= ./bin.gpufs
-LDFLAGS += -L$(GEM5_PATH)/util/m5/build/x86/out -lm5
+LDFLAGS += -L$(GEM5_ROOT)/util/m5/build/x86/out -lm5
 
 all: $(BIN_DIR)/$(CSR_EXE) $(BIN_DIR)/$(ELL_EXE)
 
 $(BIN_DIR)/$(CSR_EXE): $(CSR_CPP) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(CSR_CPP) $(CPPSRC) -o $(BIN_DIR)/$(CSR_EXE) $(LDFLAGS)
+	# There is a futex issue in hipcc with the graph parser. Compile without opts until this is fixed.
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/parse.cpp -o $(BIN_DIR)/parse.o -c
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/util.cpp -o $(BIN_DIR)/util.o -c
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(BIN_DIR)/parse.o $(BIN_DIR)/util.o $(CSR_CPP) -o $(BIN_DIR)/$(CSR_EXE) $(LDFLAGS)
 
 $(BIN_DIR)/$(ELL_EXE): $(ELL_CPP) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(ELL_CPP) $(CPPSRC) -o $(BIN_DIR)/$(ELL_EXE) $(LDFLAGS)
+	# There is a futex issue in hipcc with the graph parser. Compile without opts until this is fixed.
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/parse.cpp -o $(BIN_DIR)/parse.o -c
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/util.cpp -o $(BIN_DIR)/util.o -c
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(BIN_DIR)/parse.o $(BIN_DIR)/util.o $(ELL_CPP) -o $(BIN_DIR)/$(ELL_EXE) $(LDFLAGS)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

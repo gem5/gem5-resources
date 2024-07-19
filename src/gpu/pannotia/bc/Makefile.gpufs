@@ -4,10 +4,13 @@ HIPCC = $(HIP_PATH)/bin/hipcc
 EXECUTABLE = bc_hip.gpufs
 CPPSRC = BC.cpp 
 
+# Assumes gem5 and gem5-resources share a common parent directory.
+GEM5_ROOT ?= ../../../../../gem5
+
 # BC has a runtime error in fgets with -O2 and -O3
-OPTS = -O1 -Wno-unused-result -DGEM5_FS -I$(GEM5_PATH)/include -I$(GEM5_PATH)
+OPTS = -O1 -Wno-unused-result -DGEM5_FS -I$(GEM5_ROOT)/include -I$(GEM5_ROOT)
 BIN_DIR ?= ./bin.gpufs
-LDFLAGS += -L$(GEM5_PATH)/util/m5/build/x86/out -lm5
+LDFLAGS += -L$(GEM5_ROOT)/util/m5/build/x86/out -lm5
 
 all: $(BIN_DIR)/$(EXECUTABLE)
 

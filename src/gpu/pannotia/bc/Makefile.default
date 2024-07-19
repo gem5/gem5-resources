@@ -11,7 +11,7 @@ BIN_DIR ?= ./bin.default
 all: $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR)/$(EXECUTABLE): $(CPPSRC) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/util.cpp $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE)
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

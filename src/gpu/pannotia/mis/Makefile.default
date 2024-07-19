@@ -10,7 +10,10 @@ BIN_DIR ?= ./bin.default
 all: $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR)/$(EXECUTABLE): $(CPPSRC) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(BIN_DIR)
-	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/parse.cpp ../graph_parser/util.cpp $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE)
+	# There is a futex issue in hipcc with the graph parser. Compile without opts until this is fixed.
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/parse.cpp -o $(BIN_DIR)/parse.o -c
+	$(HIPCC) -O0 --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) ../graph_parser/util.cpp -o $(BIN_DIR)/util.o -c
+	$(HIPCC) $(OPTS) --offload-arch=gfx900,gfx90a,gfx942 $(CXXFLAGS) $(BIN_DIR)/parse.o $(BIN_DIR)/util.o $(CPPSRC) -o $(BIN_DIR)/$(EXECUTABLE)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

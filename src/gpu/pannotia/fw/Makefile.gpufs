@@ -4,9 +4,12 @@ HIPCC = $(HIP_PATH)/bin/hipcc
 EXECUTABLE = fw_hip.gpufs
 CPPSRC = Floyd-Warshall.cpp
 
-OPTS = -O3 -Wno-unused-result -DGEM5_FS -I$(GEM5_PATH)/include -I$(GEM5_PATH)
+# Assumes gem5 and gem5-resources share a common parent directory.
+GEM5_ROOT ?= ../../../../../gem5
+
+OPTS = -O3 -Wno-unused-result -DGEM5_FS -I$(GEM5_ROOT)/include -I$(GEM5_ROOT)
 BIN_DIR ?= ./bin.gpufs
-LDFLAGS += -L$(GEM5_PATH)/util/m5/build/x86/out -lm5
+LDFLAGS += -L$(GEM5_ROOT)/util/m5/build/x86/out -lm5
 
 all: $(BIN_DIR)/$(EXECUTABLE)
 
