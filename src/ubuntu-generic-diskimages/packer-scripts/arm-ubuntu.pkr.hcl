@@ -92,7 +92,7 @@ source "qemu" "initialize" {
                       "<wait>"
                       ]
   cpus             = "4"
-  disk_size        = "4600"
+  disk_size        = "42000"
   format           = "raw"
   headless         = "true"
   http_directory   = local.iso_data[var.ubuntu_version].http_directory
@@ -138,5 +138,10 @@ build {
     scripts         = ["scripts/post-installation.sh"]
     environment_vars = ["ISA=arm64"]
     expect_disconnect = true
+  }
+  provisioner "file" {
+    source      = "/home/gem5/my-arm-kernel/linux-6.8.0/vmlinux"
+    destination = "./arm-disk-image-24-04/vmlinux"
+    direction   = "download"
   }
 }

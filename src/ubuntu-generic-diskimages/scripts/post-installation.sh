@@ -18,12 +18,26 @@ apt-get install -y build-essential
 echo "Installing serial service for autologin after systemd"
 mv /home/gem5/serial-getty@.service /lib/systemd/system/
 
-# Make sure the headers are installed to extract the kernel that DKMS
-# packages will be built against.
-sudo apt -y install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
+apt-get update
+apt-get install -y fakeroot build-essential crash kexec-tools makedumpfile kernel-wedge
+# Fixing the sources.list file to include deb-src: https://askubuntu.com/questions/1512042/ubuntu-24-04-getting-error-you-must-put-some-deb-src-uris-in-your-sources-list
+sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
 
-echo "Extracting linux kernel $(uname -r) to /home/gem5/vmlinux-x86-ubuntu"
-sudo bash -c "/usr/src/linux-headers-$(uname -r)/scripts/extract-vmlinux /boot/vmlinuz-$(uname -r) > /home/gem5/vmlinux-x86-ubuntu"
+apt update
+
+apt-get -y build-dep linux
+apt-get -y install git-core libncurses5 libncurses5-dev libelf-dev asciidoc binutils-dev
+apt-get -y install libssl-dev
+apt -y install flex bison
+apt -y install zstd
+
+mkdir my-arm-kernel
+cd my-arm-kernel
+apt source linux-image-unsigned-$(uname -r)
+cd linux-6.8.0
+cp /boot/config-$(uname -r) .config
+make olddefconfig
+make -j$(nproc)
 
 echo "Installing the gem5 init script in /sbin"
 mv /home/gem5/gem5_init.sh /sbin
@@ -47,14 +61,15 @@ if [ -z "$ISA" ]; then
 fi
 
 # Just get the files we need
-git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=stable
+git clone https://github.com/nkrim/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=gem5-bridge
 pushd gem5
 # Checkout just the files we need
 git sparse-checkout add util/m5
+git sparse-checkout add util/gem5_bridge
 git sparse-checkout add include
 git checkout
 # Install the headers globally so that other benchmarks can use them
-cp -r include/gem5 /usr/local/include/\
+cp -r include/gem5 /usr/local/include/
 
 # Build the library and binary
 pushd util/m5
@@ -62,6 +77,13 @@ scons build/${ISA}/out/m5
 cp build/${ISA}/out/m5 /usr/local/bin/
 cp build/${ISA}/out/libm5.a /usr/local/lib/
 popd   # util/m5
+
+# Build and insert the gem5-bridge driver
+pushd util/gem5_bridge
+make build install
+depmod --quick
+popd
+
 popd   # gem5
 
 # rename the m5 binary to gem5-bridge
