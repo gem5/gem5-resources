@@ -36,8 +36,13 @@ cd my-arm-kernel
 apt source linux-image-unsigned-$(uname -r)
 cd linux-6.8.0
 cp /boot/config-$(uname -r) .config
-make olddefconfig
-make -j$(nproc)
+make -j$(nproc) vmlinux
+
+chmod +x ./debian/scripts/sign-module
+make -j$(nproc) modules
+make -j modules_install
+
+update-initramfs -u -k 6.8.12
 
 echo "Installing the gem5 init script in /sbin"
 mv /home/gem5/gem5_init.sh /sbin

@@ -31,6 +31,8 @@ modprobe gem5_bridge \
     gem5_bridge_baseaddr=$gem5_bridge_baseaddr \
     gem5_bridge_rangesize=$gem5_bridge_rangesize
 
+# see if this modprode fails or not
+# print warning if it fails, gem5-bridge module is not going to work, you will need sudo for running exit events
 
 # gem5-bridge exit signifying that kernel is booted
 # This will cause the simulation to exit. Note that this will
