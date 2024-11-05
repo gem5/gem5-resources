@@ -92,7 +92,7 @@ source "qemu" "initialize" {
                       "<wait>"
                       ]
   cpus             = "4"
-  disk_size        = "42000"
+  disk_size        = "52000"
   format           = "raw"
   headless         = "true"
   http_directory   = local.iso_data[var.ubuntu_version].http_directory
