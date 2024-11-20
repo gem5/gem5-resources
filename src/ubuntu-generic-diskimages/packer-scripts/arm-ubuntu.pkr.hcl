@@ -133,15 +133,16 @@ build {
     source      = "files/serial-getty@.service"
   }
 
+  provisioner "file" {
+    destination= "/home/gem5"
+    source = "my-arm-6.8.12-kernel/output/lib/modules/6.8.12"
+  }
+
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
     scripts         = ["scripts/post-installation.sh"]
     environment_vars = ["ISA=arm64"]
     expect_disconnect = true
   }
-  provisioner "file" {
-    source      = "/home/gem5/my-arm-kernel/linux-6.8.0/vmlinux"
-    destination = "./arm-disk-image-24-04/vmlinux"
-    direction   = "download"
-  }
+
 }

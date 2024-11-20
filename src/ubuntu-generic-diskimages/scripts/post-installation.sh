@@ -18,29 +18,33 @@ apt-get install -y build-essential
 echo "Installing serial service for autologin after systemd"
 mv /home/gem5/serial-getty@.service /lib/systemd/system/
 
-apt-get update
-apt-get install -y fakeroot build-essential crash kexec-tools makedumpfile kernel-wedge
-# Fixing the sources.list file to include deb-src: https://askubuntu.com/questions/1512042/ubuntu-24-04-getting-error-you-must-put-some-deb-src-uris-in-your-sources-list
-sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
+# apt-get update
+# apt-get install -y fakeroot build-essential crash kexec-tools makedumpfile kernel-wedge
+# # Fixing the sources.list file to include deb-src: https://askubuntu.com/questions/1512042/ubuntu-24-04-getting-error-you-must-put-some-deb-src-uris-in-your-sources-list
+# sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
 
-apt update
+# apt update
 
-apt-get -y build-dep linux
-apt-get -y install git-core libncurses5 libncurses5-dev libelf-dev asciidoc binutils-dev
-apt-get -y install libssl-dev
-apt -y install flex bison
-apt -y install zstd
+# apt-get -y build-dep linux
+# apt-get -y install git-core libncurses5 libncurses5-dev libelf-dev asciidoc binutils-dev
+# apt-get -y install libssl-dev
+# apt -y install flex bison
+# apt -y install zstd
 
-mkdir my-arm-kernel
-cd my-arm-kernel
-apt source linux-image-unsigned-$(uname -r)
-cd linux-6.8.0
-cp /boot/config-$(uname -r) .config
-make -j$(nproc) vmlinux
+# mkdir my-arm-kernel
+# cd my-arm-kernel
+# apt source linux-image-unsigned-6.8.0-47-generic
+# cd linux-6.8.0
+# cp /boot/config-$(uname -r) .config
+# make -j$(nproc) vmlinux
 
-chmod +x ./debian/scripts/sign-module
-make -j$(nproc) modules
-make -j modules_install
+# chmod +x ./debian/scripts/sign-module
+# make -j$(nproc) modules
+# make -j modules_install
+
+mv /home/gem5/6.8.12 /lib/modules/6.8.12
+
+depmod --quick -a 6.8.12
 
 update-initramfs -u -k 6.8.12
 
@@ -84,10 +88,11 @@ cp build/${ISA}/out/libm5.a /usr/local/lib/
 popd   # util/m5
 
 # Build and insert the gem5-bridge driver
-pushd util/gem5_bridge
-make build install
-depmod --quick
-popd
+# pushd util/gem5_bridge
+# make build install
+
+
+# popd
 
 popd   # gem5
 
@@ -121,3 +126,5 @@ systemctl disable systemd-networkd-wait-online.service
 systemctl mask systemd-networkd-wait-online.service
 
 echo "Post Installation Done"
+
+sleep 10m
