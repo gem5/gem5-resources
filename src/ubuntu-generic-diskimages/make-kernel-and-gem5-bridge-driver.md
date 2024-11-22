@@ -46,6 +46,9 @@ Now in the docker terminal, lets build the kernel
 
 ```bash
 cd source
+chmod a+x debian/rules
+chmod a+x debian/scripts/*
+chmod a+x debian/scripts/misc/*
 make defconfig
 make -j$nproc
 ```
@@ -103,6 +106,79 @@ also add the following lines in the post install script to move the modules to `
 mv /home/gem5/6.8.12 /lib/modules/6.8.12
 depmod --quick -a 6.8.12
 update-initramfs -u -k 6.8.12
+```
+
+Now you can run a gem5 fs simulation with this disk and the kernel we just made to use the new gem 5-bridge driver.
+
+## Unutu 22.04 disk image
+
+Assuming you are in the `src/ubuntu-generic-diskiamges` directory.
+`cd` to the `22.04-dockerfile` directory and build the docker image.
+
+```bash
+cd 22.04-dockerfile
+docker build -t ubuntu-22.04-kernel-build .
+cd ..
+```
+
+Then lets make a new directory called `my-arm-5.15.167-kernel`.
+This directory will have the kernel source and the modules of our built kernel.
+
+```bash
+mkdir my-arm-5.15.167-kernel
+```
+
+Now lets give permissions to this diretory so that we can copy the modules and the kerenl from the docker image.
+
+```bash
+ chmod 777 my-arm-5.15.167-kernel
+```
+
+Lets run the docker image.
+
+```bash
+docker run --rm -it -v ./my-arm-5.15.167-kernel:/workspace/my-arm-5.15.167-kernel --name kernel-builder ubuntu-22.04-kernel-build
+```
+
+Now in the docker image terminal we can copy the modules and the kernel
+
+```bash
+cp linux-5.15.0/vmlinux my-arm-5.15.167-kernel/ 
+```
+
+Now, before copying the modules lets remove the symlinks to `/workspace` directory of our docker image
+
+```bash
+cd output/lib/modules/5.15.167/
+rm build
+rm source
+cd /workspace
+cp -r ./output/lib/modules/5.15.167/ my-arm-5.15.167-kernel/
+```
+
+Now we have the kernel and the modules.
+
+now add the following file provisioner to move the files from host to the disk
+
+```hcl
+  provisioner "file" {
+    destination= "/home/gem5"
+    source = "my-arm-5.15.167-kernel/5.15.167"
+  }
+```
+
+also add the following lines in the post install script to move the modules to `/lib/modules` and run `depmode` and `initramfs`
+
+```bash
+mv /home/gem5/5.15.167 /lib/modules/5.15.167
+depmod --quick -a 5.15.167
+update-initramfs -u -k 5.15.167
+```
+
+Now you can build the disk image with
+
+```bash
+./build-arm.sh 22.04
 ```
 
 Now you can run a gem5 fs simulation with this disk and the kernel we just made to use the new gem 5-bridge driver.
