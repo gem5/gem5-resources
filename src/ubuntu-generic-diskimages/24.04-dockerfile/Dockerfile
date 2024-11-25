@@ -14,8 +14,35 @@ RUN apt update && apt install -y \
     git \
     kmod
 
-# Set the default working directory
-WORKDIR /workspace
+
+RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
+RUN apt update
+RUN mkdir /workspace 
+RUN cd /workspace && apt source linux-image-unsigned-6.8.0-47-generic
+RUN chmod -R u+rwx  /workspace/linux-6.8.0
+RUN cd /workspace/linux-6.8.0 && \
+    chmod a+x debian/rules && \
+    chmod a+x debian/scripts/* && \
+    chmod a+x debian/scripts/misc/* && \
+    chmod -R +x scripts/
+
+RUN cd /workspace/linux-6.8.0 && \
+    make defconfig && \
+    make -j 32 && \
+    make INSTALL_MOD_PATH=/workspace/output modules_install
+
+RUN git clone https://github.com/nkrim/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=gem5-bridge && \
+    cd gem5 && \
+    git sparse-checkout add util/m5 && \
+    git sparse-checkout add util/gem5_bridge && \
+    git sparse-checkout add include && \
+    git checkout
+
+RUN cd gem5/util/gem5_bridge && \
+    make KMAKEDIR=/workspace/linux-6.8.0 INSTALL_MOD_PATH=/workspace/output build install
+
+RUN cd /workspace/output/lib/modules/6.8.12 && \
+    rm -rf build
 
 # Use bash as the default shell
 CMD ["/bin/bash"]

@@ -15,7 +15,7 @@ RUN apt update && apt install -y \
     apt-src \
     vim \
     curl \
-    file 
+    file
 
 RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
 RUN apt update
@@ -42,7 +42,8 @@ RUN git clone https://github.com/nkrim/gem5.git --depth=1 --filter=blob:none --n
 
 RUN cd gem5/util/gem5_bridge && \
     make KMAKEDIR=/workspace/linux-5.15.0 INSTALL_MOD_PATH=/workspace/output build install
-    # Set working directory
-WORKDIR /workspace
+
+RUN cd /workspace/output/lib/modules/5.15.167 && \
+    rm -rf build source
 
 CMD ["/bin/bash"]
