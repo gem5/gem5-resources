@@ -1,7 +1,9 @@
 
 # Make Kernel and the gem5 Bridge Driver
 
-This document outlines the steps to build a Linux kernel and its modules with the gem5-bridge driver for Ubuntu disk images. Below are separate instructions for Ubuntu 24.04 and Ubuntu 22.04.
+This document outlines the steps to build a Linux kernel and its modules with the gem5-bridge driver for the ARM Ubuntu disk images. Below are separate instructions for Ubuntu 24.04 and Ubuntu 22.04.
+
+**Note**: These dockerfiles assume that you are running on arm host to build them. If you are not on ARM host then you would need to use a cross compiler to make the kernel and the modules.
 
 ## Table of Contents
 
