@@ -19,12 +19,6 @@ RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.s
 RUN apt update
 RUN mkdir /workspace 
 RUN cd /workspace && apt source linux-image-unsigned-6.8.0-47-generic
-RUN chmod -R u+rwx  /workspace/linux-6.8.0
-RUN cd /workspace/linux-6.8.0 && \
-    chmod a+x debian/rules && \
-    chmod a+x debian/scripts/* && \
-    chmod a+x debian/scripts/misc/* && \
-    chmod -R +x scripts/
 
 RUN cd /workspace/linux-6.8.0 && \
     make defconfig && \

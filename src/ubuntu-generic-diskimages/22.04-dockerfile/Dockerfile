@@ -21,12 +21,6 @@ RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
 RUN apt update
 RUN mkdir /workspace 
 RUN cd /workspace && apt source linux-image-unsigned-5.15.0-25-generic
-RUN chmod -R u+rwx  /workspace/linux-5.15.0
-RUN cd /workspace/linux-5.15.0 && \
-    chmod a+x debian/rules && \
-    chmod a+x debian/scripts/* && \
-    chmod a+x debian/scripts/misc/* && \
-    chmod -R +x scripts/
 
 RUN cd /workspace/linux-5.15.0 && \
     make defconfig && \
