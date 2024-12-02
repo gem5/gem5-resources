@@ -92,7 +92,7 @@ source "qemu" "initialize" {
                       "<wait>"
                       ]
   cpus             = "4"
-  disk_size        = "4600"
+  disk_size        = "5000"
   format           = "raw"
   headless         = "true"
   http_directory   = local.iso_data[var.ubuntu_version].http_directory
@@ -133,14 +133,14 @@ build {
     source      = "files/serial-getty@.service"
   }
 
- # provisioner "file" {
- #   destination= "/home/gem5"
- #   source = "my-arm-6.8.12-kernel/output/lib/modules/6.8.12"
- # }
-  provisioner "file" {
-    source      = "arm-5.15.30-kernel-modules/5.15.167"
-    destination = "/home/gem5"
-  }
+ provisioner "file" {
+   destination= "/home/gem5"
+   source = "my-arm-6.8.12-kernel/6.8.12"
+ }
+  # provisioner "file" {
+  #   source      = "arm-5.15.30-kernel-modules/5.15.167"
+  #   destination = "/home/gem5"
+  # }
 
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
