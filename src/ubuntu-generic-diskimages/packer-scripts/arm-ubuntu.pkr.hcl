@@ -133,15 +133,6 @@ build {
     source      = "files/serial-getty@.service"
   }
 
- provisioner "file" {
-   destination= "/home/gem5"
-   source = "my-arm-6.8.12-kernel/6.8.12"
- }
-  # provisioner "file" {
-  #   source      = "arm-5.15.30-kernel-modules/5.15.167"
-  #   destination = "/home/gem5"
-  # }
-
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
     scripts         = ["scripts/post-installation.sh"]

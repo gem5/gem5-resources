@@ -18,16 +18,6 @@ apt-get install -y build-essential
 echo "Installing serial service for autologin after systemd"
 mv /home/gem5/serial-getty@.service /lib/systemd/system/
 
-# mv /home/gem5/6.8.12 /lib/modules/6.8.12
-
-# depmod --quick -a 6.8.12
-
-# update-initramfs -u -k 6.8.12
-
-mv /home/gem5/5.15.167 /lib/modules/5.15.167
-depmod --quick -a 5.15.167
-update-initramfs -u -k 5.15.167
-
 echo "Installing the gem5 init script in /sbin"
 mv /home/gem5/gem5_init.sh /sbin
 mv /sbin/init /sbin/init.old
@@ -98,4 +88,3 @@ systemctl disable systemd-networkd-wait-online.service
 systemctl mask systemd-networkd-wait-online.service
 
 echo "Post Installation Done"
-
