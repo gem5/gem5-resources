@@ -17,7 +17,7 @@ This document outlines the steps to build a Linux kernel and its modules with th
 - Navigate to the `24.04-dockerfile` directory and build the Docker image:
 
   ```bash
-  cd src/ubuntu-generic-diskiamges/24.04-dockerfile
+  cd src/ubuntu-generic-diskimages/24.04-dockerfile
   docker build -t ubuntu-kernel-build .
   cd ..
   ```
@@ -64,7 +64,8 @@ This document outlines the steps to build a Linux kernel and its modules with th
 
 ### Add Kernel Modules to the Disk Image
 
-- Add a Packer file provisioner to copy the modules to the disk image:
+- Add a Packer file provisioner to copy the modules to the disk image.
+Make sure that this provisioner is added before the shell provisioner as we will used these files in the `post-installation.sh`:
 
   ```hcl
   provisioner "file" {
@@ -73,7 +74,8 @@ This document outlines the steps to build a Linux kernel and its modules with th
   }
   ```
 
-- Update the post-install script to move the modules into the correct location and regenerate the initramfs:
+- Update the post-install script to move the modules into the correct location and regenerate the initramfs.
+Make sure the modules are moved before using `gem5-bridge` or compiling benchmarks with `gem5-bridge`:
 
   ```bash
   mv /home/gem5/6.8.12 /lib/modules/6.8.12
@@ -93,7 +95,6 @@ This document outlines the steps to build a Linux kernel and its modules with th
 
 - Use the disk image and the kernel to run a gem5 filesystem simulation, ensuring the new kernel and modules are correctly set up.
 
-
 ## **Ubuntu 22.04 Disk Image**
 
 ### Build the Docker Image
@@ -101,7 +102,7 @@ This document outlines the steps to build a Linux kernel and its modules with th
 - Navigate to the `22.04-dockerfile` directory and build the Docker image:
 
   ```bash
-  cd src/ubuntu-generic-diskiamges/22.04-dockerfile
+  cd src/ubuntu-generic-diskimages/22.04-dockerfile
   docker build -t ubuntu-22.04-kernel-build .
   cd ..
   ```
@@ -148,16 +149,18 @@ This document outlines the steps to build a Linux kernel and its modules with th
 
 ### Add Kernel Modules to the Disk Image
 
-- Add a Packer file provisioner to copy the modules to the disk image:
+- Add a Packer file provisioner to copy the modules to the disk image.
+Make sure that this provisioner is added before the shell provisioner as we will used these files in the `post-installation.sh`:
 
   ```hcl
   provisioner "file" {
     destination = "/home/gem5"
-    source      = "my-arm-5.15.167-kernel"
+    source      = "my-arm-5.15.167-kernel/5.15.167"
   }
   ```
 
-- Update the post-install script to move the modules into the correct location and regenerate the initramfs:
+- Update the post-install script to move the modules into the correct location and regenerate the initramfs.
+Make sure the modules are moved before using `gem5-bridge` or compiling benchmarks with `gem5-bridge`:
 
   ```bash
   mv /home/gem5/5.15.167 /lib/modules/5.15.167
@@ -176,3 +179,16 @@ This document outlines the steps to build a Linux kernel and its modules with th
 ### Test with gem5
 
 - Use the disk image and the kernel to run a gem5 filesystem simulation, ensuring the new kernel and modules are correctly set up.
+
+- You can use the following code snipped to use the disk image and kernel you made.
+
+```python
+image = DiskImageResource("/path/to/gem5-resources/src/ubuntu-generic-diskimages/arm-disk-image-22-04/arm-ubuntu")
+image._root_partition = "2"
+
+board.set_kernel_disk_workload(
+    kernel=KernelResource("/path/to/gem5-resources/src/ubuntu-generic-diskimages/my-arm-5.15.167-kernel/vmlinux"),
+    disk_image=image,
+    bootloader=obtain_resource("arm64-bootloader-foundation"),
+)
+```
