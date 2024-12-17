@@ -47,6 +47,47 @@ dd if=/usr/share/qemu-efi-aarch64/QEMU_EFI.fd of=flash0.img conv=notrunc
 
 **Note**: The `build-arm.sh` will make this file for you.
 
+### RISC-V Specific Notes
+
+If you are building a RISC-V disk image on an **Ubuntu 24.04** host, you need to install `pipewire` to enable the QEMU plugin to boot the disk:
+
+```bash
+sudo apt-get install pipewire pipewire-audio-client-libraries
+```
+
+If you prefer to use a Docker container, you can use the preconfigured environment provided here:  
+<https://github.com/gem5/gem5/pkgs/container/qemu-riscv-env>  
+
+This container is set up to build the disk image. You can create the disk image inside the container and then copy it to the host system using `docker cp`.
+
+For example:
+
+```bash
+docker run --rm -it \
+    -v $(pwd):/workspace \
+    ghcr.io/gem5/qemu-riscv-env:latest \
+    bash -c "/workspace/build-disk.sh"
+
+# Copy the disk image out of the container (if needed)
+docker cp <container_id>:/workspace/output/disk.img ./output/disk.img
+```
+
+Replace `<container_id>` with the actual container ID.
+
+An example bash script could look like:
+
+```sh
+#!/bin/bash
+apt-get install -y xz-utils # Example in case you want to install extra packages 
+# Clone the repository
+git clone https://github.com/gem5/gem5-resources.git
+cd /gem5-resources/src/npb-24.04-imgs
+# Run the build process
+PACKER_LOG=INFO ./build-riscv.sh
+```
+
+### Build commands
+
 Assuming that you are in the `src/npb-24.04-imgs/` directory, run
 
 ```sh
@@ -59,7 +100,12 @@ to build the x86 disk image or
 ./build-arm.sh
 ```
 
-to run the arm disk image.
+to build the arm disk image or
+
+```sh
+./build-riscv.sh
+```
+
 After this process succeeds, the disk image can be found on the `npb-24.04-imgs/disk-image-x86-npb/disk-image-x86-npb` or `npb-24.04-imgs/disk-image-arm-npb/disk-image-arm-npb` repectively.
 
 This npb image uses the prebuilt ubuntu 24.04 image as a base image. The npb image also throws the same exit events as the base image.
