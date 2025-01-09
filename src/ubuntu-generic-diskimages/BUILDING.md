@@ -108,9 +108,127 @@ provisioner "file" {
   }
 ```
 
-If you need to increase the size of the image when adding more libraries and files to the image update the size of the partition in the respective `http/*/user-data` file.
-Also, update the `disk_size` parameter in the respective packer script to be at least one mega byte more than the size you defined in the `user-data` file.
-Do note that the size in the `user-data` file is in bytes and the `disk-size` parameter in the packer files is in megabytes.
+### Extending Disk Image Size
+
+If you need to increase the size of the disk image when adding more libraries and files, follow these steps:
+
+1. **Update the Partition Size in `user-data`:**
+   - Modify the `size` of the partition in the relevant `http/*/user-data` file. The size in `user-data` is specified in **bytes**.
+
+2. **Update the `disk_size` Parameter in Packer:**
+   - Adjust the `disk_size` parameter in the Packer script to be at least **1 MB more** than the total size specified in the `user-data` file. Note that `disk_size` in Packer is specified in **megabytes**.
+
+#### Example: Increasing Disk Image Size to 10 GB
+
+To increase the disk image size to **10 GB**, follow these steps:
+
+1. **Update the Packer `disk_size`:**
+   - Set `disk_size` to `10000` (10,000 MB).
+
+2. **Calculate Partition Sizes for `user-data`:**
+   - Convert the disk size to bytes: `10000 MB = 10,000,000,000 bytes`.
+   - Subtract the sizes of the boot partition:
+     - **x86 boot partition:** `1,048,576 bytes` (1 MB).
+     - **ARM boot partition:** `564,133,888 bytes`.
+   - Subtract an additional `1,048,576 bytes` (1 MB) to account for Packer's requirement.
+   - Calculate the size of the main partition:
+     - **x86 disk image:** `10,000,000,000 - 1,048,576 - 1,048,576 = 9,997,902,848 bytes`.
+     - **ARM disk image:** `10,000,000,000 - 564,133,888 - 1,048,576 = 9,434,817,536 bytes`.
+
+3. **Update the `user-data` Storage Section:**
+
+   **For x86 Disk Images:**
+
+   ```yaml
+   storage:
+     config:
+     - ptable: gpt
+       path: /dev/vda
+       wipe: superblock-recursive
+       preserve: false
+       name: ''
+       grub_device: true
+       type: disk
+       id: disk-vda
+     - device: disk-vda
+       size: 1048576
+       flag: bios_grub
+       number: 1
+       preserve: false
+       grub_device: false
+       offset: 1048576
+       type: partition
+       id: partition-0
+     - device: disk-vda
+       size: 9997902848
+       wipe: superblock
+       number: 2
+       preserve: false
+       grub_device: false
+       offset: 2097152
+       type: partition
+       id: partition-1
+     - fstype: ext4
+       volume: partition-1
+       preserve: false
+       type: format
+       id: format-0
+     - path: /
+       device: format-0
+       type: mount
+       id: mount-0
+   ```
+
+   **For ARM Disk Images:**
+
+   ```yaml
+   storage:
+     config:
+     - ptable: gpt
+       path: /dev/vda
+       wipe: superblock-recursive
+       preserve: false
+       name: ''
+       grub_device: false
+       type: disk
+       id: disk-vda
+     - device: disk-vda
+       size: 564133888
+       wipe: superblock
+       flag: boot
+       number: 1
+       preserve: false
+       grub_device: true
+       type: partition
+       id: partition-0
+     - fstype: fat32
+       volume: partition-0
+       preserve: false
+       type: format
+       id: format-0
+     - device: disk-vda
+       size: 9434817536
+       wipe: superblock
+       flag: ''
+       number: 2
+       preserve: false
+       grub_device: false
+       type: partition
+       id: partition-1
+     - fstype: ext4
+       volume: partition-1
+       preserve: false
+       type: format
+       id: format-1
+     - path: /
+       device: format-1
+       type: mount
+       id: mount-1
+     - path: /boot/efi
+       device: format-0
+       type: mount
+       id: mount-0
+   ```
 
 **NOTE:** You can extend this disk image by modifying the `post-installation.sh` script, but it requires building the image from scratch.
 
