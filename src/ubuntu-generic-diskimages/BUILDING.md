@@ -108,7 +108,9 @@ provisioner "file" {
   }
 ```
 
-If you need to increase the size of the image when adding more libraries and files to the image update the size of the partition in the respective `http/*/user-data` file. Also, update the `disk_size` parameter in `post-installation.sh` to be at least one mega byte more than the size you defined in the `user-data` file.
+If you need to increase the size of the image when adding more libraries and files to the image update the size of the partition in the respective `http/*/user-data` file.
+Also, update the `disk_size` parameter in the respective packer script to be at least one mega byte more than the size you defined in the `user-data` file.
+Do note that the size in the `user-data` file is in bytes and the `disk-size` parameter in the packer files is in megabytes.
 
 **NOTE:** You can extend this disk image by modifying the `post-installation.sh` script, but it requires building the image from scratch.
 
