@@ -67,14 +67,9 @@ docker run --rm -it \
     -v $(pwd):/workspace \
     ghcr.io/gem5/qemu-riscv-env:latest \
     bash -c "/workspace/build-disk.sh"
-
-# Copy the disk image out of the container (if needed)
-docker cp <container_id>:/workspace/output/disk.img ./output/disk.img
 ```
 
-Replace `<container_id>` with the actual container ID.
-
-An example bash script could look like:
+An example bash script for `build-disk.sh` could look like:
 
 ```sh
 #!/bin/bash
@@ -85,6 +80,14 @@ cd /gem5-resources/src/npb-24.04-imgs
 # Run the build process
 PACKER_LOG=INFO ./build-riscv.sh
 ```
+
+If you need to copy the disk image out of the container, you can use the following command.
+
+``` bash
+docker cp <container_id>:/workspace/output/disk.img ./output/disk.img
+```
+
+Replace `<container_id>` with the actual container ID.
 
 ### Build commands
 
