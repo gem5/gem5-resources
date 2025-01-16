@@ -64,8 +64,8 @@ This document outlines the steps to build a Linux kernel and its modules with th
 
 ### Add Kernel Modules to the Disk Image
 
-- Add a Packer file provisioner to copy the modules to the disk image.
-Make sure that this provisioner is added before the shell provisioner as we will used these files in the `post-installation.sh`:
+- Add a Packer file provisioner to copy the modules to the disk image. The Packer script is located at `ubuntu-generic-diskimages/packer-scripts/arm-ubuntu.pkr.hcl`.
+Make sure that this provisioner is added before the shell provisioner, as these files are used when the shell provisioner runs`post-installation.sh`:
 
   ```hcl
   provisioner "file" {
@@ -74,8 +74,8 @@ Make sure that this provisioner is added before the shell provisioner as we will
   }
   ```
 
-- Update the post-install script to move the modules into the correct location and regenerate the initramfs.
-Make sure the modules are moved before using `gem5-bridge` or compiling benchmarks with `gem5-bridge`:
+- Add the following code snippet to the post-install script to move the modules into the correct location and regenerate the initramfs. The post-install script is located at `ubuntu-generic-diskimages/scripts/post-installation.sh`.
+Make sure the modules are moved before using `gem5-bridge` or compiling benchmarks with `gem5-bridge`, i.e. add the snippet before the line `echo "Building and installing gem5-bridge (m5) and libm5"`:
 
   ```bash
   mv /home/gem5/6.8.12 /lib/modules/6.8.12
@@ -149,7 +149,7 @@ Make sure the modules are moved before using `gem5-bridge` or compiling benchmar
 
 ### Add Kernel Modules to the Disk Image
 
-- Add a Packer file provisioner to copy the modules to the disk image.
+- Add a Packer file provisioner to copy the modules to the disk image. The Packer script is located at `ubuntu-generic-diskimages/packer-scripts/arm-ubuntu.pkr.hcl`.
 Make sure that this provisioner is added before the shell provisioner as we will used these files in the `post-installation.sh`:
 
   ```hcl
@@ -159,8 +159,8 @@ Make sure that this provisioner is added before the shell provisioner as we will
   }
   ```
 
-- Update the post-install script to move the modules into the correct location and regenerate the initramfs.
-Make sure the modules are moved before using `gem5-bridge` or compiling benchmarks with `gem5-bridge`:
+- Add the following code snippet to the post-install script to move the modules into the correct location and regenerate the initramfs. The post-install script is located at `ubuntu-generic-diskimages/scripts/post-installation.sh`.
+Make sure the modules are moved before using `gem5-bridge` or compiling benchmarks with `gem5-bridge`, i.e. add the snippet before the line `echo "Building and installing gem5-bridge (m5) and libm5"`:
 
   ```bash
   mv /home/gem5/5.15.167 /lib/modules/5.15.167
@@ -178,9 +178,9 @@ Make sure the modules are moved before using `gem5-bridge` or compiling benchmar
 
 ### Test with gem5
 
-- Use the disk image and the kernel to run a gem5 filesystem simulation, ensuring the new kernel and modules are correctly set up.
+- Use the disk image and the kernel to run a gem5 filesystem simulation, ensuring the new kernel and modules are correctly set up. See the bottom of this file for an example.
 
-- You can use the following code snipped to use the disk image and kernel you made.
+- You can use the following code snippet to use the disk image and kernel you made.
 
 ```python
 image = DiskImageResource("/path/to/gem5-resources/src/ubuntu-generic-diskimages/arm-disk-image-22-04/arm-ubuntu")
