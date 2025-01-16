@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:22.04 AS stage1
 
 # Install necessary packages for kernel build
 RUN apt update && apt install -y \
@@ -37,7 +37,9 @@ RUN git clone https://github.com/nkrim/gem5.git --depth=1 --filter=blob:none --n
 RUN cd gem5/util/gem5_bridge && \
     make KMAKEDIR=/workspace/linux-5.15.0 INSTALL_MOD_PATH=/workspace/output build install
 
-RUN cd /workspace/output/lib/modules/5.15.167 && \
+RUN cd /workspace/output/lib/modules/5.15.* && \
     rm -rf build source
 
-CMD ["/bin/bash"]
+FROM scratch AS export-stage
+COPY --from=stage1 /workspace/output/lib/modules .
+COPY --from=stage1 workspace/linux-5.15.0/vmlinux .

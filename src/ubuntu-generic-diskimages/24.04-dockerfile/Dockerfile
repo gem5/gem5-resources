@@ -1,5 +1,5 @@
 # Start from Ubuntu 24.04 base image
-FROM ubuntu:24.04
+FROM ubuntu:24.04 AS stage1
 
 # Install necessary packages for kernel and module build
 RUN apt update && apt install -y \
@@ -38,5 +38,6 @@ RUN cd gem5/util/gem5_bridge && \
 RUN cd /workspace/output/lib/modules/6.8.12 && \
     rm -rf build
 
-# Use bash as the default shell
-CMD ["/bin/bash"]
+FROM scratch AS export-stage
+COPY --from=stage1 /workspace/output/lib/modules .
+COPY --from=stage1 /workspace/linux-6.8.0/vmlinux .

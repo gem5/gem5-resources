@@ -14,41 +14,14 @@ This document outlines the steps to build a Linux kernel and its modules with th
 
 ### Build the Docker Image
 
-- Navigate to the `24.04-dockerfile` directory and build the Docker image:
+The Docker image build process will copy the built kernel and modules to your host system, making them readily available for further use.
 
-  ```bash
-  cd src/ubuntu-generic-diskimages/24.04-dockerfile
-  docker build -t ubuntu-kernel-build .
-  cd ..
-  ```
+ Run the `make-arm-kernel.sh` script located in the directory `src/ubuntu-generic-diskimages`.
+ Since we are building the kernel that is included by default in Ubuntu 24.04, you need to use the `24.04` argument with the script:
 
-### Build the Kernel and Modules
-
-- Create a container from the built image:
-
-  ```bash
-  docker create --name kernel-builder ubuntu-kernel-build
-  ```
-
-- Start the container to build the kernel:
-
-  ```bash
-  docker start -a kernel-builder
-  ```
-
-- Copy the kernel and modules to the host:
-
-  ```bash
-  mkdir my-arm-6.8.12-kernel
-  docker cp kernel-builder:/workspace/linux-6.8.0/vmlinux my-arm-6.8.12-kernel/
-  docker cp kernel-builder:/workspace/output/lib/modules/6.8.12 my-arm-6.8.12-kernel/
-  ```
-
-- Clean up the container:
-
-  ```bash
-  docker rm kernel-builder
-  ```
+```bash
+./make-arm-kernel.sh 24.04
+```
 
 ### Verify Output
 
@@ -99,53 +72,14 @@ Make sure the modules are moved before using `gem5-bridge` or compiling benchmar
 
 ### Build the Docker Image
 
-- Navigate to the `22.04-dockerfile` directory and build the Docker image:
+The Docker image build process will copy the built kernel and modules to your host system, making them readily available for further use.
 
-  ```bash
-  cd src/ubuntu-generic-diskimages/22.04-dockerfile
-  docker build -t ubuntu-22.04-kernel-build .
-  cd ..
-  ```
+ Run the `make-arm-kernel.sh` script located in the directory `src/ubuntu-generic-diskimages`.
+ Since we are building the kernel that is included by default in Ubuntu 22.04, you need to use the `22.04` argument with the script:
 
-### Build the Kernel and Modules
-
-- Create a container from the built image:
-
-  ```bash
-  docker create --name kernel-builder ubuntu-22.04-kernel-build
-  ```
-
-- Start the container to build the kernel:
-
-  ```bash
-  docker start -a kernel-builder
-  ```
-
-- Copy the kernel and modules to the host:
-
-  ```bash
-  mkdir my-arm-5.15.167-kernel
-  docker cp kernel-builder:/workspace/linux-5.15.0/vmlinux my-arm-5.15.167-kernel/
-  docker cp kernel-builder:/workspace/output/lib/modules/5.15.167 my-arm-5.15.167-kernel/
-  ```
-
-- Clean up the container:
-
-  ```bash
-  docker rm kernel-builder
-  ```
-
-### Verify Output
-
-- Check the contents of `my-arm-5.15.167-kernel`:
-
-  ```bash
-  ls my-arm-5.15.167-kernel/
-  ```
-
-  You should see:
-  - `vmlinux` — The built kernel image.
-  - `5.15.167/` — Directory containing the kernel modules.
+```bash
+./make-arm-kernel.sh 22.04
+```
 
 ### Add Kernel Modules to the Disk Image
 
