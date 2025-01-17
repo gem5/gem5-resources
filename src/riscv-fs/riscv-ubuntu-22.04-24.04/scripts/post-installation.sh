@@ -20,6 +20,11 @@ systemctl disable boot-efi.mount
 systemctl mask boot-efi.mount
 systemctl daemon-reload
 
+
+mv /home/gem5/6.8.12 /lib/modules/6.8.12
+depmod --quick -a 6.8.12
+update-initramfs -u -k 6.8.12
+
 # Giving execute permissions to the after_boot.sh script
 chmod 4577 /home/gem5/after_boot.sh
 chmod u+s /home/gem5/after_boot.sh
@@ -40,10 +45,11 @@ rm /etc/update-motd.d/*
 echo "Building and installing gem5-bridge (m5) and libm5"
 
 # Just get the files we need
-git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=stable
+git clone https://github.com/nkrim/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=gem5-bridge
 pushd gem5
 # Checkout just the files we need
 git sparse-checkout add util/m5
+git sparse-checkout add util/gem5_bridge
 git sparse-checkout add include
 git checkout
 # Install the headers globally so that other benchmarks can use them
