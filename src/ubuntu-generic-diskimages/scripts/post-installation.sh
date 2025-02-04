@@ -47,10 +47,11 @@ if [ -z "$ISA" ]; then
 fi
 
 # Just get the files we need
-git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=stable
+git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=release-staging-v24-1-1-0
 pushd gem5
 # Checkout just the files we need
 git sparse-checkout add util/m5
+git sparse-checkout add util/gem5_bridge
 git sparse-checkout add include
 git checkout
 # Install the headers globally so that other benchmarks can use them
@@ -62,6 +63,17 @@ scons build/${ISA}/out/m5
 cp build/${ISA}/out/m5 /usr/local/bin/
 cp build/${ISA}/out/libm5.a /usr/local/lib/
 popd   # util/m5
+
+if [ "${ISA}" = "x86" ]; then
+    # Build and insert the gem5-bridge driver
+    # as we are extracting the kernel from
+    # the disk image.
+    pushd util/gem5_bridge
+    make build install
+    depmod --quick
+    popd
+fi
+
 popd   # gem5
 
 # rename the m5 binary to gem5-bridge

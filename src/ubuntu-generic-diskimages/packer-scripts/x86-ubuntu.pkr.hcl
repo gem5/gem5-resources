@@ -105,7 +105,7 @@ build {
 
   provisioner "file" {
   source      = "/home/gem5/vmlinux-x86-ubuntu"
-  destination = "./disk-image/vmlinux-x86-ubuntu"
+  destination = "./${local.iso_data[var.ubuntu_version].output_dir}/vmlinux-x86-ubuntu"
   direction   = "download"
   }
 }
