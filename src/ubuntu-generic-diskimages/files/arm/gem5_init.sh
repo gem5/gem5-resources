@@ -19,7 +19,7 @@ no_systemd=false
 # This will cause the simulation to exit. Note that this will
 # cause qemu to fail.
 printf "Kernel booted, In gem5 init...\n"
-gem5-bridge --addr=0x10010000 exit # TODO: Make this a specialized event.
+gem5-bridge --addr=0x10010000 hypercall 1
 
 if [[ $cmdline == *"no_systemd"* ]]; then
     no_systemd=true

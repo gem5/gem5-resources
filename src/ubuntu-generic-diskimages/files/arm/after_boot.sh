@@ -14,7 +14,7 @@
 
 # gem5-bridge exit signifying that after_boot.sh is running
 printf "In after_boot.sh...\n"
-gem5-bridge --addr=0x10010000 exit # TODO: Make this a specialized event.
+gem5-bridge --addr=0x10010000 hypercall 2
 
 # Read /proc/cmdline and parse options
 
@@ -51,7 +51,7 @@ else
             /tmp/script
             printf "Done running script from gem5-bridge, exiting.\n"
             rm -f /tmp/script
-            gem5-bridge --addr=0x10010000 exit
+            gem5-bridge --addr=0x10010000 hypercall 3
         fi
     fi
 fi
