@@ -153,7 +153,7 @@ build {
   }
 
   provisioner "shell" {
-    scripts =  ["files/serial-getty@.service-override.conf"]
+    scripts =  ["scripts/install-user-benchmarks.sh"]
   }
 
   provisioner "shell" {
