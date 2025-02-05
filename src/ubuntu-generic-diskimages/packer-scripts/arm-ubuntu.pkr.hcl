@@ -143,6 +143,7 @@ build {
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
     scripts         = ["scripts/install-common-packages.sh",
+                       "scripts/increase-system-entropy-for-arm-disk.sh",
                        "scripts/update-modules-arm-${var.ubuntu_version}.sh",
                        "scripts/update-gem5-init.sh",
                        "scripts/install-gem5-bridge.sh",
