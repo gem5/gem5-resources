@@ -24,7 +24,7 @@ RUN cd /workspace && apt source linux-image-unsigned-5.15.0-25-generic
 
 RUN cd /workspace/linux-5.15.0 && \
     make defconfig && \
-    make -j 32 && \
+    make -j $(nproc) && \
     make INSTALL_MOD_PATH=/workspace/output modules_install
 
 RUN git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=release-staging-v24-1-1-0 && \
