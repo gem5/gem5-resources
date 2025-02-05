@@ -4,8 +4,9 @@
 # Copyright (c) 2025 The Regents of the University of California.
 # SPDX-License-Identifier: BSD 3-Clause
 
-# Increase system entropy for ARM disk images as a workaround for slow boot times
-# when booting in gem5 due to lack of entropy in the system.
+# Increase system entropy for ARM disk images to reduce boot time in gem5.
+# Some systemd services wait for sufficient entropy before proceeding, causing delays.
+# By increasing entropy early, these services start without unnecessary waiting.
 sudo apt-get install -y haveged
 
 # Update the DAEMON_ARGS environment variable in /etc/default/haveged
