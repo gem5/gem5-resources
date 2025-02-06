@@ -51,11 +51,11 @@ void m5_work_begin_interface_()
 {
 
     printf(" -------------------- ROI BEGIN -------------------- \n");
-    m5_work_begin_addr(0,0);
+    m5_hypercall_addr(4);
 }
 
 void m5_work_end_interface_()
 {
-    m5_work_end_addr(0,0);
+    m5_hypercall_addr(5);
     printf(" -------------------- ROI END -------------------- \n");
 }
