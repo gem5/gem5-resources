@@ -23,6 +23,9 @@ RUN mkdir /workspace
 RUN cd /workspace && apt source linux-image-unsigned-5.15.0-25-generic
 
 RUN cd /workspace/linux-5.15.0 && \
+    cd scripts && \
+    chmod +x pahole-version.sh && \
+    cd .. && \
     make defconfig && \
     make -j $(nproc) && \
     make INSTALL_MOD_PATH=/workspace/output modules_install
@@ -37,7 +40,7 @@ RUN git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no
 RUN cd gem5/util/gem5_bridge && \
     make KMAKEDIR=/workspace/linux-5.15.0 INSTALL_MOD_PATH=/workspace/output build install
 
-RUN cd /workspace/output/lib/modules/5.15.* && \
+RUN cd /workspace/output/lib/modules/5.15.168 && \
     rm -rf build source
 
 FROM scratch AS export-stage

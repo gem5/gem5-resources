@@ -6,8 +6,8 @@
 echo "Updating modules."
 
 # moving modules to the correct location
-mv /home/gem5/5.15.167 /lib/modules/5.15.167
-depmod --quick -a 5.15.167
-update-initramfs -u -k 5.15.167
+mv /home/gem5/5.15.168 /lib/modules/5.15.168
+depmod --quick -a 5.15.168
+update-initramfs -u -k 5.15.168
 
 echo "Modules updated."

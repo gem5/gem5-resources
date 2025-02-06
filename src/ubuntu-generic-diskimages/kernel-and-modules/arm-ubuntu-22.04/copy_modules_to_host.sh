@@ -3,8 +3,8 @@
 # Copyright (c) 2025 The Regents of the University of California.
 # SPDX-License-Identifier: BSD 3-Clause
 
-DOCKERFILE="./22.04-dockerfile/Dockerfile"
-OUTPUT="my-arm-5.15.167-kernel"
+DOCKERFILE="Dockerfile"
+OUTPUT="my-arm-5.15.168-kernel"
 
 # Build the Docker image
 DOCKER_BUILDKIT=1 docker build --no-cache \
