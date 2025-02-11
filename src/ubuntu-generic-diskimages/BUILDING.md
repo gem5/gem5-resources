@@ -118,22 +118,23 @@ If you need to increase the size of the disk image when adding more libraries an
 2. **Update the `disk_size` Parameter in Packer:**
    - Adjust the `disk_size` parameter in the Packer script to be at least **1 MB more** than the total size specified in the `user-data` file. Note that `disk_size` in Packer is specified in **megabytes**.
 
-#### Example: Increasing Disk Image Size to 10 GB
+#### Example: Setting the Main Partition Size to 10 GB
 
-To increase the disk image size to **10 GB**, follow these steps:
+To ensure that the **main partition** is exactly **10 GB**, follow these steps:
 
-1. **Update the Packer `disk_size`:**
-   - Set `disk_size` to `10000` (10,000 MB).
-
-2. **Calculate Partition Sizes for `user-data`:**
-   - Convert the disk size to bytes: `10000 MB = 10,000,000,000 bytes`.
-   - Subtract the sizes of the boot partition:
+1. **Calculate the Total Disk Size:**
+   - The total disk size needs to account for the main partition, boot partition, and additional space required by Packer.
+   - Add the respective boot partition size and Packer’s required space to **10 GB (10,000,000,000 bytes)**:
      - **x86 boot partition:** `1,048,576 bytes` (1 MB).
      - **ARM boot partition:** `564,133,888 bytes`.
-   - Subtract an additional `1,048,576 bytes` (1 MB) to account for Packer's requirement.
-   - Calculate the size of the main partition:
-     - **x86 disk image:** `10,000,000,000 - 1,048,576 - 1,048,576 = 9,997,902,848 bytes`.
-     - **ARM disk image:** `10,000,000,000 - 564,133,888 - 1,048,576 = 9,434,817,536 bytes`.
+     - Additional space required: `1,048,576 bytes` (1 MB).
+   - Compute the total disk size:
+     - **x86 disk image:** `10,000,000,000 + 1,048,576 + 1,048,576 = 10,002,097,152 bytes`.
+     - **ARM disk image:** `10,000,000,000 + 564,133,888 + 1,048,576 = 10,565,182,464 bytes`.
+
+2. **Update the Packer `disk_size`:**
+   - Set `disk_size` to `10,003` MB for **x86**.
+   - Set `disk_size` to `10,566` MB for **ARM**.
 
 3. **Update the `user-data` Storage Section:**
 
@@ -151,7 +152,7 @@ To increase the disk image size to **10 GB**, follow these steps:
        type: disk
        id: disk-vda
      - device: disk-vda
-       size: 1048576
+       size: 1048576    # size of boot partition
        flag: bios_grub
        number: 1
        preserve: false
@@ -160,7 +161,7 @@ To increase the disk image size to **10 GB**, follow these steps:
        type: partition
        id: partition-0
      - device: disk-vda
-       size: 9997902848
+       size: 10000000000    # size of main partition (10 GB)
        wipe: superblock
        number: 2
        preserve: false
@@ -193,7 +194,7 @@ To increase the disk image size to **10 GB**, follow these steps:
        type: disk
        id: disk-vda
      - device: disk-vda
-       size: 564133888
+       size: 564133888    # size of boot partition
        wipe: superblock
        flag: boot
        number: 1
@@ -207,7 +208,7 @@ To increase the disk image size to **10 GB**, follow these steps:
        type: format
        id: format-0
      - device: disk-vda
-       size: 9434817536
+       size: 10000000000    # size of main partition (10 GB)
        wipe: superblock
        flag: ''
        number: 2
@@ -229,8 +230,6 @@ To increase the disk image size to **10 GB**, follow these steps:
        type: mount
        id: mount-0
    ```
-
-**NOTE:** You can extend this disk image by modifying the `post-installation.sh` script, but it requires building the image from scratch.
 
 To take a pre-built image and add new files or packages, take a look at the following [documentation](https://www.gem5.org/documentation/gem5-stdlib/extending-disk-images).
 
