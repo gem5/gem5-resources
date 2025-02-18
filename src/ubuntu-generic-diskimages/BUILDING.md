@@ -15,15 +15,15 @@ This document provides instructions for creating the **x86-ubuntu** and **arm-ub
 
   After building the Dockerfile, you can retrieve the kernel and modules on your host using the `copy_modules_to_host.sh` script.
 - **`scripts/`**: Contains scripts that run on the disk image after installation.
-  - **`disable-network.sh`**: Disables networking by renaming the Netplan configuration file (`.yaml` → `.yaml.bak`) and disabling network services in systemd.
+  - **`disable-network.sh`**: Disables networking by renaming the Netplan configuration file (`.yaml` → `.yaml.bak`) and disabling network services in systemd. Disabling network decreases boot time by removing the 2 minute wait for network service to get online in systemd.
   - **`disable-systemd-services-x86.sh`**: Disables non-essential systemd services for x86 disk images to reduce boot time in gem5 simulations.
   - **`extract-x86-kernel.sh`**: Extracts the kernel from the x86 disk image and moves it to `/home/gem5`. Packer then copies the extracted kernel from the disk image to the host.
   - **`increase-system-entropy-for-arm-disk.sh`**: Uses `haveged` to increase system entropy for ARM disk images, reducing boot delays caused by low entropy.
   - **`install-common-packages.sh`**: Installs necessary packages common to all disk images.
-  - **`install-gem5-bridge.sh`**: Clones and builds `gem5-bridge`, allowing the disk image to use `m5ops` commands.
+  - **`install-gem5-bridge.sh`**: Clones and builds `gem5-bridge`, allowing the disk image to use `m5ops` commands. For more information about using `m5ops` you can take a look at <https://bootcamp.gem5.org/#02-Using-gem5/03-running-in-gem5>.
   - **`install-user-benchmarks.sh`**: User-editable script for installing custom benchmarks.
   - **`install-user-packages.sh`**: User-editable script for installing additional packages beyond those in `install-common-packages.sh`.
-  - **`update-gem5-init.sh`**: Updates the `init` file with `gem5_init.sh` from the `files` directory.
+  - **`update-gem5-init.sh`**: Updates the `init` file with `gem5_init.sh` from the `files` directory. The `gem5_init.sh` script updates the `init` script that is run when ubuntu boots to include the `no_systemd` kernel arg, initialize the `gem5-bridge` driver and call an exit event indicating that the kernel has booted.
   - **`update-modules-arm-22.04.sh`**: Installs kernel modules built via the Dockerfile in `kernel-and-modules/arm-ubuntu-22.04` for the ARM 22.04 disk image.
   - **`update-modules-arm-24.04.sh`**: Installs kernel modules built via the Dockerfile in `kernel-and-modules/arm-ubuntu-24.04` for the ARM 24.04 disk image.
 
@@ -66,21 +66,19 @@ Since the ARM disk image requires the `gem5-bridge` module to enable running `ge
 3. **Verify the Output Directory**
    After running the script, a directory named **`my-arm-<kernel_version>-kernel`** will be created in the `kernel-and-modules` directory. This directory contains:
 
-   - `vmlinux`: The built kernel (**used in gem5 simulations but not copied to the disk**).
+   - `vmlinux`: The built kernel (**used in gem5 simulations but not copied onto the built disk image**).
    - A subdirectory containing all kernel modules, including `gem5-bridge`.
 
 ### **Generating the EFI Boot File**
 
-The ARM disk image requires an **EFI file** to boot in qemu. This is provided as `flash0.img` in the Packer configuration.
+The ARM disk image requires an **EFI file** to boot in qemu. Running `build-arm.sh` automatically generates this file.This is provided as `flash0.img` in the Packer configuration.
 
-To generate `flash0.img`, run the following commands in the `files/` directory:
+To generate `flash0.img` manually, run the following commands in the `files/` directory:
 
 ```bash
 dd if=/dev/zero of=flash0.img bs=1M count=64
 dd if=/usr/share/qemu-efi-aarch64/QEMU_EFI.fd of=flash0.img conv=notrunc
 ```
-
-**Note:** Running `build-arm.sh` automatically generates this file.
 
 ## Building the Disk Image
 
@@ -91,9 +89,23 @@ dd if=/usr/share/qemu-efi-aarch64/QEMU_EFI.fd of=flash0.img conv=notrunc
   Run `build-arm.sh` with `22.04` or `24.04` to build the respective ARM disk image in `ubuntu-generic-diskimages`.
 
   **ARM Build Assumption**:
-  The build assumes execution on an **ARM machine**, as it uses KVM for virtualization. If running on a non-ARM host, update `build-arm.sh` by setting `"use_kvm=false"` in the `./packer build` command.
+  The build assumes execution on an **ARM machine**, as it uses KVM for virtualization. If running on a non-ARM host, update `build-arm.sh` by setting `"use_kvm=false"` in the `./packer build` command:
 
-  This script downloads the Packer binary, initializes Packer, and builds the disk image.
+  ```bash
+  ./packer build -var "use_kvm=false" -var "ubuntu_version=${ubuntu_version}" ./packer-scripts/arm-ubuntu.pkr.hcl
+  ```
+
+  You would also need to update the isa of the packer binary being downloaded in the `build-arm.sh` file. To download the `amd64` packer binary you can update the section that downloads the packer binary in `build-arm.sh` file to the following:
+
+  ```bash
+  if [ ! -f ./packer ]; then
+      wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip;
+      unzip packer_${PACKER_VERSION}_linux_amd64.zip;
+      rm packer_${PACKER_VERSION}_linux_amd64.zip;
+  fi
+  ```
+
+  The `build-arm.sh` script downloads the Packer binary, initializes Packer, and builds the disk image.
 
 ## Kernel Extraction (x86 Only)
 
@@ -128,7 +140,7 @@ This kernel can be used as a resource for **gem5 simulations** and is not restri
 
 ## Extending the Disk Image
 
-- Add more packages by updating `post-installation.sh`.
+- Add more packages by modifying `scripts/install-user-packages.sh`. Install benchmarks onto the base disk image by modifying `scripts/install-user-benchmarks.sh`.
 - Transfer additional files using Packer’s file provisioner:
 
   ```hcl
@@ -137,16 +149,16 @@ This kernel can be used as a resource for **gem5 simulations** and is not restri
       source      = "path/to/files"
   }
   ```
+  
+If you need to increase the size of the image when adding more libraries and files to the image update the size of the partition in the respective `http/*/user-data` file. Also, update the `disk_size` parameter in the packer file to be at least one mega byte more than the size you defined in the `user-data` file.
 
-If you need to increase the size of the image when adding more libraries and files to the image update the size of the partition in the respective `http/*/user-data` file. Also, update the `disk_size` parameter in `post-installation.sh` to be at least one mega byte more than the size you defined in the `user-data` file.
-
-**NOTE:** You can extend this disk image by modifying the `post-installation.sh` script, but it requires building the image from scratch.
+**NOTE:** You can extend this disk image by modifying the `install-user-benchmarks` and `install-user-packages.sh` script, but it requires building the image from scratch.
 
 To take a pre-built image and add new files or packages, take a look at the following [documentation](https://www.gem5.org/documentation/gem5-stdlib/extending-disk-images).
 
 ## Troubleshooting
 
-- **Enable Packer Logs**:
+- **Enable Packer Logs**: This causes Packer to print additional debug messages.
 
   ```sh
   PACKER_LOG=INFO ./build.sh
@@ -158,6 +170,12 @@ To take a pre-built image and add new files or packages, take a look at the foll
 
 - **Monitor Installation**:
   - Use a **VNC viewer** to watch installation. The port is displayed in the terminal.
+  The output may appear as follows:
+
+    ```bash
+    ==> qemu.initialize: Waiting 10s for boot...
+    ==> qemu.initialize: Connecting to VM via VNC (127.0.0.1:5995)
+    ```
 
 For further details, refer to:
 [Ubuntu Autoinstall Documentation](https://ubuntu.com/server/docs/install/autoinstall).
