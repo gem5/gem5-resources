@@ -1,4 +1,0 @@
-FROM --platform=$BUILDPLATFORM alpine:3.18.4
-
-# The Linux dependencies
-RUN apk add --no-cache build-base bc bison flex openssl paholelibssl perl

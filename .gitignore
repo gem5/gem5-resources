@@ -2,7 +2,6 @@ __pycache__/
 *.pyc
 m5out/
 packer
-
 # For jekyll
 _site
 .jekyll-cache
