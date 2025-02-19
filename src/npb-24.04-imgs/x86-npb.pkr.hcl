@@ -63,6 +63,11 @@ build {
     destination = "/home/gem5/NPB3.4-OMP/config/"
   }
 
+  provisioner "file" {
+    source      = "npb-hook-files/addr-version/hooks.c"
+    destination = "/home/gem5/NPB3.4-OMP/common/"
+  }
+
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
     scripts         = ["scripts/post-installation.sh"]
