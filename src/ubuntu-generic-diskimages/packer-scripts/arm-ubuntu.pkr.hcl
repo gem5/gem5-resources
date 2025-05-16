@@ -159,7 +159,7 @@ build {
 
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-    scripts = ["scripts/disable-network.sh"]
+    scripts = ["scripts/disable-systemd-services-arm.sh","scripts/disable-network.sh"]
     expect_disconnect = true
   }
 
