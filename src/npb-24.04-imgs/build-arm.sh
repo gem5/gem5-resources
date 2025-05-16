@@ -14,8 +14,8 @@ dd if=/usr/share/qemu-efi-aarch64/QEMU_EFI.fd of=flash0.img conv=notrunc
 cd ..
 
 # get the  base image from gem5 resoruces
-wget https://storage.googleapis.com/dist.gem5.org/dist/develop/images/arm/ubuntu-24-04/arm-ubuntu-24.04-20240823.gz
-gunzip arm-ubuntu-24.04-20240823.gz 
+wget https://gem5resources.blob.core.windows.net/dist-gem5-org/dist/develop/images/arm/ubuntu-24-04/arm-ubuntu-24.04-20250515.gz
+gunzip arm-ubuntu-24.04-20250515.gz
 
 # Install the needed plugins
 ./packer init arm-npb.pkr.hcl

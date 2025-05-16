@@ -36,8 +36,8 @@ source "qemu" "initialize" {
   format           = "raw"
   headless         = "true"
   disk_image       = "true"
-  iso_checksum     = "sha256:b1f8421956d374207ebca70f176374ff9e1e8c46f74bfb2c47a6583e4eae758e"
-  iso_urls         = ["../ubuntu-generic-diskimages/x86-disk-image-24-04/x86-ubuntu"]
+  iso_checksum     = "sha256:58dfdabfd2510657776ad946c8c4e9cceacbd0806414690598a4f4808c2349b6"
+  iso_urls         = ["./x86-ubuntu-24.04-20250515"]
   memory           = "8192"
   output_directory = "disk-image-x86-npb"
   qemu_binary      = "/usr/bin/qemu-system-x86_64"
