@@ -53,6 +53,7 @@ source "qemu" "initialize" {
   headless         = "true"
   disk_image       = "true"
   boot_command = [
+                  "<wait10><enter>",
                   "<wait120>",
                   "ubuntu<enter><wait>",
                   "ubuntu<enter><wait>",

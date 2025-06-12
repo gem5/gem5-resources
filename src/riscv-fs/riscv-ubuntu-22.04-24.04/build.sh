@@ -21,13 +21,17 @@ fi
 ubuntu_version="$1"
 
 if [[ "$ubuntu_version" == "22.04" ]]; then
-    wget https://old-releases.ubuntu.com/releases/jammy/ubuntu-22.04.3-preinstalled-server-riscv64+unmatched.img.xz
-    unxz ubuntu-22.04.3-preinstalled-server-riscv64+unmatched.img.xz
+    if [ ! -f ./ubuntu-22.04.3-preinstalled-server-riscv64+unmatched.img ]; then
+        wget https://old-releases.ubuntu.com/releases/jammy/ubuntu-22.04.3-preinstalled-server-riscv64+unmatched.img.xz
+        unxz ubuntu-22.04.3-preinstalled-server-riscv64+unmatched.img.xz
+    fi
 fi
 
 if [[ "$ubuntu_version" == "24.04" ]]; then
-    wget https://old-releases.ubuntu.com/releases/noble/ubuntu-24.04-preinstalled-server-riscv64.img.xz
-    unxz ubuntu-24.04-preinstalled-server-riscv64.img.xz
+    if [ ! -f ./ubuntu-24.04-preinstalled-server-riscv64.img ]; then
+        wget https://old-releases.ubuntu.com/releases/noble/ubuntu-24.04-preinstalled-server-riscv64.img.xz
+        unxz ubuntu-24.04-preinstalled-server-riscv64.img.xz
+    fi
 fi
 
 

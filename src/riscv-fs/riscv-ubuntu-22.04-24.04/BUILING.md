@@ -1,10 +1,10 @@
 ---
-title: Building the base x86-ubuntu image
+title: Building the base riscv-ubuntu image
 authors:
     - Harshil Patel
 ---
 
-This document provides instructions to create the "x86-ubuntu" image. This image is a 22.04 Ubuntu image.
+This document provides instructions to create the "riscv-ubuntu" image. This image is a 22.04 Ubuntu image.
 
 ## Directory map
 
