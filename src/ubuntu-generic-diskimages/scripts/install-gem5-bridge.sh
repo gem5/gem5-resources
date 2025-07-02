@@ -13,7 +13,7 @@ if [ -z "$ISA" ]; then
 fi
 
 # Just get the files we need
-git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=release-staging-v24-1-1-0
+git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=stable
 pushd gem5
 # Checkout just the files we need
 git sparse-checkout add util/m5

@@ -25,7 +25,7 @@ RUN cd /workspace/linux-6.8.0 && \
     make -j $(nproc) && \
     make INSTALL_MOD_PATH=/workspace/output modules_install
 
-RUN git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=release-staging-v24-1-1-0 && \
+RUN git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=stable && \
     cd gem5 && \
     git sparse-checkout add util/m5 && \
     git sparse-checkout add util/gem5_bridge && \
