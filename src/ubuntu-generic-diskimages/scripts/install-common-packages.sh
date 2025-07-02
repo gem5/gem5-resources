@@ -11,8 +11,8 @@ mkdir /etc/systemd/system/serial-getty@.service.d/
 mv serial-getty@.service-override.conf /etc/systemd/system/serial-getty@.service.d/override.conf
 
 # Installing the packages in this script instead of the user-data
-# file dueing ubuntu autoinstall. The reason is that sometimes
-# the package install failes. This method is more reliable.
+# file during ubuntu autoinstall. The reason is that sometimes
+# the package install fails. This method is more reliable.
 
 echo "Installing packages required for gem5-bridge (m5) and libm5."
 apt-get update

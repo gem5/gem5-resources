@@ -15,7 +15,7 @@ This document provides instructions for creating the **x86-ubuntu** and **arm-ub
 
   After building the Dockerfile, you can retrieve the kernel and modules on your host using the `copy_modules_to_host.sh` script.
 - **`scripts/`**: Contains scripts that run on the disk image after installation.
-  - **`disable-network.sh`**: Disables networking by renaming the Netplan configuration file (`.yaml` → `.yaml.bak`) and disabling network services in systemd. Disabling network decreases boot time by removing the 2 minute wait for network service to get online in systemd.
+  - **`disable-network.sh`**: Disables networking by renaming the Netplan configuration file (`.yaml` → `.yaml.bak`) and disabling network services in systemd. Disabling network decreases boot time by removing the 2 minute wait in simulation time for network service to get online in systemd.
   - **`disable-systemd-services-x86.sh`**: Disables non-essential systemd services for x86 disk images to reduce boot time in gem5 simulations.
   - **`extract-x86-kernel.sh`**: Extracts the kernel from the x86 disk image and moves it to `/home/gem5`. Packer then copies the extracted kernel from the disk image to the host.
   - **`increase-system-entropy-for-arm-disk.sh`**: Uses `haveged` to increase system entropy for ARM disk images, reducing boot delays caused by low entropy.
@@ -125,7 +125,7 @@ This kernel can be used as a resource for **gem5 simulations** and is not restri
 
 - **Networking**:
   - **Disabled by default** by renaming `/etc/netplan/00-installer-config.yaml` or `/etc/netplan/50-cloud-init.yaml` to `.bak`.
-  - **To re-enable networking**:
+  - **To re-enable networking** you can run the following commands in the terminal of the disk image.
 
     ```sh
     sudo mv /etc/netplan/00-installer-config.yaml.bak /etc/netplan/00-installer-config.yaml
