@@ -44,24 +44,6 @@ if [ ! -f /sbin/m5 ]; then
     exit 1
 fi
 
-
-# Make sure the headers are installed to extract the kernel that DKMS
-# packages will be built against.
-sudo apt -y install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
-
-echo "Extracting linux kernel"
-sudo bash -c "/usr/src/linux-headers-$(uname -r)/scripts/extract-vmlinux /boot/vmlinuz-$(uname -r) > /home/gem5/vmlinux-gpu-ml"
-
-# Build the gem5 Linux module containing symbols missing due to outdated ACPI support in gem5
-pushd /home/gem5
-make -C /lib/modules/$(uname -r)/build M=${PWD}
-if [ ! -f ./gem5_wmi.ko ]; then
-    echo "gem5_wmi module did not appear to build correctly. This disk will not be usable."
-    echo "Please post an issue at https://github.com/gem5/gem5/issues with this output log."
-    exit 1
-fi
-popd
-
 # Make the script to load amdgpu module with the above module executable
 chmod a+x /home/gem5/load_amdgpu.sh
 
@@ -101,6 +83,27 @@ sudo chmod 777 /root/roms
 # Change permission so packer can copy here after disk build.
 sudo touch /usr/lib/firmware/amdgpu/ip_discovery.bin
 sudo chmod 777 /usr/lib/firmware/amdgpu/ip_discovery.bin
+
+
+# Install a known-working version of Linux as this might change after stable
+# release. Installl this after DKMS so they are rebuilt.
+KERNEL=6.8.0-60-generic
+
+sudo apt -y install "linux-image-${KERNEL}"
+sudo apt -y install "linux-headers-${KERNEL}" "linux-modules-extra-${KERNEL}"
+
+echo "Extracting linux kernel"
+sudo bash -c "/usr/src/linux-headers-${KERNEL}/scripts/extract-vmlinux /boot/vmlinuz-${KERNEL} > /home/gem5/vmlinux-gpu-ml"
+
+# Build the gem5 Linux module containing symbols missing due to outdated ACPI support in gem5
+pushd /home/gem5
+make -C /lib/modules/${KERNEL}/build M=${PWD}
+if [ ! -f ./gem5_wmi.ko ]; then
+    echo "gem5_wmi module did not appear to build correctly. This disk will not be usable."
+    echo "Please post an issue at https://github.com/gem5/gem5/issues with this output log."
+    exit 1
+fi
+popd
 
 # Note about pip: This disk is created for the express purpose of being run in
 # gem5 and is therefore effectively sandboxed enough that we can use the pip
