@@ -17,6 +17,7 @@ This document provides instructions for creating the **x86-ubuntu** and **arm-ub
 - **`scripts/`**: Contains scripts that run on the disk image after installation.
   - **`disable-network.sh`**: Disables networking by renaming the Netplan configuration file (`.yaml` → `.yaml.bak`) and disabling network services in systemd. Disabling network decreases boot time by removing the 2 minute wait in simulation time for network service to get online in systemd.
   - **`disable-systemd-services-x86.sh`**: Disables non-essential systemd services for x86 disk images to reduce boot time in gem5 simulations.
+  - **`disable-systemd-services-arm`**: Disables non-essential systemd services for arm disk images to reduce boot time in gem5 simulations.
   - **`extract-x86-kernel.sh`**: Extracts the kernel from the x86 disk image and moves it to `/home/gem5`. Packer then copies the extracted kernel from the disk image to the host.
   - **`increase-system-entropy-for-arm-disk.sh`**: Uses `haveged` to increase system entropy for ARM disk images, reducing boot delays caused by low entropy.
   - **`install-common-packages.sh`**: Installs necessary packages common to all disk images.
@@ -57,7 +58,8 @@ Since the ARM disk image requires the `gem5-bridge` module to enable running `ge
    ```
 
 2. **Run the `copy_modules_to_host.sh` Script**
-   This script builds the kernel and modules inside a Docker container and then copies them to the host machine:
+   This script builds the kernel and modules inside a Docker container and then copies them to the host machine.
+   **Note:** This script assume you are running on ARM host:
 
    ```sh
    ./copy_modules_to_host.sh
@@ -84,6 +86,8 @@ dd if=/usr/share/qemu-efi-aarch64/QEMU_EFI.fd of=flash0.img conv=notrunc
 
 - **For x86**:
   Run `build-x86.sh` with either `22.04` or `24.04` as an argument to build the respective x86 disk image in the `ubuntu-generic-diskimages` directory.
+
+  **Note**: This script assumes you are running on x86 host.
 
 - **For ARM**:
   Run `build-arm.sh` with `22.04` or `24.04` to build the respective ARM disk image in `ubuntu-generic-diskimages`.
@@ -153,8 +157,6 @@ This kernel can be used as a resource for **gem5 simulations** and is not restri
 If you need to increase the size of the image when adding more libraries and files to the image update the size of the partition in the respective `http/*/user-data` file. Also, update the `disk_size` parameter in the packer file to be at least one mega byte more than the size you defined in the `user-data` file.
 
 **NOTE:** You can extend this disk image by modifying the `install-user-benchmarks` and `install-user-packages.sh` script, but it requires building the image from scratch.
-
-To take a pre-built image and add new files or packages, take a look at the following [documentation](https://www.gem5.org/documentation/gem5-stdlib/extending-disk-images).
 
 ## Troubleshooting
 
