@@ -142,17 +142,128 @@ This kernel can be used as a resource for **gem5 simulations** and is not restri
   - Installed at `/usr/local/bin/gem5-bridge` with a symlink to `m5` for compatibility.
   - `libm5` is installed in `/usr/local/lib/`, and headers are placed in `/usr/local/include/m5`.
 
-## Extending the Disk Image
+### Extending Disk Image Size
 
-- Add more packages by modifying `scripts/install-user-packages.sh`. Install benchmarks onto the base disk image by modifying `scripts/install-user-benchmarks.sh`.
-- Transfer additional files using Packer’s file provisioner:
+If you need to increase the size of the disk image when adding more libraries and files, follow these steps:
 
-  ```hcl
-  provisioner "file" {
-      destination = "/home/gem5/"
-      source      = "path/to/files"
-  }
-  ```
+1. **Update the Partition Size in `user-data`:**
+   - Modify the `size` of the partition in the relevant `http/*/user-data` file. The size in `user-data` is specified in **bytes**.
+
+2. **Update the `disk_size` Parameter in Packer:**
+   - Adjust the `disk_size` parameter in the Packer script to be at least **1 MB more** than the total size specified in the `user-data` file. Note that `disk_size` in Packer is specified in **megabytes**.
+
+#### Example: Setting the Main Partition Size to 10 GB
+
+To ensure that the **main partition** is exactly **10 GB**, follow these steps:
+
+1. **Calculate the Total Disk Size:**
+   - The total disk size needs to account for the main partition, boot partition, and additional space required by Packer.
+   - Add the respective boot partition size and Packer’s required space to **10 GB (10,000,000,000 bytes)**:
+     - **x86 boot partition:** `1,048,576 bytes` (1 MB).
+     - **ARM boot partition:** `564,133,888 bytes`.
+     - Additional space required: `1,048,576 bytes` (1 MB).
+   - Compute the total disk size:
+     - **x86 disk image:** `10,000,000,000 + 1,048,576 + 1,048,576 = 10,002,097,152 bytes`.
+     - **ARM disk image:** `10,000,000,000 + 564,133,888 + 1,048,576 = 10,565,182,464 bytes`.
+
+2. **Update the Packer `disk_size`:**
+   - Set `disk_size` to `10,003` MB for **x86**.
+   - Set `disk_size` to `10,566` MB for **ARM**.
+
+3. **Update the `user-data` Storage Section:**
+
+   **For x86 Disk Images:**
+
+   ```yaml
+   storage:
+     config:
+     - ptable: gpt
+       path: /dev/vda
+       wipe: superblock-recursive
+       preserve: false
+       name: ''
+       grub_device: true
+       type: disk
+       id: disk-vda
+     - device: disk-vda
+       size: 1048576    # size of boot partition
+       flag: bios_grub
+       number: 1
+       preserve: false
+       grub_device: false
+       offset: 1048576
+       type: partition
+       id: partition-0
+     - device: disk-vda
+       size: 10000000000    # size of main partition (10 GB)
+       wipe: superblock
+       number: 2
+       preserve: false
+       grub_device: false
+       offset: 2097152
+       type: partition
+       id: partition-1
+     - fstype: ext4
+       volume: partition-1
+       preserve: false
+       type: format
+       id: format-0
+     - path: /
+       device: format-0
+       type: mount
+       id: mount-0
+   ```
+
+   **For ARM Disk Images:**
+
+   ```yaml
+   storage:
+     config:
+     - ptable: gpt
+       path: /dev/vda
+       wipe: superblock-recursive
+       preserve: false
+       name: ''
+       grub_device: false
+       type: disk
+       id: disk-vda
+     - device: disk-vda
+       size: 564133888    # size of boot partition
+       wipe: superblock
+       flag: boot
+       number: 1
+       preserve: false
+       grub_device: true
+       type: partition
+       id: partition-0
+     - fstype: fat32
+       volume: partition-0
+       preserve: false
+       type: format
+       id: format-0
+     - device: disk-vda
+       size: 10000000000    # size of main partition (10 GB)
+       wipe: superblock
+       flag: ''
+       number: 2
+       preserve: false
+       grub_device: false
+       type: partition
+       id: partition-1
+     - fstype: ext4
+       volume: partition-1
+       preserve: false
+       type: format
+       id: format-1
+     - path: /
+       device: format-1
+       type: mount
+       id: mount-1
+     - path: /boot/efi
+       device: format-0
+       type: mount
+       id: mount-0
+   ```
   
 If you need to increase the size of the image when adding more libraries and files to the image update the size of the partition in the respective `http/*/user-data` file. Also, update the `disk_size` parameter in the packer file to be at least one mega byte more than the size you defined in the `user-data` file.
 

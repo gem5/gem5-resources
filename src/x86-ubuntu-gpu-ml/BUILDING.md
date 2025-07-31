@@ -5,8 +5,12 @@ authors:
 ---
 
 This document provides instructions to create the `x86-ubuntu-gpu-ml` disk image.
-This image is an Ubuntu 22.04 image with AMD's ROCm stack, PyTorch, and TensorFlow installed.
+This image is an Ubuntu 24.04 image with AMD's ROCm stack and PyTorch installed.
 Documentation and files here are adapted from the x86-ubuntu image by Harshil Patel and Jason Lowe-Power.
+
+## Requirements
+
+The following packages must be installed to use the `build.sh` script: `unzip`, `qemu-system-x86_64`
 
 ## Creating the Disk Image
 
@@ -39,19 +43,18 @@ sudo mount -o loop,offset=1048576 disk-image/x86-ubuntu-gpu-ml mount
 Once you have tested your changes, you can add the changes to `scripts/rocm-install.sh` to preserve the changes when rebuilding the disk image.
 
 If you want to add another ML framework, see the file `scripts/rocm-install.sh`.
-The methods in that file for installing PyTorch and TensorFlow are taken directly from their corresponding websites.
-You could use these installation commands as examples for any other GPU related package.
+The methods in that file for installing PyTorch are taken directly from [the PyTorch website](https://pytorch.org).
+You could use these installation commands as examples for any other GPU related package which supports amdgpu.
 
 ## Pruning the disk image
 
-This disk image requires approximately 43GB of space within the disk.
+This disk image requires approximately 42GB of space within the disk.
 Some additional space is provided for users to copy data files if desired.
 
 If you want to save space and do not need all of the packages, you may remove files from `scripts/rocm-install.sh`.
 For example, if you do not require the ML frameworks, you could prune the image size down to about 16GB.
 
-To remove PyTorch, delete or comment out the PyTorch `pip3 install` line.
-To remove TensorFlow or the datasets, delete or comment out the PyTorch `pip install` line(s) for TensorFlow.
+To remove PyTorch, delete or comment out the PyTorch `pip3 install` line and rebuild the disk image.
 
 ## Troubleshooting
 

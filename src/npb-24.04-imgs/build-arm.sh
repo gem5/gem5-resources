@@ -13,9 +13,11 @@ dd if=/dev/zero of=flash0.img bs=1M count=64
 dd if=/usr/share/qemu-efi-aarch64/QEMU_EFI.fd of=flash0.img conv=notrunc
 cd ..
 
-# get the  base image from gem5 resoruces
-wget https://gem5resources.blob.core.windows.net/dist-gem5-org/dist/develop/images/arm/ubuntu-24-04/arm-ubuntu-24.04-20250515.gz
-gunzip arm-ubuntu-24.04-20250515.gz
+# get the  base image from gem5 resource
+if [! -f ./arm-ubuntu-24.04-20250515 ]; then
+  wget https://gem5resources.blob.core.windows.net/dist-gem5-org/dist/develop/images/arm/ubuntu-24-04/arm-ubuntu-24.04-20250515.gz
+  gunzip arm-ubuntu-24.04-20250515.gz
+fi
 
 # Install the needed plugins
 ./packer init arm-npb.pkr.hcl
