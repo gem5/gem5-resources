@@ -15,7 +15,7 @@ DOCKER_BUILDKIT=1 docker build --no-cache \
 
 if [ $? -eq 0 ];
 then
-    echo "Build completed for Arm 24.04 kernel: Output directory is $OUTPUT"
+    echo "Build completed for Arm 22.04 kernel: Output directory is $OUTPUT"
 else
-    echo "Build failed for Arm 24.04 kernel"
+    echo "Build failed for Arm 22.04 kernel"
 fi
