@@ -38,7 +38,7 @@ docker run -u $UID:$GID --volume $(pwd):$(pwd) -w $(pwd) ghcr.io/gem5/gcn-gpu:v2
 
 ## Pre-built binary
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/heterosync/allSyncPrims-1kernel>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/heterosync/allSyncPrims-1kernel>
 
 Information from original HeteroSync README included below:
 

@@ -56,4 +56,4 @@ We recommend you start with the 1k_128k.gr input (<http://dist.gem5.org/dist/dev
 ## Pre-built binary
 
 SE mode:
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/pannotia/bc.gem5>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/pannotia/bc.gem5>

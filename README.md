@@ -387,7 +387,7 @@ The compiled binary can be found in `src/gpu/square/bin`
 
 ### Square Pre-built binary
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/square/square>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/square/square>
 
 # Resource: HIP Sample Applications
 
@@ -415,21 +415,21 @@ overridden by specifying `-e HCC_AMDGPU_TARGET=<target>` in the build command.
 
 ## Pre-built binary
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/2dshfl>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/2dshfl>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/dynamic_shared>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/dynamic_shared>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/inline_asm>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/inline_asm>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/MatrixTranspose>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/MatrixTranspose>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/sharedMemory>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/sharedMemory>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/shfl>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/shfl>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/stream>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/stream>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/unroll>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/unroll>
 
 # Resource: Heterosync
 
@@ -452,7 +452,7 @@ that are currently unsupported in gem5.
 
 ## Pre-built binary
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/heterosync/allSyncPrims-1kernel>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/heterosync/allSyncPrims-1kernel>
 
 # Resource: lulesh
 
@@ -491,7 +491,7 @@ docker run --rm -v ${PWD}:${PWD} -w ${PWD} -u $UID:$GID ghcr.io/gem5/gcn-gpu gem
 
 ## Pre-built binary
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/lulesh/lulesh>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/lulesh/lulesh>
 
 # Resource: halo-finder (HACC)
 
@@ -538,7 +538,7 @@ docker run --rm -v $PWD:$PWD -w $PWD -u $UID:$GID <image_name> gem5/build/VEGA_X
 
 ## Pre-built binary
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/halo-finder/ForceTreeTest>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/halo-finder/ForceTreeTest>
 
 # Resource: DNNMark
 
@@ -629,7 +629,7 @@ rounding.
 
 ## Pre-built binary
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/pennant/pennant>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/pennant/pennant>
 
 ## Resource: SPEC 2006
 

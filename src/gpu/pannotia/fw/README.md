@@ -91,4 +91,4 @@ Note that 1k_128k is not designed for FW specifically though -- the above link h
 ## Pre-built binary
 
 SE mode:
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/pannotia/fw_hip.gem5>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/pannotia/fw_hip.gem5>
