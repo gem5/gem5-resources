@@ -25,7 +25,7 @@ The compiled binary can be found in the `bin` directory.
 
 ## Pre-built binary
 
-A pre-built binary can be found at <https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/square/square>
+A pre-built binary can be found at <https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/square/square>
 
 ## Compiling VEGA_X86/gem5.opt
 

@@ -91,6 +91,8 @@ Hal Finkel (hfinkel@anl.gov)
 #include <assert.h>
 using namespace std;
 
+// use a single global variable to avoid bugs with nthreads and numThreads below
+int overallThreads = 1;
 #ifdef __HIPCC__
 #include <cudaUtil.h>
 
@@ -401,7 +403,7 @@ RCBForceTree<TDPTS>::RCBForceTree(
   vz = zVel;
   mass = ms;
 
-  numThreads=1;
+  numThreads=overallThreads;
 
   // static size for the interaction list
   #define VMAX ALIGNY(16384)
@@ -503,7 +505,7 @@ RCBForceTree<TDPTS>::RCBForceTree(
   ID_T nds = (((ID_T)(particleCount/(POSVEL_T)nDirect)) << depthSafety) + 1;
   tree.reserve(nds);
 
-  int nthreads = 1;
+  int nthreads = overallThreads;
 
   timespec b_start, b_end;
   clock_gettime(CLOCK_THREAD_CPUTIME_ID, &b_start);

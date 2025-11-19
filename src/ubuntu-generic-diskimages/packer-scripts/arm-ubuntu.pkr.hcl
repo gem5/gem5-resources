@@ -38,12 +38,14 @@ locals {
       iso_checksum  = "sha256:c209ab013280d3cd26a344def60b7b19fbb427de904ea285057d94ca6ac82dd5"
       output_dir    = "arm-disk-image-22-04"
       http_directory = "http/arm-22-04"
+      modules_dir = "kernel-and-modules/arm-ubuntu-22.04/my-arm-5.15.168-kernel/5.15.168"
     }
     "24.04" = {
       iso_url       = "https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04-live-server-arm64.iso"
       iso_checksum  = "sha256:d2d9986ada3864666e36a57634dfc97d17ad921fa44c56eeaca801e7dab08ad7"
       output_dir    = "arm-disk-image-24-04"
       http_directory = "http/arm-24-04"
+      modules_dir = "kernel-and-modules/arm-ubuntu-24.04/my-arm-6.8.12-kernel/6.8.12"
     }
   }
 }
@@ -130,13 +132,35 @@ build {
 
   provisioner "file" {
     destination = "/home/gem5/"
-    source      = "files/serial-getty@.service"
+    source      = "files/serial-getty@.service-override.conf"
+  }
+
+  provisioner "file" {
+    destination = "/home/gem5/"
+    source      = "${local.iso_data[var.ubuntu_version].modules_dir}"
   }
 
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-    scripts         = ["scripts/post-installation.sh"]
+    scripts         = ["scripts/install-common-packages.sh",
+                       "scripts/increase-system-entropy-for-arm-disk.sh",
+                       "scripts/update-modules-arm-${var.ubuntu_version}.sh",
+                       "scripts/update-gem5-init.sh",
+                       "scripts/install-gem5-bridge.sh",
+                       "scripts/install-user-packages.sh",
+                      ]
     environment_vars = ["ISA=arm64"]
     expect_disconnect = true
   }
+
+  provisioner "shell" {
+    scripts =  ["scripts/install-user-benchmarks.sh"]
+  }
+
+  provisioner "shell" {
+    execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    scripts = ["scripts/disable-systemd-services-arm.sh","scripts/disable-network.sh"]
+    expect_disconnect = true
+  }
+
 }

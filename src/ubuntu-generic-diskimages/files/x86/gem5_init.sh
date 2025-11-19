@@ -15,11 +15,27 @@ mount -t sysfs /sys /sys
 cmdline=$(cat /proc/cmdline)
 no_systemd=false
 
+# Load gem5_bridge driver
+## Default parameters (x86_64)
+gem5_bridge_baseaddr=0xffff0000
+gem5_bridge_rangesize=0x10000
+## Try to read overloads from kernel arguments
+if [[ $cmdline =~ gem5_bridge_baseaddr=([[:alnum:]]+) ]]; then
+    gem5_bridge_baseaddr=${BASH_REMATCH[1]}
+fi
+if [[ $cmdline =~ gem5_bridge_rangesize=([[:alnum:]]+) ]]; then
+    gem5_bridge_rangesize=${BASH_REMATCH[1]}
+fi
+## Insert driver
+modprobe gem5_bridge \
+    gem5_bridge_baseaddr=$gem5_bridge_baseaddr \
+    gem5_bridge_rangesize=$gem5_bridge_rangesize
+
 # gem5-bridge exit signifying that kernel is booted
 # This will cause the simulation to exit. Note that this will
 # cause qemu to fail.
 printf "Kernel booted, In gem5 init...\n"
-gem5-bridge exit # TODO: Make this a specialized event.
+gem5-bridge hypercall 1
 
 if [[ $cmdline == *"no_systemd"* ]]; then
     no_systemd=true

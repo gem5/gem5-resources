@@ -37,18 +37,18 @@ This can be changed by editing the --amdgpu-target argument in the Makefile.
 
 ## Pre-built binary
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/2dshfl>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/2dshfl>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/dynamic_shared>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/dynamic_shared>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/inline_asm>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/inline_asm>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/MatrixTranspose>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/MatrixTranspose>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/sharedMemory>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/sharedMemory>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/shfl>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/shfl>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/stream>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/stream>
 
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/hip-samples/unroll>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/hip-samples/unroll>

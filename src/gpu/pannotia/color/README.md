@@ -75,5 +75,5 @@ Note that 1k_128k is not designed for Color specifically though -- the above lin
 ## Pre-built binary
 
 SE mode:
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/pannotia/color_max.gem5>
-<https://storage.googleapis.com/dist.gem5.org/dist/v24-0/test-progs/pannotia/color_maxmin.gem5>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/pannotia/color_max.gem5>
+<https://gem5dist.blob.core.windows.net/dist/v24-0/test-progs/pannotia/color_maxmin.gem5>

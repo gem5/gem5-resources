@@ -39,8 +39,8 @@ source "qemu" "initialize" {
   format           = "raw"
   headless         = "true"
   http_directory   = "http"
-  iso_checksum     = "sha256:5e38b55d57d94ff029719342357325ed3bda38fa80054f9330dc789cd2d43931"
-  iso_urls         = ["https://old-releases.ubuntu.com/releases/jammy/ubuntu-22.04.2-live-server-amd64.iso"]
+  iso_checksum     = "sha256:d6dab0c3a657988501b4bd76f1297c053df710e06e0c3aece60dead24f270b4d"
+  iso_urls         = ["https://releases.ubuntu.com/24.04.2/ubuntu-24.04.2-live-server-amd64.iso"]
   memory           = "8192"
   output_directory = "disk-image"
   qemu_binary      = "/usr/bin/qemu-system-x86_64"
@@ -63,7 +63,22 @@ build {
 
   provisioner "file" {
     destination = "/home/gem5/"
+    source      = "files/load_amdgpu.sh"
+  }
+
+  provisioner "file" {
+    destination = "/home/gem5/"
     source      = "files/serial-getty@.service"
+  }
+
+  provisioner "file" {
+    destination = "/home/gem5/"
+    source      = "files/gem5_wmi/gem5_wmi.c"
+  }
+
+  provisioner "file" {
+    destination = "/home/gem5/"
+    source      = "files/gem5_wmi/Makefile"
   }
 
   provisioner "shell" {
@@ -74,6 +89,16 @@ build {
   provisioner "file" {
     destination = "/root/roms/"
     source      = "files/mi200.rom"
+  }
+
+  provisioner "file" {
+    destination = "/root/roms/"
+    source      = "files/mi300.rom"
+  }
+
+  provisioner "file" {
+    destination = "/usr/lib/firmware/amdgpu/ip_discovery.bin"
+    source      = "files/mi300_discovery"
   }
 
   provisioner "file" {

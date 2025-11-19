@@ -93,19 +93,36 @@ build {
 
   provisioner "file" {
     destination = "/home/gem5/"
-    source      = "files/serial-getty@.service"
+    source      = "files/serial-getty@.service-override.conf"
   }
 
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-    scripts         = ["scripts/post-installation.sh"]
+    scripts         = ["scripts/install-common-packages.sh",
+                       "scripts/extract-x86-kernel.sh",
+                       "scripts/update-gem5-init.sh",
+                       "scripts/install-gem5-bridge.sh",
+                       "scripts/install-user-packages.sh",
+                      ]
     environment_vars = ["ISA=x86"]
+    expect_disconnect = true
   }
-  
+
+  provisioner "shell" {
+    scripts =  ["scripts/install-user-benchmarks.sh"]
+  }
+
+  provisioner "shell" {
+    execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    scripts = ["scripts/disable-systemd-services-x86.sh",
+               "scripts/disable-network.sh"
+              ]
+    expect_disconnect = true
+  }
 
   provisioner "file" {
   source      = "/home/gem5/vmlinux-x86-ubuntu"
-  destination = "./disk-image/vmlinux-x86-ubuntu"
+  destination = "./${local.iso_data[var.ubuntu_version].output_dir}/vmlinux-x86-ubuntu"
   direction   = "download"
   }
 }
