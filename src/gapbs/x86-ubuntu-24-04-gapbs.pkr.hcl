@@ -32,12 +32,12 @@ source "qemu" "initialize" {
                       "sudo netplan apply<enter><wait>",
                       "<wait>"]
   cpus             = "4"
-  disk_size        = "5000"
+  disk_size        = "5800"
   format           = "raw"
   headless         = "true"
   disk_image       = "true"
-  iso_checksum     = "sha256:77a84972c212564ae4174b71f8e1561add5aaef37e391d1904048e4bc41727d6"
-  iso_urls         = ["./x86-ubuntu-24-04"]
+  iso_checksum     = "sha256:58dfdabfd2510657776ad946c8c4e9cceacbd0806414690598a4f4808c2349b6"
+  iso_urls         = ["./x86-ubuntu-24.04-20250515"]
   memory           = "8192"
   output_directory = "disk-image-ubuntu-24-04"
   qemu_binary      = "/usr/bin/qemu-system-x86_64"
@@ -61,7 +61,4 @@ build {
     scripts         = ["scripts/post-installation.sh"]
     expect_disconnect = true
   }
-
-
-
 }

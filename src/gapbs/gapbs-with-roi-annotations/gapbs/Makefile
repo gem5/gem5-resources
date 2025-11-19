@@ -22,11 +22,16 @@ endif
 KERNELS = bc bfs cc cc_sv pr pr_spmv sssp tc
 SUITE = $(KERNELS) converter
 
-.PHONY: all
-all: $(SUITE)
+# Define output directory for compiled binaries
+OUTDIR := bin
+$(shell mkdir -p $(OUTDIR))
 
-% : src/%.cc src/*.h
-	$(CXX) $(CXX_FLAGS) $< $(M5_LIB) -o $@ -no-pie 
+.PHONY: all
+all: $(addprefix $(OUTDIR)/, $(SUITE))
+
+# Compilation rule to place binaries in bin/
+$(OUTDIR)/% : src/%.cc src/*.h
+	$(CXX) $(CXX_FLAGS) $< $(M5_LIB) -o $@ -no-pie
 
 # Testing
 include test/test.mk
@@ -34,7 +39,6 @@ include test/test.mk
 # Benchmark Automation
 include benchmark/bench.mk
 
-
 .PHONY: clean
 clean:
-	rm -f $(SUITE) test/out/*
+	rm -f $(OUTDIR)/* test/out/*

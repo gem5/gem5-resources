@@ -24,21 +24,21 @@ variable "ssh_username" {
 
 source "qemu" "initialize" {
   cpus             = "4"
-  disk_size        = "5000"
+  disk_size        = "7000"
   format           = "raw"
   headless         = "true"
   disk_image       = "true"
   boot_command = ["<wait90>",
-                  "gem5<enter><wait2>",
-                  "12345<enter><wait2>",
-                  "sudo mount -o remount,rw /<enter><wait2>", // remounting system as read-write as qemu does not like that we have m5 exits in the boot process so it mounts system as read ony.
-                  "12345<enter><wait2>",
-                  "sudo mv /etc/netplan/50-cloud-init.yaml.bak /etc/netplan/50-cloud-init.yaml<enter><wait2>",
-                  "sudo netplan apply<enter><wait2>",
+                  "gem5<enter><wait20>",
+                  "12345<enter><wait20>",
+                  "sudo mount -o remount,rw /<enter><wait20>", // remounting system as read-write as qemu does not like that we have m5 exits in the boot process so it mounts system as read ony.
+                  "12345<enter><wait20>",
+                  "sudo mv /etc/netplan/50-cloud-init.yaml.bak /etc/netplan/50-cloud-init.yaml<enter><wait20>",
+                  "sudo netplan apply<enter><wait20>",
                   "<wait>"
                 ]
-  iso_checksum     = "sha256:c72784107683f1b1d703fa4fef6d3f52ecf95c9c930a77931f8ab69465869fc1"
-  iso_urls         = ["./riscv-ubuntu-24-04"]
+  iso_checksum     = "sha256:ddf1ebb56454ef37e88d6de8aefdef7180fc9a2328a3bf8cff02f7a043e7127b"
+  iso_urls         = ["./riscv-ubuntu-24.04-20250515.gz"]
   memory           = "8192"
   output_directory = "riscv-disk-image-ubuntu-24-04"
   qemu_binary      = "/usr/bin/qemu-system-riscv64"
@@ -46,7 +46,7 @@ source "qemu" "initialize" {
   qemuargs       = [  ["-bios", "/usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.elf"],
                       ["-machine", "virt"],
                       ["-kernel","/usr/lib/u-boot/qemu-riscv64_smode/uboot.elf"],
-                      ["-device", "virtio-vga"],
+                      ["-device", "virtio-gpu-pci"],
                       ["-device", "qemu-xhci"],
                       ["-device", "usb-kbd"]
                   ]

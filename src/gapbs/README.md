@@ -12,21 +12,25 @@ license: BSD-3-Clause
 
 This document provides instructions to create a GAP Benchmark Suite (GAPBS) disk image, which, along with an example script, may be used to run GAPBS within gem5 simulations. The example script uses a pre-built disk-image.
 
-A pre-built disk image, for X86, can be found, gzipped, here: <add link>
+A pre-built disk image, for X86, can be found, gzipped, here: <https://resources.gem5.org/resources/x86-ubuntu-24.04-gapbs-img/versions?database=gem5-resources&version=1.0.0>
+
+A pre-built disk image, for ARM, can be found, gzipped, here: <https://resources.gem5.org/resources/arm-ubuntu-24.04-gapbs-img/versions?database=gem5-resources&version=1.0.0>
+
+A pre-built disk image, for RISC-V, can be found, gzipped, here: <https://resources.gem5.org/resources/riscv-ubuntu-24.04-gapbs-img/versions?database=gem5-resources&version=1.0.0>
 
 ## Building the Disk Image
 
 Assuming that you are in the `src/gapbs/` directory, run
 
 ```sh
-./build.sh          # the script downloading packer binary and building the disk image
+./build-{ISA}.sh          # the script downloading packer binary and building the disk image. {ISA} is `x86`, `arm`, or `riscv`. 
 ```
 
 After this process succeeds, the disk image can be found on the `src/gapbs/disk-image-ubuntu-24-04`.
 
 This gapbs image uses the prebuilt ubuntu 24.04 image as a base image. The gapbs image also throws the same exit events as the base image. For more details on the exit events, check out the [Boot Sequences](#boot-sequences) section.
 
-Each benchmark also has its regions of interest annotated and they throw a `gem5-bridge workbegin` and `gem5-bridge workend` exit event.
+Each benchmark also has its regions of interest annotated and they throw a `gem5-bridge hypercall 4` (work_begin hypercall) and `gem5-bridge hypercall 5` (work_end hypercall) exit event.
 
 ## What's on the disk?
 
@@ -114,5 +118,5 @@ Combining these parameters yields four possible boot configurations:
 - **Running after_boot script** **
 - Shell
 
-This detailed overview provides a foundational understanding of how different boot configurations affect the system's initialization and mode of operation.
+This detailed overview shows how different boot configurations affect the system's initialization and mode of operation.
 By selecting the appropriate parameters, users can customize the boot process for diverse environments, ranging from automated setups to hands-on interactive sessions.
