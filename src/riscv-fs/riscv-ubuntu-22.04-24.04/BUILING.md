@@ -15,7 +15,7 @@ This document provides instructions to create the "riscv-ubuntu" image. This ima
 
 ## Disk Image
 
-Run `./build.sh` in the `riscv-ubuntu-22.04` directory to build the disk image.
+Run `./build.sh` in the `riscv-ubuntu-22.04-24.04` directory to build the disk image.
 This will download the packer binary, initialize packer, and build the disk image.
 
 Note: This can take a while to run.
@@ -23,7 +23,7 @@ You will see `qemu.initialize: Waiting for SSH to become available...` while the
 You can watch the installation with a VNC viewer.
 See [Troubleshooting](#troubleshooting) for more information.
 
-## Changes from the base Ubuntu 22.04 image
+## Changes from the base Ubuntu 22.04 and 24.04 image
 
 - The default user is `gem5` with password `12345`.
 - The `m5` utility is renamed to `gem5-bridge`.
@@ -88,6 +88,9 @@ To avoid its infinite execution, we incorporated a conditional check in `post-in
 ## Troubleshooting
 
 To see what `packer` is doing, you can use the environment variable `PACKER_LOG=INFO` when running `./build.sh`.
+
+The login process is automated by packer.
+If the build process is hanging during login, check if the "wait" command in the boot_command section is actually waiting for the image to boot.
 
 Packer seems to have a bug that aborts the VM build after 2-5 minutes regardless of the ssh_timeout setting.
 As a workaround, set ssh_handshake_attempts to a high value.

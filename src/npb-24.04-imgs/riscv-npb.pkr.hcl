@@ -9,7 +9,7 @@ packer {
 
 variable "image_name" {
   type    = string
-  default = "riscv-ubuntu"
+  default = "riscv-ubuntu-npb-24.04"
 }
 
 variable "ssh_password" {
@@ -38,7 +38,7 @@ source "qemu" "initialize" {
                   "<wait>"
                 ]
   iso_checksum     = "sha256:ddf1ebb56454ef37e88d6de8aefdef7180fc9a2328a3bf8cff02f7a043e7127b"
-  iso_urls         = ["/home/harshilp/gem5-resources-worktrees/make-riscv-kernel/src/riscv-fs/riscv-ubuntu-22.04-24.04/disk-image-24.04/riscv-ubuntu"]
+  iso_urls         = ["./riscv-ubuntu-24.04-20250515"]
   memory           = "8192"
   output_directory = "riscv-disk-image-ubuntu-24-04"
   qemu_binary      = "/usr/bin/qemu-system-riscv64"
@@ -64,7 +64,7 @@ build {
     source      = "npb-with-roi/NPB/NPB3.4-OMP"
     destination = "/home/gem5/"
   }
-  
+
   provisioner "file" {
     source      = "makefiles/riscv/make.def"
     destination = "/home/gem5/NPB3.4-OMP/config/"
