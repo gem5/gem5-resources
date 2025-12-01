@@ -120,3 +120,64 @@ Combining these parameters yields four possible boot configurations:
 
 This detailed overview shows how different boot configurations affect the system's initialization and mode of operation.
 By selecting the appropriate parameters, users can customize the boot process for diverse environments, ranging from automated setups to hands-on interactive sessions.
+
+## Using the disk image and kernel in gem5
+
+All GAPBS benchmarks are available on <https://resources.gem5.org/>.
+You can use these benchmarks directly in your gem5 config scripts, like this:
+
+```python
+board.set_workload(
+    obtain_resource("arm-ubuntu-24.04-gapbs-bc-test", resource_version="1.0.0")
+)
+```
+
+If you have made the disk image locally and want to run it on gem5 you can use the following templates:
+
+**Note**: You would need to use the kernels mentions in the templates to make sure gem5 can run the workload.
+
+For ARM:
+
+```python
+disk_img = DiskImageResource("/path/to/arm-gapbs-img", root_partition="2")
+board.set_kernel_disk_workload(
+        disk_image=disk_img, 
+        bootloader=obtain_resource("arm64-bootloader-foundation", resource_version="2.0.0"), 
+        kernel=obtain_resource("arm64-linux-kernel-6.8.12", resource_version="1.0.0"),
+        readfile_contents="/home/gem5/gapbs/bin/bc -u 19 -k 4 -s",
+        )
+```
+
+For X86:
+
+```python
+disk_img=DiskImageResource("/path/to/x86-gapbs-img")
+board.set_kernel_disk_workload(
+    kernel=obtain_resource(
+        "x86-linux-kernel-6.8.0-52-generic", resource_version="1.0.0"
+    ),
+    disk_image=disk_img,
+    readfile_contents="/home/gem5/gapbs/bin/bc -u 19 -k 4 -s",
+    kernel_args=[
+        "earlyprintk=ttyS0",
+        "console=ttyS0",
+        "lpj=7999923",
+        "root=/dev/sda2",
+    ]
+
+)
+```
+
+For RISC-V:
+
+```python
+disk_img=DiskImageResource("/path/to/riscv-gapbs-img", root_partition="1")
+board.set_kernel_disk_workload(
+    kernel=obtain_resource(
+        "riscv-linux-6.8.12-kernel", resource_version="1.0.0"
+    ),
+    disk_image=disk_img,
+    bootloader=obtain_resource("riscv-bootloader-opensbi-1.3.1", resource_version="1.0.0"), 
+    readfile_contents="/home/gem5/gapbs/bin/bc -u 19 -k 4 -s",
+)
+```
