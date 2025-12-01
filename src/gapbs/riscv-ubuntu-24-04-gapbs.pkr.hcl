@@ -38,7 +38,7 @@ source "qemu" "initialize" {
                   "<wait>"
                 ]
   iso_checksum     = "sha256:ddf1ebb56454ef37e88d6de8aefdef7180fc9a2328a3bf8cff02f7a043e7127b"
-  iso_urls         = ["./riscv-ubuntu-24.04-20250515.gz"]
+  iso_urls         = ["./riscv-ubuntu-24.04-20250515"]
   memory           = "8192"
   output_directory = "riscv-disk-image-ubuntu-24-04"
   qemu_binary      = "/usr/bin/qemu-system-riscv64"
