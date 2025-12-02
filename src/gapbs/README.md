@@ -23,7 +23,7 @@ A pre-built disk image, for RISC-V, can be found, gzipped, here: <https://resour
 Assuming that you are in the `src/gapbs/` directory, run
 
 ```sh
-./build-{ISA}.sh          # the script downloading packer binary and building the disk image. {ISA} is `x86`, `arm`, or `riscv`. 
+./build-{ISA}.sh          # the script downloading packer binary and building the disk image. {ISA} is `x86`, `arm`, or `riscv`.
 ```
 
 After this process succeeds, the disk image can be found on the `src/gapbs/disk-image-ubuntu-24-04`.
@@ -134,15 +134,17 @@ board.set_workload(
 
 If you have made the disk image locally and want to run it on gem5 you can use the following templates:
 
-**Note**: You would need to use the kernels mentions in the templates to make sure gem5 can run the workload.
+**Note**: You would need to use the kernels mentioned in the templates to make sure gem5 can run the workload.
 
+This is because these disk images are built with the [gem5 bridge driver module](https://github.com/gem5/gem5/tree/stable/util/gem5_bridge), added in [PR 1480](https://github.com/gem5/gem5/pull/1480), which makes it so that gem5 simulations don't need sudo permissions when running commands.
+The gem5 bridge driver module has the limitation of needing to be run with the same kernel version as what it was built with.
 For ARM:
 
 ```python
 disk_img = DiskImageResource("/path/to/arm-gapbs-img", root_partition="2")
 board.set_kernel_disk_workload(
-        disk_image=disk_img, 
-        bootloader=obtain_resource("arm64-bootloader-foundation", resource_version="2.0.0"), 
+        disk_image=disk_img,
+        bootloader=obtain_resource("arm64-bootloader-foundation", resource_version="2.0.0"),
         kernel=obtain_resource("arm64-linux-kernel-6.8.12", resource_version="1.0.0"),
         readfile_contents="/home/gem5/gapbs/bin/bc -u 19 -k 4 -s",
         )
@@ -177,7 +179,7 @@ board.set_kernel_disk_workload(
         "riscv-linux-6.8.12-kernel", resource_version="1.0.0"
     ),
     disk_image=disk_img,
-    bootloader=obtain_resource("riscv-bootloader-opensbi-1.3.1", resource_version="1.0.0"), 
+    bootloader=obtain_resource("riscv-bootloader-opensbi-1.3.1", resource_version="1.0.0"),
     readfile_contents="/home/gem5/gapbs/bin/bc -u 19 -k 4 -s",
 )
 ```
