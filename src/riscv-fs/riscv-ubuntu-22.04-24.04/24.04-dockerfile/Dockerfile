@@ -18,7 +18,7 @@ RUN apt update && apt install -y \
 
 RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
 RUN apt update
-RUN mkdir /workspace 
+RUN mkdir /workspace
 RUN cd /workspace && apt source linux-image-unsigned-6.8.0-47-generic
 
 RUN cd /workspace/linux-6.8.0 && \
@@ -26,7 +26,7 @@ RUN cd /workspace/linux-6.8.0 && \
     make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- -j 32 && \
     make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- INSTALL_MOD_PATH=/workspace/output modules_install
 
-RUN git clone https://github.com/nkrim/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=gem5-bridge && \
+RUN git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=stable && \
     cd gem5 && \
     git sparse-checkout add util/m5 && \
     git sparse-checkout add util/gem5_bridge && \
