@@ -15,8 +15,7 @@ This document provides instructions to create the "riscv-ubuntu" image. This ima
 
 ## Disk Image
 
-Run `./build.sh` in the `riscv-ubuntu-22.04-24.04` directory to build the disk image.
-This will download the packer binary, initialize packer, and build the disk image.
+First, run `make-riscv-kernel.sh` and pass either `22.04` or `24.04` as an argument. Next, run `./build.sh` and pass either `22.04` or `24.04` in the `riscv-ubuntu-22.04-24.04` directory to build the disk image.
 
 Note: This can take a while to run.
 You will see `qemu.initialize: Waiting for SSH to become available...` while the installation is running.
@@ -89,8 +88,9 @@ To avoid its infinite execution, we incorporated a conditional check in `post-in
 
 To see what `packer` is doing, you can use the environment variable `PACKER_LOG=INFO` when running `./build.sh`.
 
-The login process is automated by packer.
-If the build process is hanging during login, check if the "wait" command in the boot_command section is actually waiting for the image to boot.
+The login process is automated by packer, but this process can be flaky and timing-dependent.
+If the build process is hanging during login, the `<wait>` commands in the boot_command section may need adjustment to match your local machine's boot timing.
+These wait durations (e.g., `<wait120>`) should be tuned based on how fast your system boots the disk image, slower machines may require longer waits.
 
 Packer seems to have a bug that aborts the VM build after 2-5 minutes regardless of the ssh_timeout setting.
 As a workaround, set ssh_handshake_attempts to a high value.

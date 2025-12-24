@@ -18,6 +18,9 @@ A pre-built disk image, for X86, can be found, gzipped, here: [x86-ubuntu-24.04-
 A pre-built disk image, for arm, can be found, gzipped, here:
 [arm-ubuntu-24.04-npb-img](https://resources.gem5.org/resources/arm-ubuntu-24.04-npb-img?version=2.0.0)
 
+A pre-built disk image, for riscv, can be found, gzipped, here:
+[riscv-ubuntu-24.04-npb-img](https://resources.gem5.org/resources/riscv-ubuntu-24.04-npb-img?version=1.0.0)
+
 ## What's on the disk?
 
 - username: gem5
@@ -53,18 +56,29 @@ Assuming that you are in the `src/npb-24.04-imgs/` directory, run
 ./build-x86.sh          # the script downloading packer binary and building 
 ```
 
-to build the x86 disk image or 
+to build the x86 disk image or
 
 ```sh
 ./build-arm.sh
 ```
 
-to run the arm disk image.
-After this process succeeds, the disk image can be found on the `npb-24.04-imgs/disk-image-x86-npb/disk-image-x86-npb` or `npb-24.04-imgs/disk-image-arm-npb/disk-image-arm-npb` repectively.
+to run the arm disk image or
+
+```sh
+./build-riscv.sh
+```
+
+to run the riscv disk image.
+
+**Note**: The login process is automated by packer, but this process can be flaky and timing-dependent.
+If the build process is hanging during login, the `<wait>` commands in the boot_command section may need adjustment to match your local machine's boot timing.
+These wait durations (e.g., `<wait120>`) should be tuned based on how fast your system boots the disk image, slower machines may require longer waits.
+
+After this process succeeds, the disk image can be found on the `npb-24.04-imgs/disk-image-x86-npb/disk-image-x86-npb`, `npb-24.04-imgs/disk-image-arm-npb/disk-image-arm-npb` or `npb-24.04-imgs/disk-image-riscv-npb/disk-image-riscv-npb` respectively.
 
 This npb image uses the prebuilt ubuntu 24.04 image as a base image. The npb image also throws the same exit events as the base image.
 
-Each benchmark also has its regions of intrests annotated and they throw a `gem5-bridge workbegin` and `gem5-bridge workend` exit event.
+Each benchmark also has its regions of interests annotated and they throw a `gem5-bridge workbegin` and `gem5-bridge workend` exit event.
 
 ## Init Process and Exit Events
 
