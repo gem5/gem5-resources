@@ -53,7 +53,7 @@ source "qemu" "initialize" {
   headless         = "true"
   disk_image       = "true"
   boot_command = [
-                  "<wait10><enter>",
+                  "<wait10><enter>",  // If the build process is hanging during login, the `<wait>` commands may need to be adjusted.
                   "<wait120>",
                   "ubuntu<enter><wait>",
                   "ubuntu<enter><wait>",

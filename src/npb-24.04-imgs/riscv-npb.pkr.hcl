@@ -28,7 +28,7 @@ source "qemu" "initialize" {
   format           = "raw"
   headless         = "true"
   disk_image       = "true"
-  boot_command = ["<wait120>",
+  boot_command = ["<wait120>", // If the build process is hanging during login, the `<wait>` commands may need to be adjusted.
                   "gem5<enter><wait10>",
                   "12345<enter><wait10>",
                   "sudo mount -o remount,rw /<enter><wait10>", // remounting system as read-write as qemu does not like that we have m5 exits in the boot process so it mounts system as read ony.
