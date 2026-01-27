@@ -6,22 +6,22 @@ authors: ["Matthew Poremba"]
 ---
 
 This disk image is designed to work with the example GPU full system (GPUFS) configurations located in the gem5 repository in configs/example/gpufs/.
-The disk installs Ubuntu 24.04, the officially supported Ubuntu 24.04 version of ROCm 6.4, and the popular machine learning (ML) framework PyTorch.
+The disk installs Ubuntu 24.04, the officially supported Ubuntu 24.04 version of ROCm 7.2, and the popular machine learning (ML) framework PyTorch.
 Some Ubuntu configuration files are modified to automatically login as root user and load an application from the host into gem5.
 
 ## Major Contents
 
 The disk image starts with a minimal Ubuntu server plus essential packages to build basic applications.
-For GPU applications, the ROCm 6.4 version of the amdgpu DKMS driver and the `rocm` package are installed.
+For GPU applications, the ROCm 7.2 version of the amdgpu DKMS driver and the `rocm` package are installed.
 The DKMS driver builds against the kernel that is running at the time of install.
 Therefore, the kernel extracted from this disk image *must* be paired with this disk image when running gem5.
 
 Details of the disk contents are:
-- [ROCm](https://rocm.docs.amd.com/) 6.4: The singular `rocm` package in this install includes:
+- [ROCm](https://rocm.docs.amd.com/) 7.2: The singular `rocm` package in this install includes:
     - [HIP](https://github.com/ROCm/HIP): hipcc LLVM compiler and HIP versions of roc libraries.
     - roc Libraries: rocBLAS, rocSPARSE, rocgdb, etc.
     - MI libraries: MIOpen, MIGraphX, etc.
-- [PyTorch](https://pytorch.org/) 2.7.0: PyTorch is a machine learning library based on the Torch library
+- [PyTorch](https://pytorch.org/) 2.12.0: PyTorch is a machine learning library based on the Torch library
 
 ## Disk Image with QEMU
 

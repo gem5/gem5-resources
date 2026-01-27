@@ -13,7 +13,7 @@ packer {
 
 variable "image_name" {
   type    = string
-  default = "x86-ubuntu-rocm70"
+  default = "x86-ubuntu-rocm72"
 }
 
 variable "ssh_password" {
@@ -63,27 +63,17 @@ build {
 
   provisioner "file" {
     destination = "/home/gem5/"
+    source      = "files/gem5_init.sh"
+  }
+
+  provisioner "file" {
+    destination = "/home/gem5/"
     source      = "files/run_gem5_app.sh"
   }
 
   provisioner "file" {
     destination = "/home/gem5/"
-    source      = "files/load_amdgpu.sh"
-  }
-
-  provisioner "file" {
-    destination = "/home/gem5/"
     source      = "files/serial-getty@.service"
-  }
-
-  provisioner "file" {
-    destination = "/home/gem5/"
-    source      = "files/gem5_wmi/gem5_wmi.c"
-  }
-
-  provisioner "file" {
-    destination = "/home/gem5/"
-    source      = "files/gem5_wmi/Makefile"
   }
 
   provisioner "shell" {
@@ -113,7 +103,7 @@ build {
 
   provisioner "file" {
     source      = "/home/gem5/vmlinux-gpu-ml"
-    destination = "vmlinux-rocm70"
+    destination = "vmlinux-rocm72"
     direction   = "download"
   }
 }
