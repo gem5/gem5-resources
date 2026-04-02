@@ -16,7 +16,7 @@ cmdline=$(cat /proc/cmdline)
 no_systemd=false
 # Load gem5_bridge driver
 ## Default parameters (RISCV)
-gem5_bridge_baseaddr=0x40000000 # Using address of 1GB as gem5-bridge does not use address mode for riscv
+gem5_bridge_baseaddr=0x10010000
 gem5_bridge_rangesize=0x10000
 ## Try to read overloads from kernel arguments
 if [[ $cmdline =~ gem5_bridge_baseaddr=([[:alnum:]]+) ]]; then
@@ -36,7 +36,7 @@ modprobe gem5_bridge \
 # This will cause the simulation to exit. Note that this will
 # cause qemu to fail.
 printf "Kernel booted, In gem5 init...\n"
-gem5-bridge hypercall 1
+gem5-bridge --addr="${gem5_bridge_baseaddr}" hypercall 1
 
 if [[ $cmdline == *"no_systemd"* ]]; then
     no_systemd=true
