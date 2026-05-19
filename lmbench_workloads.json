@@ -1,0 +1,1220 @@
+[
+     {
+        "id": "x86-ubuntu-24.04-lmbench-img",
+        "resource_version": "1.0.0",
+        "category": "disk-image",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "A disk image containing the lmbench benchmarks for Ubuntu 24.04 for x86. This image will run an `m5 readfile` instruction after booting. This diskimage will run m5 exit events at different intevals in the boot process, please refer to the README.md of the source for more information.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem"
+        ],
+        "example_usage": "obtain_resource(resource_id=\"x86-ubuntu-24.04-lmbench-img\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 5242880000,
+        "url": "file:///path/to/disk",
+        "is_tar_archive": false,
+        "md5sum": "20b4733fedba52bfd1f8d8aa77f3f6b4",
+        "is_zipped": false,
+        "architecture": "X86",
+        "root_partition": "1",
+        "source": "src/lmbench-24.04-imgs"
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-mem-rd",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures memory read latency across a range of array sizes and access strides using pointer-chasing. The first argument (8) is the array size in MB; subsequent arguments (16 32 64 128 256 512 1024) are the strides in bytes. Output is one (size, latency) pair per stride, expressed in nanoseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "hardware"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-mem-rd\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_mem_rd 8 16 32 64 128 256 512 1024; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-ops",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the latency of fundamental integer and floating-point operations (add, multiply, divide, etc.) across several datatypes (int, long, float, double). No arguments are required; the benchmark auto-detects the available operations.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "hardware"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-ops\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_ops; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-par-ops",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the instruction-level parallelism of simple arithmetic operations by running chains of independent operations and comparing throughput against latency. No arguments are required.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "hardware"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-par-ops\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/par_ops; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-par-mem",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Determines the memory hierarchy parallelism by probing how many simultaneous in-flight loads the memory subsystem can sustain. -L 64 sets the cache-line size to 64 bytes; -M 8M caps the working set to 8 MB.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "hardware"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-par-mem\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/par_mem -L 64 -M 8M; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-tlb",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Estimates the effective TLB size and the TLB miss penalty by sweeping page-stride access patterns over increasing array sizes. -L 64 is the cache-line size in bytes; -M 8M limits the maximum array size to 8 MB.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "hardware"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-tlb\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/tlb -L 64 -M 8M; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-stream",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "The lmbench adaptation of John McCalpin's STREAM benchmark, which measures sustainable memory bandwidth for Copy, Scale, Add, and Triad kernels. -M 8M sets the array length to 8 MB, ensuring the working set exceeds the L2/L3 cache.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "hardware"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-stream\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/stream -M 8M; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-syscall-null",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the round-trip latency of a null system call (getppid on Linux), which represents the minimum overhead of entering and exiting the kernel. No file argument is needed for the 'null' mode.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-syscall-null\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_syscall null; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-select-file",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the latency of select(2) over a set of file descriptors. -n 100 sets the descriptor count to 100; the 'file' mode uses regular file descriptors (pipes). Output is in microseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-select-file\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_select -n 100 file; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-sig-catch",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the round-trip latency of delivering and catching a SIGSEGV signal. The 'catch' mode raises the signal and times the return from the signal handler back to the faulting instruction.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-sig-catch\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_sig catch; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-pipe",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the round-trip latency of a single byte sent through an anonymous pipe (read end / write end in the same process). Output is in microseconds. No arguments are required.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-pipe\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_pipe; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-unix",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the round-trip latency of a single byte sent over a Unix-domain socket pair (AF_UNIX SOCK_STREAM). No arguments are required; output is in microseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-unix\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_unix; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-proc-fork",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the latency of creating a new process with fork(2) and waiting for it to exit. The 'fork' mode does not exec a new binary, so it isolates the raw process-creation overhead.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-proc-fork\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_proc fork; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-pagefault",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the latency of a demand page fault on a file-backed anonymous mapping (/tmp/lmbench_scratch). The benchmark mmap()s the file, then touches each page cold to trigger a page fault, reporting the average fault-handling latency in microseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-pagefault\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "dd if=/dev/zero of=/tmp/lmbench_scratch bs=1M count=8 status=none && /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_pagefault /tmp/lmbench_scratch && rm -f /tmp/lmbench_scratch; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-mmap",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures how long it takes to map and unmap a memory region using mmap(2)/munmap(2). The first argument (8m) is the region size; the second (/tmp/lmbench_scratch) is the backing file. The benchmark repeats map/unmap in a tight loop and reports the average latency in microseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-mmap\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "dd if=/dev/zero of=/tmp/lmbench_scratch bs=1M count=8 status=none && /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_mmap 8m /tmp/lmbench_scratch && rm -f /tmp/lmbench_scratch; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-fs",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures file-system operation latency by creating and removing large numbers of small files in a temporary directory (/usr/tmp/lat_fs). Reports average latency for create, delete, and mixed operations in microseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-fs\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "mkdir -p /usr/tmp/lat_fs && /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_fs /usr/tmp/lat_fs && rm -rf /usr/tmp/lat_fs; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-ctx",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures context-switch overhead as a function of the number of processes. -s 0 means no data is passed between processes (zero working-set size per process). The positional arguments (2 4 8 \u2026 96) are the number of processes to switch between. Output is in microseconds per context switch.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-ctx\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_ctx -s 0 2 4 8 16 24 32 64 96; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-udp",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the round-trip latency of a minimal UDP datagram sent to a localhost server. The server (lat_udp -s) is started in the background, a 1-second pause ensures it is ready, then the client (lat_udp localhost) runs and the server is stopped with lat_udp -S localhost. Output is in microseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-udp\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_udp -s & sleep 1 && /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_udp localhost ; /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_udp -S localhost; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-tcp",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the round-trip latency of a minimal TCP connection to a localhost server. The server (lat_tcp -s) is started in the background, a 1-second pause follows, then the client runs and the server is stopped with lat_tcp -S localhost. Output is in microseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-tcp\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_tcp -s & sleep 1 && /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_tcp localhost ; /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_tcp -S localhost; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-rpc-udp",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the round-trip latency of a Sun RPC (ONC RPC) call over UDP to a localhost server. The server (lat_rpc -s) is started in the background; -p udp selects the UDP transport. Output is in microseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-rpc-udp\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_rpc -s & sleep 1 && /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_rpc -p udp localhost ; /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_rpc -S localhost; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lat-connect",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the latency of TCP connection establishment (connect(2)/close(2)) to a localhost server. A lat_tcp -s server is started first; lat_connect times only the SYN-SYN/ACK-ACK handshake. Output is in microseconds.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lat-connect\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lat_tcp -s & sleep 1 && /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_connect localhost ; /home/gem5/lmbench/bin/x86_64-linux-gnu/lat_tcp -S localhost; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-bw-pipe",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the unidirectional data throughput of an anonymous pipe between two processes. Data is transferred in a tight loop and reported in MB/s. No arguments are required.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-bw-pipe\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/bw_pipe; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-bw-unix",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures the unidirectional data throughput of a Unix-domain socket (AF_UNIX SOCK_STREAM) between two processes. Reported in MB/s. No arguments are required.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-bw-unix\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/bw_unix; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-bw-tcp",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures TCP socket bandwidth to a localhost server using a 1024-byte message size (-m 1024). The server (bw_tcp -s) is started in the background; the client measures sustained throughput and the server is stopped with bw_tcp -S localhost. Output is in MB/s.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-bw-tcp\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/bw_tcp -s & sleep 1 && /home/gem5/lmbench/bin/x86_64-linux-gnu/bw_tcp -m 1024 localhost ; /home/gem5/lmbench/bin/x86_64-linux-gnu/bw_tcp -S localhost; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-bw-file-rd-io-only",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures file read bandwidth using the io_only mode, which reads the file without summing its contents (pure I/O throughput). The first argument (8m) is the amount of data to read; io_only skips the sum step; /tmp/lmbench_scratch is the backing file. The intent is that the file be in the page cache. Output is in MB/s.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-bw-file-rd-io-only\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "dd if=/dev/zero of=/tmp/lmbench_scratch bs=1M count=8 status=none && /home/gem5/lmbench/bin/x86_64-linux-gnu/bw_file_rd 8m io_only /tmp/lmbench_scratch && rm -f /tmp/lmbench_scratch; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-bw-mmap-rd-mmap-only",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures memory-mapped read bandwidth without open/close overhead (mmap_only mode). The file is pre-mapped; the benchmark reads through the mapping and reports throughput in MB/s. The first argument (8m) is the mapping size; /tmp/lmbench_scratch is the file.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-bw-mmap-rd-mmap-only\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "dd if=/dev/zero of=/tmp/lmbench_scratch bs=1M count=8 status=none && /home/gem5/lmbench/bin/x86_64-linux-gnu/bw_mmap_rd 8m mmap_only /tmp/lmbench_scratch && rm -f /tmp/lmbench_scratch; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-lmdd",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures sequential file write bandwidth using lmbench's dd-like tool. label= sets the output label; of= is the output file; move=8m writes 8 MB of data; fsync=1 calls fsync() after writing to include storage-flush time; print=3 enables verbose output. Output is in MB/s.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-lmdd\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/lmdd label=\"File write bandwidth: \" of=/tmp/lmbench_scratch move=8m fsync=1 print=3 && rm -f /tmp/lmbench_scratch; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    },
+    {
+        "id": "x86-ubuntu-24.04-lmbench-bw-mem-rd",
+        "resource_version": "1.0.0",
+        "category": "workload",
+        "author": [
+            "Harshil Patel"
+        ],
+        "code_examples": [],
+        "description": "Measures memory read bandwidth using a partial-read pattern (rd). Every other word is loaded to prevent the hardware prefetcher from hiding true memory latency. The first argument (8m) is the working-set size; 'rd' selects the partial read kernel. Output is in MB/s.",
+        "source_url": "",
+        "license": "",
+        "tags": [
+            "x86",
+            "fullsystem",
+            "hardware",
+            "os"
+        ],
+        "example_usage": "obtain_resource(\"x86-ubuntu-24.04-lmbench-bw-mem-rd\", resource_version=\"1.0.0\")",
+        "gem5_versions": [
+            "25.0",
+            "25.1"
+        ],
+        "size": 0,
+        "architecture": "X86",
+        "function": "set_kernel_disk_workload",
+        "additional_params": {
+            "kernel_args": [
+                "earlyprintk=ttyS0",
+                "console=ttyS0",
+                "lpj=7999923",
+                "root=/dev/sda2"
+            ],
+            "readfile_contents": "/home/gem5/lmbench/bin/x86_64-linux-gnu/bw_mem 8m rd; sleep 5;"
+        },
+        "resources": {
+            "kernel": {
+                "id": "x86-linux-kernel-6.8.0-52-generic",
+                "resource_version": "1.0.0"
+            },
+            "disk_image": {
+                "id": "x86-ubuntu-24.04-lmbench-img",
+                "resource_version": "1.0.0"
+            }
+        }
+    }
+]
