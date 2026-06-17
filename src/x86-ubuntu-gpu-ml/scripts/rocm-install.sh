@@ -87,7 +87,7 @@ sudo chmod 777 /usr/lib/firmware/amdgpu/ip_discovery.bin
 
 # Install a known-working version of Linux as this might change after stable
 # release. Install this after DKMS so they are rebuilt.
-KERNEL=6.8.0-79-generic
+KERNEL=6.8.0-124-generic
 
 sudo apt -y install "linux-image-${KERNEL}"
 sudo apt -y install "linux-headers-${KERNEL}" "linux-modules-extra-${KERNEL}"
