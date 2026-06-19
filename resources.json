@@ -9935,6 +9935,1902 @@
                     "source" : "src/asmtest"
                 }
           ]
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-2mm-bin",
+          "description": "Polybench benchmark 2mm compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "ab2f9da499113d852640489fa4e8fd04",
+          "source": "polybin/2mm.riscv",
+          "url": "file://path_to_files/2mm.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/2mm",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-2mm-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-2mm-run-se",
+          "description": "Polybench benchmark 2mm run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-2mm-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/2mm",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-2mm-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-3mm-bin",
+          "description": "Polybench benchmark 3mm compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "63078237115d02910592741b86ab2171",
+          "source": "polybin/3mm.riscv",
+          "url": "file://path_to_files/3mm.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/3mm",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-3mm-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-3mm-run-se",
+          "description": "Polybench benchmark 3mm run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-3mm-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/3mm",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-3mm-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-adi-bin",
+          "description": "Polybench benchmark adi compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "63359e5e780a7b33833c02f03223a26f",
+          "source": "polybin/adi.riscv",
+          "url": "file://path_to_files/adi.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/adi",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-adi-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-adi-run-se",
+          "description": "Polybench benchmark adi run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-adi-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/adi",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-adi-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-atax-bin",
+          "description": "Polybench benchmark atax compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "92fc9a3ed4c9cf1d07437f5dcb6b6b53",
+          "source": "polybin/atax.riscv",
+          "url": "file://path_to_files/atax.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/atax",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-atax-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-atax-run-se",
+          "description": "Polybench benchmark atax run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-atax-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/atax",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-atax-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-bicg-bin",
+          "description": "Polybench benchmark bicg compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "8885621777a1cef8a05be76b7a20a3b8",
+          "source": "polybin/bicg.riscv",
+          "url": "file://path_to_files/bicg.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/bicg",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-bicg-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-bicg-run-se",
+          "description": "Polybench benchmark bicg run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-bicg-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/bicg",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-bicg-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-cholesky-bin",
+          "description": "Polybench benchmark cholesky compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "8885621777a1cef8a05be76b7a20a3b8",
+          "source": "polybin/cholesky.riscv",
+          "url": "file://path_to_files/cholesky.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/cholesky",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-cholesky-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-cholesky-run-se",
+          "description": "Polybench benchmark cholesky run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-cholesky-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/cholesky",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-cholesky-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-correlation-bin",
+          "description": "Polybench benchmark correlation compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "5ceb339aacda7254a9786f7be0b788c2",
+          "source": "polybin/correlation.riscv",
+          "url": "file://path_to_files/correlation.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/datamining/correlation",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-correlation-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-correlation-run-se",
+          "description": "Polybench benchmark correlation run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-correlation-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/datamining/correlation",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-correlation-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-covariance-bin",
+          "description": "Polybench benchmark covariance compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "9fb3229bd41a5a62b3af524a8608dde7",
+          "source": "polybin/covariance.riscv",
+          "url": "file://path_to_files/covariance.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/datamining/covariance",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-covariance-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-covariance-run-se",
+          "description": "Polybench benchmark covariance run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-covariance-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/datamining/covariance",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-covariance-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-deriche-bin",
+          "description": "Polybench benchmark deriche compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "4af145d65fa520a98d2be05f8b526b9a",
+          "source": "polybin/deriche.riscv",
+          "url": "file://path_to_files/deriche.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/medley/deriche",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-deriche-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-deriche-run-se",
+          "description": "Polybench benchmark deriche run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-deriche-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/medley/deriche",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-deriche-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-doitgen-bin",
+          "description": "Polybench benchmark doitgen compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "e48300002e01d5eb73d1be35d57ffa09",
+          "source": "polybin/doitgen.riscv",
+          "url": "file://path_to_files/doitgen.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/doitgen",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-doitgen-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-doitgen-run-se",
+          "description": "Polybench benchmark doitgen run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-doitgen-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/doitgen",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-doitgen-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-durbin-bin",
+          "description": "Polybench benchmark durbin compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "b17374e44c2854ec871c8eefe8e19422",
+          "source": "polybin/durbin.riscv",
+          "url": "file://path_to_files/durbin.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/durbin",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-durbin-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-durbin-run-se",
+          "description": "Polybench benchmark durbin run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-durbin-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/durbin",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-durbin-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-fdtd-2d-bin",
+          "description": "Polybench benchmark fdtd-2d compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "26efe925446355a80013c7298b9269e0",
+          "source": "polybin/fdtd-2d.riscv",
+          "url": "file://path_to_files/fdtd-2d.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/fdtd-2d",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-fdtd-2d-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-fdtd-2d-run-se",
+          "description": "Polybench benchmark fdtd-2d run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-fdtd-2d-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/fdtd-2d",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-fdtd-2d-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-gemm-bin",
+          "description": "Polybench benchmark gemm compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "4bea5ffa19f7112804d95121d53793fb",
+          "source": "polybin/gemm.riscv",
+          "url": "file://path_to_files/gemm.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/gemm",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-gemm-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-gemm-run-se",
+          "description": "Polybench benchmark gemm run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-gemm-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/gemm",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-gemm-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-gemver-bin",
+          "description": "Polybench benchmark gemver compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "0665e6c67e79a2e16fe1d9850fef6687",
+          "source": "polybin/gemver.riscv",
+          "url": "file://path_to_files/gemver.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/gemver",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-gemver-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-gemver-run-se",
+          "description": "Polybench benchmark gemver run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-gemver-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/gemver",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-gemver-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-gesummv-bin",
+          "description": "Polybench benchmark gesummv compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "b1991abb5ba18b2a7d10137bfdd7906d",
+          "source": "polybin/gesummv.riscv",
+          "url": "file://path_to_files/gesummv.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/gesummv",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-gesummv-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-gesummv-run-se",
+          "description": "Polybench benchmark gesummv run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-gesummv-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/gesummv",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-gesummv-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-gramschmidt-bin",
+          "description": "Polybench benchmark gramschmidt compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "cc71021ee7a882aad455d6e7085bc6bb",
+          "source": "polybin/gramschmidt.riscv",
+          "url": "file://path_to_files/gramschmidt.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/gramschmidt",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-gramschmidt-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-gramschmidt-run-se",
+          "description": "Polybench benchmark gramschmidt run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-gramschmidt-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/gramschmidt",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-gramschmidt-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-heat-3d-bin",
+          "description": "Polybench benchmark heat-3d compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "971ebfe8af156b309ae2d55ac321697c",
+          "source": "polybin/heat-3d.riscv",
+          "url": "file://path_to_files/heat-3d.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/heat-3d",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-heat-3d-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-heat-3d-run-se",
+          "description": "Polybench benchmark heat-3d run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-heat-3d-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/heat-3d",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-heat-3d-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-jacobi-1d-bin",
+          "description": "Polybench benchmark jacobi-1d compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "300ad964d33c616242c4447ae69fc5c0",
+          "source": "polybin/jacobi-1d.riscv",
+          "url": "file://path_to_files/jacobi-1d.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/jacobi-1d",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-jacobi-1d-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-jacobi-1d-run-se",
+          "description": "Polybench benchmark jacobi-1d run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-jacobi-1d-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/jacobi-1d",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-jacobi-1d-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-jacobi-2d-bin",
+          "description": "Polybench benchmark jacobi-2d compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "43453a02a4e0ae8ea7f781c1006c3a4a",
+          "source": "polybin/jacobi-2d.riscv",
+          "url": "file://path_to_files/jacobi-2d.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/jacobi-2d",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-jacobi-2d-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-jacobi-2d-run-se",
+          "description": "Polybench benchmark jacobi-2d run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-jacobi-2d-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/jacobi-2d",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-jacobi-2d-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-lu-bin",
+          "description": "Polybench benchmark lu compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "c403e5328b94ff7414706db179f6c3fc",
+          "source": "polybin/lu.riscv",
+          "url": "file://path_to_files/lu.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/lu",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-lu-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-lu-run-se",
+          "description": "Polybench benchmark lu run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-lu-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/lu",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-lu-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-ludcmp-bin",
+          "description": "Polybench benchmark ludcmp compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "a1f688717cd48ec3d08b4c3984b4643d",
+          "source": "polybin/ludcmp.riscv",
+          "url": "file://path_to_files/ludcmp.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/ludcmp",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-ludcmp-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-ludcmp-run-se",
+          "description": "Polybench benchmark ludcmp run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-ludcmp-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/ludcmp",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-ludcmp-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-mvt-bin",
+          "description": "Polybench benchmark mvt compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "8e7ae93005b9dc41b76d14f31a5a133a",
+          "source": "polybin/mvt.riscv",
+          "url": "file://path_to_files/mvt.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/mvt",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-mvt-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-mvt-run-se",
+          "description": "Polybench benchmark mvt run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-mvt-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/kernels/mvt",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-mvt-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-nussinov-bin",
+          "description": "Polybench benchmark nussinov compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "6188f0c18ad38bb00af05e1afa7e47fd",
+          "source": "polybin/nussinov.riscv",
+          "url": "file://path_to_files/nussinov.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/medley/nussinov",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-nussinov-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-nussinov-run-se",
+          "description": "Polybench benchmark nussinov run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-nussinov-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/medley/nussinov",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-nussinov-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-seidel-2d-bin",
+          "description": "Polybench benchmark seidel-2d compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "39fd0543bff812a8ff19714b083201fb",
+          "source": "polybin/seidel-2d.riscv",
+          "url": "file://path_to_files/seidel-2d.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/seidel-2d",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-seidel-2d-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-seidel-2d-run-se",
+          "description": "Polybench benchmark seidel-2d run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-seidel-2d-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/stencils/seidel-2d",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-seidel-2d-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-symm-bin",
+          "description": "Polybench benchmark symm compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "ab5295155b3caabe24ebc0910a7224b7",
+          "source": "polybin/symm.riscv",
+          "url": "file://path_to_files/symm.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/symm",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-symm-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-symm-run-se",
+          "description": "Polybench benchmark symm run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-symm-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/symm",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-symm-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-syr2k-bin",
+          "description": "Polybench benchmark syr2k compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "962be55b69cfb04d83b41c11956208ec",
+          "source": "polybin/syr2k.riscv",
+          "url": "file://path_to_files/syr2k.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/syr2k",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-syr2k-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-syr2k-run-se",
+          "description": "Polybench benchmark syr2k run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-syr2k-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/syr2k",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-syr2k-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-syrk-bin",
+          "description": "Polybench benchmark syrk compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "b42470744d275bdc194a907369d1318b",
+          "source": "polybin/syrk.riscv",
+          "url": "file://path_to_files/syrk.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/syrk",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-syrk-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-syrk-run-se",
+          "description": "Polybench benchmark syrk run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-syrk-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/syrk",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-syrk-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-trisolv-bin",
+          "description": "Polybench benchmark trisolv compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "88582c8e650990a2bb15dd05e357c049",
+          "source": "polybin/trisolv.riscv",
+          "url": "file://path_to_files/trisolv.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/trisolv",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-trisolv-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-trisolv-run-se",
+          "description": "Polybench benchmark trisolv run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-trisolv-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/solvers/trisolv",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-trisolv-run-se\")"
+        },
+        {
+          "category": "binary",
+          "id": "riscv-polybench-trmm-bin",
+          "description": "Polybench benchmark trmm compiled for RISC-V.",
+          "architecture": "RISCV",
+          "size": 1,
+          "tags": [
+            "polybench"
+          ],
+          "is_zipped": false,
+          "md5sum": "31e15e8ccc8841ba3bdd3dc245fe46c9",
+          "source": "polybin/trmm.riscv",
+          "url": "file://path_to_files/trmm.riscv",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1",
+            "25.0"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/trmm",
+          "resource_version": "1.0.0",
+          "example_usage": "obtain_resource(\"riscv-polybench-trmm-bin\")"
+        },
+        {
+          "category": "workload",
+          "id": "riscv-polybench-trmm-run-se",
+          "description": "Polybench benchmark trmm run configuration for RISC-V SE model.",
+          "function": "set_se_binary_workload",
+          "resources": {
+            "binary": {
+              "id": "riscv-polybench-trmm-bin",
+              "resource_version": "1.0.0"
+            }
+          },
+          "architecture": "RISCV",
+          "tags": [
+            "polybench",
+            "se",
+            "riscv"
+          ],
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/trmm",
+          "resource_version": "1.0.0",
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-trmm-run-se\")"
+        },
+        {
+          "id": "riscv-polybench-suite",
+          "description": "Polybench benchmark suite for RISC-V model.",
+          "category": "suite",
+          "resource_version": "1.0.0",
+          "workloads": [
+            {
+              "id": "riscv-polybench-2mm-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-kernels"
+              ]
+            },
+            {
+              "id": "riscv-polybench-3mm-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-kernels"
+              ]
+            },
+            {
+              "id": "riscv-polybench-adi-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "stencil"
+              ]
+            },
+            {
+              "id": "riscv-polybench-atax-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-kernels"
+              ]
+            },
+            {
+              "id": "riscv-polybench-bicg-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-kernels"
+              ]
+            },
+            {
+              "id": "riscv-polybench-cholesky-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-solvers"
+              ]
+            },
+            {
+              "id": "riscv-polybench-correlation-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "datamining"
+              ]
+            },
+            {
+              "id": "riscv-polybench-covariance-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "datamining"
+              ]
+            },
+            {
+              "id": "riscv-polybench-deriche-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "medley"
+              ]
+            },
+            {
+              "id": "riscv-polybench-doitgen-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-kernels"
+              ]
+            },
+            {
+              "id": "riscv-polybench-durbin-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-solvers"
+              ]
+            },
+            {
+              "id": "riscv-polybench-fdtd-2d-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "stencil"
+              ]
+            },
+            {
+              "id": "riscv-polybench-gemm-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-blas"
+              ]
+            },
+            {
+              "id": "riscv-polybench-gemver-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-blas"
+              ]
+            },
+            {
+              "id": "riscv-polybench-gesummv-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-blas"
+              ]
+            },
+            {
+              "id": "riscv-polybench-gramschmidt-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-solvers"
+              ]
+            },
+            {
+              "id": "riscv-polybench-heat-3d-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "stencil"
+              ]
+            },
+            {
+              "id": "riscv-polybench-jacobi-1d-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "stencil"
+              ]
+            },
+            {
+              "id": "riscv-polybench-jacobi-2d-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "stencil"
+              ]
+            },
+            {
+              "id": "riscv-polybench-lu-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-solvers"
+              ]
+            },
+            {
+              "id": "riscv-polybench-ludcmp-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-solvers"
+              ]
+            },
+            {
+              "id": "riscv-polybench-mvt-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-kernels"
+              ]
+            },
+            {
+              "id": "riscv-polybench-nussinov-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "medley"
+              ]
+            },
+            {
+              "id": "riscv-polybench-seidel-2d-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "stencil"
+              ]
+            },
+            {
+              "id": "riscv-polybench-symm-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-blas"
+              ]
+            },
+            {
+              "id": "riscv-polybench-syr2k-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-blas"
+              ]
+            },
+            {
+              "id": "riscv-polybench-syrk-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-blas"
+              ]
+            },
+            {
+              "id": "riscv-polybench-trisolv-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-solvers"
+              ]
+            },
+            {
+              "id": "riscv-polybench-trmm-run-se",
+              "resource_version": "1.0.0",
+              "input_group": [
+                "linalg",
+                "linalg-blas"
+              ]
+            }
+          ],
+          "gem5_versions": [
+            "24.0",
+            "24.1"
+          ],
+          "example_usage": "obtain_resource(\"riscv-polybench-suite\")",
+          "tags": [],
+          "author": [
+            "Louis-Noel Pouchet",
+            "Tomofumi Yuki"
+          ],
+          "architecture": "RISCV",
+          "license": "OHIO STATE UNIVERSITY SOFTWARE DISTRIBUTION LICENSE",
+          "source_url": "https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/"
         }
     ]
 }
