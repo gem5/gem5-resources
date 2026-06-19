@@ -17,7 +17,7 @@ if [ ! -f ./x86-ubuntu-24.04-20250515 ]; then
 fi
 
 # Install the needed plugins
-./packer init x86-npb.pkr.hcl
+./packer init x86-lmbench.pkr.hcl
 
 # Build the image
-./packer build x86-npb.pkr.hcl
+./packer build x86-lmbench.pkr.hcl
