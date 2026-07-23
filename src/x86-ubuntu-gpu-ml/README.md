@@ -1,49 +1,69 @@
 ---
-title: Linux x86-ubuntu image with ROCm GPU stack and ML frameworks
+title: Linux x86-ubuntu images with ROCm GPU stack and ML frameworks
 shortdoc: >
-    Resources to build an x86 Ubuntu disk image with GPU and ML stacks
+    Resources to build x86 Ubuntu disk images with GPU and ML stacks
 authors: ["Matthew Poremba"]
 ---
 
-This disk image is designed to work with the example GPU full system (GPUFS) configurations located in the gem5 repository in configs/example/gpufs/.
-The disk installs Ubuntu 24.04, the officially supported Ubuntu 24.04 version of ROCm 7.2, and the popular machine learning (ML) framework PyTorch.
-Some Ubuntu configuration files are modified to automatically login as root user and load an application from the host into gem5.
+This directory builds x86 Ubuntu disk images designed to work with the example GPU full system (GPUFS) configurations located in the gem5 repository in `configs/example/gpufs/`.
+Two disk images are provided: a smaller ROCm-only image and a larger image with PyTorch.
 
-## Major Contents
+## Disk Images
 
-The disk image starts with a minimal Ubuntu server plus essential packages to build basic applications.
-For GPU applications, the ROCm 7.2 version of the amdgpu DKMS driver and the `rocm` package are installed.
-The DKMS driver builds against the kernel that is running at the time of install.
-Therefore, the kernel extracted from this disk image *must* be paired with this disk image when running gem5.
+### ROCm image (`disk-image/x86-ubuntu-rocm714`)
 
-Details of the disk contents are:
-- [ROCm](https://rocm.docs.amd.com/) 7.2: The singular `rocm` package in this install includes:
+Installs Ubuntu, ROCm 7.14, and all gem5 infrastructure.
+Disk size: 12 GB.
+Use this image for HIP/ROCm workloads that do not require PyTorch.
+
+Contents:
+- [ROCm](https://rocm.docs.amd.com/) 7.14: The `amdrocm7.14-gfx950` package includes:
     - [HIP](https://github.com/ROCm/HIP): hipcc LLVM compiler and HIP versions of roc libraries.
     - roc Libraries: rocBLAS, rocSPARSE, rocgdb, etc.
     - MI libraries: MIOpen, MIGraphX, etc.
-- [PyTorch](https://pytorch.org/) 2.12.0: PyTorch is a machine learning library based on the Torch library
 
-## Disk Image with QEMU
+### PyTorch image (`disk-image/x86-ubuntu-pytorch-r72`)
 
-The disk image is setup to automatically log in by default in gem5.
-If you are using an emulator such as QEMU to work with the disk, the login information is:
+Installs Ubuntu, PyTorch with its bundled ROCm runtime, and all gem5 infrastructure.
+Disk size: 24 GB.
+Use this image for PyTorch machine learning workloads.
 
-- username: gem5
-- password: 12345
+Contents:
+- [PyTorch](https://pytorch.org/) 2.12.0 with bundled ROCm 7.2 runtime
+
+## Common contents (both images)
+
+Both images include:
+- Ubuntu 26.04 server base
+- gem5-bridge (`m5` binary and kernel module)
+- Auto-login and workload-loading infrastructure (`run_gem5_app.sh`, `serial-getty`)
+- GPU BIOS ROMs and hardware topology discovery files for MI200/MI300/MI350
+
+The extracted `vmlinux-*` kernel **must** be paired with the disk image it was built from.
 
 ## Example gem5 commands
 
-The disk image is intended to be used with the GPUFS configurations for [MI300X](https://rocm.docs.amd.com/en/latest/conceptual/gpu-arch/mi300.html) or [MI200](https://rocm.docs.amd.com/en/latest/conceptual/gpu-arch/mi250.html).
-It may also be used with the standard library.
-See `configs/example/gem5_library/x86-mi300x-gpu.py` in the gem5 repository for a standard library example.
+The disk images are intended for use with the GPUFS configurations for [MI300X](https://rocm.docs.amd.com/en/latest/conceptual/gpu-arch/mi300.html) or [MI200](https://rocm.docs.amd.com/en/latest/conceptual/gpu-arch/mi250.html).
 
-The following commands assume gem5-resources is clone inside your gem5 directory.
-Modify the paths as needed if that is not true:
+The following commands assume gem5-resources is cloned inside your gem5 directory.
+Modify paths as needed.
 
+**ROCm image:**
 ```sh
 scons build/VEGA_X86/gem5.opt -j`nproc`
-./build/VEGA_X86/gem5.opt configs/example/gpufs/mi300.py --disk-image gem5-resources/src/x86-ubuntu-gpu-ml/disk-image/x86-ubuntu-gpu-ml --kernel gem5-resources/src/x86-ubuntu-gpu-ml/vmlinux-gpu-ml --app ./pytorch_test.py
-./build/VEGA_X86/gem5.opt configs/example/gem5_library/x86-mi300x-gpu.py --image gem5-resources/src/x86-ubuntu-gpu-ml/disk-image/x86-ubuntu-gpu-ml --kernel gem5-resources/src/x86-ubuntu-gpu-ml/vmlinux-gpu-ml --app ./pytorch_test.py
+./build/VEGA_X86/gem5.opt configs/example/gpufs/mi300.py \
+    --disk-image gem5-resources/src/x86-ubuntu-gpu-ml/disk-image/x86-ubuntu-rocm714 \
+    --kernel     gem5-resources/src/x86-ubuntu-gpu-ml/vmlinux-rocm714 \
+    --app $GEM5_RESOURCES/src/gpu/square/bin.default/square.default
+```
+
+**PyTorch image:**
+```sh
+scons build/VEGA_X86/gem5.opt -j`nproc`
+./build/VEGA_X86/gem5.opt configs/example/gpufs/mi300.py \
+    --disk-image gem5-resources/src/x86-ubuntu-gpu-ml/disk-image/x86-ubuntu-pytorch-r72 \
+    --kernel     gem5-resources/src/x86-ubuntu-gpu-ml/vmlinux-pytorch-r72 \
+    --app ./pytorch_test.py
 ```
 
 The contents of `pytorch_test.py` are:
@@ -57,9 +77,7 @@ x = torch.rand(5, 3)
 print(x)
 ```
 
-The simple command above does not specify a gem5 output directory, so the default output can be found in `m5out/system.pc.com_1.device`.
-Recall that full system output is *not* included in the gem5 output!
-Rather, it is output to a file or connected terminal:
+Full system stdout goes to `m5out/board.pc.com_1.device`, not the gem5 output directory.
 
 ```
 GPU available!
@@ -70,8 +88,8 @@ tensor([[0.5262, 0.3074, 0.1449],
         [0.4793, 0.3785, 0.6773]])
 ```
 
-**Note:** The GPU config scripts work best on a host machine with KVM. The atomic CPU could also be used, however GPUFS has been optimized for KVM.
+**Note:** The GPU config scripts work best on a host machine with KVM, but Atomic CPU may also be used.
 
-## Building, extending, or pruning the Disk Image
+## Building, extending, or pruning the Disk Images
 
-Instructions for these are located in the companion document [BUILDING.md](BUILDING.md).
+Instructions are in the companion document [BUILDING.md](BUILDING.md).

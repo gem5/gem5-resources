@@ -1,66 +1,105 @@
 ---
-title: Building the base x86-ubuntu-gpu-ml image
+title: Building the x86-ubuntu-gpu-ml disk images
 authors:
     - Matthew Poremba
 ---
 
-This document provides instructions to create the `x86-ubuntu-gpu-ml` disk image.
-This image is an Ubuntu 24.04 image with AMD's ROCm stack and PyTorch installed.
+This document provides instructions to create the `x86-ubuntu-gpu-ml` disk images.
+Two images are produced from a single Packer template, both written to the common `disk-image/` directory:
+
+- **ROCm image** (`disk-image/x86-ubuntu-rocm714`, 12 GB) — Ubuntu + ROCm 7.14
+- **PyTorch image** (`disk-image/x86-ubuntu-pytorch-r72`, 24 GB) — Ubuntu + PyTorch with bundled ROCm 7.2.
+
 Documentation and files here are adapted from the x86-ubuntu image by Harshil Patel and Jason Lowe-Power.
 
 ## Requirements
 
 The following packages must be installed to use the `build.sh` script: `unzip`, `qemu-system-x86_64`
 
-## Creating the Disk Image
+## Build scripts
 
-The disk image is created in one step.
-Run `./build.sh` in this directory to build the disk image.
-This will download the packer tool, initialize packer, and build the disk image.
+The provisioner scripts are layered:
 
-Building the disk image takes approximately 30 minutes depending on CPU speed and internet bandwidth.
-You will see `qemu.initialize: Waiting for SSH to become available...` while the installation is running.
-You can watch the installation with a VNC viewer.
-See [Troubleshooting](#troubleshooting) for more information.
+| Script | Purpose |
+|--------|---------|
+| `scripts/base-install.sh` | Common to both images: apt packages, gem5-bridge, kernel install and extraction, amdgpu discovery file setup, gem5 auto-login |
+| `scripts/rocm-install.sh` | ROCm-only: registers ROCm apt repos and installs `amdrocm7.14-gfx950` |
+| `scripts/pytorch-install.sh` | PyTorch-only: pip-installs `torch` and `torchvision` with bundled ROCm |
+
+Each image build runs `base-install.sh` followed by its variant script.
+
+## Creating the Disk Images
+
+Run `./build.sh` from this directory.
+This downloads the packer tool, initializes it, and builds the disk images.
+
+```sh
+./build.sh           # build both images sequentially (~30 min each)
+./build.sh rocm      # build only the ROCm image
+./build.sh pytorch   # build only the PyTorch image
+```
+
+Additional arguments are passed through to `packer build`:
+
+```sh
+./build.sh rocm -var qemu_path=/path/to/qemu-system-x86_64
+PACKER_LOG=INFO ./build.sh pytorch
+```
+
+Building each image takes approximately 30 minutes depending on CPU speed and internet bandwidth.
+You will see `Waiting for SSH to become available...` while the installer runs.
+See [Troubleshooting](#troubleshooting) for VNC monitoring.
 
 ## Disk build output
 
-The disk-image output directory contains the disk image `x86-ubuntu-gpu-ml`.
-The Linux kernel that is running at install time is downloaded from the disk as `vmlinux-gpu-ml` in this directory.
+| Image | Disk image path | Kernel path |
+|-------|----------------|-------------|
+| ROCm | `disk-image/x86-ubuntu-rocm714` | `vmlinux-rocm714` |
+| PyTorch | `disk-image/x86-ubuntu-pytorch-r72` | `vmlinux-pytorch-r72` |
 
-You *must* pair this disk image with the extracted kernel when running GPU applications.
+You **must** pair each disk image with its matching extracted kernel when running gem5.
+The amdgpu DKMS driver is compiled against the pinned kernel at build time; mixing kernels and images will fail.
 
-## Extending the Disk Image
+## Extending the Disk Images
 
-You can mount the disk image to see what is inside or to test adding additional files.
-Use the following command to mount the disk image:
+Mount a disk image to inspect or test changes:
 
 ```sh
 mkdir mount
-sudo mount -o loop,offset=1048576 disk-image/x86-ubuntu-gpu-ml mount
+sudo mount -o loop,offset=1048576 disk-image/x86-ubuntu-rocm714 mount
+# or
+sudo mount -o loop,offset=1048576 disk-image/x86-ubuntu-pytorch-r72 mount
 ```
 
-Once you have tested your changes, you can add the changes to `scripts/rocm-install.sh` to preserve the changes when rebuilding the disk image.
+Mount a disk image to install packages (e.g., using apt):
 
-If you want to add another ML framework, see the file `scripts/rocm-install.sh`.
-The methods in that file for installing PyTorch are taken directly from [the PyTorch website](https://pytorch.org).
-You could use these installation commands as examples for any other GPU related package which supports amdgpu.
+```sh
+sudo systemd-nspawn -i disk-image/x86-ubuntu-rocm714
+or
+sudo systemd-nspawn -i disk-image/x86-ubuntu-pytorch-r72
+```
 
-## Pruning the disk image
+Once you have tested your changes, add them to the appropriate script:
+- Common changes go in `scripts/base-install.sh`
+- ROCm-specific changes go in `scripts/rocm-install.sh`
+- PyTorch or other ML framework changes go in `scripts/pytorch-install.sh`
 
-This disk image requires approximately 42GB of space within the disk.
-Some additional space is provided for users to copy data files if desired.
+## Changing versions
 
-If you want to save space and do not need all of the packages, you may remove files from `scripts/rocm-install.sh`.
-For example, if you do not require the ML frameworks, you could prune the image size down to about 16GB.
+Three version knobs must stay mutually consistent:
 
-To remove PyTorch, delete or comment out the PyTorch `pip3 install` line and rebuild the disk image.
+1. The `repo.amd.com/rocm/packages-multi-arch/...` apt URL in `scripts/rocm-install.sh`
+2. The `amdrocm<ver>-gfx950` package name in `scripts/rocm-install.sh`
+3. The `KERNEL` variable in `scripts/base-install.sh`
+
+When producing a new variant, also update `rocm_image_name` / `pytorch_image_name` and the
+corresponding `vmlinux-*` download destination in `x86-ubuntu-gpu-ml.pkr.hcl` so new
+artifacts do not overwrite existing ones.
 
 ## Troubleshooting
 
-To see what `packer` is doing, you can use the environment variable `PACKER_LOG=INFO` when running `./build.sh`.
+To see verbose packer output use `PACKER_LOG=INFO ./build.sh`.
 
-To see what is happening while packer is running, you can connect with a VNC viewer.
-The port for the VNC viewer is shown in the terminal while packer is running.
+To watch the installer live, connect a VNC viewer to the port printed in the terminal while packer is running.
 
 Useful documentation: <https://ubuntu.com/server/docs/install/autoinstall>

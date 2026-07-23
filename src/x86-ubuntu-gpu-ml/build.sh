@@ -14,6 +14,18 @@ fi
 # Install the needed plugins
 ./packer init x86-ubuntu-gpu-ml.pkr.hcl
 
-# Build the image - Pass command line options from this script to build
-# command. This can be used to set variable such as qemu path.
-./packer build "$@" x86-ubuntu-gpu-ml.pkr.hcl
+# Optional first argument selects which image to build:
+#   ./build.sh rocm      -- build only the ROCm image  (disk-image-rocm/)
+#   ./build.sh pytorch   -- build only the PyTorch image (disk-image-pytorch/)
+#   ./build.sh           -- build both images sequentially
+# Any remaining arguments are passed through to packer build (e.g. -var qemu_path=...).
+ONLY_ARG=""
+if [ "$1" = "rocm" ]; then
+    ONLY_ARG="-only=qemu.rocm"
+    shift
+elif [ "$1" = "pytorch" ]; then
+    ONLY_ARG="-only=qemu.pytorch"
+    shift
+fi
+
+./packer build -parallel-builds=1 $ONLY_ARG "$@" x86-ubuntu-gpu-ml.pkr.hcl
