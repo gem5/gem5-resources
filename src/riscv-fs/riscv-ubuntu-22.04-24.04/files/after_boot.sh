@@ -12,18 +12,22 @@
 # exit. If there is no script and we are not in interactive mode, it will
 # exit. This last option is used for testing purposes.
 
-# gem5-bridge exit signifying that after_boot.sh is running
-printf "In after_boot.sh...\n"
-gem5-bridge hypercall 2
-
 # Read /proc/cmdline and parse options
 
 cmdline=$(cat /proc/cmdline)
 interactive=false
 IGNORE_M5=0
+gem5_bridge_baseaddr=0x10010000
 if [[ $cmdline == *"interactive"* ]]; then
     interactive=true
 fi
+if [[ $cmdline =~ gem5_bridge_baseaddr=([[:alnum:]]+) ]]; then
+    gem5_bridge_baseaddr=${BASH_REMATCH[1]}
+fi
+
+# gem5-bridge exit signifying that after_boot.sh is running
+printf "In after_boot.sh...\n"
+gem5-bridge --addr="${gem5_bridge_baseaddr}" hypercall 2
 
 printf "Interactive mode: $interactive\n"
 
@@ -34,13 +38,13 @@ else
     # Try to read the file from the host when running with gem5
     if ! [ -z $IGNORE_M5 ]; then
         printf "Starting gem5 init... trying to read run script file via readfile.\n"
-        if ! gem5-bridge readfile > /tmp/script; then
+        if ! gem5-bridge --addr="${gem5_bridge_baseaddr}" readfile > /tmp/script; then
             printf "Failed to run gem5-bridge readfile, exiting!\n"
             rm -f /tmp/script
             # If we can't read the script exit the simulation. If we cannot exit the
             # simulation, this probably means that we are running in QEMU. So, ignore
             # future calls to gem5-bridge.
-            if ! gem5-bridge exit; then
+            if ! gem5-bridge --addr="${gem5_bridge_baseaddr}" exit; then
                 # Useful for booting the disk image in (e.g.,) qemu for debugging
                 printf "gem5-bridge exit failed, dropping to shell.\n"
                 IGNORE_M5=1 /bin/bash
@@ -51,7 +55,7 @@ else
             /tmp/script
             printf "Done running script from gem5-bridge, exiting.\n"
             rm -f /tmp/script
-            gem5-bridge hypercall 3
+            gem5-bridge --addr="${gem5_bridge_baseaddr}" hypercall 3
         fi
     fi
 fi
