@@ -6,13 +6,12 @@
         "architecture": "RISCV",
         "is_zipped": true,
         "md5sum": "dd337c2d013345414357097644f41cd5",
-        "url": "https://github.com/selimsandal/gem5-resources/releases/download/riscv-kvm-preview-2026-04-03/riscv-ubuntu-24.04-kvm-fixed.img.gz",
+        "url": "https://dist.gem5.org/dist/develop/images/riscv/ubuntu-24-04/riscv-ubuntu-24.04-kvm.gz",
         "source": "src/riscv-fs/riscv-ubuntu-22.04-24.04",
         "root_partition": "1",
         "resource_version": "1.0.0",
         "gem5_versions": [
-            "develop",
-            "25.1"
+            "develop"
         ]
     },
     {
@@ -36,8 +35,7 @@
         },
         "resource_version": "1.0.0",
         "gem5_versions": [
-            "develop",
-            "25.1"
+            "develop"
         ]
     },
     {
@@ -72,8 +70,7 @@
         },
         "resource_version": "1.0.0",
         "gem5_versions": [
-            "develop",
-            "25.1"
+            "develop"
         ]
     }
 ]
