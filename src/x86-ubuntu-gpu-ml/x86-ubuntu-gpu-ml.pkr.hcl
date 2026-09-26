@@ -13,12 +13,12 @@ packer {
 
 variable "rocm_image_name" {
   type    = string
-  default = "x86-ubuntu-rocm714"
+  default = "x86-ubuntu-rocm100"
 }
 
 variable "pytorch_image_name" {
   type    = string
-  default = "x86-ubuntu-pytorch-r72"
+  default = "x86-ubuntu-pytorch-r714"
 }
 
 variable "rocm_disk_size" {
@@ -28,7 +28,7 @@ variable "rocm_disk_size" {
 
 variable "pytorch_disk_size" {
   type    = string
-  default = "30000"
+  default = "34000"
 }
 
 variable "ssh_password" {
@@ -120,7 +120,7 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -S bash '{{ .Path }}'"
     scripts         = ["scripts/base-install.sh", "scripts/rocm-install.sh"]
   }
 
@@ -146,7 +146,7 @@ build {
 
   provisioner "file" {
     source      = "/home/gem5/vmlinux-gpu-ml"
-    destination = "vmlinux-rocm714"
+    destination = "vmlinux-rocm100"
     direction   = "download"
   }
 
@@ -178,7 +178,7 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -S bash '{{ .Path }}'"
     scripts         = ["scripts/base-install.sh", "scripts/pytorch-install.sh"]
   }
 
@@ -204,7 +204,7 @@ build {
 
   provisioner "file" {
     source      = "/home/gem5/vmlinux-gpu-ml"
-    destination = "vmlinux-pytorch-rocm72"
+    destination = "vmlinux-pytorch-rocm714"
     direction   = "download"
   }
 

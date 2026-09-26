@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Copyright (c) 2024 The Regents of the University of California.
 # SPDX-License-Identifier: BSD 3-Clause
@@ -10,12 +11,14 @@
 # release.
 KERNEL=7.0.0-14-generic
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Installing the packages in this script instead of the user-data
 # file during ubuntu autoinstall. The reason is that sometimes
 # the package install fails. This method is more reliable.
 echo 'installing packages'
-sudo apt update
-sudo apt install -y scons git vim build-essential
+sudo apt-get update
+sudo apt-get install -y scons git vim build-essential dwarves
 
 # Make sure the init script is executable
 chmod a+x /home/gem5/gem5_init.sh
@@ -37,8 +40,8 @@ sudo chmod 777 /root/roms
 sudo touch /usr/lib/firmware/amdgpu/ip_discovery.bin
 sudo chmod 777 /usr/lib/firmware/amdgpu/ip_discovery.bin
 
-sudo apt -y install "linux-image-${KERNEL}"
-sudo apt -y install "linux-headers-${KERNEL}"
+sudo apt-get install -y "linux-image-${KERNEL}"
+sudo apt-get install -y "linux-headers-${KERNEL}"
 
 echo "Extracting linux kernel"
 sudo bash -c "/usr/src/linux-headers-${KERNEL}/scripts/extract-vmlinux /boot/vmlinuz-${KERNEL} > /home/gem5/vmlinux-gpu-ml"
