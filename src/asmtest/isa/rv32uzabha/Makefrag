@@ -8,3 +8,4 @@ rv32uzabha_sc_tests = \
 
 rv32uzabha_p_tests = $(addprefix rv32uzabha-p-, $(rv32uzabha_sc_tests))
 rv32uzabha_v_tests = $(addprefix rv32uzabha-v-, $(rv32uzabha_sc_tests))
+rv32uzabha_ps_tests = $(addprefix rv32uzabha-ps-, $(rv32uzabha_sc_tests))

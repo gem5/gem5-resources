@@ -8,3 +8,4 @@ rv64uzabha_sc_tests = \
 
 rv64uzabha_p_tests = $(addprefix rv64uzabha-p-, $(rv64uzabha_sc_tests))
 rv64uzabha_v_tests = $(addprefix rv64uzabha-v-, $(rv64uzabha_sc_tests))
+rv64uzabha_ps_tests = $(addprefix rv64uzabha-ps-, $(rv64uzabha_sc_tests))
