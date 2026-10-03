@@ -1,14 +1,16 @@
 # See LICENSE for license details.
 
 #*****************************************************************************
-# amomaxu_d.S
+# amocas_w.S
 #-----------------------------------------------------------------------------
 #
-# Test amomaxu.w instruction.
+# Test amocas.w instruction.
 #
 
 #include "riscv_test.h"
 #include "test_macros.h"
+
+.option arch, +zacas
 
 RVTEST_RV64U
 RVTEST_CODE_BEGIN
@@ -18,28 +20,30 @@ RVTEST_CODE_BEGIN
     li a1, 0xfffffffffffff800; \
     la a3, amo_operand; \
     sw a0, 0(a3); \
-    amomaxu.w	a4, a1, 0(a3); \
+    mv a4, a0; \
+    amocas.w a4, a1, 0(a3); \
   )
 
   TEST_CASE(3, a5, 0xfffffffffffff800, lw a5, 0(a3))
 
-  TEST_CASE(4, a4, 0, \
-    li a1, 0xffffffffffffffff; \
-    sw x0, 0(a3); \
-    amomaxu.w	a4, a1, 0(a3); \
+  # Try again. Restore the original value.
+  TEST_CASE(4, a4, 0xfffffffffffff800, \
+    li  a1, 0xffffffff80000000; \
+    li  a4, 0xfffffffffffff800; \
+    amocas.w a4, a1, 0(a3); \
   )
 
-  TEST_CASE(5, a5, 0xffffffffffffffff, lw a5, 0(a3))
+  TEST_CASE(5, a5, 0xffffffff80000000, lw a5, 0(a3))
 
-  TEST_CASE(6, a4, 1, \
-    li a0, 0x0000000000000001; \
-    li a1, 0x8000000000000000; \
-    la a3, amo_operand; \
-    sw a0, 0(a3); \
-    amomaxu.w	a4, a1, 0(a3); \
+  # try a CAS mismatch
+  TEST_CASE(6, a4, 0xffffffff80000000, \
+    li a1, 0xfffffffffffff800; \
+    li a4, 0xfffffffff8000001; \
+    amocas.w a4, a1, 0(a3); \
   )
 
-  TEST_CASE(7, a5, 0x0000000000000001, lw a5, 0(a3))
+  TEST_CASE(7, a5, 0xffffffff80000000, lw a5, 0(a3))
+
 
   TEST_PASSFAIL
 
