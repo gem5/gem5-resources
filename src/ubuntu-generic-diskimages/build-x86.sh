@@ -14,7 +14,7 @@ fi
 # Check if the Ubuntu version variable is provided
 if [ -z "$1" ]; then
     echo "Usage: $0 <ubuntu_version>"
-    echo "Example: $0 22.04 or $0 24.04"
+    echo "Example: $0 22.04 or $0 24.04 or $0 26.04"
     exit 1
 fi
 
@@ -22,8 +22,8 @@ fi
 ubuntu_version="$1"
 
 # Check if the specified Ubuntu version is valid
-if [[ "$ubuntu_version" != "22.04" && "$ubuntu_version" != "24.04" ]]; then
-    echo "Error: Invalid Ubuntu version '$ubuntu_version'. Must be '22.04' or '24.04'."
+if [[ "$ubuntu_version" != "22.04" && "$ubuntu_version" != "24.04" && "$ubuntu_version" != "26.04" ]]; then
+    echo "Error: Invalid Ubuntu version '$ubuntu_version'. Must be '22.04', '24.04', or '26.04'."
     exit 1
 fi
 
