@@ -108,6 +108,11 @@ build {
   }
 
   provisioner "file" {
+    destination = "/home/gem5/"
+    source      = "files/gem5-riscv-m5-addr.patch"
+  }
+
+  provisioner "file" {
     destination = "/home/gem5"
     source      = "my-riscv-6.8.12-kernel/6.8.12"
   }
