@@ -13,7 +13,7 @@ packer {
 
 variable "rocm_image_name" {
   type    = string
-  default = "x86-ubuntu-rocm100"
+  default = "x86-ubuntu-rocm101"
 }
 
 variable "pytorch_image_name" {
@@ -146,7 +146,7 @@ build {
 
   provisioner "file" {
     source      = "/home/gem5/vmlinux-gpu-ml"
-    destination = "vmlinux-rocm100"
+    destination = "vmlinux-rocm101"
     direction   = "download"
   }
 

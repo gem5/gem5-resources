@@ -10,14 +10,14 @@ Two disk images are provided: a smaller ROCm-only image and a larger image with 
 
 ## Disk Images
 
-### ROCm image (`disk-image/x86-ubuntu-rocm100`)
+### ROCm image (`disk-image/x86-ubuntu-rocm101`)
 
-Installs Ubuntu, ROCm 10.0, and all gem5 infrastructure.
+Installs Ubuntu, ROCm 10.1, and all gem5 infrastructure.
 Disk size: 12 GB.
 Use this image for HIP/ROCm workloads that do not require PyTorch.
 
 Contents:
-- [ROCm](https://rocm.docs.amd.com/) 10.0: The `amdrocm10.0-gfx950` package includes:
+- [ROCm](https://rocm.docs.amd.com/) 10.1: The `amdrocm10.1-gfx950` package includes:
     - [HIP](https://github.com/ROCm/HIP): hipcc LLVM compiler and HIP versions of roc libraries.
     - roc Libraries: rocBLAS, rocSPARSE, rocgdb, etc.
     - MI libraries: MIOpen, MIGraphX, etc.
@@ -51,17 +51,17 @@ Modify paths as needed.
 **ROCm image:**
 ```sh
 scons build/VEGA_X86/gem5.opt -j`nproc`
-./build/VEGA_X86/gem5.opt configs/example/gpufs/mi300.py \
-    --disk-image gem5-resources/src/x86-ubuntu-gpu-ml/disk-image/x86-ubuntu-rocm100 \
-    --kernel     gem5-resources/src/x86-ubuntu-gpu-ml/vmlinux-rocm100 \
+./build/VEGA_X86/gem5.opt configs/example/gem5_library/x86-mi355x-gpu.py \
+    --image gem5-resources/src/x86-ubuntu-gpu-ml/disk-image/x86-ubuntu-rocm101 \
+    --kernel     gem5-resources/src/x86-ubuntu-gpu-ml/vmlinux-rocm101 \
     --app $GEM5_RESOURCES/src/gpu/square/bin.default/square.default
 ```
 
 **PyTorch image:**
 ```sh
 scons build/VEGA_X86/gem5.opt -j`nproc`
-./build/VEGA_X86/gem5.opt configs/example/gpufs/mi300.py \
-    --disk-image gem5-resources/src/x86-ubuntu-gpu-ml/disk-image/x86-ubuntu-pytorch-r714 \
+./build/VEGA_X86/gem5.opt configs/example/gem5_library/x86-mi355x-gpu.py \
+    --image gem5-resources/src/x86-ubuntu-gpu-ml/disk-image/x86-ubuntu-pytorch-r714 \
     --kernel     gem5-resources/src/x86-ubuntu-gpu-ml/vmlinux-pytorch-r714 \
     --app ./pytorch_test.py
 ```

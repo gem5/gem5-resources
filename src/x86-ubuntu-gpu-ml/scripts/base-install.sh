@@ -19,6 +19,7 @@ export DEBIAN_FRONTEND=noninteractive
 echo 'installing packages'
 sudo apt-get update
 sudo apt-get install -y scons git vim build-essential dwarves
+sudo apt-get clean
 
 # Make sure the init script is executable
 chmod a+x /home/gem5/gem5_init.sh
@@ -42,6 +43,7 @@ sudo chmod 777 /usr/lib/firmware/amdgpu/ip_discovery.bin
 
 sudo apt-get install -y "linux-image-${KERNEL}"
 sudo apt-get install -y "linux-headers-${KERNEL}"
+sudo apt-get clean
 
 echo "Extracting linux kernel"
 sudo bash -c "/usr/src/linux-headers-${KERNEL}/scripts/extract-vmlinux /boot/vmlinuz-${KERNEL} > /home/gem5/vmlinux-gpu-ml"

@@ -34,5 +34,7 @@ EOF
 sudo apt-get update
 
 # Install ROCm packages
-sudo apt-get install -y amdrocm10.0-gfx950
+sudo apt-get install -y amdrocm10.1-gfx950
+sudo apt-get clean
 sudo apt-get install -y cmake
+sudo apt-get clean
