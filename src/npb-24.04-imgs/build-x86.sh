@@ -11,8 +11,8 @@ if [ ! -f ./packer ]; then
     rm packer_${PACKER_VERSION}_linux_amd64.zip;
 fi
 
-if [! -f ./x86-ubuntu-24.04-20250515 ]; then
-  wget https://gem5resources.blob.core.windows.net/dist-gem5-org/dist/develop/images/x86/ubuntu-24-04/x86-ubuntu-24.04-20250515.gz
+if [ ! -f ./x86-ubuntu-24.04-20250515 ]; then
+  wget https://dist.gem5.org/dist/develop/images/x86/ubuntu-24-04/x86-ubuntu-24.04-20250515.gz
   gunzip x86-ubuntu-24.04-20250515.gz
 fi
 
