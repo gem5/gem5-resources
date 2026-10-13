@@ -13,7 +13,8 @@ if [ -z "$ISA" ]; then
 fi
 
 # Just get the files we need
-git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=stable
+#pointing to develop for now due to needing the updated scons script change to build the gem5-bridge (m5) binary and library
+git clone https://github.com/gem5/gem5.git --depth=1 --filter=blob:none --no-checkout --sparse --single-branch --branch=develop
 pushd gem5
 # Checkout just the files we need
 git sparse-checkout add util/m5
@@ -50,6 +51,8 @@ chmod u+s /usr/local/bin/gem5-bridge
 
 #create a symbolic link to the gem5 binary for backward compatibility
 ln -s /usr/local/bin/gem5-bridge /usr/local/bin/m5
+# Symlink into /usr/bin so gem5-bridge is available before PATH is fully set up (e.g. in early init)
+ln -s /usr/local/bin/gem5-bridge /usr/bin/gem5-bridge
 
 # delete the git repo for gem5
 rm -rf gem5

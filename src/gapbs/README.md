@@ -23,10 +23,12 @@ A pre-built disk image, for RISC-V, can be found, gzipped, here: <https://resour
 Assuming that you are in the `src/gapbs/` directory, run
 
 ```sh
-./build-{ISA}.sh          # the script downloading packer binary and building the disk image. {ISA} is `x86`, `arm`, or `riscv`.
+./build-{ISA}.sh <ubuntu_version>         # the script downloading packer binary and building the disk image. {ISA} is `x86`, `arm`, or `riscv`.
 ```
 
-After this process succeeds, the disk image can be found on the `src/gapbs/disk-image-ubuntu-24-04`.
+For `x86`, `<ubuntu_version>` is either `24.04` or `26.04`, e.g. `./build-x86.sh 24.04`.
+
+After this process succeeds, the disk image can be found on the `src/gapbs/disk-image-ubuntu-24-04` (or `src/gapbs/disk-image-ubuntu-26-04` depending on the Ubuntu version built for x86).
 
 This gapbs image uses the prebuilt ubuntu 24.04 image as a base image. The gapbs image also throws the same exit events as the base image. For more details on the exit events, check out the [Boot Sequences](#boot-sequences) section.
 

@@ -26,8 +26,8 @@ variable "ubuntu_version" {
   type    = string
   default = "24.04"
   validation {
-    condition     = contains(["22.04", "24.04"], var.ubuntu_version)
-    error_message = "Ubuntu version must be either 22.04 or 24.04."
+    condition     = contains(["22.04", "24.04", "26.04"], var.ubuntu_version)
+    error_message = "Ubuntu version must be either 22.04, 24.04, or 26.04."
   }
 }
 
@@ -42,6 +42,11 @@ locals {
       iso_url       = "https://old-releases.ubuntu.com/releases/noble/ubuntu-24.04-live-server-amd64.iso"
       iso_checksum  = "sha256:8762f7e74e4d64d72fceb5f70682e6b069932deedb4949c6975d0f0fe0a91be3"
       output_dir    = "x86-disk-image-24-04"
+    }
+    "26.04" = {
+      iso_url       = "https://releases.ubuntu.com/resolute/ubuntu-26.04.1-live-server-amd64.iso"
+      iso_checksum  = "sha256:dec49008a71f6098d0bcfc822021f4d042d5f2db279e4d75bdd981304f1ca5d9"
+      output_dir    = "x86-disk-image-26-04"
     }
   }
 }
@@ -97,26 +102,28 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo --preserve-env=ISA,UBUNTU_VERSION -S bash '{{ .Path }}'"
     scripts         = ["scripts/install-common-packages.sh",
                        "scripts/extract-x86-kernel.sh",
                        "scripts/update-gem5-init.sh",
                        "scripts/install-gem5-bridge.sh",
                        "scripts/install-user-packages.sh",
                       ]
-    environment_vars = ["ISA=x86"]
+    environment_vars = ["ISA=x86", "UBUNTU_VERSION=${var.ubuntu_version}"]
     expect_disconnect = true
   }
 
   provisioner "shell" {
     scripts =  ["scripts/install-user-benchmarks.sh"]
+    environment_vars = ["UBUNTU_VERSION=${var.ubuntu_version}"]
   }
 
   provisioner "shell" {
-    execute_command = "echo '${var.ssh_password}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    execute_command = "echo '${var.ssh_password}' |  {{ .Vars }} sudo --preserve-env=ISA,UBUNTU_VERSION -S bash '{{ .Path }}'"
     scripts = ["scripts/disable-systemd-services-x86.sh",
                "scripts/disable-network.sh"
               ]
+    environment_vars = ["UBUNTU_VERSION=${var.ubuntu_version}"]
     expect_disconnect = true
   }
 
