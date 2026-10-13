@@ -22,3 +22,44 @@ Since some of these benchmarks accept arguments, the suite has pre-configured th
 
 The suite is designed to be compatible with the [gem5 Standard Library](https://www.gem5.org/documentation/gem5-stdlib/overview), using the Suite infrastructure.
 More information on how to use the Suite can be found in the [gem5 Standard Library documentation](https://www.gem5.org//documentation/gem5-stdlib/suites).
+
+
+## Prebuilt resources on gem5 resources
+
+The above mentioned resources are already built for X86, ARM and RISC-V ISAs. They can be found at the following links:
+
+- The suite with all the workloads for the x86 ISA is at [x86-getting-started-benchmark-suite](https://resources.gem5.org/resources/x86-getting-started-benchmark-suite?version=1.0.0). This suite contains the following workloads:
+
+  - [x86-llvm-minisat-run](https://resources.gem5.org/resources/x86-llvm-minisat-run?version=1.0.0)
+  - [x86-gapbs-bfs-run](https://resources.gem5.org/resources/x86-gapbs-bfs-run?version=1.0.0)
+  - [x86-gapbs-tc-run](https://resources.gem5.org/resources/x86-gapbs-tc-run?version=1.0.0)
+  - [x86-npb-is-size-s-run](https://resources.gem5.org/resources/x86-npb-is-size-s-run?version=1.0.0)
+  - [x86-npb-lu-size-s-run](https://resources.gem5.org/resources/x86-npb-lu-size-s-run?version=1.0.0)
+  - [x86-npb-cg-size-s-run](https://resources.gem5.org/resources/x86-npb-cg-size-s-run?version=1.0.0)
+  - [x86-npb-bt-size-s-run](https://resources.gem5.org/resources/x86-npb-bt-size-s-run?version=1.0.0)
+  - [x86-npb-ft-size-s-run](https://resources.gem5.org/resources/x86-npb-ft-size-s-run?version=1.0.0)
+  - [x86-matrix-multiply-run](https://resources.gem5.org/resources/x86-matrix-multiply-run?version=1.0.0)
+
+- The suite with all the workloads for the ARM ISA is at [arm-getting-started-benchmark-suite](https://resources.gem5.org/resources/arm-getting-started-benchmark-suite?version=1.0.0). This suite contains the following workloads:
+
+  - [arm-llvm-minisat-run](https://resources.gem5.org/resources/arm-llvm-minisat-run?database=gem5-resources&version=1.0.0)
+  - [arm-gapbs-bfs-run](https://resources.gem5.org/resources/arm-gapbs-bfs-run?database=gem5-resources&version=1.0.0)
+  - [arm-gapbs-tc-run](https://resources.gem5.org/resources/arm-gapbs-tc-run?database=gem5-resources&version=1.0.0)
+  - [arm-npb-is-size-s-run](https://resources.gem5.org/resources/arm-npb-is-size-s-run?database=gem5-resources&version=1.0.0)
+  - [arm-npb-lu-size-s-run](https://resources.gem5.org/resources/arm-npb-lu-size-s-run?database=gem5-resources&version=1.0.0)
+  - [arm-npb-cg-size-s-run](https://resources.gem5.org/resources/arm-npb-cg-size-s-run?database=gem5-resources&version=1.0.0)
+  - [arm-npb-bt-size-s-run](https://resources.gem5.org/resources/arm-npb-bt-size-s-run?database=gem5-resources&version=1.0.0)
+  - [arm-npb-ft-size-s-run](https://resources.gem5.org/resources/arm-npb-ft-size-s-run?database=gem5-resources&version=1.0.0)
+  - [arm-matrix-multiply-run](https://resources.gem5.org/resources/arm-matrix-multiply-run?database=gem5-resources&version=1.0.0)
+
+- The suite with all the workloads for the RISC-V ISA is at [riscv-getting-started-benchmark-suite](https://resources.gem5.org/resources/riscv-getting-started-benchmark-suite?version=1.0.0). This suite contains the following workloads:
+
+  - [riscv-llvm-minisat-run](https://resources.gem5.org/resources/riscv-llvm-minisat-run?version=1.0.0)
+  - [riscv-gapbs-bfs-run](https://resources.gem5.org/resources/riscv-gapbs-bfs-run?version=1.0.0)
+  - [riscv-gapbs-tc-run](https://resources.gem5.org/resources/riscv-gapbs-tc-run?version=1.0.0)
+  - [riscv-npb-is-size-s-run](https://resources.gem5.org/resources/riscv-npb-is-size-s-run?version=1.0.0)
+  - [riscv-npb-lu-size-s-run](https://resources.gem5.org/resources/riscv-npb-lu-size-s-run?version=1.0.0)
+  - [riscv-npb-cg-size-s-run](https://resources.gem5.org/resources/riscv-npb-cg-size-s-run?version=1.0.0)
+  - [riscv-npb-bt-size-s-run](https://resources.gem5.org/resources/riscv-npb-bt-size-s-run?version=1.0.0)
+  - [riscv-npb-ft-size-s-run](https://resources.gem5.org/resources/riscv-npb-ft-size-s-run?version=1.0.0)
+  - [riscv-matrix-multiply-run](https://resources.gem5.org/resources/riscv-matrix-multiply-run?version=1.0.0)

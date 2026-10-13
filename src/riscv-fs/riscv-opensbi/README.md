@@ -115,3 +115,11 @@ The `yes "" | make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- oldconfig` choose
 To change the configuration after that step, you can use `make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig`.
 
 The linux kernel is located at `linux/vmlinux`.
+
+## The links to the prebuilt resources
+
+The kernel can be found at: [riscv-linux-6.5.5-kernel](https://resources.gem5.org/resources/riscv-linux-6.5.5-kernel?version=1.0.0).
+
+The OpenSBI bootloader can be found at: [riscv-bootloader-opensbi-1.3.1](https://resources.gem5.org/resources/riscv-bootloader-opensbi-1.3.1?version=1.0.0).
+
+A boot workload using the above mentioned kernel and bootloader with the [riscv-ubuntu-20.04-img](https://resources.gem5.org/resources/riscv-ubuntu-20.04-img?database=gem5-resources&version=1.0.0) can be found at: [riscv-ubuntu-20.04-boot](https://resources.gem5.org/resources/riscv-ubuntu-20.04-boot?version=3.0.0).
