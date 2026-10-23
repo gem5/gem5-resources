@@ -52,6 +52,11 @@ git sparse-checkout add util/m5
 git sparse-checkout add util/gem5_bridge
 git sparse-checkout add include
 git checkout
+# RISC-V KVM needs address-mode m5ops because the guest runs gem5-bridge
+# natively instead of trapping legacy pseudo instructions.
+if ! grep -q "m5op_addr.S" util/m5/src/abi/riscv/SConsopts; then
+    git apply /home/gem5/gem5-riscv-m5-addr.patch
+fi
 # Install the headers globally so that other benchmarks can use them
 cp -r include/gem5 /usr/local/include/
 

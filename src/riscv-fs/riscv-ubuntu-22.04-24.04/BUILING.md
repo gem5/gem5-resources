@@ -29,6 +29,7 @@ See [Troubleshooting](#troubleshooting) for more information.
   - `gem5-bridge` utility is installed in `/usr/local/bin/gem5-bridge`.
   - `gem5-bridge` has a symlink to `m5` for backwards compatibility.
   - `libm5` is installed in `/usr/local/lib/` and the headers for `libm5` are installed in `/usr/local/include/m5`.
+  - The RISC-V image builds `gem5-bridge` in MMIO/address mode with the default bridge base `0x10010000`, which is required for gem5 KVM mode.
 - The `.bashrc` file checks to see if there is anything in the `gem5-bridge readfile` command and executes the script if there is.
 - The init process is modified to provide better annotations and more exit event. For more details see the [Init Process and Exit events](README.md#init-process-and-exit-events).
   - The `gem5-bridge exit` command is run after the linux kernel initialization by default.
