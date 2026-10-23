@@ -41,7 +41,7 @@ locals {
       modules_dir = "kernel-and-modules/arm-ubuntu-22.04/my-arm-5.15.168-kernel/5.15.168"
     }
     "24.04" = {
-      iso_url       = "https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04-live-server-arm64.iso"
+      iso_url       = "https://old-releases.ubuntu.com/releases/noble/ubuntu-24.04-live-server-arm64.iso"
       iso_checksum  = "sha256:d2d9986ada3864666e36a57634dfc97d17ad921fa44c56eeaca801e7dab08ad7"
       output_dir    = "arm-disk-image-24-04"
       http_directory = "http/arm-24-04"
