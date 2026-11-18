@@ -39,7 +39,7 @@ RVTEST_CODE_BEGIN
     amomaxu.w	a4, a1, 0(a3); \
   )
 
-  TEST_CASE(7, a5, 1, lw a5, 0(a3))
+  TEST_CASE(7, a5, 0x0000000000000001, lw a5, 0(a3))
 
   TEST_PASSFAIL
 
